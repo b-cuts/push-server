@@ -1,0 +1,87 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+project(":push-server-jackson") {
+
+  version = pushServerPub
+  description = "Push Server Jackson Module"
+
+  apply (plugin: "ssh")
+
+  dependencies {
+    compile project(":push-server-pub")
+  	compile ("org.crazyyak.dev:yak-dev-jackson:${yakDevVersion}")
+//    compile ("org.springframework:spring-context:4.0")
+  }
+
+  signing {
+      sign configurations.archives
+  }
+  ssh {
+    identity = file("${cosmicPushKey}") // Enable public key authentication
+    knownHosts = allowAnyHosts          // Disable host key verification
+  }
+  remotes {
+    webServer {
+      host = '107.170.247.182'
+      user = 'root'
+    }
+  }
+  task stageFiles(type: SshTask, dependsOn: jar) {
+    ssh {
+      pty = true; // Enable PTY allocation for sudo
+    }
+    session(remotes.webServer) {
+      // Put a built WAR to the server
+      def copyOf = new File((File)jar.archivePath.parentFile, "push-server-pub-${project.version}.jar");
+      if (copyOf.exists() == false) {
+        copyOf.bytes = jar.archivePath.bytes
+      }
+      System.out.printf("Uploading " + copyOf);
+      put(copyOf.absolutePath, "/opt/staging/")
+    }
+  }
+
+  uploadArchives {
+      repositories {
+          mavenDeployer {
+              beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+              repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                  authentication(userName: sonatypeUsername, password: sonatypePassword)
+              }
+
+              pom.groupId = project.group
+              pom.artifactId = project.name
+              pom.version = project.version
+              pom.packaging = 'jar'
+              pom.project {
+                  name = project.name
+                  description = "Push Server Pub Module"
+                  url = 'http://www.cosmicpush.com'
+                  licenses {
+                      license {
+                          name = 'Apache License, Version 2.0'
+                          url = 'http://www.apache.org/licenses/LICENSE-2.0'
+                          distribution = 'repo'
+                      }
+                  }
+                  scm {
+                      url = 'https://bitbucket.org/SireInsectus/cosmic-push'
+                      connection = 'git@bitbucket.org:SireInsectus/cosmic-push.git'
+                  }
+                  developers {
+                      developer {
+                          id = 'SireInsectus'
+                          name = 'Jacob D. Parr'
+                          email = 'jacob.parr@gmail.com'
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
+

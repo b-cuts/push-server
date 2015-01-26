@@ -1,0 +1,33 @@
+{
+   "entityType": "account",
+   "entity": {
+       "createdAt": "2014-09-05T19:26:26.207",
+       "userName": "test",
+       "password": "test",
+       "tempPassword": null,
+       "firstName": "Test",
+       "lastName": "User",
+       "emailAddress": "test@example.com",
+       "emailConfirmed": true,
+       "emailConfirmationCode": null,
+       "roleTypes": [
+       ],
+       "accountStatus": {
+           "enabled": true,
+           "credentialsNonExpired": true,
+           "accountNonLocked": true,
+           "accountNonExpired": true
+       },
+       "apiClients": [
+       ],
+       "testConfig": {
+           "emailTestNotification": null,
+           "googleTalkTestNotification": null
+       },
+       "permissions": {
+           "roleTypes": [
+           ]
+       },
+       "retentionDays": 0
+   }
+}

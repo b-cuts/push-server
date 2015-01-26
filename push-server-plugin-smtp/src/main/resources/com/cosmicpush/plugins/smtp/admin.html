@@ -1,0 +1,67 @@
+<form style="margin-top: 1em" method="post">
+  <fieldset>
+    <legend>
+      <img src="${push-server-base}/manage/smtp-email/icon" class="icon"/>
+      <span>SMTP (eMail)</span>
+    </legend>
+
+    <table style="width: 100%; float: left">
+      <colgroup>
+        <col style="width: 1em"/>
+        <col style="width: 1em"/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <td><label for="em-user-name">User Name:</label></td>
+          <td><input type="text" id="em-user-name" name="userName" value="${config-user-name}" style="width:200px;"></td>
+          <td rowspan="7" class="help">
+            Use this push to send email messages via the specified SMTP server.
+          </td>
+        </tr>
+        <tr>
+          <td><label for="em-password">Password:</label></td>
+          <td><input type="text" id="em-password" name="password" value="${config-password}" style="width:200px;"></td>
+        </tr>
+
+        <tr><td>&nbsp;</td></tr>
+
+        <tr>
+          <td><label for="em-smtp-auth">SMTP Auth:</label></td>
+          <td>
+            <select id="em-smtp-auth" name="authType" data-default="${config-auth-type}">
+              <option></option>
+              <option value="standard">Standard (25)</option>
+              <option value="ssl">SSL (465)</option>
+              <option value="tls">TLS (587)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="em-smtp-port-number">Port Number:</label></td>
+          <td><input type="text" id="em-smtp-port-number" name="portNumber" value="${config-port-number}" style="width:50px;"></td>
+        </tr>
+        <tr>
+          <td><label for="em-smtp-server-name">Server Name:</label></td>
+          <td><input type="text" id="em-smtp-server-name" name="serverName" value="${config-server-name}" style="width:200px;"></td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+          <td><label for="em-test">Test Address:</label></td>
+          <td><input type="text" id="em-test" name="testAddress" value="${config-test-address}" style="width:200px;"></td>
+        </tr>
+        <tr>
+          <td><label for="em-override">Recipient Override:</label></td>
+          <td><input type="text" id="em-override" name="recipientOverride" value="${config-recipient-override}" style="width:200px;"></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: right">
+            <button type="submit" formaction="${push-server-base}/manage/api-client/${api-client-name}/smtp-email" style="float:right">Update</button>
+            <button type="submit" formaction="${push-server-base}/manage/api-client/${api-client-name}/smtp-email/test" style="float:right">Test</button>
+            <button type="submit" formaction="${push-server-base}/manage/api-client/${api-client-name}/smtp-email/delete" style="float:left">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</form>

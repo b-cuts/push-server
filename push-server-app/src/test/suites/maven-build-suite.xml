@@ -1,0 +1,16 @@
+<!--
+  ~ Copyright (c) 2014 Jacob D. Parr
+  ~
+  ~ This software may not be used without permission.
+  -->
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Cosmic Push App Build Suite" thread-count="1" parallel="false">
+  <test verbose="2" name="Test Suite" annotations="JDK" preserve-order="true" parallel="none">
+    <packages>
+      <package name="com.cosmicpush.app.*"/>
+      <package name="com.cosmicpush.common.*"/>
+      <package name="com.cosmicpush.engine.*"/>
+    </packages>
+  </test>
+</suite>

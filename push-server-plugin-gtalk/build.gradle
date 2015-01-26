@@ -1,0 +1,16 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+project(":push-server-plugin-gtalk") {
+
+  version = pushServerEng
+  description = "Cosmic Push Google Talk Plugin"
+
+  dependencies {
+    compile(project(":push-server-common"))
+    compile("jivesoftware:smackx:3.1.0")
+  }
+}

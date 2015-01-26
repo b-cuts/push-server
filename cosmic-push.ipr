@@ -1,0 +1,1562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactManager">
+    <artifact type="war" name="Gradle : com.cosmicpush:push-server-app : push-server-app-4.0.0.war">
+      <output-path>$PROJECT_DIR$/build/artifacts/push-server-app</output-path>
+      <properties id="gradle-properties">
+        <options external-project-path="$PROJECT_DIR$/push-server-app" />
+      </properties>
+      <root id="archive" name="push-server-app-4.0.0.war">
+        <element id="javaee-facet-resources" facet="push-server-app/web/Web Gradle : push-server-app-4.0.0.war" />
+        <element id="directory" name="WEB-INF">
+          <element id="directory" name="classes">
+            <element id="module-output" name="push-server-app" />
+            <element id="dir-copy" path="$PROJECT_DIR$/push-server-app/build/resources/main" />
+          </element>
+          <element id="directory" name="lib">
+            <element id="archive" name="com.cosmicpush-push-server-pub-2.0.0.jar">
+              <element id="module-output" name="push-server-pub" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-pub/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-common:4.0.0" />
+            <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.0.1" />
+            <element id="library" level="project" name="Gradle: javax.servlet.jsp:jsp-api:2.2" />
+            <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
+            <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.1.3" />
+            <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-spring3:2.11" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:spring-bridge:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.1.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf:2.1.2.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-mvc-jsp:2.11" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.javassist:javassist:3.18.1-GA" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf-spring4:2.1.2.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.11" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.11" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-taglibs:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-acl:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.1.1" />
+            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.4.1.3" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.11" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.11" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: javax.inject:javax.inject:1" />
+            <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.6.1" />
+            <element id="library" level="project" name="Gradle: ognl:ognl:3.0.6" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-mvc:2.11" />
+            <element id="library" level="project" name="Gradle: org.jvnet.mimepull:mimepull:1.9.3" />
+            <element id="library" level="project" name="Gradle: javax.annotation:javax.annotation-api:1.2" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:osgi-resource-locator:1.0.1" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:config-types:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:core:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-config:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-runlevel:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:class-model:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.jvnet:tiger-types:1.4" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:bean-validator:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:asm-all-repackaged:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-spring-security:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-jersey-spring:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.0.0" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-smtp-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-smtp" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-smtp/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: javax.mail:mail:1.4.5" />
+            <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
+            <element id="archive" name="com.cosmicpush-push-server-common-2.0.0.jar">
+              <element id="module-output" name="push-server-common" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-common/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.0.0" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.3.0" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.3.0" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.3.0" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.3.0" />
+            <element id="archive" name="com.cosmicpush-push-server-jackson-2.0.0.jar">
+              <element id="module-output" name="push-server-jackson" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-jackson/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-common:2.13" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-client:2.13" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.13" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-api:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:javax.inject:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-locator:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.web:jstl-impl:1.2" />
+            <element id="library" level="project" name="Gradle: javax.servlet:servlet-api:2.5" />
+            <element id="library" level="project" name="Gradle: javax.servlet.jsp.jstl:jstl-api:1.2" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-ses-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-ses" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-ses/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-amazon:4.0.0" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.6.5" />
+            <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.2" />
+            <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
+            <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.2" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-gtalk-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-gtalk" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-gtalk/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: jivesoftware:smackx:3.1.0" />
+            <element id="library" level="project" name="Gradle: jivesoftware:smack:3.1.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:4.0.0" />
+          </element>
+        </element>
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/build/artifacts/push-server-app/exploded/push-server-app-4.0.0.war/META-INF/MANIFEST.MF" />
+        </element>
+      </root>
+    </artifact>
+    <artifact type="exploded-war" name="Gradle : com.cosmicpush:push-server-app : push-server-app-4.0.0.war (exploded)">
+      <output-path>$PROJECT_DIR$/build/artifacts/push-server-app/exploded/push-server-app-4.0.0.war</output-path>
+      <properties id="gradle-properties">
+        <options external-project-path="$PROJECT_DIR$/push-server-app" />
+      </properties>
+      <root id="root">
+        <element id="javaee-facet-resources" facet="push-server-app/web/Web Gradle : push-server-app-4.0.0.war" />
+        <element id="directory" name="WEB-INF">
+          <element id="directory" name="classes">
+            <element id="module-output" name="push-server-app" />
+            <element id="dir-copy" path="$PROJECT_DIR$/push-server-app/build/resources/main" />
+          </element>
+          <element id="directory" name="lib">
+            <element id="archive" name="com.cosmicpush-push-server-pub-2.0.0.jar">
+              <element id="module-output" name="push-server-pub" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-pub/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-common:4.0.0" />
+            <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.0.1" />
+            <element id="library" level="project" name="Gradle: javax.servlet.jsp:jsp-api:2.2" />
+            <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
+            <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.1.3" />
+            <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-spring3:2.11" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:spring-bridge:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.1.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf:2.1.2.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-mvc-jsp:2.11" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.javassist:javassist:3.18.1-GA" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf-spring4:2.1.2.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.11" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.11" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-taglibs:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.0.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-acl:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:3.2.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.1.1" />
+            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.4.1.3" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.11" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.11" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: javax.inject:javax.inject:1" />
+            <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.6.1" />
+            <element id="library" level="project" name="Gradle: ognl:ognl:3.0.6" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-mvc:2.11" />
+            <element id="library" level="project" name="Gradle: org.jvnet.mimepull:mimepull:1.9.3" />
+            <element id="library" level="project" name="Gradle: javax.annotation:javax.annotation-api:1.2" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:osgi-resource-locator:1.0.1" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:config-types:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:core:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-config:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-runlevel:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:class-model:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.jvnet:tiger-types:1.4" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:bean-validator:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:asm-all-repackaged:2.3.0-b05" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-spring-security:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-jersey-spring:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.0.0" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-smtp-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-smtp" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-smtp/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: javax.mail:mail:1.4.5" />
+            <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
+            <element id="archive" name="com.cosmicpush-push-server-common-2.0.0.jar">
+              <element id="module-output" name="push-server-common" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-common/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.0.0" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.3.0" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.3.0" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.3.0" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.3.0" />
+            <element id="archive" name="com.cosmicpush-push-server-jackson-2.0.0.jar">
+              <element id="module-output" name="push-server-jackson" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-jackson/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-common:2.13" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-client:2.13" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.13" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-api:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:javax.inject:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-locator:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.3.0-b10" />
+            <element id="library" level="project" name="Gradle: org.glassfish.web:jstl-impl:1.2" />
+            <element id="library" level="project" name="Gradle: javax.servlet:servlet-api:2.5" />
+            <element id="library" level="project" name="Gradle: javax.servlet.jsp.jstl:jstl-api:1.2" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-ses-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-ses" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-ses/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-amazon:4.0.0" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.6.5" />
+            <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.2" />
+            <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
+            <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.2" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-gtalk-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-gtalk" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-gtalk/build/resources/main" />
+            </element>
+            <element id="library" level="project" name="Gradle: jivesoftware:smackx:3.1.0" />
+            <element id="library" level="project" name="Gradle: jivesoftware:smack:3.1.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:4.0.0" />
+          </element>
+        </element>
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/build/artifacts/push-server-app/exploded/push-server-app-4.0.0.war/META-INF/MANIFEST.MF" />
+        </element>
+      </root>
+    </artifact>
+  </component>
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="CopyrightManager" default="" />
+  <component name="DependencyValidationManager">
+    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
+  </component>
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$" />
+  </component>
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="C:/tools/gradle-1.10" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/push-server-app" />
+            <option value="$PROJECT_DIR$/push-server-common" />
+            <option value="$PROJECT_DIR$/push-server-gateway" />
+            <option value="$PROJECT_DIR$/push-server-jackson" />
+            <option value="$PROJECT_DIR$/push-server-plugin-gtalk" />
+            <option value="$PROJECT_DIR$/push-server-plugin-ses" />
+            <option value="$PROJECT_DIR$/push-server-plugin-smtp" />
+            <option value="$PROJECT_DIR$/push-server-pub" />
+            <option value="$PROJECT_DIR$/push-server-v1-integration-tests" />
+            <option value="$PROJECT_DIR$/push-server-v2-integration-tests" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+  <component name="IdProvider" IDEtalkID="F43389A1418EC04D6C67046C3ECC9981" />
+  <component name="InspectionProjectProfileManager">
+    <profiles>
+      <profile version="1.0" is_locked="false">
+        <option name="myName" value="Project Default" />
+        <option name="myLocal" value="false" />
+        <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
+          <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
+          <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
+        </inspection_tool>
+        <inspection_tool class="MissingOverrideAnnotation" enabled="true" level="WARNING" enabled_by_default="true">
+          <option name="ignoreObjectMethods" value="true" />
+          <option name="ignoreAnonymousClassMethods" value="false" />
+        </inspection_tool>
+        <inspection_tool class="NullableProblems" enabled="false" level="WARNING" enabled_by_default="false">
+          <option name="REPORT_NULLABLE_METHOD_OVERRIDES_NOTNULL" value="true" />
+          <option name="REPORT_NOT_ANNOTATED_METHOD_OVERRIDES_NOTNULL" value="true" />
+          <option name="REPORT_NOTNULL_PARAMETER_OVERRIDES_NULLABLE" value="true" />
+          <option name="REPORT_NOT_ANNOTATED_PARAMETER_OVERRIDES_NOTNULL" value="true" />
+          <option name="REPORT_NOT_ANNOTATED_GETTER" value="true" />
+          <option name="REPORT_NOT_ANNOTATED_SETTER_PARAMETER" value="true" />
+          <option name="REPORT_ANNOTATION_NOT_PROPAGATED_TO_OVERRIDERS" value="true" />
+          <option name="REPORT_NULLS_PASSED_TO_NON_ANNOTATED_METHOD" value="true" />
+        </inspection_tool>
+        <inspection_tool class="PointlessBooleanExpression" enabled="false" level="WARNING" enabled_by_default="false">
+          <option name="m_ignoreExpressionsContainingConstants" value="false" />
+        </inspection_tool>
+      </profile>
+    </profiles>
+    <option name="PROJECT_PROFILE" value="Project Default" />
+    <option name="USE_PROJECT_PROFILE" value="true" />
+    <version value="1.0" />
+  </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="jacobp">
+      <words>
+        <w>couchace</w>
+        <w>databind</w>
+        <w>doctype</w>
+      </words>
+    </dictionary>
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Class metrics</id>
+          </State>
+          <State>
+            <id>Class structure</id>
+          </State>
+          <State>
+            <id>Cloning issues</id>
+          </State>
+          <State>
+            <id>Code style issues</id>
+          </State>
+          <State>
+            <id>Declaration redundancy</id>
+          </State>
+          <State>
+            <id>DeclarationGroovy</id>
+          </State>
+          <State>
+            <id>Error handling</id>
+          </State>
+          <State>
+            <id>Finalization issues</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>Groovy</id>
+          </State>
+          <State>
+            <id>Inheritance issues</id>
+          </State>
+          <State>
+            <id>Initialization issues</id>
+          </State>
+          <State>
+            <id>JUnit issues</id>
+          </State>
+          <State>
+            <id>Java language level migration aids</id>
+          </State>
+          <State>
+            <id>Naming ConventionsGroovy</id>
+          </State>
+          <State>
+            <id>Naming conventions</id>
+          </State>
+          <State>
+            <id>Pattern Validation</id>
+          </State>
+          <State>
+            <id>Performance issues</id>
+          </State>
+          <State>
+            <id>Probable bugs</id>
+          </State>
+          <State>
+            <id>Properties Files</id>
+          </State>
+          <State>
+            <id>Security issues</id>
+          </State>
+          <State>
+            <id>Threading issues</id>
+          </State>
+          <State>
+            <id>Threading issuesGroovy</id>
+          </State>
+          <State>
+            <id>Visibility issues</id>
+          </State>
+          <State>
+            <id>toString() issues</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>MissingOverrideAnnotation</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cosmic-push.iml" filepath="$PROJECT_DIR$/cosmic-push.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-app/push-server-app.iml" filepath="$PROJECT_DIR$/push-server-app/push-server-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-common/push-server-common.iml" filepath="$PROJECT_DIR$/push-server-common/push-server-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-gateway/push-server-gateway.iml" filepath="$PROJECT_DIR$/push-server-gateway/push-server-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" filepath="$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" filepath="$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" filepath="$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" filepath="$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-pub/push-server-pub.iml" filepath="$PROJECT_DIR$/push-server-pub/push-server-pub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-v1-integration-tests/push-server-v1-integration-tests.iml" filepath="$PROJECT_DIR$/push-server-v1-integration-tests/push-server-v1-integration-tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-v2-integration-tests/push-server-v2-integration-tests.iml" filepath="$PROJECT_DIR$/push-server-v2-integration-tests/push-server-v2-integration-tests.iml" />
+    </modules>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build" />
+  </component>
+  <component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="push-server" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="push-server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/push-server/src/test/suites/maven-build-suite.xml" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="62015" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="push-server-gateway" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="push-server-gateway" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/push-server-gateway/src/test/suites/maven-build-suite.xml" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="57430" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="push-server-pub" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="push-server-pub" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/push-server-pub/src/test/suites/maven-build-suite.xml" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="62128" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Cosmic Push" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.57" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:9010/push-server" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Gradle : com.cosmicpush:push-server-app : push-server-app-4.0.0.war (exploded)">
+          <settings>
+            <option name="CONTEXT_PATH" value="/push-server" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_cosmic-push_3" />
+        <option name="HTTP_PORT" value="9010" />
+        <option name="HTTPS_PORT" value="9011" />
+        <option name="JNDI_PORT" value="9009" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Cover" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50847" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Gradle : com.cosmicpush:push-server-app : push-server-app-4.0.0.war (exploded)" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+  </component>
+  <component name="libraryTable">
+    <library name="Gradle: aopalliance:aopalliance:1.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.amazonaws:aws-java-sdk:1.6.5">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.6.5/442731d82428877364363407ac1407cf580b76c4/aws-java-sdk-1.6.5.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.6.5/22c0358d050d13013c0cfd9b8e674e1656c8cab0/aws-java-sdk-1.6.5-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.beust:jcommander:1.27">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.beust/jcommander/1.27/58c9cbf0f1fa296f93c712f2cf46de50471920f9/jcommander-1.27.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.beust/jcommander/1.27/fae697ac46477a5227a5ee14f8f3a1270a4627b0/jcommander-1.27-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.cosmicpush:push-server-gateway:1.5.6">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-gateway/1.5.6/f3efd2421da4cf86d13c7967a63d30c6925a8e22/push-server-gateway-1.5.6.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-gateway/1.5.6/28240271d1fa25ae75741f75d3f706404af817eb/push-server-gateway-1.5.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.cosmicpush:push-server-pub:1.5.6">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-pub/1.5.6/d1b53ad6e22ec9415980213d7cfb8db2aec28fcb/push-server-pub-1.5.6.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-pub/1.5.6/950f937c36d400cbcc2c436bd9fd1093c101f528/push-server-pub-1.5.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.couchace:couchace-annotations:1.3.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.3.0/396c9501fd32ba4e33fddd305d78b0750959c353/couchace-annotations-1.3.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.3.0/1bf84ab892de93c70cd699c29b074ce1f9f12103/couchace-annotations-1.3.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.couchace:couchace-core:1.3.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.3.0/732d6cceb89aba617479b590032f4bafa0f7d8ed/couchace-core-1.3.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.3.0/2d8a6dcac1efcb68c4919042ee80d83861eccbda/couchace-core-1.3.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.couchace:couchace-jackson:1.3.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.3.0/665b3c92e7279e4b7bcc37a143c718e50b96c31f/couchace-jackson-1.3.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.3.0/db764506a2c389276efc9a8148dde64f0baf66f1/couchace-jackson-1.3.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.couchace:couchace-jersey:1.3.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.3.0/5bd9e79baa2a54f1558e8e55ee3fbee697fbe03d/couchace-jersey-1.3.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.3.0/41358fe37e5066687bda46a9b49b3ed53642c418/couchace-jersey-1.3.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.1/55605135bd7b836612e0bba7037c9669f6ccf89f/jackson-annotations-2.4.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.1/60007e1eb9be41c619875b725cb982012dff8a99/jackson-annotations-2.4.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.1.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.4.1.1/f1b322a9ff873aee0b710af5f33bc10a2eb019ba/jackson-core-2.4.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.4.1.1/45569a3cbc23149cc073680d74905596ae827b07/jackson-core-2.4.1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.4.1.3">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.1.3/337a63173c2950939158544315ce6d49c19d84a8/jackson-databind-2.4.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.1.3/3fe830d425abf6358eae50344ba177693c0d60cf/jackson-databind-2.4.1.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-joda/2.4.1/2fc99d0270a244143eb880183b8337eaa262f9ba/jackson-datatype-joda-2.4.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-joda/2.4.1/16b26994313938c79e1a43dea636fae21032d97d/jackson-datatype-joda-2.4.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: commons-codec:commons-codec:1.6">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/61e9f9d11fe3e12ec62f633006e99d75fd7f19c8/commons-codec-1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: commons-logging:commons-logging:1.1.3">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f/commons-logging-1.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/28bb0405fddaf04f15058fbfbe01fe2780d7d3b6/commons-logging-1.1.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.activation:activation:1.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/3697e9f67a2ed7ac5f589cff30f21173299440/activation-1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.annotation:javax.annotation-api:1.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/ad18a02db08eaee697f812e333f692fc51129e4a/javax.annotation-api-1.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.inject:javax.inject:1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/a00123f261762a7c5e0ec916a2c7c8298d29c400/javax.inject-1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.mail:mail:1.4.5">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.5/85319c87280f30e1afc54c355f91f44741beac49/mail-1.4.5.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.5/98d67d8444a044109dcbb4ae4690022b5be1de44/mail-1.4.5-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.servlet.jsp.jstl:jstl-api:1.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp.jstl/jstl-api/1.2/f9a034c1ca1f79c03bb461805a688f944544d138/jstl-api-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp.jstl/jstl-api/1.2/b7b976db29290621db582b38c1db9c22ff439f89/jstl-api-1.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.servlet.jsp:jsp-api:2.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp/jsp-api/2.2/5bf0c26ef77df58c7c28be2d9d52246f2b437a54/jsp-api-2.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp/jsp-api/2.2/78bc1457a1fc2f8a7037cd2b247062ab3daac212/jsp-api-2.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.servlet:javax.servlet-api:3.0.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.0.1/6bf0ebb7efd993e222fc1112377b5e92a13b38dd/javax.servlet-api-3.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.0.1/1952f91d84016a39e31346c9d18bd8c9c4a128a/javax.servlet-api-3.0.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.servlet:servlet-api:2.5">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/servlet-api/2.5/5959582d97d8b61f4d154ca9e495aafd16726e34/servlet-api-2.5.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/servlet-api/2.5/21599814ad9a605b86f3e6381571beccd861a32/servlet-api-2.5-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.validation:validation-api:1.1.0.Final">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/7d49b53caed9bd81d172807c3e096d24f3c57090/validation-api-1.1.0.Final-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.ws.rs/javax.ws.rs-api/2.0.1/104e9c2b5583cfcfeac0402316221648d6d8ea6b/javax.ws.rs-api-2.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.ws.rs/javax.ws.rs-api/2.0.1/a20db7429fd8dfff74335ec867472b71c345049b/javax.ws.rs-api-2.0.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: jivesoftware:smack:3.1.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jivesoftware/smack/3.1.0/916a0fe08d840a08c950f49fb59b961e14d673b8/smack-3.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: jivesoftware:smackx:3.1.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jivesoftware/smackx/3.1.0/ba1365c7e5f3cf7f7641b354677b3f54a6ea5a15/smackx-3.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: joda-time:joda-time:2.3">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.3/56498efd17752898cfcc3868c1b6211a07b12b8f/joda-time-2.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.3/ecd8588d8ce0963eb443de31d5fea29e3205f160/joda-time-2.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: junit:junit:4.10">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/6c98d6766e72d5575f96c9479d1c1d3b865c6e25/junit-4.10-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: log4j:log4j:1.2.17">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/677abe279b68c5e7490d6d50c6951376238d7d3e/log4j-1.2.17-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: ognl:ognl:3.0.6">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ognl/ognl/3.0.6/a3665cf8e3426686ee751790f3d1e1ec5705e9dc/ognl-3.0.6.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ognl/ognl/3.0.6/8ef4c8207d5a87c99bd7a080aa04ef954aa00b44/ognl-3.0.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.apache.httpcomponents:httpclient:4.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.2/894b77b74ac06206075bccc22868ef83d69e383b/httpclient-4.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.2/559ba161d52801e5e7c51fdbf9f0897979b5b022/httpclient-4.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.apache.httpcomponents:httpcore:4.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.2/9e431c80f58ec65460fcbdaaad802af668bb3fda/httpcore-4.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.2/d47b19b92c0ef897d15635acc18cbd335f8960c3/httpcore-4.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.beanshell:bsh:2.0b4">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.beanshell/bsh/2.0b4/a05f0a0feefa8d8467ac80e16e7de071489f0d9c/bsh-2.0b4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.crazyyak.apis:yak-apis-google:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/apis/yak-apis-google/4.0.0/yak-apis-google-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/apis/yak-apis-google/4.0.0/yak-apis-google-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.app:yak-app-common:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/4.0.0/yak-app-common-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/4.0.0/yak-app-common-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.app:yak-app-jersey-spring:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-jersey-spring/4.0.0/yak-app-jersey-spring-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-jersey-spring/4.0.0/yak-app-jersey-spring-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.dev:yak-dev-common:2.4.19">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/2.4.19/c070d78f1ca973d19f9c39197740a202d6b785d/yak-dev-common-2.4.19.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/2.4.19/9b12d6df472a56b1c91590b693b647b66d3753c4/yak-dev-common-2.4.19-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.dev:yak-dev-common:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-common/4.0.0/yak-dev-common-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-common/4.0.0/yak-dev-common-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.dev:yak-dev-domain:2.4.19">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/2.4.19/123242668a597b72e7155a3da64c63cec8ef7d2d/yak-dev-domain-2.4.19.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/2.4.19/82e967c3db0ecd248c17fd03dc7694aa9b481ea2/yak-dev-domain-2.4.19-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.dev:yak-dev-domain:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-domain/4.0.0/yak-dev-domain-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-domain/4.0.0/yak-dev-domain-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.dev:yak-dev-jackson:2.4.19">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/2.4.19/2e73dbee91ae2196934f191449ad0b6aeaf6468f/yak-dev-jackson-2.4.19.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/2.4.19/3ce256cc2acd41284221bff4a1b5df17bedb7b0f/yak-dev-jackson-2.4.19-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.0.0/yak-dev-jackson-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.0.0/yak-dev-jackson-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.dev:yak-dev-jersey-client:2.4.19">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jersey-client/2.4.19/3a4ef1acaaae640983893b80bc590e567faf4157/yak-dev-jersey-client-2.4.19.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jersey-client/2.4.19/be03d648ea59154147a6042d7ea44abcd96f9d86/yak-dev-jersey-client-2.4.19-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.dev:yak-dev-testing:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-testing/4.0.0/yak-dev-testing-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-testing/4.0.0/yak-dev-testing-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.lib:yak-lib-amazon:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-amazon/4.0.0/yak-lib-amazon-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-amazon/4.0.0/yak-lib-amazon-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-couchace/4.0.0/yak-lib-couchace-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-couchace/4.0.0/yak-lib-couchace-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/4.0.0/yak-lib-jaxrs-jackson-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/4.0.0/yak-lib-jaxrs-jackson-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs/4.0.0/yak-lib-jaxrs-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs/4.0.0/yak-lib-jaxrs-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-servlet/4.0.0/yak-lib-servlet-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-servlet/4.0.0/yak-lib-servlet-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.crazyyak.lib:yak-lib-spring-security:4.0.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-spring-security/4.0.0/yak-lib-spring-security-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-spring-security/4.0.0/yak-lib-spring-security-4.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.3.0-b10">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.3.0-b10/8970184d22d7ec9f9bd2fbddf861e342f8019a84/aopalliance-repackaged-2.3.0-b10.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.3.0-b10/1ec08a05288c16ee96c48c54c9b44b35aae03973/aopalliance-repackaged-2.3.0-b10-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2.external:asm-all-repackaged:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/asm-all-repackaged/2.3.0-b05/7ed8815fbfe5ffbc2a2e238eea7ce2bb296cb792/asm-all-repackaged-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/asm-all-repackaged/2.3.0-b05/6b5ca1578cf84c0aacea19eb7c2688c5d9d1bdcf/asm-all-repackaged-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2.external:bean-validator:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/bean-validator/2.3.0-b05/8c6fceb16d884681c342df02e97affdb3e68ac12/bean-validator-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/bean-validator/2.3.0-b05/d4365b8028d10d142c2ee7135af128d29ef4925f/bean-validator-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2.external:javax.inject:2.3.0-b10">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.3.0-b10/48656679e624eb41140abcd7b52b34808cf1852d/javax.inject-2.3.0-b10.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.3.0-b10/38e0d29b582c4c59e1f8e70d682d5c1ac480e846/javax.inject-2.3.0-b10-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:class-model:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/class-model/2.3.0-b05/f46507f01122cc28c23c351d1c1ae4bab950732e/class-model-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/class-model/2.3.0-b05/2dadfc8d8a984053d48d4d28a19c4af7769e2940/class-model-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:config-types:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/config-types/2.3.0-b05/1021ef0215b902fc6ef9b755901c4f3106c73857/config-types-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/config-types/2.3.0-b05/643a0d7e27a72ba56cc6cb2399200c969b13eed0/config-types-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:core:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/core/2.3.0-b05/b8aad59a015c5aa98e994c7f3dd0fb39b73ea11b/core-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/core/2.3.0-b05/c7c738d1b0db93422fdb24ab97447665cbe6fac3/core-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:hk2-api:2.3.0-b10">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.3.0-b10/4971a6e2e87c4bee3c842d099977969a42a0ad64/hk2-api-2.3.0-b10.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.3.0-b10/fc69a5fb4618ac0ff4e151146f107f98cca91e44/hk2-api-2.3.0-b10-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:hk2-config:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-config/2.3.0-b05/2669f850a295762d9051ac427371fc12c7dfbd2c/hk2-config-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-config/2.3.0-b05/c3920a5f2a2dfe02081755c3be2e696bd4c69393/hk2-config-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:hk2-locator:2.3.0-b10">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.3.0-b10/40977d562f667b553bed14cae64ad596ecf8d54a/hk2-locator-2.3.0-b10.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.3.0-b10/2c90be0142d62241a46aac89cc44029482a57fd1/hk2-locator-2.3.0-b10-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:hk2-runlevel:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-runlevel/2.3.0-b05/aca528be4a85967d2e7bb8639761383d6dbcd448/hk2-runlevel-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-runlevel/2.3.0-b05/ef163cbcf701df04563a5e202e53fe9a2ef2ed25/hk2-runlevel-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:hk2-utils:2.3.0-b10">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.3.0-b10/66f81d01d2f732a8c3204d8120488507a2834bca/hk2-utils-2.3.0-b10.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.3.0-b10/66b80380648f1c5457ee7983f11134d784a90faa/hk2-utils-2.3.0-b10-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:hk2:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2/2.3.0-b05/dafa6c5928cc81d5dd1ed9417301b2a7dce10d63/hk2-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2/2.3.0-b05/ff0804d36e52019e7d7c0a7241963f361b85fd7a/hk2-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:osgi-resource-locator:1.0.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/osgi-resource-locator/1.0.1/4ed2b2d4738aed5786cfa64cba5a332779c4c708/osgi-resource-locator-1.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/osgi-resource-locator/1.0.1/b5685f8eaa7d83351b185a82a92abcd1b8b87fc8/osgi-resource-locator-1.0.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.hk2:spring-bridge:2.3.0-b05">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/spring-bridge/2.3.0-b05/7798234892a340925d0e6a9a5fcb67b4c55b0042/spring-bridge-2.3.0-b05.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/spring-bridge/2.3.0-b05/99655caa46d85c32b625458548024e9995c0c05/spring-bridge-2.3.0-b05-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.13">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.13/e4b560eba2e072038de80ea2868e891acddf753c/jersey-guava-2.13.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.13/120e4496c8e7913ba495c00f5a33821df7ca6139/jersey-guava-2.13-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet-core/2.11/d7bf39b56005a0c6a44385364d40d05ee44254c8/jersey-container-servlet-core-2.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet-core/2.11/e4708884b0beaba082eb9ece53b98507bda2d16/jersey-container-servlet-core-2.11-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet/2.11/c1a66f5ace6babdff7b8548166bf0045f3bffe2f/jersey-container-servlet-2.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet/2.11/2f08019b7385f41e75740386ae68b79a15ebd4f/jersey-container-servlet-2.11-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.core:jersey-client:2.13">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.13/c3aa96e822e440176540c9fc78961095082a8f4d/jersey-client-2.13.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.13/5f55a1f326c30a34af485fdb7d4712bfc05b3ce/jersey-client-2.13-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.core:jersey-common:2.13">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.13/2142596b05bbf3c171173843b132eeea0a0f08d5/jersey-common-2.13.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.13/803de0a4f82bf0cac4ef427b781229fc64f9e9c1/jersey-common-2.13-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.core:jersey-server:2.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.11/81d8b57f3e81a9a0286634aac95cdaad897738b4/jersey-server-2.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.11/4d5455cdcdc77db2c46b24dd13347bd5e12e5bcb/jersey-server-2.11-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.ext:jersey-mvc-jsp:2.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-mvc-jsp/2.11/6f73b69727378febc7b1f85b1a496784d5324a1f/jersey-mvc-jsp-2.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-mvc-jsp/2.11/b4f95027c74eee4cb028faca7dc0eb39df020ff5/jersey-mvc-jsp-2.11-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.ext:jersey-mvc:2.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-mvc/2.11/52a3ff40e734eb2d9ac22082a8c0e26b8b171ab2/jersey-mvc-2.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-mvc/2.11/9685f23d833ab83983c963b9fcd4c04c2d9af91/jersey-mvc-2.11-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.ext:jersey-spring3:2.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-spring3/2.11/ec47978d4143c1f9de7292f7dcf0cd868f33ab3a/jersey-spring3-2.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-spring3/2.11/f52fda816d8ade0c5e729b66a20efa6c916bdc9c/jersey-spring3-2.11-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.11">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-multipart/2.11/8e8199d0a37a944f0982c4d317e10076c0c0c74a/jersey-media-multipart-2.11.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-multipart/2.11/a395bc5211cfb52d3d3f027df33fbe460a086ccf/jersey-media-multipart-2.11-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.glassfish.web:jstl-impl:1.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.web/jstl-impl/1.2/611c12c6b993586852685f410658924b219ca326/jstl-impl-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.web/jstl-impl/1.2/2e5ebd392d8e3f79588e29bedd4f4aa5708b99cc/jstl-impl-1.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.hamcrest:hamcrest-core:1.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/2ccf1154d1a8936042a8a742dc3e611d02ac7213/hamcrest-core-1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.javassist:javassist:3.18.1-GA">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.18.1-GA/d9a09f7732226af26bf99f19e2cffe0ae219db5b/javassist-3.18.1-GA.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.18.1-GA/d8d089f3a8845cce22d3006e02ab1403dd73b5b6/javassist-3.18.1-GA-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.joda:joda-money:0.9.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.joda/joda-money/0.9.1/cccbd6a58e0b47c6bd0369f320f63bc9944a4b8d/joda-money-0.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.joda/joda-money/0.9.1/c65e760ce9e91d0cebee9131d807fe25210f4fa/joda-money-0.9.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jvnet.mimepull:mimepull:1.9.3">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet.mimepull/mimepull/1.9.3/c55096ff89a27e22c2e081371d0570ac19cc6788/mimepull-1.9.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet.mimepull/mimepull/1.9.3/8abb9e0b24317725c51ac905d1face261054fceb/mimepull-1.9.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jvnet:tiger-types:1.4">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet/tiger-types/1.4/9f75db7dea926f497e76eae2cea36eca74ea508/tiger-types-1.4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet/tiger-types/1.4/3ee0fb831e883a546d7e678aa4fa8ffbce8e7d53/tiger-types-1.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.slf4j:slf4j-api:1.6.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.1/6f3b8a24bf970f17289b234284c94f43eb42f0e4/slf4j-api-1.6.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.6.1/46a386136c901748e6a3af67ebde6c22bc6b4524/slf4j-api-1.6.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework.security:spring-security-acl:3.2.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-acl/3.2.0.RELEASE/7825a7a60c2d470bb737b4c4f62ede51ea14d0aa/spring-security-acl-3.2.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-acl/3.2.0.RELEASE/14811b10fb2d00a30c20687e3776fc6d1eccc8d2/spring-security-acl-3.2.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework.security:spring-security-config:3.2.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/3.2.0.RELEASE/9f10bd410bdda6140d7aa38cc9c115cb9f797626/spring-security-config-3.2.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/3.2.0.RELEASE/72aa563f554d83cf191d7e6a778fbfb5358465e/spring-security-config-3.2.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework.security:spring-security-core:3.2.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/3.2.0.RELEASE/e8e32b6a64b82c054b74d8ef4715cd0ca00cd1c/spring-security-core-3.2.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/3.2.0.RELEASE/d3893892ec1bc93e379a52854acd5e92385b6bbb/spring-security-core-3.2.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework.security:spring-security-taglibs:3.2.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-taglibs/3.2.0.RELEASE/f2547a52afc3229cebde67c0cee588aa5dbfbc84/spring-security-taglibs-3.2.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-taglibs/3.2.0.RELEASE/28bd42ac303763dd09a24b804430420e1fe10b5b/spring-security-taglibs-3.2.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework.security:spring-security-web:3.2.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/3.2.0.RELEASE/f5f2fbfb3a59b1371ca9dda348d8eee22f99a19f/spring-security-web-3.2.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/3.2.0.RELEASE/5727bdab507738ea1c247dcbae6210e450c8bd1c/spring-security-web-3.2.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework:spring-aop:4.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.0.0.RELEASE/cceb3e9510774b3f88b008a70c6a9aefb98d891f/spring-aop-4.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.0.0.RELEASE/faeab9c14a8c24993dd28179c1c20706c3d0ec0b/spring-aop-4.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework:spring-beans:4.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.0.0.RELEASE/97e97a04aede419679392176ec1df175d3e9a7a0/spring-beans-4.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.0.0.RELEASE/96ce15137a178249aa14d58ea1e08bc7da93ab71/spring-beans-4.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework:spring-context:4.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.0.RELEASE/57586271e775982f8961e1e7e338447d4af1864c/spring-context-4.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.0.0.RELEASE/54a7ccfd434c2ca2ba3a6265f9c42d34b0d05734/spring-context-4.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework:spring-core:4.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.0.0.RELEASE/73b485e25b13a7a44b73a301fe6757c3cbad453e/spring-core-4.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.0.0.RELEASE/db9dd83713dbad3d7810a269c026d798f0b8d6db/spring-core-4.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework:spring-expression:4.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.0.0.RELEASE/199be03c976524b6427dff31078227bfc703400b/spring-expression-4.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.0.0.RELEASE/60c70ff1bb9c5ab97a7f3c3230f86cf738bc1505/spring-expression-4.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework:spring-jdbc:4.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.0.0.RELEASE/d169c669b85f26f06c5dedb19bfdd169e4e38c3a/spring-jdbc-4.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.0.0.RELEASE/3117e666a8e5686601d678b63b6c7b41eab1de4f/spring-jdbc-4.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework:spring-tx:4.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.0.0.RELEASE/d150bb19360ed1b81a96c9c09ef4d93c2969f34c/spring-tx-4.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.0.0.RELEASE/dfb013916542ee55590500a02e98b1d3e1c56c02/spring-tx-4.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.springframework:spring-web:4.0.0.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.0.RELEASE/6ce2dda16a3c1581920fc17551f3ae17d26499aa/spring-web-4.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.0.RELEASE/5223cc0bd5cd9fd7fce1c72046577e937cc378e9/spring-web-4.0.0.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.testng:testng:6.8.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testng/testng/6.8.7/3eaa6cbb13e327f3f1154d336dff11d7e83a727e/testng-6.8.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testng/testng/6.8.7/e8af915a4e86396afac9b7708152fb587e64554e/testng-6.8.7-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.1.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.thymeleaf.extras/thymeleaf-extras-springsecurity3/2.1.1.RELEASE/da0d116c514849d3cbe650f2d124767eb19783b9/thymeleaf-extras-springsecurity3-2.1.1.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.thymeleaf.extras/thymeleaf-extras-springsecurity3/2.1.1.RELEASE/d20a6934d748ece300354140d38a8a151991f264/thymeleaf-extras-springsecurity3-2.1.1.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.thymeleaf:thymeleaf-spring4:2.1.2.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.thymeleaf/thymeleaf-spring4/2.1.2.RELEASE/723e4e2671fbccd7ec7e6cef370090c58f2db4e9/thymeleaf-spring4-2.1.2.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.thymeleaf/thymeleaf-spring4/2.1.2.RELEASE/4c0e7c4edac220c455ec02dd632d26a1e930b370/thymeleaf-spring4-2.1.2.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.thymeleaf:thymeleaf:2.1.2.RELEASE">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.thymeleaf/thymeleaf/2.1.2.RELEASE/77e32be4e7df98a243802de4611ff89f1cfa1b20/thymeleaf-2.1.2.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.thymeleaf/thymeleaf/2.1.2.RELEASE/c0319f6f0b32f05ca175f5c8a886b6953a7adaec/thymeleaf-2.1.2.RELEASE-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.yaml:snakeyaml:1.12">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.12/ebe66a6b88caab31d7a19571ad23656377523545/snakeyaml-1.12.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.12/f86c67beb22f7d1edb5d6c6a3c4dab77a23234da/snakeyaml-1.12-sources.jar!/" />
+      </SOURCES>
+    </library>
+  </component>
+</project>

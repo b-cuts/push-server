@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root> 
+  <setting name="task-tab"> 
+    <setting name="show-description" value="true"/> 
+  </setting>  
+  <setting name="favorites-tab"/>  
+  <setting name="command_line-tab"/>  
+  <setting name="setup-tab"> 
+    <setting name="setup"> 
+      <setting name="custom-gradle-executor"/>  
+      <setting name="current-directory" value="D:\dvlp\cosmic-push"/>  
+      <setting name="log-level" value="DEBUG"/>  
+      <setting name="stack-trace-level" value="ALWAYS_FULL"/> 
+    </setting> 
+  </setting>  
+  <setting name="main_panel"> 
+    <setting name="current-tab" value="Setup"/> 
+  </setting>  
+  <setting name="SinglePaneUIInstance_splitter-id"> 
+    <setting name="divider_location" value="511"/> 
+  </setting>  
+  <setting name="Application_window-id"> 
+    <setting name="window_x" value="-1288"/>  
+    <setting name="window_y" value="-8"/>  
+    <setting name="window_width" value="1296"/>  
+    <setting name="window_height" value="1040"/>  
+    <setting name="extended-state" value="6"/> 
+  </setting> 
+</root>

@@ -1,0 +1,17 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+project(":push-server-v2-integration-tests") {
+
+  version = pushServerPub
+  description = "Push Server Version #2 Integration Tests"
+
+  dependencies {
+  	compile project((":push-server-gateway"))
+    testCompile("org.glassfish.jersey.core:jersey-client:2.13")
+  }
+}
+

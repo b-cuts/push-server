@@ -1,0 +1,104 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+project(":push-server-app") {
+
+  version = pushServerEng
+  description = "Cosmic Push Engine"
+
+  apply (plugin: "war")
+  apply (plugin: "ssh")
+
+  dependencies {
+    compile project(":push-server-pub")
+    compile project(":push-server-jackson")
+    compile project(":push-server-common");
+
+    compile project(":push-server-plugin-ses")
+    compile project(":push-server-plugin-smtp")
+    compile project(":push-server-plugin-gtalk")
+
+    compile ("org.crazyyak.dev:yak-dev-common:"+yakDevVersion)
+    compile ("org.crazyyak.dev:yak-dev-domain:"+yakDevVersion)
+
+    compile ("org.crazyyak.apis:yak-apis-google:${yakApisVersion}")
+
+    compile ("org.crazyyak.lib:yak-lib-servlet:"+yakLibVersion)
+    compile ("org.crazyyak.lib:yak-lib-spring-security:"+yakLibVersion)
+
+    compile ("org.crazyyak.lib:yak-lib-jaxrs:${yakLibVersion}")
+    compile ("org.crazyyak.lib:yak-lib-jaxrs-jackson:${yakLibVersion}")
+    compile ("org.crazyyak.app:yak-app-jersey-spring:${yakAppVersion}")
+
+    compile("org.glassfish.web:jstl-impl:1.2")
+  }
+
+  signing {
+      sign configurations.archives
+  }
+  ssh {
+    identity = file("${cosmicPushKey}") // Enable public key authentication
+    knownHosts = allowAnyHosts          // Disable host key verification
+  }
+  remotes {
+    webServer {
+      host = '107.170.247.182'
+      user = 'root'
+    }
+  }
+  task stageFiles(type: SshTask, dependsOn: war) {
+    ssh {
+      pty = true; // Enable PTY allocation for sudo
+    }
+    session(remotes.webServer) {
+      // Put a built WAR to the server
+      def copyOf = new File((File)war.archivePath.parentFile, "push-server-${project.version}.war");
+      if (copyOf.exists() == false) {
+        copyOf.bytes = war.archivePath.bytes
+      }
+      System.out.printf("Uploading " + copyOf);
+      put(copyOf.absolutePath, "/opt/staging/")
+    }
+  }
+
+  uploadArchives {
+      repositories {
+          mavenDeployer {
+              beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+              repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                  authentication(userName: sonatypeUsername, password: sonatypePassword)
+              }
+
+              pom.groupId = project.group
+              pom.artifactId = project.name
+              pom.version = project.version
+              pom.packaging = 'jar'
+              pom.project {
+                  name = project.name
+                  description = "Push Server"
+                  url = 'http://www.cosmicpush.com'
+                  licenses {
+                    license {
+                        name = 'Pay Licensed Closed-Source'
+                        distribution = 'repo'
+                    }
+                  }
+                  scm {
+                      url = 'https://bitbucket.org/SireInsectus/cosmic-push'
+                      connection = 'git@bitbucket.org:SireInsectus/cosmic-push.git'
+                  }
+                  developers {
+                      developer {
+                          id = 'SireInsectus'
+                          name = 'Jacob D. Parr'
+                          email = 'jacob.parr@gmail.com'
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
