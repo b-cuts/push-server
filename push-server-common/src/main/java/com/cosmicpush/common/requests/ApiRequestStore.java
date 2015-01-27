@@ -10,7 +10,7 @@ import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.PushType;
 import com.couchace.core.api.query.CouchViewQuery;
 import java.util.List;
-import org.crazyyak.dev.couchace.DefaultCouchStore;
+import org.crazyyak.lib.couchace.DefaultCouchStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

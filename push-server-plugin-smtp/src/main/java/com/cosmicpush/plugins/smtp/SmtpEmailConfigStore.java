@@ -2,7 +2,7 @@ package com.cosmicpush.plugins.smtp;
 
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.system.CpCouchServer;
-import org.crazyyak.dev.couchace.DefaultCouchStore;
+import org.crazyyak.lib.couchace.DefaultCouchStore;
 
 public class SmtpEmailConfigStore extends DefaultCouchStore<SmtpEmailConfig> {
 

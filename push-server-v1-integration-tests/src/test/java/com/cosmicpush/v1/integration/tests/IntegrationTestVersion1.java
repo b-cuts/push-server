@@ -56,7 +56,7 @@ public class IntegrationTestVersion1 {
 
   public void testEmailToSmsPush() throws Exception {
     EmailToSmsPush action = new EmailToSmsPush(
-      "me@jacobparr.com", "bot@munchiemonster.com",
+      "Test Parr <test@jacobparr.com>", "Munchie Monster Bot <bot@munchiemonster.com>",
       "This is a test", null);
 
     PushResponse response = gateway.push(action);
@@ -70,7 +70,7 @@ public class IntegrationTestVersion1 {
 
   public void testEmailPush() throws Exception {
     EmailPush action = new EmailPush(
-      "me@jacobparr.com", "bot@munchiemonster.com",
+      "Test Parr <test@jacobparr.com>", "Munchie Monster Bot <bot@munchiemonster.com>",
       "This is a test", "Are you there?",
       null,
       BeanUtils.toMap("unit-test:true"));

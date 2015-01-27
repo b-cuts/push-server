@@ -1,0 +1,19 @@
+ext {
+//  yakDevVersion = "4.0.1"
+//  yakLibVersion = "4.0.1"
+//  yakAppVersion = "4.0.0"
+//
+//  yakApisBht = "1.0.0"
+//  yakApisSrs = "0.0.1"
+
+  pushServerEng = "4.0.0"
+  pushServerPub = "2.0.0"
+
+  yakDevVersion = "4.0.1"
+  yakLibVersion = "4.0.2"
+  yakApisVersion = "2.0.0"
+  yakAppVersion = "4.0.0"
+
+  springVersion = "4.0.0.RELEASE"
+  springSecurityVersion = "3.2.0.RELEASE"
+}

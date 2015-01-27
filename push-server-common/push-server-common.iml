@@ -14,22 +14,18 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-common:4.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.7" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.beanshell:bsh:2.0b4" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.beust:jcommander:1.27" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.yaml:snakeyaml:1.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-beans:4.0.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.couchace:couchace-core:1.3.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-core:4.0.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.couchace:couchace-jackson:1.3.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.couchace:couchace-jersey:1.3.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.couchace:couchace-annotations:1.3.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-logging:commons-logging:1.1.3" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.1.1" level="project" />
@@ -48,6 +44,10 @@
     <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.0.RELEASE" level="project" />
     <orderEntry type="module" module-name="push-server-jackson" exported="" />
     <orderEntry type="library" exported="" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-common:4.0.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.jersey.core:jersey-common:2.13" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.jersey.core:jersey-client:2.13" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.13" level="project" />

@@ -1,15 +1,15 @@
-package com.cosmicpush.plugins.gtalk;
+package com.cosmicpush.plugins.notifier;
 
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.system.CpCouchServer;
 import org.crazyyak.lib.couchace.DefaultCouchStore;
 
-public class GoogleTalkConfigStore extends DefaultCouchStore<GoogleTalkConfig> {
+public class NotifierConfigStore extends DefaultCouchStore<NotifierConfig> {
 
   public static final String GOOGLE_TALK_CONFIG_DESIGN_NAME = "google-talk-config";
 
-  public GoogleTalkConfigStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), GoogleTalkConfig.class);
+  public NotifierConfigStore(CpCouchServer couchServer) {
+    super(couchServer, couchServer.getDatabaseName(), NotifierConfig.class);
   }
 
   @Override

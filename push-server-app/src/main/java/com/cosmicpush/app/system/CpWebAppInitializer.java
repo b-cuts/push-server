@@ -7,8 +7,8 @@
 package com.cosmicpush.app.system;
 
 import javax.servlet.*;
+import org.crazyyak.app.logging.LogUtils;
 import org.crazyyak.dev.jerseyspring.YakJerseyWebAppInitializer;
-import org.crazyyak.dev.servlet.Log4jServletContextListener;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.context.WebApplicationContext;
@@ -19,6 +19,12 @@ import org.springframework.web.context.WebApplicationContext;
 public class CpWebAppInitializer extends YakJerseyWebAppInitializer {
 
   public CpWebAppInitializer() {
+  }
+
+  @Override
+  public void onStartup(ServletContext servletContext) throws ServletException {
+    new LogUtils().initConsoleAppender();
+    super.onStartup(servletContext);
   }
 
   @Override
@@ -44,14 +50,6 @@ public class CpWebAppInitializer extends YakJerseyWebAppInitializer {
   @Override
   protected Class<?>[] getSpringConfigClasses(ServletContext servletContext) {
     return new Class<?>[]{CpSpringConfig.class};
-  }
-
-  @Override
-  protected void addListeners(ServletContext servletContext, WebApplicationContext appContext) {
-    super.addListeners(servletContext, appContext);
-
-    servletContext.setInitParameter(Log4jServletContextListener.LOG4J_LOG_LEVEL, "WARN");
-    servletContext.addListener(Log4jServletContextListener.class);
   }
 
   @Override

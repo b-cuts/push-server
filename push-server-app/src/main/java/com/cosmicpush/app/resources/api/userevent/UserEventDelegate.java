@@ -146,7 +146,7 @@ public class UserEventDelegate extends AbstractDelegate {
   private void sendSmtpEmail(String userName, String htmlContent) {
     try {
       SmtpEmailPush push = new SmtpEmailPush(
-          "Jacob D Parr <me@jacobparr.com>", "Cosmic Push <me@jacobparr.com>",
+          "Jacob Parr <me@jacobparr.com>", "Munchie Monster Bot <bot@munchiemonster.com>",
           "New Story for " + userName, htmlContent, null
       );
 
@@ -160,7 +160,7 @@ public class UserEventDelegate extends AbstractDelegate {
   private void sendSesEmail(String userName, String htmlContent) {
     try {
       SesEmailPush push = new SesEmailPush(
-          "Jacob D Parr <me@jacobparr.com>", "Cosmic Push <me@jacobparr.com>",
+          "Jacob Parr <me@jacobparr.com>", "Munchie Monster Bot <bot@munchiemonster.com>",
           "New Story for " + userName, htmlContent, null
       );
 
@@ -175,7 +175,7 @@ public class UserEventDelegate extends AbstractDelegate {
     try {
       String id = apiRequest.getApiRequestId();
       String message = userEvent.getMessage() + " >> https://www.cosmicpush.com/q/" + id;
-      GoogleTalkPush push = new GoogleTalkPush("me@jacobparr.com", message, null);
+      GoogleTalkPush push = new GoogleTalkPush("jacob.parr@gmail.com", message, null);
 
       context.getPushProcessor().execute(account, apiClient, push);
 

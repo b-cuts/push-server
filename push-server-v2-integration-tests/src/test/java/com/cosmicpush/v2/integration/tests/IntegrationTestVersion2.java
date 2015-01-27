@@ -51,7 +51,7 @@ public class IntegrationTestVersion2 {
 
   public void testSesEmailPush() throws Exception {
     SesEmailPush action = new SesEmailPush(
-      "me@jacobparr.com", "bot@munchiemonster.com",
+      "Test Parr <test@jacobparr.com>", "Munchie Monster Bot <bot@munchiemonster.com>",
       "This is a test", "Are you there?",
       null,
       BeanUtils.toMap("unit-test:true"));
@@ -63,7 +63,7 @@ public class IntegrationTestVersion2 {
 
   public void testSmtpEmailPush() throws Exception {
     SmtpEmailPush action = new SmtpEmailPush(
-      "me@jacobparr.com", "bot@munchiemonster.com",
+      "Test Parr <test@jacobparr.com>", "Munchie Monster Bot <bot@munchiemonster.com>",
       "This is a test", "Are you there?",
       null,
       BeanUtils.toMap("unit-test:true"));

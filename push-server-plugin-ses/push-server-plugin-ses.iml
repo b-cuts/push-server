@@ -21,11 +21,8 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.yaml:snakeyaml:1.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="module" module-name="push-server-common" exported="" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-amazon:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-beans:4.0.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.amazonaws:aws-java-sdk:1.6.5" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-common:4.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-logging:commons-logging:1.1.3" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-core:4.0.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.1" level="project" />
@@ -35,5 +32,8 @@
     <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpclient:4.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-codec:commons-codec:1.6" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpcore:4.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-amazon:4.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-common:4.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.0.1" level="project" />
   </component>
 </module>

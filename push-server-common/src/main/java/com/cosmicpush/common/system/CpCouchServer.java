@@ -8,9 +8,9 @@ import java.util.*;
 import javax.annotation.PostConstruct;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 import org.crazyyak.dev.common.id.TimeUuidIdGenerator;
-import org.crazyyak.dev.couchace.DefaultCouchServer;
-import org.crazyyak.dev.couchace.support.CouchUtils;
 import org.crazyyak.dev.jackson.YakJacksonModule;
+import org.crazyyak.lib.couchace.DefaultCouchServer;
+import org.crazyyak.lib.couchace.support.CouchUtils;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 

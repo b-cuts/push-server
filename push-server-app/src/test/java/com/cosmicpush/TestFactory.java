@@ -13,7 +13,7 @@ import com.couchace.core.api.*;
 import com.couchace.core.api.request.*;
 import java.time.ZoneId;
 import org.crazyyak.dev.common.DateUtils;
-import org.crazyyak.dev.couchace.DefaultCouchServer;
+import org.crazyyak.lib.couchace.DefaultCouchServer;
 
 public class TestFactory {
 

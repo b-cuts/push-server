@@ -1,0 +1,15 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+project(":push-server-plugin-notifier") {
+
+  version = pushServerEng
+  description = "Cosmic Push Notifier Plugin"
+
+  dependencies {
+    compile project(":push-server-common")
+  }
+}
