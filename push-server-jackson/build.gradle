@@ -45,6 +45,7 @@ project(":push-server-jackson") {
     }
   }
 
+/*
   uploadArchives {
       repositories {
           mavenDeployer {
@@ -83,5 +84,6 @@ project(":push-server-jackson") {
           }
       }
   }
+*/
 }
 

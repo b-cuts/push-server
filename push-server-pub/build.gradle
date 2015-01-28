@@ -44,6 +44,7 @@ project(":push-server-pub") {
     }
   }
 
+/*
   uploadArchives {
       repositories {
           mavenDeployer {
@@ -82,5 +83,6 @@ project(":push-server-pub") {
           }
       }
   }
+*/
 }
 

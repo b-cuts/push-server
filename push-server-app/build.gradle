@@ -64,6 +64,7 @@ project(":push-server-app") {
     }
   }
 
+/*
   uploadArchives {
       repositories {
           mavenDeployer {
@@ -101,4 +102,5 @@ project(":push-server-app") {
           }
       }
   }
+*/
 }

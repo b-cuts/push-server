@@ -46,6 +46,7 @@ project(":push-server-gateway") {
     }
   }
 
+/*
   uploadArchives {
       repositories {
           mavenDeployer {
@@ -84,5 +85,6 @@ project(":push-server-gateway") {
           }
       }
   }
+*/
 }
 

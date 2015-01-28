@@ -10,6 +10,17 @@
         </fileset>
       </configuration>
     </facet>
+    <facet type="web" name="Web Gradle : push-server-app-4.0.0.war">
+      <configuration>
+        <webroots>
+          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/java" />
+        </sourceRoots>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/classes/main" />
@@ -81,12 +92,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.beust:jcommander:1.27" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.yaml:snakeyaml:1.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-common:4.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-spring-security:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.app:yak-app-jersey-spring:4.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.0.0" level="project" />
     <orderEntry type="module" module-name="push-server-plugin-smtp" exported="" />
     <orderEntry type="module" module-name="push-server-common" exported="" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.web:jstl-impl:1.2" level="project" />
@@ -95,11 +101,7 @@
     <orderEntry type="module" module-name="push-server-jackson" exported="" />
     <orderEntry type="module" module-name="push-server-plugin-ses" exported="" />
     <orderEntry type="module" module-name="push-server-plugin-gtalk" exported="" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.apis:yak-apis-google:4.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.app:yak-app-common:4.0.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.hk2.external:javax.inject:2.3.0-b10" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.jersey.core:jersey-common:2.13" level="project" />
