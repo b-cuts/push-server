@@ -24,9 +24,7 @@
     <orderEntry type="library" exported="" name="Gradle: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="module" module-name="push-server-jackson" exported="" />
     <orderEntry type="library" exported="" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-beans:4.1.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.couchace:couchace-core:1.4.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.couchace:couchace-jackson:1.4.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.0" level="project" />
@@ -47,12 +45,14 @@
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b06" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b06" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-core:4.1.4.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.17" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.5.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-beans:4.1.4.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-core:4.1.4.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context:4.1.4.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-aop:4.1.4.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-expression:4.1.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-aop:3.2.8.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context:3.2.8.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-expression:3.2.8.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.5.RELEASE" level="project" />
   </component>
 </module>

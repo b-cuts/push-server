@@ -1,8 +1,8 @@
 package com.cosmicpush.app.system;
 
 import com.cosmicpush.jackson.CpObjectMapper;
-import org.crazyyak.lib.couchace.spring.CouchPropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.*;
+import org.crazyyak.lib.spring.couchace.*;
 
 @Configuration
 @ComponentScan(value={"com.cosmicpush"})

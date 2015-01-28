@@ -17,14 +17,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 public class UserRequestConfig extends RequestConfig {
 
-  public UserRequestConfig(AuthenticationManager authenticationManager, CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore) {
-    super(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore);
-  }
-
-  @Override
-  public UserRequestConfig initialize(HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
-    super.initialize(request, response, uriInfo, headers, securityContext);
-    return this;
+  public UserRequestConfig(AuthenticationManager authenticationManager, CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore, HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
+    super(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore, request, response, uriInfo, headers, securityContext);
   }
 
   public AccountUser getCurrentUser() {

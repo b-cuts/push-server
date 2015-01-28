@@ -18,18 +18,17 @@ import java.net.*;
 import javax.servlet.http.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+
 import org.apache.commons.logging.*;
 import org.crazyyak.dev.common.exceptions.ApiException;
 import org.glassfish.jersey.server.mvc.Viewable;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Component;
 
 @Path("/")
 @Component
-public class RootResource implements BeanFactoryAware {
+public class RootResource {
 
   private static final Log log = LogFactory.getLog(RootResource.class);
 
@@ -39,63 +38,69 @@ public class RootResource implements BeanFactoryAware {
   private UriInfo uriInfo;
   private HttpHeaders headers;
 
-  private BeanFactory beanFactory;
-
-  @Autowired
   private AuthenticationManager authenticationManager;
-  @Autowired
   private CpObjectMapper objectMapper;
-  @Autowired
   private CpCouchServer couchServer;
-  @Autowired
   private AccountStore accountStore;
-  @Autowired
   private ApiRequestStore apiRequestStore;
 
-  public RootResource() {
+  RequestConfig requestConfig;
+
+  @Autowired
+  public RootResource(AuthenticationManager authenticationManager,
+                      CpObjectMapper objectMapper,
+                      CpCouchServer couchServer,
+                      AccountStore accountStore,
+                      ApiRequestStore apiRequestStore) {
+
+    this.authenticationManager = authenticationManager;
+    this.objectMapper = objectMapper;
+    this.couchServer = couchServer;
+    this.accountStore = accountStore;
+    this.apiRequestStore = apiRequestStore;
+
     log.info("Created " + getClass().getName());
     // Force initialization.
     PluginManager.getPlugins();
   }
 
-  @Context public void setServletRequest(HttpServletRequest servletRequest) {
+  @Context
+  public void setContext(javax.ws.rs.ext.Providers providers,
+                         HttpServletRequest servletRequest,
+                         HttpServletResponse servletResponse,
+                         SecurityContext securityContext,
+                         UriInfo uriInfo,
+                         HttpHeaders headers) {
+    
     this.servletRequest = servletRequest;
-  }
-  @Context public void setServletResponse(HttpServletResponse servletResponse) {
     this.servletResponse = servletResponse;
-  }
-  @Context public void setSecurityContext(SecurityContext securityContext) {
     this.securityContext = securityContext;
-  }
-  @Context public void setUriInfo(UriInfo uriInfo) {
     this.uriInfo = uriInfo;
-  }
-  @Context public void setHeaders(HttpHeaders headers) {
     this.headers = headers;
-  }
 
-  public RequestConfig getRequestConfig() {
-    return new RequestConfig(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore).initialize(
-        servletRequest, servletResponse,
-        uriInfo, headers, securityContext
+    this.requestConfig = new RequestConfig(
+        authenticationManager,
+        objectMapper,
+        couchServer,
+        accountStore,
+        apiRequestStore,
+        servletRequest,
+        servletResponse,
+        uriInfo,
+        headers,
+        securityContext
     );
-  }
-
-  @Override
-  public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-    this.beanFactory = beanFactory;
   }
 
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Viewable getPublicResource() {
-    return new PublicResource(getRequestConfig()).getWelcome();
+    return new PublicResource(requestConfig).getWelcome();
   }
 
   @Path("/api")
   public ApiResourceV1 getApiResourceV1() throws Exception {
-    ApiRequestConfig config = new ApiRequestConfig(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore).initialize(
-      servletRequest, servletResponse,
+    ApiRequestConfig config = new ApiRequestConfig(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore, servletRequest, servletResponse,
       uriInfo, headers, securityContext
     );
 
@@ -110,9 +115,17 @@ public class RootResource implements BeanFactoryAware {
 
   @Path("/api/v2")
   public ApiResourceV2 getApiResourceV2() throws Exception {
-    ApiRequestConfig config = new ApiRequestConfig(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore).initialize(
-      servletRequest, servletResponse,
-      uriInfo, headers, securityContext
+    ApiRequestConfig config = new ApiRequestConfig(
+        authenticationManager,
+        objectMapper,
+        couchServer,
+        accountStore,
+        apiRequestStore,
+        servletRequest,
+        servletResponse,
+        uriInfo,
+        headers,
+        securityContext
     );
 
     String accountId = config.getApiClientUser().getAccountId();
@@ -126,9 +139,17 @@ public class RootResource implements BeanFactoryAware {
 
   @Path("/manage")
   public ManageResource getManageResource() {
-    UserRequestConfig config = new UserRequestConfig(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore).initialize(
-      servletRequest, servletResponse,
-      uriInfo, headers, securityContext
+    UserRequestConfig config = new UserRequestConfig(
+        authenticationManager,
+        objectMapper,
+        couchServer,
+        accountStore,
+        apiRequestStore,
+        servletRequest,
+        servletResponse,
+        uriInfo,
+        headers,
+        securityContext
     );
 
     AccountUser accountUser = config.getCurrentUser();
@@ -146,12 +167,12 @@ public class RootResource implements BeanFactoryAware {
       return resolveCallback(id);
 
     } else if (id.contains(":") == false) {
-      ApiRequest request = getRequestConfig().getApiRequestStore().getByApiRequestId(id);
+      ApiRequest request = requestConfig.getApiRequestStore().getByApiRequestId(id);
       if (request == null) {
         throw ApiException.notFound("API request not found for " + id);
       }
 
-      Account account = getRequestConfig().getAccountStore().getByClientId(request.getApiClientId());
+      Account account = requestConfig.getAccountStore().getByClientId(request.getApiClientId());
       if (account == null) {
         throw ApiException.notFound("Account not found given client id " + request.getApiClientId());
       }
@@ -186,7 +207,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces("image/jpeg")
   @Path("{resource: ([^\\s]+(\\.(?i)(jpg|JPG|jpeg|JPEG))$) }")
   public Viewable renderJPGs() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 
@@ -194,7 +215,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces("image/png")
   @Path("{resource: ([^\\s]+(\\.(?i)(png|PNG))$) }")
   public Viewable renderPNGs() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 
@@ -202,7 +223,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces("image/gif")
   @Path("{resource: ([^\\s]+(\\.(?i)(gif|GIF))$) }")
   public Viewable renderGIFs() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 
@@ -210,7 +231,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces(MediaType.TEXT_PLAIN)
   @Path("{resource: ([^\\s]+(\\.(?i)(txt|TXT|text|TEXT))$) }")
   public Viewable renderText() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 
@@ -218,7 +239,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces(MediaType.TEXT_HTML)
   @Path("{resource: ([^\\s]+(\\.(?i)(html|HTML))$) }")
   public Viewable renderHtml() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 
@@ -226,7 +247,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces("text/css")
   @Path("{resource: ([^\\s]+(\\.(?i)(css|CSS))$) }")
   public Viewable renderCSS() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 
@@ -234,7 +255,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces("application/javascript")
   @Path("{resource: ([^\\s]+(\\.(?i)(js|JS))$) }")
   public Viewable renderJavaScript() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 
@@ -242,7 +263,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces("image/icon")
   @Path("{resource: ([^\\s]+(\\.(?i)(ico|ICO))$) }")
   public Viewable renderICOs() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 
@@ -250,7 +271,7 @@ public class RootResource implements BeanFactoryAware {
   @Produces("application/pdf")
   @Path("{resource: ([^\\s]+(\\.(?i)(pdf|PDF))$) }")
   public Viewable renderPDFs() throws Exception {
-    String path = "/" + getRequestConfig().getUriInfo().getPath();
+    String path = "/" + requestConfig.getUriInfo().getPath();
     return new Viewable(path);
   }
 

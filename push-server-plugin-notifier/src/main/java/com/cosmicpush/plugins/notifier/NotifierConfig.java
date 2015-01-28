@@ -11,7 +11,7 @@ import com.couchace.annotations.*;
 import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
 
-@CouchEntity(NotifierConfigStore.GOOGLE_TALK_CONFIG_DESIGN_NAME)
+@CouchEntity(NotifierConfigStore.NOTIFIER_CONFIG_DESIGN_NAME)
 public class NotifierConfig implements PluginConfig, Serializable {
 
   private String configId;

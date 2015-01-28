@@ -6,7 +6,7 @@ import org.crazyyak.lib.couchace.DefaultCouchStore;
 
 public class NotifierConfigStore extends DefaultCouchStore<NotifierConfig> {
 
-  public static final String GOOGLE_TALK_CONFIG_DESIGN_NAME = "google-talk-config";
+  public static final String NOTIFIER_CONFIG_DESIGN_NAME = "notifier-config";
 
   public NotifierConfigStore(CpCouchServer couchServer) {
     super(couchServer, couchServer.getDatabaseName(), NotifierConfig.class);
@@ -14,10 +14,10 @@ public class NotifierConfigStore extends DefaultCouchStore<NotifierConfig> {
 
   @Override
   public String getDesignName() {
-    return GOOGLE_TALK_CONFIG_DESIGN_NAME;
+    return NOTIFIER_CONFIG_DESIGN_NAME;
   }
 
   public static String toDocumentId(ApiClient apiClient) {
-    return String.format("%s:google-talk-config", apiClient.getApiClientId());
+    return String.format("%s:notifier-config", apiClient.getApiClientId());
   }
 }

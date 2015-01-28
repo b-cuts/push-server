@@ -26,7 +26,8 @@ project(":push-server-app") {
     compile ("org.crazyyak.apis:yak-apis-google:$yakApisGoogle")
 
     compile ("org.crazyyak.lib:yak-lib-servlet:$yakLibServlet")
-    compile ("org.crazyyak.lib:yak-lib-spring-security:$yakLibSpringSec")
+    compile ("org.crazyyak.lib:yak-lib-spring-security:$yakLibSpringSecurity")
+    compile ("org.crazyyak.lib:yak-lib-spring-couchace:$yakLibSpringCouchAce")
 
     compile ("org.crazyyak.lib:yak-lib-jaxrs-jackson:$yakLibJaxrsJackson")
     compile ("org.crazyyak.app:yak-app-jersey-spring:$yakAppJerseySpring")
@@ -35,6 +36,28 @@ project(":push-server-app") {
 
     testCompile ("org.testng:testng:6.8.17")
   }
+
+  configurations.all({
+    resolutionStrategy({
+      force(
+          "javax.servlet.jsp:jsp-api:2.2.1-b03",
+
+          "org.springframework:spring-aop:$springVersion",
+          "org.springframework:spring-web:$springVersion",
+          "org.springframework:spring-core:$springVersion",
+          "org.springframework:spring-beans:$springVersion",
+          "org.springframework:spring-context:$springVersion",
+          "org.springframework:spring-expression:$springVersion",
+
+          "org.slf4j:slf4j:1.7.10",
+          "org.slf4j:slf4j-api:1.7.10",
+          "org.javassist:javassist:3.18.1-GA",
+          "commons-logging:commons-logging:1.2",
+          "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
+          "com.fasterxml.jackson.core:jackson-databind:2.5.0",
+      )
+    })
+  })
 
 
 
@@ -65,26 +88,4 @@ project(":push-server-app") {
       put(copyOf.absolutePath, "/opt/staging/")
     }
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force(
-        "javax.servlet.jsp:jsp-api:2.2.1-b03",
-
-        "org.springframework:spring-aop:$springVersion",
-        "org.springframework:spring-web:$springVersion",
-        "org.springframework:spring-core:$springVersion",
-        "org.springframework:spring-beans:$springVersion",
-        "org.springframework:spring-context:$springVersion",
-        "org.springframework:spring-expression:$springVersion",
-
-        "org.slf4j:slf4j:1.7.10",
-        "org.slf4j:slf4j-api:1.7.10",
-        "org.javassist:javassist:3.18.1-GA",
-        "commons-logging:commons-logging:1.2",
-        "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
-        "com.fasterxml.jackson.core:jackson-databind:2.5.0",
-      )
-    })
-  })
 }

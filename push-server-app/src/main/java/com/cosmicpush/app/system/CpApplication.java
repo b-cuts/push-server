@@ -11,8 +11,12 @@ import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.*;
 import org.apache.commons.logging.*;
 import org.crazyyak.dev.jerseyspring.*;
+import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+
+import javax.inject.Singleton;
+import javax.servlet.http.HttpSession;
 
 public class CpApplication extends ResourceConfig {
 

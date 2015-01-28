@@ -18,14 +18,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 public class ApiRequestConfig extends RequestConfig {
 
-  public ApiRequestConfig(AuthenticationManager authenticationManager, CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore) {
-    super(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore);
-  }
-
-  @Override
-  public ApiRequestConfig initialize(HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
-    super.initialize(request, response, uriInfo, headers, securityContext);
-    return this;
+  public ApiRequestConfig(AuthenticationManager authenticationManager, CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore, HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
+    super(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore, request, response, uriInfo, headers, securityContext);
   }
 
   public ApiClientUser getApiClientUser() {

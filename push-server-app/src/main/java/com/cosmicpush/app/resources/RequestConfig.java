@@ -40,7 +40,17 @@ public class RequestConfig implements PluginContext {
 
   private final JsonTranslator jsonTranslator;
 
-  public RequestConfig(AuthenticationManager authenticationManager, CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore) {
+  public RequestConfig(AuthenticationManager authenticationManager,
+                       CpObjectMapper objectMapper,
+                       CpCouchServer couchServer,
+                       AccountStore accountStore,
+                       ApiRequestStore apiRequestStore,
+                       HttpServletRequest request,
+                       HttpServletResponse response,
+                       UriInfo uriInfo,
+                       HttpHeaders headers,
+                       SecurityContext securityContext) {
+
     this.authenticationManager = authenticationManager;
     this.couchServer = couchServer;
     this.objectMapper = objectMapper;
@@ -48,16 +58,12 @@ public class RequestConfig implements PluginContext {
     this.apiRequestStore = apiRequestStore;
     this.jsonTranslator = new YakJacksonTranslator(objectMapper);
     this.pushProcessor = new PushProcessor(this);
-  }
 
-  public RequestConfig initialize(HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
     this.request = request;
     this.response = response;
 
     this.uriInfo = uriInfo;
     this.headers = headers;
-
-    String content = headers.getHeaderString("Authorization");
 
     if (securityContext != null) {
       Principal userPrincipal = securityContext.getUserPrincipal();
@@ -68,8 +74,6 @@ public class RequestConfig implements PluginContext {
         }
       }
     }
-
-    return this;
   }
 
   public UriInfo getUriInfo() {
