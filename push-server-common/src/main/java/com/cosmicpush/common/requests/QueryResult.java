@@ -60,7 +60,7 @@ public class QueryResult<T> {
 
   private static void validate(GetEntityResponse response) {
     if (response.isOk() == false) {
-      throw new CouchHttpException(response.getStatusCode(), "Unexpected response while executing couch query.");
+      throw new CouchHttpException(response.getHttpStatus(), "Unexpected response while executing couch query.");
     }
   }
 }

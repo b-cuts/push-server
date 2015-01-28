@@ -1,9 +1,13 @@
 package com.cosmicpush.app.system;
 
 import java.util.TimeZone;
-import junit.framework.TestCase;
+import org.testng.annotations.Test;
 
-public class CpJobsTest extends TestCase {
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+
+@Test
+public class CpJobsTest {
 
   public void testTimezones() {
     TimeZone timeZone = TimeZone.getTimeZone(CpJobs.PDT);

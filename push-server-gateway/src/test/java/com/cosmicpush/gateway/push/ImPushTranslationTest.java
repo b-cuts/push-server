@@ -34,12 +34,11 @@ public class ImPushTranslationTest {
     Push oldPush = new GoogleTalkPush("mickey.mouse@disney.com", "Just calling to say hello", "http://callback.com/api.sent");
     String json = translator.toJson(oldPush);
     Assert.assertEquals(json, "{\n" +
-        "  \"pushType\" : \"google-talk\",\n" +
-        "  \"imType\" : \"googleTalk\",\n" +
-        "  \"recipient\" : \"mickey.mouse@disney.com\",\n" +
-        "  \"message\" : \"Just calling to say hello\",\n" +
-        "  \"callbackUrl\" : \"http://callback.com/api.sent\"\n" +
-        "}");
+      "  \"pushType\" : \"google-talk\",\n" +
+      "  \"recipient\" : \"mickey.mouse@disney.com\",\n" +
+      "  \"message\" : \"Just calling to say hello\",\n" +
+      "  \"callbackUrl\" : \"http://callback.com/api.sent\"\n" +
+      "}");
 
     Push newPush = translator.fromJson(GoogleTalkPush.class, json);
     ComparisonResults results = EqualsUtils.compare(newPush, oldPush);

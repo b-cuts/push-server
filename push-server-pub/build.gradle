@@ -5,84 +5,43 @@
  */
 
 project(":push-server-pub") {
-
-  version = pushServerPub
   description = "Push Server Public Objects"
 
-  apply (plugin: "ssh")
+  version = pushServerPub
+
+  apply from: "../build-config-deployer.gradle"
 
   dependencies {
-  	compile ("org.crazyyak.dev:yak-dev-common:${yakDevVersion}")
-    compile ("com.fasterxml.jackson.core:jackson-annotations:2.4.1")
+  	compile ("org.crazyyak.dev:yak-dev-common:${yakDevCommon}")
+    compile ("com.fasterxml.jackson.core:jackson-annotations:2.5.0")
+
+    testCompile ("org.testng:testng:6.8.17")
   }
 
-  signing {
-      sign configurations.archives
-  }
-  ssh {
-    identity = file("${cosmicPushKey}") // Enable public key authentication
-    knownHosts = allowAnyHosts          // Disable host key verification
-  }
-  remotes {
-    webServer {
-      host = '107.170.247.182'
-      user = 'root'
-    }
-  }
-  task stageFiles(type: SshTask, dependsOn: jar) {
-    ssh {
-      pty = true; // Enable PTY allocation for sudo
-    }
-    session(remotes.webServer) {
-      // Put a built WAR to the server
-      def copyOf = new File((File)jar.archivePath.parentFile, "push-server-pub-${project.version}.jar");
-      if (copyOf.exists() == false) {
-        copyOf.bytes = jar.archivePath.bytes
-      }
-      System.out.printf("Uploading " + copyOf);
-      put(copyOf.absolutePath, "/opt/staging/")
-    }
-  }
-
-/*
-  uploadArchives {
-      repositories {
-          mavenDeployer {
-              beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-              repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                  authentication(userName: sonatypeUsername, password: sonatypePassword)
-              }
-
-              pom.groupId = project.group
-              pom.artifactId = project.name
-              pom.version = project.version
-              pom.packaging = 'jar'
-              pom.project {
-                  name = project.name
-                  description = "Push Server Pub Module"
-                  url = 'http://www.cosmicpush.com'
-                  licenses {
-                      license {
-                          name = 'Apache License, Version 2.0'
-                          url = 'http://www.apache.org/licenses/LICENSE-2.0'
-                          distribution = 'repo'
-                      }
-                  }
-                  scm {
-                      url = 'https://bitbucket.org/SireInsectus/cosmic-push'
-                      connection = 'git@bitbucket.org:SireInsectus/cosmic-push.git'
-                  }
-                  developers {
-                      developer {
-                          id = 'SireInsectus'
-                          name = 'Jacob D. Parr'
-                          email = 'jacob.parr@gmail.com'
-                      }
-                  }
-              }
-          }
-      }
-  }
-*/
+  configurations.all({
+    resolutionStrategy({
+      force(
+//        "javax.servlet.jsp:jsp-api:2.2.1-b03",
+//
+//        "org.springframework:spring-aop:$springVersion",
+//        "org.springframework:spring-web:$springVersion",
+//        "org.springframework:spring-core:$springVersion",
+//        "org.springframework:spring-beans:$springVersion",
+//        "org.springframework:spring-context:$springVersion",
+//        "org.springframework:spring-expression:$springVersion",
+//
+//        "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
+//
+//        "org.slf4j:slf4j:1.7.10",
+//        "org.slf4j:slf4j-api:1.7.10",
+//        "org.javassist:javassist:3.18.1-GA",
+//        "commons-logging:commons-logging:1.2",
+//
+//        "org.glassfish.jersey.core:jersey-client:2.15",
+//        "org.glassfish.jersey.core:jersey-common:2.15",
+//        "com.fasterxml.jackson.core:jackson-databind:2.5.0",
+      )
+    })
+  })
 }
 

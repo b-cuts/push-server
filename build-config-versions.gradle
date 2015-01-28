@@ -1,0 +1,7 @@
+apply plugin: "com.github.ben-manes.versions"
+dependencyUpdates {
+  doLast {
+    java.io.File reportFile = file("build\\dependencyUpdates\\report.txt")
+    java.awt.Desktop.getDesktop().browse(reportFile.toURI());
+  }
+}

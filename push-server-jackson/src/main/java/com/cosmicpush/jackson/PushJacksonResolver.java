@@ -18,7 +18,7 @@ package com.cosmicpush.jackson;
 
 import com.cosmicpush.pub.common.*;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.jsontype.TypeIdResolver;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import java.util.*;
@@ -50,6 +50,11 @@ public class PushJacksonResolver implements TypeIdResolver {
 
   @Override
   public JavaType typeFromId(String id) {
+    return typeFromId(null, id);
+  }
+
+  @Override
+  public JavaType typeFromId(DatabindContext context, String id) {
     PushType pushType = PushType.find(id);
     return TypeFactory.defaultInstance().uncheckedSimpleType(pushType.getType());
   }

@@ -5,12 +5,26 @@
  */
 
 project(":push-server-plugin-smtp") {
-
-  version = pushServerEng
   description = "Cosmic Push SMTP Plugin"
+
+  version = pushServerPluginSmtp
+
+  apply from: "../build-config-deployer.gradle"
 
   dependencies {
     compile project(":push-server-common")
+
     compile("javax.mail:mail:1.4.5")
+
+    testCompile ("org.testng:testng:6.8.17")
   }
+
+  configurations.all({
+    resolutionStrategy({
+      force(
+          "org.springframework:spring-core:$springVersion",
+          "org.springframework:spring-beans:$springVersion",
+      )
+    })
+  })
 }

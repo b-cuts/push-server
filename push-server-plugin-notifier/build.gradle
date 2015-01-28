@@ -5,11 +5,24 @@
  */
 
 project(":push-server-plugin-notifier") {
-
-  version = pushServerEng
   description = "Cosmic Push Notifier Plugin"
+
+  version = pushServerPluginNotifier
+
+  apply from: "../build-config-deployer.gradle"
 
   dependencies {
     compile project(":push-server-common")
+
+    testCompile ("org.testng:testng:6.8.17")
   }
+
+  configurations.all({
+    resolutionStrategy({
+      force(
+          "org.springframework:spring-core:$springVersion",
+          "org.springframework:spring-beans:$springVersion",
+      )
+    })
+  })
 }

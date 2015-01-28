@@ -9,10 +9,9 @@ import java.util.*;
 import org.crazyyak.dev.common.*;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 import org.joda.time.LocalDateTime;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 @Test
@@ -61,11 +60,11 @@ public class IntegrationTestVersion1 {
 
     PushResponse response = gateway.push(action);
     assertNotNull(response);
-    Assert.assertEquals(response.getRequestStatus(), RequestStatus.pending);
+    assertEquals(response.getRequestStatus(), RequestStatus.pending);
 
     List<String> notes = response.getNotes();
     assertNotNull(notes);
-    Assert.assertEquals(notes.size(), 0);
+    assertEquals(notes.size(), 0);
   }
 
   public void testEmailPush() throws Exception {
@@ -77,7 +76,7 @@ public class IntegrationTestVersion1 {
 
     PushResponse response = gateway.push(action);
     assertNotNull(response);
-    Assert.assertEquals(response.getRequestStatus(), RequestStatus.pending);
+    assertEquals(response.getRequestStatus(), RequestStatus.pending);
   }
 
   public void testUserEventPush() throws Exception {

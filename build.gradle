@@ -8,114 +8,62 @@ buildscript {
   repositories {
     mavenCentral()
     mavenLocal()
-    maven { url "https://raw.githubusercontent.com/ben-manes/gradle-versions-plugin/mvnrepo/" }
+    jcenter()
   }
   dependencies {
-    classpath 'org.hidetake:gradle-ssh-plugin:0.3.5'
-    classpath 'com.github.ben-manes:gradle-versions-plugin:0.7'
+    classpath "org.hidetake:gradle-ssh-plugin:1.0.1"
+    classpath "com.github.ben-manes:gradle-versions-plugin:0.7"
   }
 }
 
-apply plugin: "ssh"
-apply from: "build.reports.gradle"
+apply from: "build-config-reports.gradle"
+apply from: "build-config-java.gradle"
 
 subprojects {
 
-  apply plugin: "java"
-  // apply plugin: "maven"
-  apply plugin: "idea"
-  apply plugin: "signing"
-  apply from: "build.versions-plugin.gradle"
-
-  apply from: "../build.versions.gradle"
-
   group = "com.cosmicpush"
 
-  repositories {
-    mavenCentral()
-    mavenLocal()
-  }
+  apply (from: "../build-config-versions.gradle")
 
   targetCompatibility = "1.8"
   sourceCompatibility = "1.8"
 
-  sourceSets {
-    main {
-      java { srcDir 'src/main/java' }
-      resources { srcDir 'src/main/resources' }
-    }
-    test {
-      java { srcDir 'src/test/java' }
-    }
-  }
+  ext {
+    pushServerPub     = "2.0.0"
+    pushServerGateway = "2.0.0"
+    pushServerApp     = "4.0.0"
+    pushServerCommon  = "4.0.0"
+    pushServerJackson = "4.0.0"
 
-  test {
-    useTestNG() {
-      excludeGroups("integration")
-    }
-  }
+    pushServerPluginSes       = "4.0.0"
+    pushServerPluginSmtp      = "4.0.0"
+    pushServerPluginGtalk     = "4.0.0"
+    pushServerPluginNotifier  = "4.0.0"
 
-  // Source jar
-  task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-  }
+    pushServerIntegrationTestsV1 = "1.0.0"
+    pushServerIntegrationTestsV2 = "1.0.0"
 
-  // Java doc
-  task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-  }
+    yakDevCommon  = "4.1.0"
+    yakDevDomain  = "4.1.0"
+    yakDevJackson = "4.1.0"
 
-  // Test jar
-  task testJar(type: Jar, dependsOn: testClasses) {
-    classifier = 'tests'
-    from sourceSets.test.output
-  }
+    yakApisGoogle = "2.2.0"
 
-  configurations {
-    tests
+    yakLibAmazon        = "4.1.0"
+    yakLibServlet       = "4.1.0"
+    yakLibCouchAce      = "4.1.0"
+    yakLibSpringSec     = "4.1.1"
+    yakLibJaxrsJackson  = "4.1.0"
+
+    yakAppJerseySpring  = "1.0.0"
+
+    springVersion = "4.1.4.RELEASE"
+    springSecurityVersion = "3.2.5.RELEASE"
   }
 
   configurations.all({
     resolutionStrategy({
       failOnVersionConflict()
-      force(
-          "org.glassfish.jersey.core:jersey-client:2.13",
-          "org.glassfish.jersey.core:jersey-common:2.13",
-          "org.glassfish.hk2:hk2-api:2.3.0-b10",
-          "org.glassfish.hk2:hk2-utils:2.3.0-b10",
-          "org.glassfish.hk2:hk2-locator:2.3.0-b10",
-          "org.glassfish.hk2.external:javax.inject:2.3.0-b10",
-
-          "org.crazyyak.lib:yak-lib-jaxrs-jackson:4.0.2",
-
-          "javax.ws.rs:javax.ws.rs-api:2.0.1",
-          "com.fasterxml.jackson.core:jackson-core:2.4.1.1",
-          "com.fasterxml.jackson.core:jackson-databind:2.4.1.3",
-          "com.fasterxml.jackson.core:jackson-annotations:2.4.1",
-          "commons-logging:commons-logging:1.1.3",
-          "javax.servlet.jsp:jsp-api:2.2",
-          "javax.servlet:servlet-api:2.5",
-          "org.springframework:spring-core:4.0.0.RELEASE",
-          "org.springframework:spring-web:4.0.0.RELEASE",
-          "org.springframework:spring-context:4.0.0.RELEASE",
-          "org.springframework:spring-beans:4.0.0.RELEASE",
-          "org.springframework:spring-aop:4.0.0.RELEASE",
-          "org.springframework:spring-expression:4.0.0.RELEASE",
-          "commons-codec:commons-codec:1.6",
-          "org.javassist:javassist:3.18.1-GA")
-
     })
   })
-
-  dependencies {
-    testCompile group: 'org.testng', name: 'testng', version: '6.8.7', transitive: true
-  }
-
-  // Include artifacts configured above
-  artifacts {
-    archives sourcesJar
-    archives javadocJar
-  }
 }

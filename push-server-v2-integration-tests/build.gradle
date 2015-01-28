@@ -5,13 +5,43 @@
  */
 
 project(":push-server-v2-integration-tests") {
-
-  version = pushServerPub
   description = "Push Server Version #2 Integration Tests"
+
+  version = pushServerIntegrationTestsV2
+
+  apply from: "../build-config-deployer.gradle"
 
   dependencies {
   	compile project((":push-server-gateway"))
-    testCompile("org.glassfish.jersey.core:jersey-client:2.13")
+
+    testCompile("org.glassfish.jersey.core:jersey-client:2.15")
+    testCompile ("org.testng:testng:6.8.17")
   }
+
+  configurations.all({
+    resolutionStrategy({
+      force(
+//        "javax.servlet.jsp:jsp-api:2.2.1-b03",
+//
+//        "org.springframework:spring-aop:$springVersion",
+//        "org.springframework:spring-web:$springVersion",
+//        "org.springframework:spring-core:$springVersion",
+//        "org.springframework:spring-beans:$springVersion",
+//        "org.springframework:spring-context:$springVersion",
+//        "org.springframework:spring-expression:$springVersion",
+//
+//        "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
+//
+//        "org.slf4j:slf4j:1.7.10",
+//        "org.slf4j:slf4j-api:1.7.10",
+//        "org.javassist:javassist:3.18.1-GA",
+//        "commons-logging:commons-logging:1.2",
+//
+//        "org.glassfish.jersey.core:jersey-client:2.15",
+//        "org.glassfish.jersey.core:jersey-common:2.15",
+//        "com.fasterxml.jackson.core:jackson-databind:2.5.0",
+      )
+    })
+  })
 }
 

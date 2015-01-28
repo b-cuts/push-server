@@ -1,6 +1,0 @@
-apply plugin: "com.github.ben-manes.versions"
-dependencyUpdates {
-  doLast {
-
-  }
-}
