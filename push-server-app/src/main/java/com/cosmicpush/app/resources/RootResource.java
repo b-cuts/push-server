@@ -6,6 +6,7 @@
 
 package com.cosmicpush.app.resources;
 
+import com.cosmicpush.app.domain.accounts.*;
 import com.cosmicpush.app.resources.api.*;
 import com.cosmicpush.app.resources.manage.*;
 import com.cosmicpush.common.accounts.*;
@@ -18,7 +19,6 @@ import java.net.*;
 import javax.servlet.http.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-
 import org.apache.commons.logging.*;
 import org.crazyyak.dev.common.exceptions.ApiException;
 import org.glassfish.jersey.server.mvc.Viewable;
@@ -99,9 +99,20 @@ public class RootResource {
   }
 
   @Path("/api")
-  public ApiResourceV1 getApiResourceV1() throws Exception {
-    ApiRequestConfig config = new ApiRequestConfig(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore, servletRequest, servletResponse,
-      uriInfo, headers, securityContext
+  public ApiResourceV1 getApiResourceV1(@HeaderParam("Authorization") String basicAuthHeader) throws Exception {
+    Authorization authorization = Authorization.fromBasicAuthHeader(basicAuthHeader);
+
+    ApiRequestConfig config = new ApiRequestConfig(
+      authorization,
+      objectMapper,
+      couchServer,
+      accountStore,
+      apiRequestStore,
+      servletRequest,
+      servletResponse,
+      uriInfo,
+      headers,
+      securityContext
     );
 
     String accountId = config.getApiClientUser().getAccountId();
@@ -114,18 +125,20 @@ public class RootResource {
   }
 
   @Path("/api/v2")
-  public ApiResourceV2 getApiResourceV2() throws Exception {
+  public ApiResourceV2 getApiResourceV2(@HeaderParam("Authorization") String basicAuthHeader) throws Exception {
+    Authorization authorization = Authorization.fromBasicAuthHeader(basicAuthHeader);
+
     ApiRequestConfig config = new ApiRequestConfig(
-        authenticationManager,
-        objectMapper,
-        couchServer,
-        accountStore,
-        apiRequestStore,
-        servletRequest,
-        servletResponse,
-        uriInfo,
-        headers,
-        securityContext
+      authorization,
+      objectMapper,
+      couchServer,
+      accountStore,
+      apiRequestStore,
+      servletRequest,
+      servletResponse,
+      uriInfo,
+      headers,
+      securityContext
     );
 
     String accountId = config.getApiClientUser().getAccountId();

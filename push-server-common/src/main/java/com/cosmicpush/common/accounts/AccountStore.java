@@ -11,15 +11,11 @@ import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.internal.RequestErrors;
 import java.util.List;
 import org.crazyyak.lib.couchace.DefaultCouchStore;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
 public class AccountStore extends DefaultCouchStore<Account> {
 
   public static final String ACCOUNT_DESIGN_NAME = "account";
 
-  @Autowired
   public AccountStore(CpCouchServer couchServer) {
     super(couchServer, couchServer.getDatabaseName(), Account.class);
   }

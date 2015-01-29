@@ -65,12 +65,6 @@
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:3.2.5.RELEASE" />
             <element id="library" level="project" name="Gradle: org.glassfish.web:jstl-impl:1.2" />
             <element id="library" level="project" name="Gradle: javax.servlet:servlet-api:2.5" />
             <element id="library" level="project" name="Gradle: javax.servlet.jsp.jstl:jstl-api:1.2" />
@@ -80,6 +74,7 @@
             </element>
             <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-amazon:4.1.0" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.1.4.RELEASE" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.9.16" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-support:1.9.16" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpledb:1.9.16" />
@@ -128,6 +123,7 @@
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.3.4" />
             <element id="library" level="project" name="Gradle: joda-time:joda-time:2.7" />
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.3.2" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.1.4.RELEASE" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-gtalk-4.0.0.jar">
               <element id="module-output" name="push-server-plugin-gtalk" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-gtalk/build/resources/main" />
@@ -139,15 +135,12 @@
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.0" />
             <element id="library" level="project" name="Gradle: javax.servlet.jsp:jsp-api:2.2.1-b03" />
             <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-taglibs:3.2.5.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:3.2.5.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:3.2.5.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-acl:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.1.4.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.1.4.RELEASE" />
             <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.1.4.RELEASE" />
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.0" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.0" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.1.4.RELEASE" />
             <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-jersey-spring:1.0.0" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-mvc-jsp:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.15" />
@@ -167,10 +160,17 @@
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:class-model:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:bean-validator:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:asm-all-repackaged:2.4.0-b06" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-spring-security:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-spring-couchace:1.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-spring-security:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.1.4.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-taglibs:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.1.4.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-acl:3.2.5.RELEASE" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -242,12 +242,6 @@
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:3.2.5.RELEASE" />
             <element id="library" level="project" name="Gradle: org.glassfish.web:jstl-impl:1.2" />
             <element id="library" level="project" name="Gradle: javax.servlet:servlet-api:2.5" />
             <element id="library" level="project" name="Gradle: javax.servlet.jsp.jstl:jstl-api:1.2" />
@@ -257,6 +251,7 @@
             </element>
             <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-amazon:4.1.0" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.1.4.RELEASE" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.9.16" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-support:1.9.16" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpledb:1.9.16" />
@@ -305,6 +300,7 @@
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.3.4" />
             <element id="library" level="project" name="Gradle: joda-time:joda-time:2.7" />
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.3.2" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.1.4.RELEASE" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-gtalk-4.0.0.jar">
               <element id="module-output" name="push-server-plugin-gtalk" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-gtalk/build/resources/main" />
@@ -316,15 +312,12 @@
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.0" />
             <element id="library" level="project" name="Gradle: javax.servlet.jsp:jsp-api:2.2.1-b03" />
             <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-taglibs:3.2.5.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:3.2.5.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:3.2.5.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-acl:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.1.4.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.1.4.RELEASE" />
             <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.1.4.RELEASE" />
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.0" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.0" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.1.4.RELEASE" />
             <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-jersey-spring:1.0.0" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.ext:jersey-mvc-jsp:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.15" />
@@ -344,10 +337,17 @@
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:class-model:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:bean-validator:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:asm-all-repackaged:2.4.0-b06" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-spring-security:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-spring-couchace:1.0.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-spring-security:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.1.4.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-taglibs:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.1.4.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:3.2.5.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-acl:3.2.5.RELEASE" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -547,12 +547,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/cosmic-push.iml" filepath="$PROJECT_DIR$/cosmic-push.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server.iml" filepath="$PROJECT_DIR$/push-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-app/push-server-app.iml" filepath="$PROJECT_DIR$/push-server-app/push-server-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-common/push-server-common.iml" filepath="$PROJECT_DIR$/push-server-common/push-server-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-gateway/push-server-gateway.iml" filepath="$PROJECT_DIR$/push-server-gateway/push-server-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" filepath="$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" filepath="$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" filepath="$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" filepath="$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" filepath="$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" filepath="$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" />
@@ -1602,10 +1602,12 @@
     <library name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-couchace/4.1.1/yak-lib-couchace-4.1.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-couchace/4.1.1/2c488787548b3b1a8682f440a29de0f7c72c64e0/yak-lib-couchace-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-couchace/4.1.1/yak-lib-couchace-4.1.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-couchace/4.1.1/acf17446ad6aafc66890e802516650b56585e92/yak-lib-couchace-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.0">

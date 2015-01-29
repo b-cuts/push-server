@@ -15,10 +15,6 @@ public abstract class AccountQuery<T> implements ValidatableAction {
     return new AccountIdQuery(accountId);
   }
 
-  public static AccountIdQuery byUser(AccountUser accountUser) {
-    return byId(accountUser.getAccountId());
-  }
-
   public static AccountEntityQuery byAccount(Account account) {
     return new AccountEntityQuery(account);
   }

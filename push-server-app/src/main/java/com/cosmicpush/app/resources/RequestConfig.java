@@ -6,6 +6,7 @@
 
 package com.cosmicpush.app.resources;
 
+import com.cosmicpush.app.domain.accounts.Authorization;
 import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.plugins.*;
 import com.cosmicpush.common.requests.ApiRequestStore;
@@ -17,7 +18,6 @@ import javax.servlet.http.*;
 import javax.ws.rs.core.*;
 import org.crazyyak.dev.common.json.JsonTranslator;
 import org.crazyyak.dev.jackson.YakJacksonTranslator;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -32,7 +32,7 @@ public class RequestConfig implements PluginContext {
   private HttpHeaders headers;
   protected UserDetails userDetails;
 
-  private final AuthenticationManager authenticationManager;
+  private final Authorization authorization;
   private final CpObjectMapper objectMapper;
   private final AccountStore accountStore;
   private final ApiRequestStore apiRequestStore;
@@ -40,7 +40,7 @@ public class RequestConfig implements PluginContext {
 
   private final JsonTranslator jsonTranslator;
 
-  public RequestConfig(AuthenticationManager authenticationManager,
+  public RequestConfig(Authorization authorization,
                        CpObjectMapper objectMapper,
                        CpCouchServer couchServer,
                        AccountStore accountStore,
@@ -51,7 +51,7 @@ public class RequestConfig implements PluginContext {
                        HttpHeaders headers,
                        SecurityContext securityContext) {
 
-    this.authenticationManager = authenticationManager;
+    this.authorization = authorization;
     this.couchServer = couchServer;
     this.objectMapper = objectMapper;
     this.accountStore = accountStore;
@@ -101,8 +101,8 @@ public class RequestConfig implements PluginContext {
     return response;
   }
 
-  public AuthenticationManager getAuthenticationManager() {
-    return authenticationManager;
+  public Authorization getAuthorization() {
+    return authorization;
   }
 
   @Override

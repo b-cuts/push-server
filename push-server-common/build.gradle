@@ -15,21 +15,12 @@ project(":push-server-common") {
 
     compile("org.crazyyak.lib:yak-lib-couchace:$yakLibCouchAce")
 
-    compile("org.springframework:spring-context:$springVersion")
-    compile("org.springframework.security:spring-security-core:$springSecurityVersion")
-
     testCompile ("org.testng:testng:6.8.17")
   }
 
   configurations.all({
     resolutionStrategy({
-      force(
-          "org.springframework:spring-aop:$springVersion",
-          "org.springframework:spring-core:$springVersion",
-          "org.springframework:spring-beans:$springVersion",
-          "org.springframework:spring-context:$springVersion",
-          "org.springframework:spring-expression:$springVersion",
-      )
+      force()
     })
   })
 }

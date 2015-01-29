@@ -57,9 +57,6 @@ subprojects {
     yakLibJaxrsJackson    = "4.1.0"
 
     yakAppJerseySpring  = "1.0.0"
-
-    springVersion = "4.1.4.RELEASE"
-    springSecurityVersion = "3.2.5.RELEASE"
   }
 
   configurations.all({

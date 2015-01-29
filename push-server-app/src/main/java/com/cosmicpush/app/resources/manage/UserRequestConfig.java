@@ -6,6 +6,7 @@
 
 package com.cosmicpush.app.resources.manage;
 
+import com.cosmicpush.app.domain.accounts.AccountUser;
 import com.cosmicpush.common.accounts.*;
 import com.cosmicpush.common.requests.ApiRequestStore;
 import com.cosmicpush.app.resources.RequestConfig;

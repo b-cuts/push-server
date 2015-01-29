@@ -4,8 +4,9 @@
  * This software may not be used without permission.
  */
 
-package com.cosmicpush.common.accounts;
+package com.cosmicpush.app.domain.accounts;
 
+import com.cosmicpush.common.accounts.*;
 import java.util.*;
 import org.crazyyak.dev.common.StringUtils;
 import org.springframework.security.core.GrantedAuthority;

@@ -26,11 +26,12 @@ project(":push-server-app") {
     compile ("org.crazyyak.apis:yak-apis-google:$yakApisGoogle")
 
     compile ("org.crazyyak.lib:yak-lib-servlet:$yakLibServlet")
-    compile ("org.crazyyak.lib:yak-lib-spring-security:$yakLibSpringSecurity")
     compile ("org.crazyyak.lib:yak-lib-spring-couchace:$yakLibSpringCouchAce")
 
     compile ("org.crazyyak.lib:yak-lib-jaxrs-jackson:$yakLibJaxrsJackson")
-    compile ("org.crazyyak.app:yak-app-jersey-spring:$yakAppJerseySpring")
+    compile ("org.crazyyak.app:yak-app-jersey-spring:$yakAppJerseySpring") {
+      // exclude (module: 'yak-lib-spring-security')
+    }
 
     compile("org.glassfish.web:jstl-impl:1.2")
 
@@ -42,12 +43,12 @@ project(":push-server-app") {
       force(
           "javax.servlet.jsp:jsp-api:2.2.1-b03",
 
-          "org.springframework:spring-aop:$springVersion",
-          "org.springframework:spring-web:$springVersion",
-          "org.springframework:spring-core:$springVersion",
-          "org.springframework:spring-beans:$springVersion",
-          "org.springframework:spring-context:$springVersion",
-          "org.springframework:spring-expression:$springVersion",
+          "org.springframework:spring-aop:4.1.4.RELEASE",
+          "org.springframework:spring-web:4.1.4.RELEASE",
+          "org.springframework:spring-core:4.1.4.RELEASE",
+          "org.springframework:spring-beans:4.1.4.RELEASE",
+          "org.springframework:spring-context:4.1.4.RELEASE",
+          "org.springframework:spring-expression:4.1.4.RELEASE",
 
           "org.slf4j:slf4j:1.7.10",
           "org.slf4j:slf4j-api:1.7.10",
