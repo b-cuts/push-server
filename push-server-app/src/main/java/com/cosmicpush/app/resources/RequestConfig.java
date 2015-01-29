@@ -17,7 +17,6 @@ import javax.servlet.http.*;
 import javax.ws.rs.core.*;
 import org.crazyyak.dev.common.json.JsonTranslator;
 import org.crazyyak.dev.jackson.YakJacksonTranslator;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -32,7 +31,6 @@ public class RequestConfig implements PluginContext {
   private HttpHeaders headers;
   protected UserDetails userDetails;
 
-  private final AuthenticationManager authenticationManager;
   private final CpObjectMapper objectMapper;
   private final AccountStore accountStore;
   private final ApiRequestStore apiRequestStore;
@@ -40,24 +38,29 @@ public class RequestConfig implements PluginContext {
 
   private final JsonTranslator jsonTranslator;
 
-  public RequestConfig(AuthenticationManager authenticationManager, CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore) {
-    this.authenticationManager = authenticationManager;
+
+  public RequestConfig(CpObjectMapper objectMapper,
+                       CpCouchServer couchServer,
+                       AccountStore accountStore,
+                       ApiRequestStore apiRequestStore,
+                       HttpServletRequest request,
+                       HttpServletResponse response,
+                       UriInfo uriInfo,
+                       HttpHeaders headers,
+                       SecurityContext securityContext) {
+
     this.couchServer = couchServer;
     this.objectMapper = objectMapper;
     this.accountStore = accountStore;
     this.apiRequestStore = apiRequestStore;
     this.jsonTranslator = new YakJacksonTranslator(objectMapper);
     this.pushProcessor = new PushProcessor(this);
-  }
 
-  public RequestConfig initialize(HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
     this.request = request;
     this.response = response;
 
     this.uriInfo = uriInfo;
     this.headers = headers;
-
-    String content = headers.getHeaderString("Authorization");
 
     if (securityContext != null) {
       Principal userPrincipal = securityContext.getUserPrincipal();
@@ -68,8 +71,6 @@ public class RequestConfig implements PluginContext {
         }
       }
     }
-
-    return this;
   }
 
   public UriInfo getUriInfo() {
@@ -95,10 +96,6 @@ public class RequestConfig implements PluginContext {
 
   public HttpServletResponse getResponse() {
     return response;
-  }
-
-  public AuthenticationManager getAuthenticationManager() {
-    return authenticationManager;
   }
 
   @Override

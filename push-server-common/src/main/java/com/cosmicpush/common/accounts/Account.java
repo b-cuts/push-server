@@ -278,10 +278,6 @@ public class Account {
     this.retentionDays = retentionDays;
   }
 
-  public AccountUser toUser() {
-    return new AccountUser(this);
-  }
-
   public boolean equals(Object object) {
     if (object instanceof Account) {
       Account that = (Account)object;

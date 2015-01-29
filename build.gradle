@@ -16,7 +16,6 @@ buildscript {
   }
 }
 
-apply from: "build-config-reports.gradle"
 apply from: "build-config-java.gradle"
 
 subprojects {
@@ -24,6 +23,7 @@ subprojects {
   group = "com.cosmicpush"
 
   apply (from: "../build-config-versions.gradle")
+  apply (from: "../build-config-reports.gradle")
 
   targetCompatibility = "1.8"
   sourceCompatibility = "1.8"
@@ -49,16 +49,14 @@ subprojects {
 
     yakApisGoogle = "2.2.0"
 
-    yakLibAmazon        = "4.1.0"
-    yakLibServlet       = "4.1.0"
-    yakLibCouchAce      = "4.1.0"
-    yakLibSpringSec     = "4.1.1"
-    yakLibJaxrsJackson  = "4.1.0"
+    yakLibAmazon          = "4.1.0"
+    yakLibServlet         = "4.1.0"
+    yakLibCouchAce        = "4.1.1"
+    yakLibSpringSecurity  = "4.1.1"
+    yakLibSpringCouchAce  = "1.0.0"
+    yakLibJaxrsJackson    = "4.1.0"
 
     yakAppJerseySpring  = "1.0.0"
-
-    springVersion = "4.1.4.RELEASE"
-    springSecurityVersion = "3.2.5.RELEASE"
   }
 
   configurations.all({

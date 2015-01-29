@@ -6,10 +6,11 @@
 
 package com.cosmicpush.app.system;
 
+import com.cosmicpush.app.domain.accounts.AccountUser;
 import com.cosmicpush.common.accounts.queries.AccountQuery;
 import com.cosmicpush.common.accounts.*;
 import com.cosmicpush.common.system.CpCouchServer;
-import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -32,12 +33,12 @@ public class DefaultSecurityProvider extends AbstractUserDetailsAuthenticationPr
 
     AccountUser accountUser = (AccountUser)userDetails;
 
-    if (BeanUtils.objectsNotEqual(userDetails.getUsername(), authentication.getPrincipal())) {
+    if (EqualsUtils.objectsNotEqual(userDetails.getUsername(), authentication.getPrincipal())) {
       throw new UsernameNotFoundException(Account.INVALID_USER_NAME_OR_PASSWORD);
     }
 
-    if (BeanUtils.objectsNotEqual(userDetails.getPassword(), authentication.getCredentials())) {
-      if (BeanUtils.objectsNotEqual(accountUser.getTempPassword(), authentication.getCredentials())) {
+    if (EqualsUtils.objectsNotEqual(userDetails.getPassword(), authentication.getCredentials())) {
+      if (EqualsUtils.objectsNotEqual(accountUser.getTempPassword(), authentication.getCredentials())) {
         throw new BadCredentialsException(Account.INVALID_USER_NAME_OR_PASSWORD);
       }
     }
@@ -48,10 +49,10 @@ public class DefaultSecurityProvider extends AbstractUserDetailsAuthenticationPr
 
     Account account = accountStore.get(AccountQuery.byUserName(userName));
 
-    if (account == null || BeanUtils.objectsNotEqual(account.getUserName(), userName)) {
+    if (account == null || EqualsUtils.objectsNotEqual(account.getUserName(), userName)) {
       throw new UsernameNotFoundException(Account.INVALID_USER_NAME_OR_PASSWORD);
     }
 
-    return account.toUser();
+    return new AccountUser(account);
   }
 }

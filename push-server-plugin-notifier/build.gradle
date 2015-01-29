@@ -19,10 +19,7 @@ project(":push-server-plugin-notifier") {
 
   configurations.all({
     resolutionStrategy({
-      force(
-          "org.springframework:spring-core:$springVersion",
-          "org.springframework:spring-beans:$springVersion",
-      )
+      force()
     })
   })
 }

@@ -11,10 +11,7 @@ import org.crazyyak.dev.common.id.TimeUuidIdGenerator;
 import org.crazyyak.dev.jackson.YakJacksonModule;
 import org.crazyyak.lib.couchace.DefaultCouchServer;
 import org.crazyyak.lib.couchace.support.CouchUtils;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.Component;
 
-@Component
 public class CpCouchServer extends DefaultCouchServer {
 
   private final String databaseName;
@@ -24,8 +21,7 @@ public class CpCouchServer extends DefaultCouchServer {
   private static final String prefix = "/push-server/design-docs/";
   private static final String suffix = "-design.json";
 
-  @Autowired
-  public CpCouchServer(@Value("${couchdb.name}") String databaseName) {
+  public CpCouchServer(String databaseName) {
     super(new Module[]{
       new YakJacksonModule(),
       new CpJacksonModule()});

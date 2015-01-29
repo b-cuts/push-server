@@ -38,7 +38,7 @@ public class AccountOperationDelegate {
     if (operation.isAuthenticate() == false) {
       return account;
     } else {
-      return authenticateUser(account, account.toUser().getPassword());
+      return authenticateUser(account, account.getPassword());
     }
   }
 

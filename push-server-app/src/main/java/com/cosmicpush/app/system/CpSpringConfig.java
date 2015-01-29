@@ -1,7 +1,11 @@
 package com.cosmicpush.app.system;
 
+import com.cosmicpush.common.DiyBeanFactory;
+import com.cosmicpush.common.accounts.AccountStore;
+import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
-import org.crazyyak.lib.couchace.spring.CouchPropertyPlaceholderConfigurer;
+import org.crazyyak.lib.spring.couchace.CouchPropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.*;
 
 @Configuration
@@ -16,6 +20,22 @@ public class CpSpringConfig {
 
   @Bean
   public CpObjectMapper cpObjectMapper() {
-    return new CpObjectMapper();
+    return DiyBeanFactory.get().getObjectMapper();
   }
+
+  @Bean
+  public CpCouchServer getCpCouchServer() {
+    return DiyBeanFactory.get().getCouchServer();
+  }
+
+  @Bean
+  public AccountStore getAccountStore() {
+    return DiyBeanFactory.get().getAccountStore();
+  }
+
+  @Bean
+  public ApiRequestStore getApiRequestStore() {
+    return DiyBeanFactory.get().getApiRequestStore();
+  }
+
 }
