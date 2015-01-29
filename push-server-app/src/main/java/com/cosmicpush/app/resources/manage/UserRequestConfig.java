@@ -14,12 +14,11 @@ import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import javax.servlet.http.*;
 import javax.ws.rs.core.*;
-import org.springframework.security.authentication.AuthenticationManager;
 
 public class UserRequestConfig extends RequestConfig {
 
-  public UserRequestConfig(AuthenticationManager authenticationManager, CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore, HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
-    super(authenticationManager, objectMapper, couchServer, accountStore, apiRequestStore, request, response, uriInfo, headers, securityContext);
+  public UserRequestConfig(CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore, HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
+    super(objectMapper, couchServer, accountStore, apiRequestStore, request, response, uriInfo, headers, securityContext);
   }
 
   public AccountUser getCurrentUser() {

@@ -6,7 +6,6 @@
 
 package com.cosmicpush.app.resources.api;
 
-import com.cosmicpush.app.domain.accounts.Authorization;
 import com.cosmicpush.app.domain.clients.ApiClientUser;
 import com.cosmicpush.app.resources.RequestConfig;
 import com.cosmicpush.common.accounts.AccountStore;
@@ -18,8 +17,8 @@ import javax.ws.rs.core.*;
 
 public class ApiRequestConfig extends RequestConfig {
 
-  public ApiRequestConfig(Authorization authorization, CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore, HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
-    super(authorization, objectMapper, couchServer, accountStore, apiRequestStore, request, response, uriInfo, headers, securityContext);
+  public ApiRequestConfig(CpObjectMapper objectMapper, CpCouchServer couchServer, AccountStore accountStore, ApiRequestStore apiRequestStore, HttpServletRequest request, HttpServletResponse response, UriInfo uriInfo, HttpHeaders headers, SecurityContext securityContext) {
+    super(objectMapper, couchServer, accountStore, apiRequestStore, request, response, uriInfo, headers, securityContext);
   }
 
   public ApiClientUser getApiClientUser() {

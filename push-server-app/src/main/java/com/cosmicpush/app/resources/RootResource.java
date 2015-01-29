@@ -38,22 +38,17 @@ public class RootResource {
   private UriInfo uriInfo;
   private HttpHeaders headers;
 
-  private AuthenticationManager authenticationManager;
   private CpObjectMapper objectMapper;
   private CpCouchServer couchServer;
   private AccountStore accountStore;
   private ApiRequestStore apiRequestStore;
 
-  RequestConfig requestConfig;
-
   @Autowired
-  public RootResource(AuthenticationManager authenticationManager,
-                      CpObjectMapper objectMapper,
+  public RootResource(CpObjectMapper objectMapper,
                       CpCouchServer couchServer,
                       AccountStore accountStore,
                       ApiRequestStore apiRequestStore) {
 
-    this.authenticationManager = authenticationManager;
     this.objectMapper = objectMapper;
     this.couchServer = couchServer;
     this.accountStore = accountStore;
@@ -65,8 +60,7 @@ public class RootResource {
   }
 
   @Context
-  public void setContext(javax.ws.rs.ext.Providers providers,
-                         HttpServletRequest servletRequest,
+  public void setContext(HttpServletRequest servletRequest,
                          HttpServletResponse servletResponse,
                          SecurityContext securityContext,
                          UriInfo uriInfo,
@@ -77,33 +71,17 @@ public class RootResource {
     this.securityContext = securityContext;
     this.uriInfo = uriInfo;
     this.headers = headers;
-
-    this.requestConfig = new RequestConfig(
-        authenticationManager,
-        objectMapper,
-        couchServer,
-        accountStore,
-        apiRequestStore,
-        servletRequest,
-        servletResponse,
-        uriInfo,
-        headers,
-        securityContext
-    );
   }
 
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Viewable getPublicResource() {
-    return new PublicResource(requestConfig).getWelcome();
+    return new PublicResource().getWelcome();
   }
 
   @Path("/api")
-  public ApiResourceV1 getApiResourceV1(@HeaderParam("Authorization") String basicAuthHeader) throws Exception {
-    Authorization authorization = Authorization.fromBasicAuthHeader(basicAuthHeader);
-
+  public ApiResourceV1 getApiResourceV1() throws Exception {
     ApiRequestConfig config = new ApiRequestConfig(
-      authorization,
       objectMapper,
       couchServer,
       accountStore,
@@ -125,11 +103,9 @@ public class RootResource {
   }
 
   @Path("/api/v2")
-  public ApiResourceV2 getApiResourceV2(@HeaderParam("Authorization") String basicAuthHeader) throws Exception {
-    Authorization authorization = Authorization.fromBasicAuthHeader(basicAuthHeader);
+  public ApiResourceV2 getApiResourceV2() throws Exception {
 
     ApiRequestConfig config = new ApiRequestConfig(
-      authorization,
       objectMapper,
       couchServer,
       accountStore,
@@ -153,7 +129,6 @@ public class RootResource {
   @Path("/manage")
   public ManageResource getManageResource() {
     UserRequestConfig config = new UserRequestConfig(
-        authenticationManager,
         objectMapper,
         couchServer,
         accountStore,
@@ -180,12 +155,12 @@ public class RootResource {
       return resolveCallback(id);
 
     } else if (id.contains(":") == false) {
-      ApiRequest request = requestConfig.getApiRequestStore().getByApiRequestId(id);
+      ApiRequest request = apiRequestStore.getByApiRequestId(id);
       if (request == null) {
         throw ApiException.notFound("API request not found for " + id);
       }
 
-      Account account = requestConfig.getAccountStore().getByClientId(request.getApiClientId());
+      Account account = accountStore.getByClientId(request.getApiClientId());
       if (account == null) {
         throw ApiException.notFound("Account not found given client id " + request.getApiClientId());
       }
@@ -220,7 +195,7 @@ public class RootResource {
   @Produces("image/jpeg")
   @Path("{resource: ([^\\s]+(\\.(?i)(jpg|JPG|jpeg|JPEG))$) }")
   public Viewable renderJPGs() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 
@@ -228,7 +203,7 @@ public class RootResource {
   @Produces("image/png")
   @Path("{resource: ([^\\s]+(\\.(?i)(png|PNG))$) }")
   public Viewable renderPNGs() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 
@@ -236,7 +211,7 @@ public class RootResource {
   @Produces("image/gif")
   @Path("{resource: ([^\\s]+(\\.(?i)(gif|GIF))$) }")
   public Viewable renderGIFs() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 
@@ -244,7 +219,7 @@ public class RootResource {
   @Produces(MediaType.TEXT_PLAIN)
   @Path("{resource: ([^\\s]+(\\.(?i)(txt|TXT|text|TEXT))$) }")
   public Viewable renderText() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 
@@ -252,7 +227,7 @@ public class RootResource {
   @Produces(MediaType.TEXT_HTML)
   @Path("{resource: ([^\\s]+(\\.(?i)(html|HTML))$) }")
   public Viewable renderHtml() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 
@@ -260,7 +235,7 @@ public class RootResource {
   @Produces("text/css")
   @Path("{resource: ([^\\s]+(\\.(?i)(css|CSS))$) }")
   public Viewable renderCSS() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 
@@ -268,7 +243,7 @@ public class RootResource {
   @Produces("application/javascript")
   @Path("{resource: ([^\\s]+(\\.(?i)(js|JS))$) }")
   public Viewable renderJavaScript() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 
@@ -276,7 +251,7 @@ public class RootResource {
   @Produces("image/icon")
   @Path("{resource: ([^\\s]+(\\.(?i)(ico|ICO))$) }")
   public Viewable renderICOs() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 
@@ -284,7 +259,7 @@ public class RootResource {
   @Produces("application/pdf")
   @Path("{resource: ([^\\s]+(\\.(?i)(pdf|PDF))$) }")
   public Viewable renderPDFs() throws Exception {
-    String path = "/" + requestConfig.getUriInfo().getPath();
+    String path = "/" + uriInfo.getPath();
     return new Viewable(path);
   }
 

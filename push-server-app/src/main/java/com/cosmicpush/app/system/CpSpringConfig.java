@@ -1,11 +1,11 @@
 package com.cosmicpush.app.system;
 
+import com.cosmicpush.common.DiyBeanFactory;
 import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.requests.ApiRequestStore;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import org.crazyyak.lib.spring.couchace.CouchPropertyPlaceholderConfigurer;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
 @Configuration
@@ -20,22 +20,22 @@ public class CpSpringConfig {
 
   @Bean
   public CpObjectMapper cpObjectMapper() {
-    return new CpObjectMapper();
+    return DiyBeanFactory.get().getObjectMapper();
   }
 
   @Bean
-  public CpCouchServer getCpCouchServer(@Value("${couchdb.name}") String databaseName) {
-    return new CpCouchServer(databaseName);
+  public CpCouchServer getCpCouchServer() {
+    return DiyBeanFactory.get().getCouchServer();
   }
 
   @Bean
-  public AccountStore getAccountStore(CpCouchServer couchServer) {
-    return new AccountStore(couchServer);
+  public AccountStore getAccountStore() {
+    return DiyBeanFactory.get().getAccountStore();
   }
 
   @Bean
-  public ApiRequestStore getApiRequestStore(CpCouchServer couchServer) {
-    return new ApiRequestStore(couchServer);
+  public ApiRequestStore getApiRequestStore() {
+    return DiyBeanFactory.get().getApiRequestStore();
   }
 
 }

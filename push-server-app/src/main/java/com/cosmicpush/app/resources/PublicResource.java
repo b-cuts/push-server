@@ -18,14 +18,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 public class PublicResource {
 
-  private RequestConfig config;
-
-  public PublicResource(RequestConfig config) {
-    this.config = config;
-  }
-
-  public RequestConfig getConfig() {
-    return config;
+  public PublicResource() {
   }
 
   @GET

@@ -6,7 +6,6 @@
 
 package com.cosmicpush.app.resources;
 
-import com.cosmicpush.app.domain.accounts.Authorization;
 import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.plugins.*;
 import com.cosmicpush.common.requests.ApiRequestStore;
@@ -32,7 +31,6 @@ public class RequestConfig implements PluginContext {
   private HttpHeaders headers;
   protected UserDetails userDetails;
 
-  private final Authorization authorization;
   private final CpObjectMapper objectMapper;
   private final AccountStore accountStore;
   private final ApiRequestStore apiRequestStore;
@@ -40,8 +38,8 @@ public class RequestConfig implements PluginContext {
 
   private final JsonTranslator jsonTranslator;
 
-  public RequestConfig(Authorization authorization,
-                       CpObjectMapper objectMapper,
+
+  public RequestConfig(CpObjectMapper objectMapper,
                        CpCouchServer couchServer,
                        AccountStore accountStore,
                        ApiRequestStore apiRequestStore,
@@ -51,7 +49,6 @@ public class RequestConfig implements PluginContext {
                        HttpHeaders headers,
                        SecurityContext securityContext) {
 
-    this.authorization = authorization;
     this.couchServer = couchServer;
     this.objectMapper = objectMapper;
     this.accountStore = accountStore;
@@ -99,10 +96,6 @@ public class RequestConfig implements PluginContext {
 
   public HttpServletResponse getResponse() {
     return response;
-  }
-
-  public Authorization getAuthorization() {
-    return authorization;
   }
 
   @Override
