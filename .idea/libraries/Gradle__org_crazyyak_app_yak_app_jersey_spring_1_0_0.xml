@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.crazyyak.app:yak-app-jersey-spring:1.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-jersey-spring/1.0.0/a3078e568e1963c3d173dde55d2f008205bd61f8/yak-app-jersey-spring-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-jersey-spring/1.0.0/d6d9af7e6583cd5dbd0ca7e70bcf3e59cef16058/yak-app-jersey-spring-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

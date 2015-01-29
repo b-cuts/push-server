@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.amazonaws:aws-java-sdk-importexport:1.9.16">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.16/57fa2127c585e05c99de4cb0e8e715a796c9f5a4/aws-java-sdk-importexport-1.9.16.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.16/acd0c591ad41f231776282fda3821a1d2c2c9c13/aws-java-sdk-importexport-1.9.16-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

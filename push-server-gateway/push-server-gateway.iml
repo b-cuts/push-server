@@ -15,20 +15,20 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="push-server-pub" exported="" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.beanshell:bsh:2.0b4" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.beust:jcommander:1.27" level="project" />
     <orderEntry type="module" module-name="push-server-jackson" exported="" />
-    <orderEntry type="library" exported="" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-common:4.1.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.0" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.17" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.beanshell:bsh:2.0b4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.beust:jcommander:1.27" level="project" />
   </component>
 </module>

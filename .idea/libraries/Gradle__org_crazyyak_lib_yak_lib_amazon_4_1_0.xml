@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.crazyyak.lib:yak-lib-amazon:4.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-amazon/4.1.0/51cde8a14035acbaf644178db4fead8806b0def4/yak-lib-amazon-4.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-amazon/4.1.0/ce2de5138fe09e8ebe5c0753e9b54fd880ab8dc4/yak-lib-amazon-4.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

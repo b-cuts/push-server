@@ -1,0 +1,29 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+project(":push-server-plugin-ocs") {
+    description = "Cosmic Push OCS (Office Communicator Server) Plugin"
+
+    version = pushServerPluginOcs
+
+    apply from: "../build-config-deployer.gradle"
+
+    dependencies {
+        compile project(":push-server-common")
+        compile("org.microsoft.security.ntlm:ntlm-core:1.0-SNAPSHOT")
+
+        testCompile ("org.testng:testng:6.8.17")
+    }
+
+    configurations.all({
+        resolutionStrategy({
+            force(
+                    "org.springframework:spring-core:$springVersion",
+                    "org.springframework:spring-beans:$springVersion",
+            )
+        })
+    })
+}

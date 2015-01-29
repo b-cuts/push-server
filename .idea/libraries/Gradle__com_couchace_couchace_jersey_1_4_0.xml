@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.couchace:couchace-jersey:1.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.4.0/2851ffae8160044e8ad2b6f006d9b58456031ecd/couchace-jersey-1.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.4.0/63d5938d556f50be928368eeb708c0c3609c1f9f/couchace-jersey-1.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

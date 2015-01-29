@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.0/81c5504f0b24b42b8a1c49d9cdafe4f6bf113870/yak-apis-google-2.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.0/770d465dae182c9c27d6ae8879f08b1505f568fe/yak-apis-google-2.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

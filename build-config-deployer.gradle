@@ -3,9 +3,9 @@ apply plugin: "signing"
 
 uploadArchives.dependsOn install
 
-signing {
+/*signing {
   sign configurations.archives
-}
+}*/
 
 uploadArchives {
   repositories {
