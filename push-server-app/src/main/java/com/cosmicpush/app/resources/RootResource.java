@@ -9,6 +9,7 @@ package com.cosmicpush.app.resources;
 import com.cosmicpush.app.domain.accounts.*;
 import com.cosmicpush.app.resources.api.*;
 import com.cosmicpush.app.resources.manage.*;
+import com.cosmicpush.app.security.ApiAuthentication;
 import com.cosmicpush.common.accounts.*;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.*;
@@ -81,6 +82,7 @@ public class RootResource {
 
   @Path("/api")
   public ApiResourceV1 getApiResourceV1() throws Exception {
+
     ApiRequestConfig config = new ApiRequestConfig(
       objectMapper,
       couchServer,
@@ -93,13 +95,7 @@ public class RootResource {
       securityContext
     );
 
-    String accountId = config.getApiClientUser().getAccountId();
-    Account account = config.getAccountStore().getByAccountId(accountId);
-
-    String clientName = config.getApiClientUser().getClientName();
-    ApiClient apiClient = account.getApiClientByName(clientName);
-
-    return new ApiResourceV1(config, account, apiClient);
+    return new ApiResourceV1(config);
   }
 
   @Path("/api/v2")
@@ -117,13 +113,7 @@ public class RootResource {
       securityContext
     );
 
-    String accountId = config.getApiClientUser().getAccountId();
-    Account account = config.getAccountStore().getByAccountId(accountId);
-
-    String clientName = config.getApiClientUser().getClientName();
-    ApiClient apiClient = account.getApiClientByName(clientName);
-
-    return new ApiResourceV2(config, account, apiClient);
+    return new ApiResourceV2(config);
   }
 
   @Path("/manage")

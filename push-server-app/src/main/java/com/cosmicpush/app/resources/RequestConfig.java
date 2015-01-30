@@ -35,6 +35,7 @@ public class RequestConfig implements PluginContext {
   private final AccountStore accountStore;
   private final ApiRequestStore apiRequestStore;
   private final CpCouchServer couchServer;
+  private final SecurityContext securityContext;
 
   private final JsonTranslator jsonTranslator;
 
@@ -62,6 +63,8 @@ public class RequestConfig implements PluginContext {
     this.uriInfo = uriInfo;
     this.headers = headers;
 
+    this.securityContext = securityContext;
+
     if (securityContext != null) {
       Principal userPrincipal = securityContext.getUserPrincipal();
       if (userPrincipal instanceof Authentication) {
@@ -71,6 +74,10 @@ public class RequestConfig implements PluginContext {
         }
       }
     }
+  }
+
+  public SecurityContext getSecurityContext() {
+    return securityContext;
   }
 
   public UriInfo getUriInfo() {

@@ -7,6 +7,7 @@
 package com.cosmicpush.app.resources.api;
 
 import com.cosmicpush.app.resources.api.userevent.UserEventDelegate;
+import com.cosmicpush.app.security.ApiAuthentication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
@@ -15,16 +16,21 @@ import com.cosmicpush.pub.push.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
+@ApiAuthentication
 public class ApiResourceV2 {
 
   private final Account account;
   private final ApiClient apiClient;
   private final ApiRequestConfig config;
 
-  public ApiResourceV2(ApiRequestConfig config, Account account, ApiClient apiClient) throws Exception {
+  public ApiResourceV2(ApiRequestConfig config) throws Exception {
     this.config = config;
-    this.account = account;
-    this.apiClient = apiClient;
+
+    String accountId = config.getApiClientUser().getAccountId();
+    this.account = config.getAccountStore().getByAccountId(accountId);
+
+    String clientName = config.getApiClientUser().getClientName();
+    this.apiClient = account.getApiClientByName(clientName);
   }
 
   @POST
@@ -40,6 +46,10 @@ public class ApiResourceV2 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes")
   public Response postPush(Push push) throws Exception {
+
+    SecurityContext securityContext = config.getSecurityContext();
+    String scheme = securityContext.getAuthenticationScheme();
+    String username = securityContext.getUserPrincipal().getName();
 
     if (push instanceof UserEventPush) {
       UserEventPush userEventPush = (UserEventPush)push;

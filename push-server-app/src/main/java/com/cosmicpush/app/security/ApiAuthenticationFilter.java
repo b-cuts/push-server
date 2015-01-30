@@ -1,27 +1,31 @@
 package com.cosmicpush.app.security;
 
-import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
 import com.cosmicpush.common.DiyBeanFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import org.crazyyak.dev.common.EqualsUtils;
 
 import javax.annotation.Priority;
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.ext.Provider;
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 
+@Provider
 @ApiAuthentication
 @Priority(Priorities.AUTHENTICATION)
 public class ApiAuthenticationFilter implements ContainerRequestFilter {
 
   public ApiAuthenticationFilter() {
+    System.out.print("");
   }
 
   @Override
@@ -74,10 +78,10 @@ public class ApiAuthenticationFilter implements ContainerRequestFilter {
         return false;
       }
       @Override public boolean isSecure() {
-        return false;
+        return securityContext.isSecure();
       }
       @Override public String getAuthenticationScheme() {
-        return null;
+        return "BASIC_AUTH";
       }
       @Override public Principal getUserPrincipal() {
         return new Principal() {

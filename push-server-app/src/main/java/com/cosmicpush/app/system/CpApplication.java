@@ -7,6 +7,7 @@
 package com.cosmicpush.app.system;
 
 import com.cosmicpush.app.deprecated.SmsToEmailPush;
+import com.cosmicpush.app.security.ApiAuthenticationFilter;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.*;
 import org.apache.commons.logging.*;
@@ -17,6 +18,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.inject.Singleton;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.Set;
 
 public class CpApplication extends ResourceConfig {
 

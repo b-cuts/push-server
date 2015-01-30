@@ -7,6 +7,7 @@
 package com.cosmicpush.app.resources.api;
 
 import com.cosmicpush.app.deprecated.SmsToEmailPush;
+import com.cosmicpush.app.security.ApiAuthentication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.pub.common.PushResponse;
@@ -14,16 +15,21 @@ import com.cosmicpush.pub.push.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
+@ApiAuthentication
 public class ApiResourceV1 {
 
   private final Account account;
   private final ApiClient apiClient;
   private final ApiRequestConfig config;
 
-  public ApiResourceV1(ApiRequestConfig config, Account account, ApiClient apiClient) throws Exception {
+  public ApiResourceV1(ApiRequestConfig config) throws Exception {
     this.config = config;
-    this.account = account;
-    this.apiClient = apiClient;
+
+    String accountId = config.getApiClientUser().getAccountId();
+    this.account = config.getAccountStore().getByAccountId(accountId);
+
+    String clientName = config.getApiClientUser().getClientName();
+    this.apiClient = account.getApiClientByName(clientName);
   }
 
   @POST
@@ -39,7 +45,7 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/notification")
   public Response sendNotification(NotificationPush push) throws Exception {
-    return new ApiResourceV2(config, account, apiClient).postPush(push);
+    return new ApiResourceV2(config).postPush(push);
   }
 
   @POST
@@ -47,7 +53,7 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/user-event")
   public Response sendUserEvent(UserEventPush push) throws Exception {
-    return new ApiResourceV2(config, account, apiClient).postPush(push);
+    return new ApiResourceV2(config).postPush(push);
   }
 
   @POST
