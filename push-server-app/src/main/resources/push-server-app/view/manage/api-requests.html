@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="/_includes.html::header-fragment"></head>
+  <body>
+    <div style="position: absolute; top: 0; right: 10px;">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <h1 th:text="${it.apiClient.clientName}+': Requests'"></h1>
+
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/account'">My Account</a>
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}">Manage</a>
+    <span style="margin-left: 10px">All Requests</span>
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/emails'">Emails</a>
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/notifications'">Notifications</a>
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/user-events'">User Events</a>
+
+    <table class="requests-table" style="width: 100%; margin-top: 1em">
+      <colgroup>
+        <col style="width:1em"/>
+        <col style="width:1em"/>
+        <col style="width:1em"/>
+        <col/>
+      </colgroup>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Sent</th>
+          <th>Type</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="apiRequest : ${it.requests}">
+          <td style="padding:2px; text-align: center" th:switch="${apiRequest.requestStatus.name}">
+            <img th:case="'pending'" th:src="${contextRoot}+'/static/status-pending.png'"   title="Processing is pending"/>
+            <img th:case="'failed'"  th:src="${contextRoot}+'/static/status-failed.png'"    title="Processing failed"/>
+            <img th:case="'denied'"  th:src="${contextRoot}+'/static/status-denied.png'"    title="Processing was denied"/>
+            <img th:case="'warning'" th:src="${contextRoot}+'/static/status-warning.png'"   title="Processing partially failed"/>
+            <img th:case="*"       th:src="${contextRoot}+'/static/status-processed.png'" title="Processing has been completed"/>
+          </td>
+          <td>
+            <div th:text="${#temporals.format(apiRequest.createdAt, 'MM-dd-yy hh:mm a')}"></div>
+            <div th:text="'from '+${apiRequest.remoteHost}"></div>
+          </td>
+          <td th:text="${apiRequest.pushType.label}"></td>
+          <td>
+            <li th:each="note : ${apiRequest.notes}" th:text="${note}" style="white-space:pre-wrap"></li>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>

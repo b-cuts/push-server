@@ -123,15 +123,6 @@ public class ApiRequest implements Comparable<ApiRequest> {
     return createdAt;
   }
 
-  /**
-   * Provided for Backwards compatibility with Java 7 libraries.
-   * @return The value of createdAt as a java.util.Date
-   */
-  @JsonIgnore
-  public Date getCreatedAtUtilDate() {
-    return DateUtils.toUtilDate(createdAt);
-  }
-
   public RequestStatus getRequestStatus() {
     return requestStatus;
   }

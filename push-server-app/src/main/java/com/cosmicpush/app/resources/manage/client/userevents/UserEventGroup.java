@@ -8,7 +8,6 @@ package com.cosmicpush.app.resources.manage.client.userevents;
 
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.pub.push.UserEventPush;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.*;
 import org.crazyyak.dev.common.*;
@@ -83,11 +82,6 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
 
   public LocalDateTime getUpdatedAt() {
     return updatedAt;
-  }
-
-  @JsonIgnore
-  public java.util.Date getUpdatedAtUtilDate() {
-    return DateUtils.toUtilDate(updatedAt);
   }
 
   public String getUserName() {

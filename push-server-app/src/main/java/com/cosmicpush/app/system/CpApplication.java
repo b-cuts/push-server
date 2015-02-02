@@ -7,34 +7,50 @@
 package com.cosmicpush.app.system;
 
 import com.cosmicpush.app.deprecated.SmsToEmailPush;
-import com.cosmicpush.app.security.ApiAuthenticationFilter;
+import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.SessionStore;
+import com.cosmicpush.common.system.CpCouchServer;
+import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.*;
-import org.apache.commons.logging.*;
-import org.crazyyak.dev.jerseyspring.*;
-import org.glassfish.hk2.utilities.binding.AbstractBinder;
+import java.util.concurrent.TimeUnit;
+import javax.ws.rs.ApplicationPath;
+import org.crazyyak.app.logging.LogUtils;
+import org.crazyyak.lib.jaxrs.YakJaxRsExceptionMapper;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import javax.inject.Singleton;
-import javax.servlet.http.HttpSession;
-import java.util.Collections;
-import java.util.Set;
-
+@ApplicationPath("/")
 public class CpApplication extends ResourceConfig {
 
-  private static final Log log = LogFactory.getLog(CpApplication.class);
+  private static final ThreadLocal<ExecutionContext> executionContext = new ThreadLocal<>();
+  public static ExecutionContext getExecutionContext() {
+    if (executionContext.get() == null) {
+      executionContext.set(new ExecutionContext());
+    }
+    return executionContext.get();
+  }
+  public static void removeExecutionContext() {
+    executionContext.remove();
+  }
 
   public CpApplication() {
-    log.info("Application loaded.");
+    new LogUtils().initConsoleAppender();
 
-    property(YakJspMvcFeature.SUPPORTED_EXTENSIONS, "jsp, jspf");
+
+    String databaseName = "cosmic-push";
+
+    AppContext appContext = new AppContext(
+      new SessionStore(TimeUnit.MINUTES.toMillis(60)),
+      new CpObjectMapper(),
+      new CpCouchServer(databaseName));
+    property(AppContext.class.getName(), appContext);
 
     register(CpFilter.class);
     register(CpReaderWriterProvider.class);
     register(MultiPartFeature.class);
-    register(YakJspMvcFeature.class);
-    register(YakExceptionMapper.class);
+    register(YakJaxRsExceptionMapper.class);
+    register(new CpReaderWriterProvider(appContext.getObjectMapper()));
 
     packages("com.cosmicpush");
 

@@ -6,32 +6,33 @@
 
 package com.cosmicpush.app.resources.manage.account;
 
+import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
+import com.cosmicpush.app.system.CpApplication;
+import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.accounts.actions.UpdateAccountAction;
-import com.cosmicpush.app.resources.manage.UserRequestConfig;
 import java.io.IOException;
 import java.net.URI;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import org.glassfish.jersey.server.mvc.Viewable;
 
+@MngtAuthentication
 public class ManageAccountResource {
 
   private final Account account;
 
-  private final UserRequestConfig config;
+  private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  public ManageAccountResource(UserRequestConfig config) {
-    this.config = config;
-
-    String accountId = config.getCurrentUser().getAccountId();
-    this.account = config.getAccountStore().getByAccountId(accountId);
+  public ManageAccountResource(Account account) {
+    this.account = account;
   }
 
   @GET
-  public Viewable viewAccount() throws IOException {
+  public Thymeleaf viewAccount() throws IOException {
+    Account account = CpApplication.getExecutionContext().getAccount();
     ManageAccountModel model = new ManageAccountModel(account);
-    return new Viewable("/manage/account.jsp", model);
+      return new Thymeleaf("/manage/account.html", model);
   }
 
   @POST
@@ -39,7 +40,7 @@ public class ManageAccountResource {
 
     UpdateAccountAction action = new UpdateAccountAction(firstName, lastName, emailAddress);
     account.apply(action);
-    config.getAccountStore().update(account);
+    context.getAccountStore().update(account);
 
     return Response.seeOther(new URI("manage/account")).build();
   }

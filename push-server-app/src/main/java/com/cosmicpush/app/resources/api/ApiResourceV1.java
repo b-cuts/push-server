@@ -7,7 +7,9 @@
 package com.cosmicpush.app.resources.api;
 
 import com.cosmicpush.app.deprecated.SmsToEmailPush;
-import com.cosmicpush.app.security.ApiAuthentication;
+import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
+import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.pub.common.PushResponse;
@@ -18,18 +20,17 @@ import javax.ws.rs.core.*;
 @ApiAuthentication
 public class ApiResourceV1 {
 
-  private final Account account;
-  private final ApiClient apiClient;
-  private final ApiRequestConfig config;
+  private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  public ApiResourceV1(ApiRequestConfig config) throws Exception {
-    this.config = config;
+  public ApiResourceV1() throws Exception {
+  }
 
-    String accountId = config.getApiClientUser().getAccountId();
-    this.account = config.getAccountStore().getByAccountId(accountId);
+  private Account getAccount() {
+    return CpApplication.getExecutionContext().getAccount();
+  }
 
-    String clientName = config.getApiClientUser().getClientName();
-    this.apiClient = account.getApiClientByName(clientName);
+  private ApiClient getApiClient() {
+    return CpApplication.getExecutionContext().getApiClient();
   }
 
   @POST
@@ -45,7 +46,7 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/notification")
   public Response sendNotification(NotificationPush push) throws Exception {
-    return new ApiResourceV2(config).postPush(push);
+    return new ApiResourceV2().postPush(push);
   }
 
   @POST
@@ -53,7 +54,7 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/user-event")
   public Response sendUserEvent(UserEventPush push) throws Exception {
-    return new ApiResourceV2(config).postPush(push);
+    return new ApiResourceV2().postPush(push);
   }
 
   @POST
@@ -61,7 +62,7 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/im")
   public Response sendIm(GoogleTalkPush push) {
-    PushResponse response = config.getPushProcessor().execute(account, apiClient, push);
+    PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);
     return Response.ok(response, MediaType.APPLICATION_JSON).build();
   }
 
@@ -70,7 +71,7 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/email")
   public Response sendEmail(SmtpEmailPush push) {
-    PushResponse response = config.getPushProcessor().execute(account, apiClient, push);
+    PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);
     return Response.ok(response, MediaType.APPLICATION_JSON).build();
   }
 
@@ -84,7 +85,7 @@ public class ApiResourceV1 {
         smsPush.getEmailSubject(), smsPush.getHtmlContent(),
         smsPush.getCallbackUrl(), smsPush.getTraits());
 
-    PushResponse response = config.getPushProcessor().execute(account, apiClient, push);
+    PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);
     return Response.ok(response, MediaType.APPLICATION_JSON).build();
   }
 }

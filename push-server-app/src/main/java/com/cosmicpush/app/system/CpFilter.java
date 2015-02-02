@@ -7,19 +7,11 @@
 package com.cosmicpush.app.system;
 
 import java.io.*;
-import java.util.zip.GZIPOutputStream;
-import javax.servlet.*;
-import javax.servlet.http.*;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.container.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.ext.WriterInterceptor;
-import javax.ws.rs.ext.WriterInterceptorContext;
-
+import javax.ws.rs.ext.*;
 import org.apache.commons.logging.*;
-import org.crazyyak.dev.common.IoUtils;
 
 public class CpFilter implements ContainerResponseFilter, WriterInterceptor {
 

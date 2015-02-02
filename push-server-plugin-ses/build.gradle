@@ -13,7 +13,7 @@ project(":push-server-plugin-ses") {
 
   dependencies {
     compile project(":push-server-common")
-    compile ("org.crazyyak.lib:yak-lib-amazon:$yakLibAmazon")
+    compile("com.amazonaws:aws-java-sdk:1.9.17")
 
     testCompile ("org.testng:testng:6.8.17")
   }

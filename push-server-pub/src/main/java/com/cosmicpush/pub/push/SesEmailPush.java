@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class SesEmailPush extends EmailPush {
 
-  public static final PushType PUSH_TYPE = new PushType(SesEmailPush.class, "ses-email", "Amazon SES E-Mail");
+  public static final PushType PUSH_TYPE = new PushType(SesEmailPush.class, "ses-email", "ASES E-Mail");
 
   public SesEmailPush(String toAddress, String fromAddress, String emailSubject, String htmlContent, String callbackUrl, String... traits) {
     super(toAddress, fromAddress, emailSubject, htmlContent, callbackUrl, traits);

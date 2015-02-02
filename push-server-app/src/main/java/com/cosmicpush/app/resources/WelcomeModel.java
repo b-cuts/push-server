@@ -1,21 +1,14 @@
 package com.cosmicpush.app.resources;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-
 public class WelcomeModel {
 
-  private final Authentication authentication;
+  private final boolean authenticated;
 
-  public WelcomeModel(Authentication authentication) {
-    this.authentication = authentication;
-  }
-
-  public Authentication getAuthentication() {
-    return authentication;
+  public WelcomeModel(boolean authenticated) {
+    this.authenticated = authenticated;
   }
 
   public boolean isAuthenticated() {
-    return authentication != null && authentication instanceof UsernamePasswordAuthenticationToken;
+    return authenticated;
   }
 }

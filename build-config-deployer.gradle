@@ -7,7 +7,24 @@ signing {
   sign configurations.archives
 }
 
+task (uploadArchivesTest) << {
+  try {
+    def group = project.group.replace(".", "/")
+    new URL("https://repo1.maven.org/maven2/$group/$project.name/$project.version/").getText()
+    println("*EXISTING*   $project.group:$project.name:$project.version");
+  } catch (FileNotFoundException ignored) {
+    println("Not Found: $project.group:$project.name:$project.version");
+  }
+}
+
 uploadArchives {
+  doFirst() {
+    try {
+      def group = project.group.replace(".", "/")
+      new URL("https://repo1.maven.org/maven2/$group/$project.name/$project.version/").getText()
+      throw new IllegalStateException("The distribution $project.group:$project.name:$project.version already exists.");
+    } catch (FileNotFoundException ignored) {/* It's OK to deploy */}
+  }
   repositories {
     mavenDeployer {
       beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }

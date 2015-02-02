@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="/_includes.html::header-fragment"></head>
+  <body>
+    <div style="position: absolute; top: 0; right: 10px;">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <h1 th:text="${it.apiClient.clientName}+': Manage'"></h1>
+
+    <a style="margin-left: 10px"  th:href="${contextRoot}+'/manage/account'">My Account</a>
+    <span style="margin-left: 10px" >Manage</span>
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/requests'">All Requests</a>
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/emails'">Emails</a>
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/notifications'">Notifications</a>
+    <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/user-events'">User Events</a>
+
+    <div th:if="${it.message} != null">
+      <div class="message" th:text="${it.message}"></div>
+    </div>
+
+    <form style="margin-top: 1em" method="post">
+      <fieldset style="margin-top: 1em">
+        <legend>API Client</legend>
+        <table style="width: 100%">
+          <colgroup>
+            <col style="width: 1em"/>
+            <col style="width: 1em"/>
+            <col/>
+          </colgroup>
+          <tbody>
+            <tr>
+              <td><label for="cp-client-name">Name:</label></td>
+              <td><input type="text" id="cp-client-name" name="clientName" th:value="${it.apiClient.clientName}" style="width:200px;"/></td>
+              <td rowspan="3">&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="cp-client-password">Password:</label></td>
+              <td><input type="text" id="cp-client-password" name="clientPassword" th:value="${it.apiClient.clientPassword}" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: right">
+                <button type="submit" th:formaction="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/client'" style="float:right">Update</button>
+                <button type="submit" th:formaction="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/client/delete'" style="float:left">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+          </table>
+      </fieldset>
+    </form>
+
+    <div th:each="plugin : ${it.plugins}">
+      <div th:utext="${plugin.htmlContent}"></div>
+    </div>
+
+  </body>
+</html>

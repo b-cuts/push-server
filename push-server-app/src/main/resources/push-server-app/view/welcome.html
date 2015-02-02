@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head th:include="/_includes.html::header-fragment"></head>
+
+  <body>
+
+    <div style="float: left">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <div th:if="${authenticated}">
+      <div style="float: right">
+        <a href="/manage/account">My Account</a>
+      </div>
+    </div>
+    <div th:if="${authenticated} == false">
+      <form name='f' th:action="${contextRoot}+'/sign-in'" method='POST' style="float: right" enctype="application/x-www-form-urlencoded">
+
+        <table>
+          <tr>
+            <td><label for="user-name">User Name:</label></td>
+            <td><input id="user-name" type='text' name='username' th:value='${username}'/></td>
+          </tr>
+          <tr>
+            <td><label for="password">Password:</label></td>
+            <td><input id="password" type='password' name='password' th:value="${password}"/></td>
+          </tr>
+          <tr>
+            <td colspan='2'><button type="submit" style="width:100%">Sign In</button></td>
+          </tr>
+          <tr>
+            <td colspan="2" th:text="${message}" style="font-weight: bold; color: red; padding-top: 1em"></td>
+          </tr>
+        </table>
+
+      </form>
+    </div>
+
+    <div style="clear:both"></div>
+
+  </body>
+</html>

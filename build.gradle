@@ -43,20 +43,24 @@ subprojects {
     pushServerIntegrationTestsV1 = "1.0.0"
     pushServerIntegrationTestsV2 = "1.0.0"
 
-    yakDevCommon  = "4.1.0"
-    yakDevDomain  = "4.1.0"
-    yakDevJackson = "4.1.0"
+    yakDevCommon  = "4.1.3"
+    yakDevDomain  = "4.1.1"
+    yakDevJackson = "4.1.1"
 
-    yakApisGoogle = "2.2.0"
+    yakApisGoogle = "2.2.1"
 
+    yakLibJaxrs           = "4.1.1"
     yakLibAmazon          = "4.1.0"
-    yakLibServlet         = "4.1.0"
-    yakLibCouchAce        = "4.1.1"
+    yakLibServlet         = "4.1.1"
+    yakLibCouchAce        = "4.1.2"
     yakLibSpringSecurity  = "4.1.1"
     yakLibSpringCouchAce  = "1.0.0"
-    yakLibJaxrsJackson    = "4.1.0"
+    yakLibJaxrsJackson    = "4.1.1"
 
-    yakAppJerseySpring  = "1.0.0"
+    // yakAppJerseySpring = "1.0.0"
+    yakAppCommon          = "1.0.1"
+
+    jerseyVersion =       "2.15"
   }
 
   configurations.all({

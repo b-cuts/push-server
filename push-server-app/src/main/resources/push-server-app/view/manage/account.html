@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="/_includes.html::header-fragment"></head>
+  <body>
+    <div style="position: absolute; top: 0; right: 10px;">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <h1>My Account</h1>
+    <a th:href="${contextRoot}">Home Page</a>
+
+    <fieldset style="margin-top: 1em">
+      <legend>API Clients</legend>
+      <div th:each="apiClient : ${it.account.apiClients}">
+        <span style="color: #FFD700; font-size:22px;" th:text="${apiClient.clientName}"></span>
+
+        <span th:each="pushType : ${it.pushType}">
+          <img th:src="${contextRoot}+'/manage/'+${pushType}+'/icon'" class="icon" style="margin-left: 5px"/>
+        </span>
+
+        <div style="float: right">
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}">Manage</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}+'/requests'">All Requests</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}+'/emails'">Emails</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}+'/notifications'">Notifications</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}+'/user-events'">User Events</a>
+        </div>
+        <div style="clear:both"></div>
+
+      </div>
+
+      <form method="post">
+        <table style="margin-top: 1em">
+          <colgroup>
+            <col style="width: 1em"/>
+            <col/>
+          </colgroup>
+          <tbody>
+            <tr>
+              <td><label for="client-name">Name:</label></td>
+              <td><input type="text" id="client-name" name="clientName" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td><label for="client-password">Password:</label></td>
+              <td><input type="text" id="client-password" name="clientPassword" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button style="float :right" type="submit" th:formaction="${contextRoot}+'/manage/api-client'">Create</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+
+    </fieldset>
+
+    <fieldset style="margin-top: 1em">
+      <legend>User Details</legend>
+      <form method="post">
+        <table>
+          <colgroup>
+            <col style="width: 1em"/>
+            <col/>
+          </colgroup>
+          <tbody>
+            <tr>
+              <td><label>User Name:</label></td>
+              <td class="data" th:text="${it.account.userName}"></td>
+            </tr>
+            <tr>
+              <td><label for="first-name">First Name:</label></td>
+              <td><input type="text" id="first-name" name="firstName" th:value="${it.account.firstName}" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td><label for="last-name">Last Name:</label></td>
+              <td><input type="text" id="last-name" name="lastName" th:value="${it.account.lastName}" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td><label for="email">Email:</label></td>
+              <td><input type="text" id="email" name="emailAddress" th:value="${it.account.emailAddress}" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button style="float: right" type="submit" th:formaction="${contextRoot}+'/manage/account'">Update</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </fieldset>
+
+  </body>
+</html>
