@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-  <head th:include="/_includes.html::header-fragment"></head>
+  <head th:include="/_fragments.html::header-fragment"></head>
 
   <body>
 
@@ -10,28 +10,28 @@
       <div>One API - Infinite Destinations</div>
     </div>
 
-    <div th:if="${authenticated}">
+    <div th:if="${it.account} != null">
       <div style="float: right">
-        <a href="/manage/account">My Account</a>
+        <a th:href="${contextRoot}+'/manage/account'">My Account</a>
       </div>
     </div>
-    <div th:if="${authenticated} == false">
+    <div th:if="${it.account} == null">
       <form name='f' th:action="${contextRoot}+'/sign-in'" method='POST' style="float: right" enctype="application/x-www-form-urlencoded">
 
         <table>
           <tr>
             <td><label for="user-name">User Name:</label></td>
-            <td><input id="user-name" type='text' name='username' th:value='${username}'/></td>
+            <td><input id="user-name" type='text' name='username' th:value='${it.username}'/></td>
           </tr>
           <tr>
             <td><label for="password">Password:</label></td>
-            <td><input id="password" type='password' name='password' th:value="${password}"/></td>
+            <td><input id="password" type='password' name='password' th:value="${it.password}"/></td>
           </tr>
           <tr>
             <td colspan='2'><button type="submit" style="width:100%">Sign In</button></td>
           </tr>
           <tr>
-            <td colspan="2" th:text="${message}" style="font-weight: bold; color: red; padding-top: 1em"></td>
+            <td colspan="2" th:text="${it.message}" style="font-weight: bold; color: red; padding-top: 1em"></td>
           </tr>
         </table>
 

@@ -15,6 +15,8 @@ import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.*;
 import java.util.concurrent.TimeUnit;
 import javax.ws.rs.ApplicationPath;
+
+import org.apache.log4j.Level;
 import org.crazyyak.app.logging.LogUtils;
 import org.crazyyak.lib.jaxrs.YakJaxRsExceptionMapper;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
@@ -35,8 +37,8 @@ public class CpApplication extends ResourceConfig {
   }
 
   public CpApplication() {
-    new LogUtils().initConsoleAppender();
-
+    LogUtils logUtils = new LogUtils();
+    logUtils.initConsoleAppender(Level.WARN, LogUtils.DEFAULT_PATTERN);
 
     String databaseName = "cosmic-push";
 
@@ -49,8 +51,12 @@ public class CpApplication extends ResourceConfig {
     register(CpFilter.class);
     register(CpReaderWriterProvider.class);
     register(MultiPartFeature.class);
-    register(YakJaxRsExceptionMapper.class);
     register(new CpReaderWriterProvider(appContext.getObjectMapper()));
+
+    register(new YakJaxRsExceptionMapper(true) {
+      @Override protected void logInfo(String msg, Throwable ex) { logUtils.info(CpApplication.class, msg, ex); }
+      @Override protected void logError(String msg, Throwable ex) { logUtils.fatal(CpApplication.class, msg, ex); }
+    });
 
     packages("com.cosmicpush");
 

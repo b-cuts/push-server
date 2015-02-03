@@ -10,6 +10,7 @@ import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.accounts.actions.UpdateAccountAction;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class ManageAccountResource {
   public Thymeleaf viewAccount() throws IOException {
     Account account = CpApplication.getExecutionContext().getAccount();
     ManageAccountModel model = new ManageAccountModel(account);
-      return new Thymeleaf("/manage/account.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_ACCOUNT, model);
   }
 
   @POST

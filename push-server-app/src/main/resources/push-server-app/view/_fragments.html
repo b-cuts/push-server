@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+  <body>
+
+    <header-fragment>
+      <title>Cosmic Push</title>
+
+      <script th:src="${contextRoot}+'/static/js/jquery-1.8.2.min.js'" type="text/javascript"></script>
+      <script th:src="${contextRoot}+'/static/js/jquery-cookie.js'" type="text/javascript"></script>
+
+      <script th:src="${contextRoot}+'/static/js/jquery-ui-1.9.0.min.js'" type="text/javascript"></script>
+      <link th:href="${contextRoot}+'/static/css/jquery-ui-1.9.0.min.css'" rel="stylesheet" type="text/css"/>
+
+      <link th:href="${contextRoot}+'/favicon.ico'" rel="shortcut icon" type="image/x-icon"/>
+
+      <link th:href="${contextRoot}+'/cosmic-push.css'" rel="stylesheet"/>
+      <script th:src="${contextRoot}+'/cosmic-push.js'"></script>
+    </header-fragment>
+
+    <req-icon-fragment>
+      <img th:case="'pending'" th:src="${contextRoot}+'/static/status-pending.png'"   title="Processing is pending"/>
+      <img th:case="'failed'"  th:src="${contextRoot}+'/static/status-failed.png'"    title="Processing failed"/>
+      <img th:case="'denied'"  th:src="${contextRoot}+'/static/status-denied.png'"    title="Processing was denied"/>
+      <img th:case="'warning'" th:src="${contextRoot}+'/static/status-warning.png'"   title="Processing partially failed"/>
+      <img th:case="*"         th:src="${contextRoot}+'/static/status-processed.png'" title="Processing has been completed"/>
+    </req-icon-fragment>
+
+    <client-sub-menu-fragment>
+      <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/account'">My Account</a>
+      <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}">Manage</a>
+      <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/requests'">All Requests</a>
+      <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/emails'">Emails</a>
+      <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/notifications'">Notifications</a>
+      <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/user-events'">User Events</a>
+    </client-sub-menu-fragment>
+
+    <traits-fragment>
+      <table class="traits-table" id="traits-${apiRequest.apiRequestId}">
+        <colgroup>
+          <col style="width: 1em"/>
+          <col/>
+        </colgroup>
+        <tbody>
+        <tr th:each="trait : ${traits}">
+          <td class="key">${trait.key}:&nbsp;</td>
+          <c:choose>
+
+            <c:when test="${f:toLowerCase(trait.key) == 'link'}">
+              <td class="value"><a href="${trait.value}" target="_blank">${trait.value}</a></td>
+            </c:when>
+
+            <c:when test="${compact && f:toLowerCase(trait.key) == 'exception'}">
+              <td class="value">
+                <c:url var="url" value="/manage/api-client/${it.apiClient.clientName}/${path}/${apiRequest.apiRequestId}"/>
+                <a href="${url}" style="color: inherit">view...</a>
+              </td>
+            </c:when>
+            <c:when test="${!compact && f:toLowerCase(trait.key) == 'exception'}">
+              <td class="value-data">${trait.value}</td>
+            </c:when>
+
+            <c:when test="${compact && f:toLowerCase(trait.key) == 'json'}">
+              <td class="value">
+                <c:url var="url" value="/manage/api-client/${it.apiClient.clientName}/${path}/${apiRequest.apiRequestId}"/>
+                <a href="${url}" style="color: inherit">view...</a>
+              </td>
+            </c:when>
+            <c:when test="${!compact && f:toLowerCase(trait.key) == 'json'}">
+              <td class="value-data">${f:escapeXml(trait.value)}</td>
+            </c:when>
+
+            <c:otherwise>
+              <td class="value">${f:escapeXml(trait.value)}</td>
+            </c:otherwise>
+
+          </c:choose>
+        </tr>
+        </tbody>
+      </table>
+    </traits-fragment>
+
+  </body>
+</html>

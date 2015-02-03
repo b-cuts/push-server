@@ -11,6 +11,7 @@ import com.cosmicpush.app.resources.api.*;
 import com.cosmicpush.app.resources.manage.ManageResource;
 import com.cosmicpush.app.system.*;
 import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
@@ -75,14 +76,24 @@ public class RootResource extends RootResourceSupport {
     } else if (REASON_CODE_UNAUTHORIZED == reasonCode) {
       message = "Your session has expired.";
     }
+    return new Thymeleaf(ThymeleafViewFactory.WELCOME, new WelcomeModel(context.getAccount(), message, username, password));
+  }
 
-    Map<String,Object> map = new HashMap<>();
-    map.put("authenticated", false);
-    map.put("message", message);
-    map.put("username", username);
-    map.put("password", password);
-
-    return new Thymeleaf("/welcome.html", map);
+  public static class WelcomeModel {
+    private final Account account;
+    private final String message;
+    private final String username;
+    private final String password;
+    public WelcomeModel(Account account, String message, String username, String password) {
+      this.account = account;
+      this.message = message;
+      this.username = username;
+      this.password = password;
+    }
+    public Account getAccount() { return account; }
+    public String getMessage() { return message; }
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
   }
 
   @POST
