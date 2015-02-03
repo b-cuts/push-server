@@ -26,19 +26,13 @@ public class AccountTest {
     accountStore = TestFactory.get().getAccountStore();
   }
 
-//  public void dumpDesignDocs() throws Exception {
-//    System.out.println("==========================================");
-//    System.out.println(AccountCdb.designDocuments);
-//    System.out.println("==========================================");
-//  }
-
   public void testCreate() {
 
     CreateAccountAction createAccount = new CreateAccountAction(
       false, TestFactory.westCoastTimeZone,
-      "jacob.parr", "jacobparr@gmail.com",
-      "Jacob", "Parr",
-      "jesuslives", "jesuslives"
+      "test", "Test Parr <test@jacobparr.com>",
+      "Unit", "Test",
+      "testing123", "testing123"
     );
 
     Account account = new Account(createAccount);

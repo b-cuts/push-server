@@ -13,6 +13,7 @@ import com.cosmicpush.app.resources.manage.client.notifications.ManageNotificati
 import com.cosmicpush.app.resources.manage.client.userevents.ManageUserEventsResource;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.actions.UpdateClientAction;
 import com.cosmicpush.common.clients.ApiClient;
@@ -52,7 +53,7 @@ public class ManageApiClientResource {
     context.getAccountStore().update(account);
 
     ManageApiClientModel model = new ManageApiClientModel(context, account, apiClient, lastMessage);
-    return new Thymeleaf("/manage/api-client.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_CLIENT, model);
   }
 
   @GET
@@ -67,7 +68,7 @@ public class ManageApiClientResource {
     Collections.reverse(requests);
 
     ApiClientRequestsModel model = new ApiClientRequestsModel(account, apiClient, requests);
-    return new Thymeleaf("/manage/api-requests.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
   }
 
   @Path("/emails")

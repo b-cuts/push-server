@@ -9,6 +9,7 @@ import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.Plugin;
@@ -41,7 +42,7 @@ public class ManageEmailsResource {
     requests.addAll(context.getApiRequestStore().getByClientAndType(apiClient, SmtpEmailPush.PUSH_TYPE));
 
     EmailsModel model = new EmailsModel(account, apiClient, requests);
-    return new Thymeleaf("/manage/api-emails.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAILS, model);
   }
 
   @GET
@@ -53,7 +54,7 @@ public class ManageEmailsResource {
     EmailPush email = apiRequest.getEmailPush();
 
     EmailModel model = new EmailModel(account, apiClient, apiRequest, email);
-    return new Thymeleaf("/manage/api-email.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAIL, model);
   }
 
   @POST

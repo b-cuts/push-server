@@ -7,22 +7,21 @@
       <div>One API - Infinite Destinations</div>
     </div>
 
-    <h1 th:text="${it.apiClient.clientName}+': Requests'"></h1>
+    <h1 th:text="${it.apiClient.clientName}+': Emails'"></h1>
     <div th:include="/_fragments.html::client-sub-menu-fragment"></div>
 
     <table class="requests-table" style="width: 100%; margin-top: 1em">
       <colgroup>
         <col style="width:1em"/>
         <col style="width:1em"/>
-        <col style="width:1em"/>
         <col/>
+        <col style="width:1em"/>
       </colgroup>
       <thead>
         <tr>
           <th></th>
           <th>Sent</th>
-          <th>Type</th>
-          <th>Notes</th>
+          <th colspan="2">Notes</th>
         </tr>
       </thead>
       <tbody>
@@ -35,10 +34,16 @@
             <div th:text="${#temporals.format(apiRequest.createdAt, 'MM-dd-yy hh:mm a')}"></div>
             <div th:text="'from '+${apiRequest.remoteHost}"></div>
           </td>
-          <td th:text="${apiRequest.pushType.label}"></td>
-          <td>
-            <li th:each="note : ${apiRequest.notes}" th:text="${note}" style="white-space:pre-wrap"></li>
+          <td style="border-right: 0">
+            <div>To: <strong th:text="${apiRequest.emailPush.toAddress}"></strong></div>
+            <div>Fr: <strong th:text="${apiRequest.emailPush.fromAddress}"></strong></div>
+            <div><strong th:text="${apiRequest.emailPush.emailSubject}"></strong></div>
           </td>
+
+          <td style="padding-right: 5px; border-left:0">
+            <a th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/emails/'+${apiRequest.apiRequestId}" style="color: inherit">&gt;&gt;&gt;</a>
+          </td>
+
         </tr>
       </tbody>
     </table>
