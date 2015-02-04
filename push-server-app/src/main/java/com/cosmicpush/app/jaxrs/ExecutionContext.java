@@ -12,13 +12,10 @@ import com.cosmicpush.common.requests.ApiRequestStore;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import org.crazyyak.dev.common.StringUtils;
-import org.crazyyak.dev.common.json.JsonTranslator;
 
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.Providers;
-import java.net.InetAddress;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.UriInfo;
 import java.net.URI;
-import java.net.UnknownHostException;
 
 public class ExecutionContext implements PluginContext {
 
@@ -28,24 +25,12 @@ public class ExecutionContext implements PluginContext {
   private Account account;
   private ApiClient apiClient;
 
-  InetAddress remoteAddress;
-
   private UriInfo uriInfo;
-  private HttpHeaders headers;
 
-  private SecurityContext securityContext;
-
-  private JsonTranslator jsonTranslator;
-  private Providers providers;
-  private Request request;
   private Application application;
 
   public ExecutionContext() {
     this.pushProcessor = new PushProcessor(this);
-
-    try {
-      remoteAddress = InetAddress.getByName("0.0.0.0");
-    } catch (UnknownHostException ignored) {}
   }
 
   public void setSession(Session session) {
@@ -86,46 +71,6 @@ public class ExecutionContext implements PluginContext {
     return URI.create(StringUtils.substring(uri, 0, -1));
   }
 
-  public HttpHeaders getHeaders() {
-    return headers;
-  }
-
-  public void setHeaders(HttpHeaders headers) {
-    this.headers = headers;
-  }
-
-  public SecurityContext getSecurityContext() {
-    return securityContext;
-  }
-
-  public void setSecurityContext(SecurityContext securityContext) {
-    this.securityContext = securityContext;
-  }
-
-  public JsonTranslator getJsonTranslator() {
-    return jsonTranslator;
-  }
-
-  public void setJsonTranslator(JsonTranslator jsonTranslator) {
-    this.jsonTranslator = jsonTranslator;
-  }
-
-  public Providers getProviders() {
-    return providers;
-  }
-
-  public void setProviders(Providers providers) {
-    this.providers = providers;
-  }
-
-  public Request getRequest() {
-    return request;
-  }
-
-  public void setRequest(Request request) {
-    this.request = request;
-  }
-
   public Application getApplication() {
     return application;
   }
@@ -134,13 +79,8 @@ public class ExecutionContext implements PluginContext {
     this.application = application;
   }
 
-  @Override
-  public InetAddress getRemoteAddress() {
-    return remoteAddress;
-  }
-
   public AppContext getAppContext() {
-    return AppContext.from(application);
+    return AppContext.from(getApplication());
   }
 
   public SessionStore getSessionStore() {

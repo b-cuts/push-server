@@ -9,10 +9,12 @@ import com.cosmicpush.common.accounts.AccountStore;
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
-import java.net.URI;
 import java.util.Arrays;
 
 @Provider
@@ -31,7 +33,6 @@ public class SessionFilter implements ContainerRequestFilter, ContainerResponseF
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
     ExecutionContext execContext = CpApplication.getExecutionContext();
-    URI uri = requestContext.getUriInfo().getRequestUri();
 
     // Before anything, make sure the execution
     // context has a reference to the application.
@@ -50,10 +51,6 @@ public class SessionFilter implements ContainerRequestFilter, ContainerResponseF
 
   @Override
   public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
-    boolean x = CpApplication.hasExecutionContext();
-    ExecutionContext execContext = CpApplication.getExecutionContext();
-    URI uri = requestContext.getUriInfo().getRequestUri();
-
     Session session = CpApplication.getExecutionContext().getSession();
     boolean valid = appContext.getSessionStore().isValid(session);
 

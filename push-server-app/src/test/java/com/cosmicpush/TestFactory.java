@@ -31,9 +31,7 @@ import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.DateUtils;
 import org.crazyyak.lib.couchace.DefaultCouchServer;
 
-import java.net.InetAddress;
 import java.net.URI;
-import java.net.UnknownHostException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -176,38 +174,19 @@ public class TestFactory {
       @Override public AccountStore getAccountStore() {
         return testFactory.getAccountStore();
       }
-
-      @Override
-      public InetAddress getRemoteAddress() {
-        try {
-          return InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-          throw new RuntimeException(e);
-        }
-      }
-
-      @Override
-      public ApiRequestStore getApiRequestStore() {
+      @Override public ApiRequestStore getApiRequestStore() {
         return testFactory.getApiRequestStore();
       }
-
-      @Override
-      public CpObjectMapper getObjectMapper() {
+      @Override public CpObjectMapper getObjectMapper() {
         return testFactory.getObjectMapper();
       }
-
-      @Override
-      public CpCouchServer getCouchServer() {
+      @Override public CpCouchServer getCouchServer() {
         return testFactory.getCouchServer();
       }
-
-      @Override
-      public URI getBaseURI() {
+      @Override public URI getBaseURI() {
         return URI.create("http://localhost:8080/push-server");
       }
-
-      @Override
-      public PushProcessor getPushProcessor() {
+      @Override public PushProcessor getPushProcessor() {
         return null;
       }
     };
