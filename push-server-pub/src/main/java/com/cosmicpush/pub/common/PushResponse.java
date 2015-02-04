@@ -30,7 +30,7 @@ public class PushResponse implements Serializable {
   private final LocalDateTime createdAt;
   private final RequestStatus requestStatus;
 
-  private final List<String> notes = new ArrayList<String>();
+  private final List<String> notes = new ArrayList<>();
 
   @JsonCreator
   public PushResponse(@JsonProperty("accountId") String accountId,
