@@ -4,7 +4,7 @@
  * This software may not be used without permission.
  */
 
-package com.cosmicpush.app.resources.api;
+package com.cosmicpush.app.resources.api.deprecated;
 
 import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;

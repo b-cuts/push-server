@@ -4,7 +4,7 @@
  * This software may not be used without permission.
  */
 
-package com.cosmicpush.app.resources.api.userevent;
+package com.cosmicpush.app.resources.api.deprecated;
 
 import com.cosmicpush.app.resources.manage.client.userevents.UserEventGroup;
 import com.cosmicpush.app.resources.manage.client.userevents.UserEventSession;

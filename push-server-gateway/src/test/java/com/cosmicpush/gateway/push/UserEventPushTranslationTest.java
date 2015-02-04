@@ -16,7 +16,6 @@
 
 package com.cosmicpush.gateway.push;
 
-import com.cosmicpush.gateway.LiveCosmicPushGateway;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.UserAgent;
 import com.cosmicpush.pub.internal.CpRemoteClient;
@@ -25,6 +24,7 @@ import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.ComparisonResults;
 import org.crazyyak.dev.common.EqualsUtils;
 import org.crazyyak.dev.common.json.JsonTranslator;
+import org.crazyyak.dev.jackson.YakJacksonTranslator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -34,8 +34,7 @@ import java.util.Map;
 @Test
 public class UserEventPushTranslationTest {
 
-  private LiveCosmicPushGateway gateway = new LiveCosmicPushGateway("some-name", "some-password");
-  private JsonTranslator translator = gateway.getClient().getTranslator();
+  private JsonTranslator translator = new YakJacksonTranslator();
 
   public void translateUserEventPush() throws Exception {
 

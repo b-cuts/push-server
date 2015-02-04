@@ -1,9 +1,8 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
   <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.userevents.UserEventGroupsModel"-->
-  <head th:include="/_fragments.html::header-fragment">
-    <title>Notifications</title>
-  </head>
+  <head th:include="fragments::html_header"></head>
+
   <body>
     <div style="position: absolute; top: 0; right: 10px;">
       <h1>Cosmic Push</h1>
@@ -11,7 +10,7 @@
     </div>
 
     <h1 th:text="${it.apiClient.clientName}+': User Events'"></h1>
-    <div th:include="/_fragments.html::client-sub-menu-fragment"></div>
+    <div th:include="fragments::client_sub_menu"></div>
 
     <table class="requests-table" style="width: 100%; margin-top: 1em">
       <colgroup>

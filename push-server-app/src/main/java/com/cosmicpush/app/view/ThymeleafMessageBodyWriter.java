@@ -31,7 +31,7 @@ public class ThymeleafMessageBodyWriter implements MessageBodyWriter<Thymeleaf> 
 
     ClassPathTemplateResolver templateResolver = new ClassPathTemplateResolver();
     templateResolver.setTemplateMode("HTML5");
-    templateResolver.setSuffix("");
+    templateResolver.setSuffix(ThymeleafViewFactory.TAIL);
     templateResolver.setPrefix(ThymeleafViewFactory.ROOT);
     templateResolver.setCacheable(false);
 

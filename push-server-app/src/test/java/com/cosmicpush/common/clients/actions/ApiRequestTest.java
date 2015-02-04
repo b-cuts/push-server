@@ -7,6 +7,8 @@
 package com.cosmicpush.common.clients.actions;
 
 import com.cosmicpush.TestFactory;
+import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.UserEventPush;
 import com.cosmicpush.common.actions.CreateClientAction;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
@@ -88,10 +90,11 @@ public class ApiRequestTest {
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"smtp-email\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
@@ -100,7 +103,9 @@ public class ApiRequestTest {
         "    \"fromAddress\" : \"donald.duck@disney.com\",\n" +
         "    \"emailSubject\" : \"This is the subject\",\n" +
         "    \"htmlContent\" : \"<h1>Hello World</h1>So, how's it going?\",\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
         "    \"traits\" : {\n" +
         "      \"test\" : \"true\",\n" +
         "      \"type\" : \"email\"\n" +
@@ -108,7 +113,11 @@ public class ApiRequestTest {
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 
@@ -131,10 +140,11 @@ public class ApiRequestTest {
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"ses-email\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
@@ -143,7 +153,9 @@ public class ApiRequestTest {
         "    \"fromAddress\" : \"donald.duck@disney.com\",\n" +
         "    \"emailSubject\" : \"This is the subject\",\n" +
         "    \"htmlContent\" : \"<h1>Hello World</h1>So, how's it going?\",\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
         "    \"traits\" : {\n" +
         "      \"test\" : \"true\",\n" +
         "      \"type\" : \"email\"\n" +
@@ -151,7 +163,11 @@ public class ApiRequestTest {
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 
@@ -172,21 +188,31 @@ public class ApiRequestTest {
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"google-talk\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
         "    \"pushType\" : \"google-talk\",\n" +
         "    \"recipient\" : \"mickey.mouse@disney.com\",\n" +
         "    \"message\" : \"Just calling to say hello\",\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\"\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
+        "    \"traits\" : {\n" +
+        "      \"color\" : \"green\"\n" +
+        "    }\n"+
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 
@@ -206,16 +232,19 @@ public class ApiRequestTest {
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"notification\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
         "    \"pushType\" : \"notification\",\n" +
         "    \"message\" : \"Hey, you need to check this out.\",\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
         "    \"traits\" : {\n" +
         "      \"test\" : \"true\",\n" +
         "      \"type\" : \"warning\"\n" +
@@ -223,7 +252,11 @@ public class ApiRequestTest {
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 
@@ -259,23 +292,22 @@ public class ApiRequestTest {
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"userEvent\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
         "    \"pushType\" : \"userEvent\",\n" +
+        "    \"sendStory\" : false,\n" +
         "    \"deviceId\" : \"some-deviceId\",\n" +
         "    \"sessionId\" : \"some-sessionId\",\n" +
         "    \"userName\" : \"mickey\",\n" +
         "    \"ipAddress\" : \"192.168.1.36\",\n" +
         "    \"createdAt\" : \"2014-05-06T09:34\",\n" +
         "    \"message\" : \"You logged in.\",\n" +
-        "    \"traits\" : {\n" +
-        "      \"user\" : \"mickeym\"\n" +
-        "    },\n" +
         "    \"userAgent\" : {\n" +
         "      \"agentType\" : \"agent-type\",\n" +
         "      \"agentName\" : \"agent-name\",\n" +
@@ -290,12 +322,20 @@ public class ApiRequestTest {
         "      \"osVersionNumber\" : \"os-version-number\",\n" +
         "      \"linuxDistribution\" : \"linux-distro\"\n" +
         "    },\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
-        "    \"sendStory\" : false\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
+        "    \"traits\" : {\n" +
+        "      \"color\" : \"green\"\n" +
+        "    }\n" +
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 

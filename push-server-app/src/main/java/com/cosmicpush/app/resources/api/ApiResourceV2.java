@@ -7,13 +7,16 @@ package com.cosmicpush.app.resources.api;
 
 import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
-import com.cosmicpush.app.resources.api.userevent.UserEventDelegate;
+import com.cosmicpush.app.resources.api.deprecated.NotificationDelegate;
+import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.app.resources.api.deprecated.UserEventDelegate;
+import com.cosmicpush.pub.push.UserEventPush;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.pub.common.*;
-import com.cosmicpush.pub.push.*;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
-
-  <head th:include="/_fragments.html::header-fragment"></head>
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.RootResource.WelcomeModel"-->
+  <head th:include="fragments::html_header"></head>
 
   <body>
 
@@ -10,7 +10,6 @@
       <div>One API - Infinite Destinations</div>
     </div>
 
-    <!--@thymesVar id="it" type="com.cosmicpush.app.resources.RootResource.WelcomeModel"-->
     <div th:if="${it.account != null}">
       <div style="float: right">
         <a th:href="${contextRoot}+'/manage/account'">My Account</a>

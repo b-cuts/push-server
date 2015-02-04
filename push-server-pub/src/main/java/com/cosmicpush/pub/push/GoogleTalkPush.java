@@ -33,7 +33,7 @@ import java.util.Map;
 @JsonIgnoreProperties({"imType"})
 public class GoogleTalkPush implements Push, Serializable {
 
-  public static PushType PUSH_TYPE = new PushType(GoogleTalkPush.class, "google-talk", "Google Talk IM");
+  public static PushType PUSH_TYPE = new PushType(GoogleTalkPush.class, "google-talk", "Google Talk");
 
   private final String recipient;
   private final String message;
