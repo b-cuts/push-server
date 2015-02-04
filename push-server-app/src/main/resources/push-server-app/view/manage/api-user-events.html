@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
   <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.userevents.UserEventGroupsModel"-->
-  <head th:include="fragments::html_header"></head>
+  <head th:include="fragments::html_header" th:with="pageTitle=': User Events'"></head>
 
   <body>
     <div style="position: absolute; top: 0; right: 10px;">

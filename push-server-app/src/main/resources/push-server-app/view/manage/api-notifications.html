@@ -1,7 +1,8 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
   <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.notifications.ApiClientRequestsModel"-->
-  <head th:include="fragments::html_header"></head>
+  <head th:include="fragments::html_header" th:with="pageTitle=': Notifications'"></head>
+
   <body>
     <div style="position: absolute; top: 0; right: 10px;">
       <h1>Cosmic Push</h1>

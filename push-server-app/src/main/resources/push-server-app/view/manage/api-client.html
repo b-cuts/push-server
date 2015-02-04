@@ -1,6 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:include="fragments::html_header"></head>
+  <head th:include="fragments::html_header" th:with="pageTitle=': Manage'"></head>
+
   <body>
     <div style="position: absolute; top: 0; right: 10px;">
       <h1>Cosmic Push</h1>
@@ -8,7 +9,7 @@
     </div>
 
     <h1 th:text="${it.apiClient.clientName}+': Manage'"></h1>
-    <div th:include="fragments::client_sub_menu_fragment"></div>
+    <div th:include="fragments::client_sub_menu"></div>
 
     <div th:if="${it.message} != null">
       <div class="message" th:text="${it.message}"></div>

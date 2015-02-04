@@ -3,7 +3,8 @@
   <body>
 
     <html_header>
-      <title>Cosmic Push</title>
+      <!--@thymesVar id="pageTitle" type="java.lang.String"-->
+      <title th:text="|Cosmic Push${pageTitle}|"></title>
 
       <script th:src= "${contextRoot}+'/static/js/jquery-1.8.2.min.js'" type="text/javascript"></script>
       <script th:src= "${contextRoot}+'/static/js/jquery-cookie.js'" type="text/javascript"></script>

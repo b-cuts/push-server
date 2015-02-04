@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
   <!--@thymesVar id="it" type="com.cosmicpush.app.resources.RootResource.WelcomeModel"-->
-  <head th:include="fragments::html_header"></head>
+  <head th:include="fragments::html_header" th:with="pageTitle=''"></head>
 
   <body>
 
