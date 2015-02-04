@@ -4,4 +4,4 @@
  * This software may not be used without permission.
  */
 
-include "push-server-app", "push-server-gateway", "push-server-jackson", "push-server-pub", "push-server-common", "push-server-plugin-smtp", "push-server-plugin-ses", "push-server-plugin-gtalk", "push-server-v1-integration-tests", "push-server-v2-integration-tests", "push-server-plugin-notifier", "push-server-plugin-ocs"
+include "push-server-app", "push-server-gateway", "push-server-jackson", "push-server-pub", "push-server-common", "push-server-plugin-smtp", "push-server-plugin-ses", "push-server-plugin-gtalk", "push-server-v1-integration-tests", "push-server-v2-integration-tests", "push-server-plugin-notifier", "push-server-plugin-ocs-message"

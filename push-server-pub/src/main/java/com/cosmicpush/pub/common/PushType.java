@@ -37,6 +37,7 @@ public class PushType implements Comparable<PushType>{
 
   public static PushType notification = new PushType(NotificationPush.class, "notification", "Notification");
   public static PushType userEvent = new PushType(UserEventPush.class, "userEvent", "User Event");
+  public static PushType ocs = new PushType(OcsPush.class, "OCS", "Office Communicator Server");
 
   private final String code;
   private final String label;

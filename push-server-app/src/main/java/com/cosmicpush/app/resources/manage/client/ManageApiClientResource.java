@@ -9,6 +9,7 @@ package com.cosmicpush.app.resources.manage.client;
 import com.cosmicpush.app.resources.manage.UserRequestConfig;
 import com.cosmicpush.app.resources.manage.client.emails.ManageEmailsResource;
 import com.cosmicpush.app.resources.manage.client.notifications.ManageNotificationsResource;
+import com.cosmicpush.app.resources.manage.client.ocsmessage.ManageOcsMessageResource;
 import com.cosmicpush.app.resources.manage.client.userevents.ManageUserEventsResource;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.actions.UpdateClientAction;
@@ -83,6 +84,11 @@ public class ManageApiClientResource {
   @Path("/notifications")
   public ManageNotificationsResource getManageNotificationsResource() throws Exception {
     return new ManageNotificationsResource(config, account, apiClient);
+  }
+
+  @Path("/ocs-message")
+  public ManageOcsMessageResource getManageOcsMessagesResource() throws Exception {
+    return new ManageOcsMessageResource(config, account, apiClient);
   }
 
   @POST

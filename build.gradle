@@ -39,6 +39,7 @@ subprojects {
     pushServerPluginSmtp      = "4.0.0"
     pushServerPluginGtalk     = "4.0.0"
     pushServerPluginNotifier  = "4.0.0"
+    pushServerPluginOcs       = "1.0.0"
 
     pushServerIntegrationTestsV1 = "1.0.0"
     pushServerIntegrationTestsV2 = "1.0.0"
