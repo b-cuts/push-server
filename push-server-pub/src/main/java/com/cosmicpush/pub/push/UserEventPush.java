@@ -16,14 +16,27 @@
 
 package com.cosmicpush.pub.push;
 
-import com.cosmicpush.pub.common.*;
-import com.cosmicpush.pub.internal.*;
-import com.fasterxml.jackson.annotation.*;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.*;
-import org.crazyyak.dev.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.common.UserAgent;
+import com.cosmicpush.pub.internal.CpRemoteClient;
+import com.cosmicpush.pub.internal.PushUtils;
+import com.cosmicpush.pub.internal.RequestErrors;
+import com.cosmicpush.pub.internal.ValidationUtils;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.DateUtils;
+import org.crazyyak.dev.common.EqualsUtils;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
+
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class UserEventPush implements Push, Comparable<UserEventPush>, Serializable {
 
@@ -37,71 +50,32 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
   private final LocalDateTime createdAt;
 
   private final String message;
-  private final LinkedHashMap<String,String> traits = new LinkedHashMap<String,String>();
+  private final LinkedHashMap<String,String> traits = new LinkedHashMap<>();
 
   private final UserAgent userAgent;
 
+  private final String remoteHost;
+  private final String remoteAddress;
+
   private final String callbackUrl;
+
   private final PushType pushType = PushType.userEvent;
 
-  private UserEventPush(String sessionId,
-                        LocalDateTime createdAt,
-                        String callbackUrl) {
-
-    this.sendStory = true;
-    this.sessionId = sessionId;
-    this.createdAt = createdAt;
-    this.callbackUrl = callbackUrl;
-
-    deviceId = null;
-    ipAddress = null;
-    userName = null;
-    message = null;
-
-    userAgent = null;
-  }
-
-  public UserEventPush(CpRemoteClient remoteClient, LocalDateTime createdAt, String message, UserAgent userAgent, String callbackUrl) {
-    this(remoteClient, createdAt, message, new LinkedHashMap<String,String>(), userAgent, callbackUrl);
-  }
-
-  public UserEventPush(CpRemoteClient remoteClient,
-                       LocalDateTime createdAt,
-                       String message,
-                       LinkedHashMap<String, String> traits,
-                       UserAgent userAgent,
-                       String callbackUrl) {
-
-    ExceptionUtils.assertNotNull(remoteClient, "remoteClient");
-
-    this.sendStory = false;
-    this.deviceId = remoteClient.getDeviceId();
-    this.sessionId = ExceptionUtils.assertNotNull(remoteClient.getSessionId(), "sessionId");
-
-    this.userName = remoteClient.getUserName();
-    this.ipAddress = ExceptionUtils.assertNotNull(remoteClient.getIpAddress(), "ipAddress");
-
-    this.createdAt = ExceptionUtils.assertNotNull(createdAt, "createdAt");
-
-    this.message = (message == null) ? "No message" : message.trim();
-    this.traits.putAll(traits);
-
-    this.userAgent = userAgent;
-    this.callbackUrl = callbackUrl;
-  }
-
   @JsonCreator
-  public UserEventPush(@JsonProperty("deviceId") String deviceId,
-                       @JsonProperty("sessionId") String sessionId,
-                       @JsonProperty("userName") String userName,
-                       @JsonProperty("ipAddress") String ipAddress,
-                       @JsonProperty("createdAt") LocalDateTime createdAt,
-                       @JsonProperty("message") String message,
-                       @JsonProperty("traits") Map<String, String> traits,
-                       @JsonProperty("userAgent") UserAgent userAgent,
-                       @JsonProperty("callbackUrl") String callbackUrl) {
+  private UserEventPush(@JsonProperty("sendStory") boolean sendStory,
+                        @JsonProperty("deviceId") String deviceId,
+                        @JsonProperty("sessionId") String sessionId,
+                        @JsonProperty("userName") String userName,
+                        @JsonProperty("ipAddress") String ipAddress,
+                        @JsonProperty("createdAt") LocalDateTime createdAt,
+                        @JsonProperty("message") String message,
+                        @JsonProperty("userAgent") UserAgent userAgent,
+                        @JsonProperty("callbackUrl") String callbackUrl,
+                        @JsonProperty("remoteHost") String remoteHost,
+                        @JsonProperty("remoteAddress") String remoteAddress,
+                        @JsonProperty("traits") Map<String, String> traits) {
 
-    this.sendStory = false;
+    this.sendStory = sendStory;
     this.deviceId = deviceId;
     this.sessionId = sessionId;
 
@@ -111,12 +85,27 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
     this.createdAt = createdAt;
 
     this.message = (message == null) ? "No message" : message.trim();
+
     if (traits != null) {
       this.traits.putAll(traits);
     }
 
     this.userAgent = userAgent;
+
+    this.remoteHost = remoteHost;
+    this.remoteAddress = remoteAddress;
+
     this.callbackUrl = callbackUrl;
+  }
+
+  @Override
+  public String getRemoteHost() {
+    return remoteHost;
+  }
+
+  @Override
+  public String getRemoteAddress() {
+    return remoteAddress;
   }
 
   @Override
@@ -166,7 +155,8 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
     return DateUtils.toUtilDate(createdAt);
   }
 
-  public LinkedHashMap<String,String> getTraits() {
+  @Override
+  public Map<String,String> getTraits() {
     return traits;
   }
 
@@ -189,7 +179,7 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
 
   public boolean containsTrait(String key, Object value) {
     if (traits == null) return false;
-    return BeanUtils.objectsEqual(traits.get(key), (value == null ? null : value.toString()));
+    return EqualsUtils.objectsEqual(traits.get(key), (value == null ? null : value.toString()));
   }
 
   public String toString() {
@@ -197,6 +187,55 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
   }
 
   public static UserEventPush sendStory(String sessionId, LocalDateTime createdAt, String callbackUrl) {
-    return new UserEventPush(sessionId, createdAt, callbackUrl);
+
+    InetAddress remoteAddress = PushUtils.getLocalHost();
+    return new UserEventPush(
+        true,
+        null,
+        sessionId,
+        null,
+        null,
+        createdAt, null,
+        null, callbackUrl,
+        remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(),
+        Collections.emptyMap());
+  }
+
+  public static UserEventPush newPush(CpRemoteClient remoteClient,
+                                      LocalDateTime createdAt,
+                                      String message,
+                                      UserAgent userAgent,
+                                      String callbackUrl,
+                                      String...traits) {
+
+    return newPush(remoteClient, createdAt, message, userAgent, callbackUrl, BeanUtils.toMap(traits));
+  }
+
+  public static UserEventPush newPush(CpRemoteClient remoteClient,
+                                      LocalDateTime createdAt,
+                                      String message,
+                                      UserAgent userAgent,
+                                      String callbackUrl,
+                                      Map<String, String> traits) {
+
+    InetAddress remoteAddress = PushUtils.getLocalHost();
+    ExceptionUtils.assertNotNull(remoteClient, "remoteClient");
+    ExceptionUtils.assertNotNull(createdAt, "createdAt");
+    ExceptionUtils.assertNotNull(remoteClient.getSessionId(), "sessionId");
+    ExceptionUtils.assertNotNull(remoteClient.getIpAddress(), "ipAddress");
+
+    message = (message == null) ? "No message" : message.trim();
+
+    return new UserEventPush(
+        false,
+        remoteClient.getDeviceId(),
+        remoteClient.getSessionId(),
+        remoteClient.getUserName(),
+        remoteClient.getIpAddress(),
+        createdAt, message,
+        userAgent, callbackUrl,
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        traits);
   }
 }

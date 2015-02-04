@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
 import org.crazyyak.dev.common.*;
 
+@JsonIgnoreProperties("testAddress")
 @CouchEntity(SmtpEmailConfigStore.SMTP_EMAIL_CONFIG_DESIGN_NAME)
 public class SmtpEmailConfig implements PluginConfig, Serializable {
 
@@ -30,7 +31,8 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
   private String portNumber;
 
   private String recipientOverride;
-  private String testAddress;
+  private String testToAddress;
+  private String testFromAddress;
 
   public SmtpEmailConfig() {
   }
@@ -45,7 +47,8 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
                          @JsonProperty("serverName") String serverName,
                          @JsonProperty("portNumber") String portNumber,
                          @JsonProperty("recipientOverride") String recipientOverride,
-                         @JsonProperty("testAddress") String testAddress) {
+                         @JsonProperty("testToAddress") String testToAddress,
+                         @JsonProperty("testFromAddress") String testFromAddress) {
 
     this.configId = configId;
     this.revision = revision;
@@ -60,7 +63,8 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
     this.portNumber = portNumber;
 
     this.recipientOverride = recipientOverride;
-    this.testAddress = testAddress;
+    this.testToAddress = testToAddress;
+    this.testFromAddress = testFromAddress;
   }
 
   public SmtpEmailConfig apply(UpdateSmtpEmailConfigAction action) {
@@ -86,7 +90,8 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
       this.portNumber = this.authType.getDefaultPort();
     }
 
-    this.testAddress = action.getTestAddress();
+    this.testToAddress = action.getTestToAddress();
+    this.testFromAddress = action.getTestFromAddress();
     this.recipientOverride = action.getRecipientOverride();
 
     return this;
@@ -130,7 +135,11 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
     return recipientOverride;
   }
 
-  public String getTestAddress() {
-    return testAddress;
+  public String getTestToAddress() {
+    return testToAddress;
+  }
+
+  public String getTestFromAddress() {
+    return testFromAddress;
   }
 }

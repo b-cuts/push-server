@@ -1,0 +1,104 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.userevents.UserEventSessionsModel"-->
+  <head th:include="fragments::html_header" th:with="pageTitle=': User Event'">
+
+    <script type="text/javascript">
+      function showTraits(id) {
+        $("#traits-"+id).css("display", "table");
+        $("#show-"+id).css("display", "none");
+        $("#hide-"+id).css("display", "inline");
+        return false;
+      }
+      function hideTraits(id) {
+        $("#traits-"+id).css("display", "none");
+        $("#show-"+id).css("display", "inline");
+        $("#hide-"+id).css("display", "none");
+        return false;
+      }
+    </script>
+    <style type="text/css">
+      .traits-table {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="position: absolute; top: 0; right: 10px;">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <h1 th:text="|${it.apiClient.clientName}: User Events|"></h1>
+    <div th:include="fragments::client_sub_menu"></div>
+
+    <table class="requests-table" style="width: 100%; margin-top: 1em">
+      <thead>
+        <tr>
+          <th th:text="|Device ID: ${it.deviceId}|"></th>
+        </tr>
+      </thead>
+    </table>
+
+    <table class="requests-table" style="width: 100%; margin-top: 1em" th:each="session : ${it.sessions}">
+
+      <colgroup>
+        <col style="width:1em"/>
+        <col/>
+        <col style="width:1em"/>
+      </colgroup>
+
+      <thead>
+        <tr>
+          <th colspan="3">
+            <table>
+              <tr>
+                <th><label>User Name:&nbsp;</label></th>
+                <th th:text="${session.userName}"></th>
+              </tr>
+              <tr>
+                <th><label>IP Address:&nbsp;</label></th>
+                <th th:text="${session.ipAddress}"></th>
+              </tr>
+              <tr th:if="${session.ipAddress != session.hostAddress}">
+                <th><label>Host Address:&nbsp;</label></th>
+                <th th:text="${session.hostAddress}"></th>
+              </tr>
+              <tr>
+                <th><label>Session ID:&nbsp;</label></th>
+                <th th:text="${session.sessionId}"></th>
+              </tr>
+              <tr th:if="${session.userAgent != null}">
+                <th><label>${session.userAgent.agentType}:&nbsp;</label></th>
+                <th>${session.userAgent.agentName} ${session.userAgent.agentVersion}</th>
+              </tr>
+              <tr th:if="${session.userAgent != null}">
+                <th>${session.userAgent.osType}:</th>
+                <th>${session.userAgent.osName} ${session.userAgent.osVersionNumber}</th>
+              </tr>
+            </table>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="apiRequest : ${session.apiRequests}">
+          <td th:text="${#temporals.format(apiRequest.createdAt, 'MM-dd-yy hh:mm a')}"></td>
+          <td style="border-right:0">
+            <div th:text="${apiRequest.userEventPush.message}"></div>
+            <div th:include="fragments::push_traits" th:with="pushTraits=${apiRequest.pushTraits}"></div>
+          </td>
+          <td style="padding-right: 5px; border-left:0">
+<!--
+            <th:block th:if="${apiRequest.userEventPush.traits.size() > 0}">
+              <a id="'show-'+${apiRequest.key}" href="#" style="color: inherit; text-decoration: none"                th:onclick="'return showTraits(\''+${apiRequest.key}+'\')'">&uarr;&uarr;&uarr;</a>
+              <a th:id="|hide-${apiRequest.key}|" href="#" style="color: inherit; text-decoration: none; display: none" th:onclick="|return hideTraits('${apiRequest.key}')|">&darr;&darr;&darr;</a>
+            </th:block>
+-->
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </body>
+</html>

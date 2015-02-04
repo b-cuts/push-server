@@ -2,17 +2,19 @@ package com.cosmicpush.plugins.notifier;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.plugins.*;
+import com.cosmicpush.common.plugins.Plugin;
+import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.CpCouchServer;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.GoogleTalkPush;
-import java.io.*;
-import javax.ws.rs.core.MultivaluedMap;
-import org.crazyyak.dev.common.*;
+import org.crazyyak.dev.common.IoUtils;
 
-import static org.crazyyak.dev.common.StringUtils.isBlank;
-import static org.crazyyak.dev.common.StringUtils.isNotBlank;
+import javax.ws.rs.core.MultivaluedMap;
+import java.io.IOException;
+import java.io.InputStream;
+
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
 public class NotifierPlugin implements Plugin {
@@ -68,42 +70,42 @@ public class NotifierPlugin implements Plugin {
 
   @Override
   public void test(PluginContext context, Account account, ApiClient apiClient) throws Exception {
-
-    NotifierConfig config = getConfig(context.getCouchServer(), apiClient);
-
-    if (config == null) {
-      String msg = "The Google Talk config has not been specified.";
-      apiClient.setLastMessage(msg);
-      context.getAccountStore().update(account);
-      return;
-    }
-
-    String recipient = config.getTestAddress();
-
-    if (isBlank((recipient))) {
-      String msg = "Test message cannot be sent with out specifying the test address.";
-      apiClient.setLastMessage(msg);
-      context.getAccountStore().update(account);
-      return;
-    }
-
-    String override = config.getRecipientOverride();
-    if (isNotBlank(override)) {
-      recipient = override;
-    }
-
-    String when = Formats.defaultStamp(new java.util.Date());
-    String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
-    GoogleTalkPush push = GoogleTalkPush.googleTalk(recipient, msg, null);
-
-    ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
-    context.getApiRequestStore().create(apiRequest);
-
-    new NotifierDelegate(context, account, apiClient, apiRequest, push, config).run();
-
-    msg = String.format("Test message sent to %s:\n%s", recipient, msg);
-    apiClient.setLastMessage(msg);
-    context.getAccountStore().update(account);
+//
+//    NotifierConfig config = getConfig(context.getCouchServer(), apiClient);
+//
+//    if (config == null) {
+//      String msg = "The Google Talk config has not been specified.";
+//      apiClient.setLastMessage(msg);
+//      context.getAccountStore().update(account);
+//      return;
+//    }
+//
+//    String recipient = config.getTestAddress();
+//
+//    if (isBlank((recipient))) {
+//      String msg = "Test message cannot be sent with out specifying the test address.";
+//      apiClient.setLastMessage(msg);
+//      context.getAccountStore().update(account);
+//      return;
+//    }
+//
+//    String override = config.getRecipientOverride();
+//    if (isNotBlank(override)) {
+//      recipient = override;
+//    }
+//
+//    String when = Formats.defaultStamp(new java.util.Date());
+//    String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
+//    GoogleTalkPush push = GoogleTalkPush.newPush(recipient, msg, null, InetAddress.getLocalHost());
+//
+//    ApiRequest apiRequest = new ApiRequest(apiClient, push);
+//    context.getApiRequestStore().create(apiRequest);
+//
+//    new NotifierDelegate(context, account, apiClient, apiRequest, push, config).run();
+//
+//    msg = String.format("Test message sent to %s:\n%s", recipient, msg);
+//    apiClient.setLastMessage(msg);
+//    context.getAccountStore().update(account);
   }
 
   @Override
@@ -121,7 +123,7 @@ public class NotifierPlugin implements Plugin {
     String content = IoUtils.toString(stream);
 
     content = content.replace("${api-client-name}",   nullToString(apiClient.getClientName()));
-    content = content.replace("${push-server-base}",  nullToString(context.getServerRoot()));
+    content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
 
     content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));
     content = content.replace("${config-password}",   nullToString(config == null ? null : config.getPassword()));

@@ -6,54 +6,56 @@
 
 package com.cosmicpush.app.resources.manage.client.notifications;
 
+import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
+import com.cosmicpush.app.resources.manage.client.ApiClientRequestsModel;
+import com.cosmicpush.app.system.CpApplication;
+import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
-import com.cosmicpush.app.resources.manage.UserRequestConfig;
-import com.cosmicpush.app.resources.manage.client.ApiClientRequestsModel;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.NotificationPush;
 import java.util.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import org.glassfish.jersey.server.mvc.Viewable;
-
+@MngtAuthentication
 public class ManageNotificationsResource {
 
   private final Account account;
   private final ApiClient apiClient;
-  private final UserRequestConfig config;
+  private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  public ManageNotificationsResource(UserRequestConfig config, Account account, ApiClient apiClient) {
+  public ManageNotificationsResource(Account account, ApiClient apiClient) {
     this.account = account;
     this.apiClient = apiClient;
-    this.config = config;
   }
 
   @GET
   @Produces(MediaType.TEXT_HTML)
-  public Viewable viewNotifications() throws Exception {
+  public Thymeleaf viewNotifications() throws Exception {
 
     List<ApiRequest> requests = new ArrayList<>();
-    requests.addAll(config.getApiRequestStore().getByClientAndType(apiClient, PushType.notification));
+    requests.addAll(context.getApiRequestStore().getByClientAndType(apiClient, PushType.notification));
 
     Collections.sort(requests);
     Collections.reverse(requests);
 
     ApiClientRequestsModel model = new ApiClientRequestsModel(account, apiClient, requests);
-    return new Viewable("/manage/api-notifications.jsp", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
   }
 
   @GET
   @Path("/{apiRequestId}")
   @Produces(MediaType.TEXT_HTML)
-  public Viewable viewNotifications(@PathParam("apiRequestId") String apiRequestId) throws Exception {
+  public Thymeleaf viewNotifications(@PathParam("apiRequestId") String apiRequestId) throws Exception {
 
-    ApiRequest request = config.getApiRequestStore().getByApiRequestId(apiRequestId);
+    ApiRequest request = context.getApiRequestStore().getByApiRequestId(apiRequestId);
     NotificationPush notification = request.getNotificationPush();
 
     ApiClientNotificationModel model = new ApiClientNotificationModel(account, apiClient, request, notification);
-    return new Viewable("/manage/api-notification.jsp", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
   }
 }

@@ -19,6 +19,8 @@ package com.cosmicpush.pub.common;
 import com.cosmicpush.pub.internal.ValidatableAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Map;
+
 public interface Push extends ValidatableAction {
 
   String getCallbackUrl();
@@ -26,4 +28,9 @@ public interface Push extends ValidatableAction {
   @JsonIgnore
   PushType getPushType();
 
+  Map<String, String> getTraits();
+
+  String getRemoteHost();
+
+  String getRemoteAddress();
 }

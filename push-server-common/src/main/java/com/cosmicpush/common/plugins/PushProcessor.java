@@ -16,7 +16,10 @@ public class PushProcessor {
   }
 
   public PushResponse execute(Account account, ApiClient apiClient, Push push) {
-    ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
+
+    // TODO - validate the remoteHost and remoteAddress specifeid in the push as really coming from them.
+
+    ApiRequest apiRequest = new ApiRequest(apiClient, push);
     context.getApiRequestStore().create(apiRequest);
 
     Plugin plugin = PluginManager.getPlugin(push.getPushType());

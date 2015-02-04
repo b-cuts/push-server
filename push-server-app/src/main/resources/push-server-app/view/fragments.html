@@ -1,0 +1,73 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+  <body>
+
+    <html_header>
+      <!--@thymesVar id="pageTitle" type="java.lang.String"-->
+      <title th:text="|Cosmic Push${pageTitle}|"></title>
+
+      <script th:src= "${contextRoot}+'/static/js/jquery-1.8.2.min.js'" type="text/javascript"></script>
+      <script th:src= "${contextRoot}+'/static/js/jquery-cookie.js'" type="text/javascript"></script>
+
+      <script th:src= "${contextRoot}+'/static/js/jquery-ui-1.9.0.min.js'" type="text/javascript"></script>
+      <link   th:href="${contextRoot}+'/static/css/jquery-ui-1.9.0.min.css'" rel="stylesheet" type="text/css"/>
+
+      <link   th:href="${contextRoot}+'/favicon.ico'" rel="shortcut icon" type="image/x-icon"/>
+
+      <link   th:href="${contextRoot}+'/cosmic-push.css'" rel="stylesheet"/>
+      <script th:src= "${contextRoot}+'/cosmic-push.js'"></script>
+    </html_header>
+
+    <req_icon>
+      <img th:case="'pending'" src="/" th:src="${contextRoot}+'/static/status-pending.png'"   title="Processing is pending"/>
+      <img th:case="'failed'"  src="/" th:src="${contextRoot}+'/static/status-failed.png'"    title="Processing failed"/>
+      <img th:case="'denied'"  src="/" th:src="${contextRoot}+'/static/status-denied.png'"    title="Processing was denied"/>
+      <img th:case="'warning'" src="/" th:src="${contextRoot}+'/static/status-warning.png'"   title="Processing partially failed"/>
+      <img th:case="*"         src="/" th:src="${contextRoot}+'/static/status-processed.png'" title="Processing has been completed"/>
+    </req_icon>
+
+    <client_sub_menu>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/account|">My Account</a>
+      <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.ApiClientRequestsModel"-->
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}|">Manage</a>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/requests|">All Requests</a>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/emails|">Emails</a>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/notifications|">Notifications</a>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/user-events|">User Events</a>
+    </client_sub_menu>
+
+    <push_traits>
+      <!--@thymesVar id="pushTraits" type="com.cosmicpush.pub.common.PushTraits"-->
+      <th:block th:if="${pushTraits.traits.isEmpty()}">Traits: -none-</th:block>
+      <table class="traits-table" th:id="'traits-'+${pushTraits.apiRequestId}">
+        <colgroup>
+          <col style="width: 1em"/>
+          <col/>
+        </colgroup>
+        <tbody>
+          <tr th:each="trait : ${pushTraits.traits.entrySet()}">
+            <td class="key" th:text="|${trait.key}:|"></td>
+
+            <td class="value" th:if="${trait.key == 'link'}">
+              <a th:href="${trait.value}" target="_blank" th:text="${trait.value}"></a>
+            </td>
+
+            <!--<td class="value" th:if="${compact} and ${trait.key == 'exception'}">-->
+              <!--<a th:href="|${contextRoot}/manage/api-client/${pushTraits.clientName}/${path}/${pushTraits.apiRequestId}|" style="color: inherit">view...</a>-->
+            <!--</td>-->
+            <td class="value-data" th:if="${trait.key == 'exception'}" th:text="${trait.value}"></td>
+
+            <!--<td class="value" th:if="${compact} and ${trait.key == 'json'}">-->
+              <!--<a th:href="|${contextRoot}/manage/api-client/${pushTraits.clientName}/${path}/${pushTraits.apiRequestId}|" style="color: inherit">view...</a>-->
+            <!--</td>-->
+            <td class="value-data" th:if="${trait.key == 'json'}" th:text="${trait.value}"></td>
+
+            <td class="value" th:text="${trait.value}" th:if="${trait.key != 'link'} and ${trait.key != 'exception'} and ${trait.key != 'json'}"></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </push_traits>
+
+  </body>
+</html>

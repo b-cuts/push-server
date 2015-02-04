@@ -11,12 +11,9 @@ import java.util.Arrays;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.Provider;
 import org.crazyyak.lib.jaxrs.jackson.JacksonReaderWriterProvider;
-import org.springframework.beans.factory.annotation.Autowired;
 
-@Provider
 public class CpReaderWriterProvider extends JacksonReaderWriterProvider {
 
-  @Autowired
   public CpReaderWriterProvider(CpObjectMapper objectMapper) {
     super(objectMapper, Arrays.asList(MediaType.APPLICATION_JSON_TYPE));
 

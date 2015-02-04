@@ -5,76 +5,85 @@
  */
 package com.cosmicpush.app.resources.manage.client.emails;
 
-import com.cosmicpush.app.resources.manage.UserRequestConfig;
+import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
+import com.cosmicpush.app.system.CpApplication;
+import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.PluginManager;
-import com.cosmicpush.pub.push.*;
-import java.net.URI;
-import java.util.*;
+import com.cosmicpush.pub.push.EmailPush;
+import com.cosmicpush.pub.push.SesEmailPush;
+import com.cosmicpush.pub.push.SmtpEmailPush;
+
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import org.glassfish.jersey.server.mvc.Viewable;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
+@MngtAuthentication
 public class ManageEmailsResource {
 
   private final Account account;
   private final ApiClient apiClient;
-  private final UserRequestConfig config;
+  private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  public ManageEmailsResource(UserRequestConfig config, Account account, ApiClient apiClient) {
+  public ManageEmailsResource(Account account, ApiClient apiClient) {
     this.account = account;
     this.apiClient = apiClient;
-    this.config = config;
   }
 
   @GET
   @Produces(MediaType.TEXT_HTML)
-  public Viewable viewEmailEvents() throws Exception {
+  public Thymeleaf viewEmailEvents() throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
-    requests.addAll(config.getApiRequestStore().getByClientAndType(apiClient, SesEmailPush.PUSH_TYPE));
-    requests.addAll(config.getApiRequestStore().getByClientAndType(apiClient, SmtpEmailPush.PUSH_TYPE));
+    requests.addAll(context.getApiRequestStore().getByClientAndType(apiClient, SesEmailPush.PUSH_TYPE));
+    requests.addAll(context.getApiRequestStore().getByClientAndType(apiClient, SmtpEmailPush.PUSH_TYPE));
 
     EmailsModel model = new EmailsModel(account, apiClient, requests);
-    return new Viewable("/manage/api-emails.jsp", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAILS, model);
   }
 
   @GET
   @Path("/{apiRequestId}")
   @Produces(MediaType.TEXT_HTML)
-  public Viewable viewEmailEvent(@PathParam("apiRequestId") String apiRequestId) throws Exception {
+  public Thymeleaf viewEmailEvent(@PathParam("apiRequestId") String apiRequestId) throws Exception {
 
-    ApiRequest apiRequest = config.getApiRequestStore().getByApiRequestId(apiRequestId);
+    ApiRequest apiRequest = context.getApiRequestStore().getByApiRequestId(apiRequestId);
     EmailPush email = apiRequest.getEmailPush();
 
     EmailModel model = new EmailModel(account, apiClient, apiRequest, email);
-    return new Viewable("/manage/api-email.jsp", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAIL, model);
   }
 
   @POST
   @Path("/{apiRequestId}/retry")
-  public Response retryEmailMessage(@Context ServletContext context, @PathParam("apiRequestId") String apiRequestId) throws Exception {
+  public Response retryEmailMessage(@Context ServletContext servletContext, @PathParam("apiRequestId") String apiRequestId) throws Exception {
 
-    ApiRequest apiRequest = config.getApiRequestStore().getByApiRequestId(apiRequestId);
+    ApiRequest apiRequest = context.getApiRequestStore().getByApiRequestId(apiRequestId);
     EmailPush push = (EmailPush)apiRequest.getPush();
 
     if (SesEmailPush.PUSH_TYPE.equals(push.getPushType())) {
       Plugin plugin = PluginManager.getPlugin(push.getPushType());
-      plugin.newDelegate(config, account, apiClient, apiRequest, push).retry();
+      plugin.newDelegate(context, account, apiClient, apiRequest, push).retry();
 
     } else if (SmtpEmailPush.PUSH_TYPE.equals(push.getPushType())) {
       Plugin plugin = PluginManager.getPlugin(push.getPushType());
-      plugin.newDelegate(config, account, apiClient, apiRequest, push).retry();
+      plugin.newDelegate(context, account, apiClient, apiRequest, push).retry();
 
     } else {
       String msg = String.format("The retry operation is not supported for the push type \"%s\".", push.getPushType().getCode());
       throw new UnsupportedOperationException(msg);
     }
 
-    String path = String.format("%s/manage/api-client/%s/emails/%s", context.getContextPath(), apiClient.getClientName(), apiRequest.getApiRequestId());
+    String path = String.format("%s/manage/api-client/%s/emails/%s", servletContext.getContextPath(), apiClient.getClientName(), apiRequest.getApiRequestId());
     return Response.seeOther(new URI(path)).build();
   }
 }

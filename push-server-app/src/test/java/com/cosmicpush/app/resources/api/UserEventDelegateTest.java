@@ -6,8 +6,6 @@
 
 package com.cosmicpush.app.resources.api;
 
-import com.cosmicpush.app.resources.api.userevent.UserEventDelegate;
-import com.cosmicpush.pub.common.UserAgent;
 import org.testng.annotations.*;
 
 import static org.testng.Assert.assertNotNull;

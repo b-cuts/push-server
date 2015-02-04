@@ -2,14 +2,21 @@ package com.cosmicpush.plugins.smtp;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.plugins.*;
+import com.cosmicpush.common.plugins.Plugin;
+import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.CpCouchServer;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.SmtpEmailPush;
-import java.io.*;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.Formats;
+import org.crazyyak.dev.common.IoUtils;
+import org.crazyyak.dev.common.StringUtils;
+
 import javax.ws.rs.core.MultivaluedMap;
-import org.crazyyak.dev.common.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
@@ -88,10 +95,18 @@ public class SmtpEmailPlugin implements Plugin {
       return;
     }
 
-    String recipient = config.getTestAddress();
+    String toAddress = config.getTestToAddress();
+    String fromAddress = config.getTestFromAddress();
 
-    if (StringUtils.isBlank((recipient))) {
-      String msg = "A test message cannot be sent with out specifying the test address.";
+    if (StringUtils.isBlank((toAddress))) {
+      String msg = "A test message cannot be sent with out specifying the config's test-to-address.";
+      apiClient.setLastMessage(msg);
+      context.getAccountStore().update(account);
+      return;
+    }
+
+    if (StringUtils.isBlank((fromAddress))) {
+      String msg = "A test message cannot be sent with out specifying the config's test-from-address.";
       apiClient.setLastMessage(msg);
       context.getAccountStore().update(account);
       return;
@@ -99,23 +114,23 @@ public class SmtpEmailPlugin implements Plugin {
 
     String override = config.getRecipientOverride();
     if (StringUtils.isNotBlank(override)) {
-      recipient = override;
+      toAddress = override;
     }
 
     String when = Formats.defaultStamp(new java.util.Date());
-    String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
+    String msg = String.format("<html><head><title>Some Email</title></head><body style='background-color:red'><div style='background-color:#c0c0ff'><h1>Testing 123</h1>This is a test message from Cosmic Push sent at %s.</div></body>", when);
     String subject = "SMTP Test message from Cosmic Push";
-    SmtpEmailPush push = new SmtpEmailPush(
-        recipient, recipient,
+    SmtpEmailPush push = SmtpEmailPush.newPush(
+        toAddress, fromAddress,
         subject, msg,
         null, BeanUtils.toMap("smtp-test:true"));
 
-    ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
+    ApiRequest apiRequest = new ApiRequest(apiClient, push);
     context.getApiRequestStore().create(apiRequest);
 
     new SmtpEmailDelegate(context, account, apiClient, apiRequest, push, config).run();
 
-    msg = String.format("Test message sent to %s:\n%s", recipient, msg);
+    msg = String.format("Test message sent from %s to %s", fromAddress, toAddress);
     apiClient.setLastMessage(msg);
     context.getAccountStore().update(account);
   }
@@ -135,13 +150,14 @@ public class SmtpEmailPlugin implements Plugin {
     String content = IoUtils.toString(stream);
 
     content = content.replace("${api-client-name}",           nullToString(apiClient.getClientName()));
-    content = content.replace("${push-server-base}",          nullToString(context.getServerRoot()));
+    content = content.replace("${push-server-base}",          nullToString(context.getBaseURI()));
     content = content.replace("${config-user-name}",          nullToString(config == null ? null : config.getUserName()));
     content = content.replace("${config-password}",           nullToString(config == null ? null : config.getPassword()));
-    content = content.replace("${config-auth-type}",         nullToString(config == null ? null : config.getAuthType()));
+    content = content.replace("${config-auth-type}",          nullToString(config == null ? null : config.getAuthType()));
     content = content.replace("${config-port-number}",        nullToString(config == null ? null : config.getPortNumber()));
     content = content.replace("${config-server-name}",        nullToString(config == null ? null : config.getServerName()));
-    content = content.replace("${config-test-address}",       nullToString(config == null ? null : config.getTestAddress()));
+    content = content.replace("${config-test-to-address}",    nullToString(config == null ? null : config.getTestToAddress()));
+    content = content.replace("${config-test-from-address}",  nullToString(config == null ? null : config.getTestFromAddress()));
     content = content.replace("${config-recipient-override}", nullToString(config == null ? null : config.getRecipientOverride()));
 
     if (content.contains("${")) {

@@ -7,31 +7,59 @@
 package com.cosmicpush.app.system;
 
 import com.cosmicpush.app.deprecated.SmsToEmailPush;
+import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.SessionStore;
+import com.cosmicpush.common.system.CpCouchServer;
+import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.PushType;
-import com.cosmicpush.pub.push.*;
-import org.apache.commons.logging.*;
-import org.crazyyak.dev.jerseyspring.*;
-import org.glassfish.hk2.utilities.binding.AbstractBinder;
+import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.SmtpEmailPush;
+import org.apache.log4j.Level;
+import org.crazyyak.app.logging.LogUtils;
+import org.crazyyak.lib.jaxrs.YakJaxRsExceptionMapper;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import javax.inject.Singleton;
-import javax.servlet.http.HttpSession;
+import javax.ws.rs.ApplicationPath;
+import java.util.concurrent.TimeUnit;
 
+@ApplicationPath("/")
 public class CpApplication extends ResourceConfig {
 
-  private static final Log log = LogFactory.getLog(CpApplication.class);
+  private static final ThreadLocal<ExecutionContext> executionContext = new ThreadLocal<>();
+  public static boolean hasExecutionContext() {
+    return executionContext.get() != null;
+  }
+  public static ExecutionContext getExecutionContext() {
+    if (executionContext.get() == null) {
+      executionContext.set(new ExecutionContext());
+    }
+    return executionContext.get();
+  }
+  public static void removeExecutionContext() {
+    executionContext.remove();
+  }
 
-  public CpApplication() {
-    log.info("Application loaded.");
+  public CpApplication() throws Exception {
+    LogUtils logUtils = new LogUtils();
+    logUtils.initConsoleAppender(Level.WARN, LogUtils.DEFAULT_PATTERN);
 
-    property(YakJspMvcFeature.SUPPORTED_EXTENSIONS, "jsp, jspf");
+    String databaseName = "cosmic-push";
+
+    AppContext appContext = new AppContext(
+      new SessionStore(TimeUnit.MINUTES.toMillis(60)),
+      new CpObjectMapper(),
+      new CpCouchServer(databaseName));
+    property(AppContext.class.getName(), appContext);
 
     register(CpFilter.class);
-    register(CpReaderWriterProvider.class);
     register(MultiPartFeature.class);
-    register(YakJspMvcFeature.class);
-    register(YakExceptionMapper.class);
+    register(new CpReaderWriterProvider(appContext.getObjectMapper()));
+
+    register(new YakJaxRsExceptionMapper(true) {
+      @Override protected void logInfo(String msg, Throwable ex) { logUtils.info(CpApplication.class, msg, ex); }
+      @Override protected void logError(String msg, Throwable ex) { logUtils.fatal(CpApplication.class, msg, ex); }
+    });
 
     packages("com.cosmicpush");
 

@@ -16,7 +16,9 @@
 
 package com.cosmicpush.pub.common;
 
-import com.cosmicpush.pub.push.*;
+import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.UserEventPush;
+
 import java.util.*;
 
 public class PushType implements Comparable<PushType>{

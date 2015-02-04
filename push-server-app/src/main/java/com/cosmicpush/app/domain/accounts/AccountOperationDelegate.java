@@ -11,23 +11,13 @@ import com.cosmicpush.common.accounts.actions.*;
 import java.net.URL;
 import org.crazyyak.dev.common.*;
 import org.crazyyak.dev.common.exceptions.ApiException;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.security.authentication.*;
-import org.springframework.security.core.*;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 
-@Component
 public class AccountOperationDelegate {
 
-  @Autowired
-  private AccountStore store;
+  private final AccountStore store;
 
-  @Autowired
-  @Qualifier("authenticationManager")
-  private AuthenticationManager authenticationManager;
-
-  public AccountOperationDelegate() {
+  public AccountOperationDelegate(AccountStore store) {
+    this.store = store;
   }
 
   public Account executeOperation(Account account, ChangePasswordAction operation) {
@@ -137,6 +127,8 @@ public class AccountOperationDelegate {
   }
 
   private Account authenticateUser(Account account, String password) {
+    return null;
+/*
 
     // We can only ever authenticate the current user. This may not be necessary in cases like
     // a password change, but it's easier to always update the request context when authenticating.
@@ -158,5 +150,6 @@ public class AccountOperationDelegate {
       // RequestContext.get().setAccount(null); // clear the context
       throw ApiException.badRequest(Account.INVALID_USER_NAME_OR_PASSWORD);
     }
+*/
   }
 }

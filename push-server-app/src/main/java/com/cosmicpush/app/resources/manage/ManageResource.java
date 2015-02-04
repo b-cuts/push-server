@@ -6,29 +6,29 @@
 
 package com.cosmicpush.app.resources.manage;
 
+import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.resources.manage.account.ManageAccountResource;
 import com.cosmicpush.app.resources.manage.client.ManageApiClientResource;
-import com.cosmicpush.common.accounts.Account;
+import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.actions.CreateClientAction;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.PushType;
-import java.net.URI;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import org.crazyyak.dev.common.exceptions.*;
+import org.crazyyak.dev.common.exceptions.ApiException;
 import org.crazyyak.dev.common.net.InetMediaType;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+
+@MngtAuthentication
 public class ManageResource {
 
-  private final Account account;
-  private final UserRequestConfig config;
+  private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  public ManageResource(UserRequestConfig config, Account account) {
-    this.config = ExceptionUtils.assertNotNull(config, "config");
-    this.account = ExceptionUtils.assertNotNull(account, "account");
+  public ManageResource() {
   }
 
   @GET
@@ -49,26 +49,26 @@ public class ManageResource {
 
   @Path("/account")
   public ManageAccountResource getManageAccountResource() {
-    return new ManageAccountResource(config);
+    return new ManageAccountResource(context.getAccount());
   }
 
   @Path("/api-client/{clientName}")
   public ManageApiClientResource getManageApiClientResource(@PathParam("clientName") String clientName) throws Exception {
-    return new ManageApiClientResource(config, account, clientName);
+    return new ManageApiClientResource(clientName);
   }
 
   @POST
   @Path("/api-client")
   public Response newApiClient(@FormParam("clientName") String clientName, @FormParam("clientPassword") String clientPassword) throws Exception {
 
-    if (config.getAccountStore().getByClientName(clientName) != null) {
+    if (context.getAccountStore().getByClientName(clientName) != null) {
       throw ApiException.badRequest(String.format("The client name %s already exists.", clientName));
     }
 
     CreateClientAction action = new CreateClientAction(clientName, clientPassword);
 
-    ApiClient apiClient = account.add(action);
-    config.getAccountStore().update(account);
+    ApiClient apiClient = context.getAccount().add(action);
+    context.getAccountStore().update(context.getAccount());
 
     return Response.seeOther(new URI("manage/api-client/"+apiClient.getClientName())).build();
   }

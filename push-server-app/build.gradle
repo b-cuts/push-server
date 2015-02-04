@@ -11,6 +11,16 @@ project(":push-server-app") {
   apply (plugin: "war")
   apply (from: "../build-config-deployer.gradle")
 
+  configurations {
+    provided
+  }
+
+  sourceSets {
+    main.compileClasspath += configurations.provided
+    test.compileClasspath += configurations.provided
+    test.runtimeClasspath += configurations.provided
+  }
+
   dependencies {
     compile project(":push-server-pub")
     compile project(":push-server-jackson")
@@ -25,15 +35,21 @@ project(":push-server-app") {
 
     compile ("org.crazyyak.apis:yak-apis-google:$yakApisGoogle")
 
+    compile ("org.crazyyak.lib:yak-lib-jaxrs:$yakLibJaxrs")
     compile ("org.crazyyak.lib:yak-lib-servlet:$yakLibServlet")
-    compile ("org.crazyyak.lib:yak-lib-spring-couchace:$yakLibSpringCouchAce")
-
     compile ("org.crazyyak.lib:yak-lib-jaxrs-jackson:$yakLibJaxrsJackson")
-    compile ("org.crazyyak.app:yak-app-jersey-spring:$yakAppJerseySpring") {
-      // exclude (module: 'yak-lib-spring-security')
-    }
 
-    compile("org.glassfish.web:jstl-impl:1.2")
+    compile ("org.crazyyak.app:yak-app-common:$yakAppCommon")
+
+    compile ("org.slf4j:slf4j-simple:1.7.10")
+    compile ("org.thymeleaf:thymeleaf:2.1.4.RELEASE")
+    compile ("org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE")
+
+    compile("org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion")
+    compile("org.glassfish.jersey.media:jersey-media-multipart:$jerseyVersion")
+
+    provided ("javax.servlet.jsp:jsp-api:2.2.1-b03")
+    provided ("javax.servlet:javax.servlet-api:3.1.0")
 
     testCompile ("org.testng:testng:6.8.17")
   }
@@ -41,15 +57,6 @@ project(":push-server-app") {
   configurations.all({
     resolutionStrategy({
       force(
-          "javax.servlet.jsp:jsp-api:2.2.1-b03",
-
-          "org.springframework:spring-aop:4.1.4.RELEASE",
-          "org.springframework:spring-web:4.1.4.RELEASE",
-          "org.springframework:spring-core:4.1.4.RELEASE",
-          "org.springframework:spring-beans:4.1.4.RELEASE",
-          "org.springframework:spring-context:4.1.4.RELEASE",
-          "org.springframework:spring-expression:4.1.4.RELEASE",
-
           "org.slf4j:slf4j:1.7.10",
           "org.slf4j:slf4j-api:1.7.10",
           "org.javassist:javassist:3.18.1-GA",

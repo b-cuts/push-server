@@ -1,0 +1,158 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+html {
+  background: url(images/black.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  color: white;
+  background-color: black;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  margin-bottom: 0;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table.test td {
+  border: 1px solid red;
+}
+
+tr {
+  vertical-align: top;
+}
+
+th {
+  white-space: nowrap;
+}
+
+td {
+  white-space: nowrap;
+}
+
+td > label {
+  padding-right: 0.5em;
+}
+
+td.data {
+  font-weight: bold;
+}
+
+th {
+  text-align: left;
+  background-color: #808080;
+}
+
+a {
+  color: #FFD700;
+}
+
+fieldset {
+  background-color: #3d3d3d;
+}
+
+input {
+  padding-left: 3px;
+}
+
+option {
+  padding-left: 3px;
+}
+
+
+fieldset {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+
+legend {
+  font-weight: bold;
+  color: #FFD700;
+}
+
+td.help {
+  white-space: normal;
+  vertical-align: top;
+  padding-left: 10px;
+  color: #D3D3D3;
+}
+
+img {
+  border: 0;
+}
+
+img.icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+}
+
+div.message {
+  color: black;
+  padding: 2px 5px;
+  margin-top: 1em;
+  border: 1px solid white;
+  background-color: #FFD700;
+  white-space: pre-wrap;
+}
+
+.requests-table > tbody > tr > td {
+  border: 1px solid white;
+  padding: 5px 1em 5px 5px;
+  background-color: #3d3d3d;
+}
+
+.requests-table > thead > tr > th {
+  border: 1px solid white;
+  padding: 5px 1em 5px 5px;
+}
+
+.requests-table > tbody > tr:hover > td {
+  background-color: #000000;
+}
+
+.traits-table {
+  width: 100%;
+}
+
+.traits-table > tbody > tr > td {
+  color: #D3D3D3;
+}
+
+.traits-table > tbody > tr > td.value {
+  color: white;
+  font-weight: bold;
+  white-space: normal;
+}
+.traits-table > tbody > tr > td.value-data {
+  color: white;
+  font-weight: bold;
+  white-space: pre-wrap;
+}
+
+
+
+div.details {
+  padding: 2px 5px;
+  border: 1px solid white;
+  margin-top: 1em;
+  background-color: #3d3d3d;
+}

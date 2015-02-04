@@ -3,148 +3,122 @@
  *
  * This software may not be used without permission.
  */
-
 package com.cosmicpush.app.resources;
 
-import com.cosmicpush.app.domain.accounts.*;
-import com.cosmicpush.app.resources.api.*;
-import com.cosmicpush.app.resources.manage.*;
-import com.cosmicpush.common.accounts.*;
+import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.Session;
+import com.cosmicpush.app.jaxrs.security.SessionStore;
+import com.cosmicpush.app.resources.api.ApiResourceV1;
+import com.cosmicpush.app.resources.api.ApiResourceV2;
+import com.cosmicpush.app.resources.manage.ManageResource;
+import com.cosmicpush.app.system.CpApplication;
+import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
+import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.requests.*;
-import com.cosmicpush.common.system.*;
-import com.cosmicpush.jackson.CpObjectMapper;
+import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.PushType;
-import java.net.*;
-import javax.servlet.http.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.crazyyak.dev.common.EqualsUtils;
+import org.crazyyak.dev.common.exceptions.ApiException;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import org.apache.commons.logging.*;
-import org.crazyyak.dev.common.exceptions.ApiException;
-import org.glassfish.jersey.server.mvc.Viewable;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.stereotype.Component;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @Path("/")
-@Component
-public class RootResource {
+public class RootResource extends RootResourceSupport {
+
+  public static final int REASON_CODE_INVALID_USERNAME_OR_PASSWORD = -1;
+  public static final int REASON_CODE_UNAUTHORIZED = -2;
 
   private static final Log log = LogFactory.getLog(RootResource.class);
 
-  private HttpServletRequest servletRequest;
-  private HttpServletResponse servletResponse;
-  private SecurityContext securityContext;
-  private UriInfo uriInfo;
-  private HttpHeaders headers;
+  private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  private CpObjectMapper objectMapper;
-  private CpCouchServer couchServer;
-  private AccountStore accountStore;
-  private ApiRequestStore apiRequestStore;
+  public RootResource(@Context UriInfo uriInfo) {
+    log.info("Created ");
 
-  @Autowired
-  public RootResource(CpObjectMapper objectMapper,
-                      CpCouchServer couchServer,
-                      AccountStore accountStore,
-                      ApiRequestStore apiRequestStore) {
-
-    this.objectMapper = objectMapper;
-    this.couchServer = couchServer;
-    this.accountStore = accountStore;
-    this.apiRequestStore = apiRequestStore;
-
-    log.info("Created " + getClass().getName());
     // Force initialization.
     PluginManager.getPlugins();
+
+    context.setUriInfo(uriInfo);
   }
 
-  @Context
-  public void setContext(HttpServletRequest servletRequest,
-                         HttpServletResponse servletResponse,
-                         SecurityContext securityContext,
-                         UriInfo uriInfo,
-                         HttpHeaders headers) {
-    
-    this.servletRequest = servletRequest;
-    this.servletResponse = servletResponse;
-    this.securityContext = securityContext;
-    this.uriInfo = uriInfo;
-    this.headers = headers;
+  @Override
+  public UriInfo getUriInfo() {
+    return context.getUriInfo();
   }
 
   @GET
   @Produces(MediaType.TEXT_HTML)
-  public Viewable getPublicResource() {
-    return new PublicResource().getWelcome();
+  public Thymeleaf getWelcome(@QueryParam("r") int reasonCode, @QueryParam("username") String username, @QueryParam("password") String password) throws IOException {
+
+    String message = "";
+    if (REASON_CODE_INVALID_USERNAME_OR_PASSWORD == reasonCode) {
+      message = "Invalid username or password.";
+    } else if (REASON_CODE_UNAUTHORIZED == reasonCode) {
+      message = "Your session has expired.";
+    }
+    return new Thymeleaf(ThymeleafViewFactory.WELCOME, new WelcomeModel(context.getAccount(), message, username, password));
+  }
+
+  public static class WelcomeModel {
+    private final Account account;
+    private final String message;
+    private final String username;
+    private final String password;
+    public WelcomeModel(Account account, String message, String username, String password) {
+      this.account = account;
+      this.message = message;
+      this.username = username;
+      this.password = password;
+    }
+    public Account getAccount() { return account; }
+    public String getMessage() { return message; }
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
+  }
+
+  @POST
+  @Path("/sign-in")
+  @Produces(MediaType.TEXT_HTML)
+  public Response signIn(@FormParam("username") String username, @FormParam("password") String password, @CookieParam(SessionStore.SESSION_COOKIE_NAME) String sessionId) throws Exception {
+
+    Account account = context.getAccountStore().getByUsername(username);
+
+    if (account == null || EqualsUtils.objectsNotEqual(account.getPassword(), password)) {
+      context.getSessionStore().remove(sessionId);
+
+      NewCookie sessionCookie = SessionStore.toCookie(getUriInfo(), null);
+      URI other = getUriInfo().getBaseUriBuilder().queryParam("r", -1).build();
+      return Response.seeOther(other).cookie(sessionCookie).build();
+    }
+
+    Session session = context.getSessionStore().newSession(username);
+
+    NewCookie sessionCookie = SessionStore.toCookie(getUriInfo(), session);
+    URI other = getUriInfo().getBaseUriBuilder().path("manage").build();
+    return Response.seeOther(other).cookie(sessionCookie).build();
   }
 
   @Path("/api")
   public ApiResourceV1 getApiResourceV1() throws Exception {
-    ApiRequestConfig config = new ApiRequestConfig(
-      objectMapper,
-      couchServer,
-      accountStore,
-      apiRequestStore,
-      servletRequest,
-      servletResponse,
-      uriInfo,
-      headers,
-      securityContext
-    );
-
-    String accountId = config.getApiClientUser().getAccountId();
-    Account account = config.getAccountStore().getByAccountId(accountId);
-
-    String clientName = config.getApiClientUser().getClientName();
-    ApiClient apiClient = account.getApiClientByName(clientName);
-
-    return new ApiResourceV1(config, account, apiClient);
+    return new ApiResourceV1();
   }
 
   @Path("/api/v2")
   public ApiResourceV2 getApiResourceV2() throws Exception {
-
-    ApiRequestConfig config = new ApiRequestConfig(
-      objectMapper,
-      couchServer,
-      accountStore,
-      apiRequestStore,
-      servletRequest,
-      servletResponse,
-      uriInfo,
-      headers,
-      securityContext
-    );
-
-    String accountId = config.getApiClientUser().getAccountId();
-    Account account = config.getAccountStore().getByAccountId(accountId);
-
-    String clientName = config.getApiClientUser().getClientName();
-    ApiClient apiClient = account.getApiClientByName(clientName);
-
-    return new ApiResourceV2(config, account, apiClient);
+    return new ApiResourceV2();
   }
 
   @Path("/manage")
   public ManageResource getManageResource() {
-    UserRequestConfig config = new UserRequestConfig(
-        objectMapper,
-        couchServer,
-        accountStore,
-        apiRequestStore,
-        servletRequest,
-        servletResponse,
-        uriInfo,
-        headers,
-        securityContext
-    );
-
-    AccountUser accountUser = config.getCurrentUser();
-    String accountId = accountUser.getAccountId();
-    Account account = config.getAccountStore().getByAccountId(accountId);
-
-    return new ManageResource(config, account);
+    return new ManageResource();
   }
 
   @GET @Path("/q/{id}")
@@ -155,12 +129,12 @@ public class RootResource {
       return resolveCallback(id);
 
     } else if (id.contains(":") == false) {
-      ApiRequest request = apiRequestStore.getByApiRequestId(id);
+      ApiRequest request = context.getApiRequestStore().getByApiRequestId(id);
       if (request == null) {
         throw ApiException.notFound("API request not found for " + id);
       }
 
-      Account account = accountStore.getByClientId(request.getApiClientId());
+      Account account = context.getAccountStore().getByClientId(request.getApiClientId());
       if (account == null) {
         throw ApiException.notFound("Account not found given client id " + request.getApiClientId());
       }
@@ -191,120 +165,30 @@ public class RootResource {
     return Response.status(Response.Status.OK).build();
   }
 
-  @GET
-  @Produces("image/jpeg")
-  @Path("{resource: ([^\\s]+(\\.(?i)(jpg|JPG|jpeg|JPEG))$) }")
-  public Viewable renderJPGs() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-  @GET
-  @Produces("image/png")
-  @Path("{resource: ([^\\s]+(\\.(?i)(png|PNG))$) }")
-  public Viewable renderPNGs() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-  @GET
-  @Produces("image/gif")
-  @Path("{resource: ([^\\s]+(\\.(?i)(gif|GIF))$) }")
-  public Viewable renderGIFs() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-  @GET
-  @Produces(MediaType.TEXT_PLAIN)
-  @Path("{resource: ([^\\s]+(\\.(?i)(txt|TXT|text|TEXT))$) }")
-  public Viewable renderText() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-  @GET
-  @Produces(MediaType.TEXT_HTML)
-  @Path("{resource: ([^\\s]+(\\.(?i)(html|HTML))$) }")
-  public Viewable renderHtml() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-  @GET
-  @Produces("text/css")
-  @Path("{resource: ([^\\s]+(\\.(?i)(css|CSS))$) }")
-  public Viewable renderCSS() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-  @GET
-  @Produces("application/javascript")
-  @Path("{resource: ([^\\s]+(\\.(?i)(js|JS))$) }")
-  public Viewable renderJavaScript() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-  @GET
-  @Produces("image/icon")
-  @Path("{resource: ([^\\s]+(\\.(?i)(ico|ICO))$) }")
-  public Viewable renderICOs() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-  @GET
-  @Produces("application/pdf")
-  @Path("{resource: ([^\\s]+(\\.(?i)(pdf|PDF))$) }")
-  public Viewable renderPDFs() throws Exception {
-    String path = "/" + uriInfo.getPath();
-    return new Viewable(path);
-  }
-
-
   @GET @Path("/privacy-policy")
   @Produces(MediaType.TEXT_HTML)
-  public Viewable privacyPolicy() {
-    return new Viewable("/mun-mon/general/privacy-policy.jsp");
+  public Thymeleaf privacyPolicy() {
+    return new Thymeleaf("/mun-mon/general/privacy-policy.jsp");
   }
 
   @GET @Path("/terms-of-service")
   @Produces(MediaType.TEXT_HTML)
-  public Viewable termsOfService() {
-    return new Viewable("/mun-mon/general/terms-of-service.jsp");
+  public Thymeleaf termsOfService() {
+    return new Thymeleaf("/mun-mon/general/terms-of-service.jsp");
   }
-
-
-  @GET @Path("/trafficbasedsspsitemap.xml")
-  public Response trafficbasedsspsitemap_xml() { return Response.status(404).build(); }
-
-  @GET @Path("/apple-touch-icon-precomposed.png")
-  public Response apple_touch_icon_precomposed_png() { return Response.status(404).build(); }
-
-  @GET @Path("/apple-touch-icon.png")
-  public Response apple_touch_icon_png() { return Response.status(404).build(); }
-
-  @GET @Path("/manager/status")
-  public Response managerStatus() throws Exception { return Response.status(404).build(); }
-
-  @GET @Path("{resource: ([^\\s]+(\\.(?i)(php|PHP))$) }")
-  public Response renderTXTs() throws Exception { return Response.status(404).build(); }
-
 
   @GET // TODO - implement the faq.jsp page.
   @Path("{resource: (faq\\.).* }")
   @Produces(MediaType.TEXT_HTML)
-  public Viewable getFaq() {
-    return new Viewable("/mun-mon/faq.jsp");
+  public Thymeleaf getFaq() {
+    return new Thymeleaf("/mun-mon/faq.jsp");
   }
 
   @GET // TODO - implement the contact.jsp page.
   @Path("{resource: (contact\\.).* }")
   @Produces(MediaType.TEXT_HTML)
-  public Viewable getContact() {
-    return new Viewable("/mun-mon/contact.jsp");
+  public Thymeleaf getContact() {
+    return new Thymeleaf("/mun-mon/contact.jsp");
   }
 }
 

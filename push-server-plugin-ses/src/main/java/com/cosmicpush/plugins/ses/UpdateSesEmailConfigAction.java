@@ -17,7 +17,8 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
   private String accessKeyId;
   private String secretKey;
   private String recipientOverride;
-  private String testAddress;
+  private String testToAddress;
+  private String testFromAddress;
 
   public UpdateSesEmailConfigAction(ApiClient apiClient, MultivaluedMap<String, String> formParams) {
 
@@ -26,18 +27,20 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
     this.accessKeyId = formParams.getFirst("accessKeyId");
     this.secretKey = formParams.getFirst("secretKey");
 
-    this.testAddress = formParams.getFirst("testAddress");
+    this.testToAddress = formParams.getFirst("testToAddress");
+    this.testFromAddress = formParams.getFirst("testFromAddress");
     this.recipientOverride = formParams.getFirst("recipientOverride");
   }
 
-  public UpdateSesEmailConfigAction(ApiClient apiClient, String accessKeyId, String secretKey, String testAddress, String recipientOverride) {
+  public UpdateSesEmailConfigAction(ApiClient apiClient, String accessKeyId, String secretKey, String testToAddress, String testFromAddress, String recipientOverride) {
 
     this.apiClient = apiClient;
 
     this.accessKeyId = accessKeyId;
     this.secretKey = secretKey;
 
-    this.testAddress = testAddress;
+    this.testToAddress = testToAddress;
+    this.testFromAddress = testFromAddress;
     this.recipientOverride = recipientOverride;
   }
 
@@ -66,7 +69,11 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
     return recipientOverride;
   }
 
-  public String getTestAddress() {
-    return testAddress;
+  public String getTestToAddress() {
+    return testToAddress;
+  }
+
+  public String getTestFromAddress() {
+    return testFromAddress;
   }
 }

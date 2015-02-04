@@ -14,11 +14,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="push-server-common" exported="" />
-    <orderEntry type="library" exported="" name="Gradle: javax.mail:mail:1.4.5" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax.activation:activation:1.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.17" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.beanshell:bsh:2.0b4" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.beust:jcommander:1.27" level="project" />
+    <orderEntry type="module" module-name="push-server-common" exported="" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.17" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: javax.mail:mail:1.5.0-b01" level="project" />
   </component>
 </module>

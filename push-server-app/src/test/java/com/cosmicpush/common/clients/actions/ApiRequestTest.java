@@ -7,25 +7,34 @@
 package com.cosmicpush.common.clients.actions;
 
 import com.cosmicpush.TestFactory;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.UserEventPush;
 import com.cosmicpush.common.actions.CreateClientAction;
-import com.cosmicpush.common.requests.*;
+import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.ApiRequestStore;
 import com.cosmicpush.jackson.CpObjectMapper;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.UserAgent;
+import com.cosmicpush.pub.internal.CpRemoteClient;
 import com.cosmicpush.pub.push.*;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.ComparisonResults;
+import org.crazyyak.dev.common.DateUtils;
+import org.crazyyak.dev.common.EqualsUtils;
+import org.crazyyak.dev.jackson.YakJacksonTranslator;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 import java.net.InetAddress;
 import java.util.Map;
-import org.crazyyak.dev.common.*;
-import org.crazyyak.dev.jackson.YakJacksonTranslator;
-import org.testng.annotations.*;
 
 import static org.testng.Assert.assertEquals;
 
 @Test
 public class ApiRequestTest {
 
-  String ipAddress;
-  String hostName;
+  private String callbackUrl = "http://www.example.com/callback";
 
   // The test is really of the object mapper. We will use
   // a translator here just to make the work a little easier.
@@ -38,8 +47,6 @@ public class ApiRequestTest {
   @BeforeClass
   public void beforeClass() throws Exception {
     this.apiRequestStore = TestFactory.get().getApiRequestStore();
-    this.ipAddress = InetAddress.getLocalHost().getHostAddress();
-    this.hostName = InetAddress.getLocalHost().getCanonicalHostName();
   }
 
   public void testCreate() throws Exception {
@@ -47,44 +54,47 @@ public class ApiRequestTest {
     CreateClientAction createAction = new CreateClientAction("test", "password");
     ApiClient apiClient = new ApiClient().create(createAction);
 
-    InetAddress inetAddress = InetAddress.getLocalHost();
-
-    SmtpEmailPush smtpEmailPush = new SmtpEmailPush(
-        "from", "to",
-        "subject", "the HTML content",
-        null, BeanUtils.toMap("unit-test:true"));
-    ApiRequest request = new ApiRequest(apiClient, smtpEmailPush, inetAddress);
+    SmtpEmailPush smtpEmailPush = SmtpEmailPush.newPush(
+        "from", "to", "subject", "the HTML content",
+        callbackUrl, BeanUtils.toMap("unit-test:true"));
+    ApiRequest request = new ApiRequest(apiClient, smtpEmailPush);
     apiRequestStore.create(request);
 
-    SesEmailPush sesEmailPush = new SesEmailPush(
-        "from", "to",
-        "subject", "the HTML content",
-        null, BeanUtils.toMap("unit-test:true"));
-    request = new ApiRequest(apiClient, sesEmailPush, inetAddress);
+    SesEmailPush sesEmailPush = SesEmailPush.newPush(
+        "from", "to", "subject", "the HTML content",
+        callbackUrl, BeanUtils.toMap("unit-test:true"));
+    request = new ApiRequest(apiClient, sesEmailPush);
     apiRequestStore.create(request);
 
-    GoogleTalkPush imPush = GoogleTalkPush.googleTalk("recipient", "some message", null);
-    request = new ApiRequest(apiClient, imPush, inetAddress);
+    GoogleTalkPush imPush = GoogleTalkPush.newPush("recipient", "some message", callbackUrl, "color:red");
+    request = new ApiRequest(apiClient, imPush);
     apiRequestStore.create(request);
 
-    NotificationPush notificationPush = new NotificationPush("message", null, BeanUtils.toMap("test:true"));
-    request = new ApiRequest(apiClient, notificationPush, inetAddress);
+    NotificationPush notificationPush = NotificationPush.newPush("message", callbackUrl, BeanUtils.toMap("test:true"));
+    request = new ApiRequest(apiClient, notificationPush);
     apiRequestStore.create(request);
 
   }
 
   public void testTranslateSmtpEmailPush() throws Exception {
-    Push push = new SmtpEmailPush("mickey.mouse@disney.com", "donald.duck@disney.com", "This is the subject", "<html><body><h1>Hello World</h1>So, how's it going?</body></html>", "http://callback.com/api.sent", "test:true", "type:email");
+    Push push = SmtpEmailPush.newPush(
+        "mickey.mouse@disney.com",
+        "donald.duck@disney.com",
+        "This is the subject",
+        "<html><body><h1>Hello World</h1>So, how's it going?</body></html>",
+        callbackUrl, "test:true", "type:email");
 
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push, InetAddress.getLocalHost());
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"smtp-email\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
@@ -93,7 +103,9 @@ public class ApiRequestTest {
         "    \"fromAddress\" : \"donald.duck@disney.com\",\n" +
         "    \"emailSubject\" : \"This is the subject\",\n" +
         "    \"htmlContent\" : \"<h1>Hello World</h1>So, how's it going?\",\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
         "    \"traits\" : {\n" +
         "      \"test\" : \"true\",\n" +
         "      \"type\" : \"email\"\n" +
@@ -101,7 +113,11 @@ public class ApiRequestTest {
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), ipAddress, hostName, oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 
@@ -111,17 +127,24 @@ public class ApiRequestTest {
   }
 
   public void testTranslateEmailPush() throws Exception {
-    Push push = new SesEmailPush("mickey.mouse@disney.com", "donald.duck@disney.com", "This is the subject", "<html><body><h1>Hello World</h1>So, how's it going?</body></html>", "http://callback.com/api.sent", "test:true", "type:email");
+    Push push = SesEmailPush.newPush(
+        "mickey.mouse@disney.com",
+        "donald.duck@disney.com",
+        "This is the subject",
+        "<html><body><h1>Hello World</h1>So, how's it going?</body></html>",
+        callbackUrl, "test:true", "type:email");
 
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push, InetAddress.getLocalHost());
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"ses-email\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
@@ -130,7 +153,9 @@ public class ApiRequestTest {
         "    \"fromAddress\" : \"donald.duck@disney.com\",\n" +
         "    \"emailSubject\" : \"This is the subject\",\n" +
         "    \"htmlContent\" : \"<h1>Hello World</h1>So, how's it going?\",\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
         "    \"traits\" : {\n" +
         "      \"test\" : \"true\",\n" +
         "      \"type\" : \"email\"\n" +
@@ -138,7 +163,11 @@ public class ApiRequestTest {
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), ipAddress, hostName, oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 
@@ -148,28 +177,42 @@ public class ApiRequestTest {
   }
 
   public void testTranslateImPush() throws Exception {
-    Push push = new GoogleTalkPush("mickey.mouse@disney.com", "Just calling to say hello", "http://callback.com/api.sent");
+    Push push = GoogleTalkPush.newPush(
+        "mickey.mouse@disney.com",
+        "Just calling to say hello",
+        callbackUrl, BeanUtils.toMap("color:green"));
 
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push, InetAddress.getLocalHost());
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"google-talk\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
         "    \"pushType\" : \"google-talk\",\n" +
         "    \"recipient\" : \"mickey.mouse@disney.com\",\n" +
         "    \"message\" : \"Just calling to say hello\",\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\"\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
+        "    \"traits\" : {\n" +
+        "      \"color\" : \"green\"\n" +
+        "    }\n"+
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), ipAddress, hostName, oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 
@@ -179,23 +222,29 @@ public class ApiRequestTest {
   }
 
   public void testNotificationPush() throws Exception {
-    Push push = new NotificationPush("Hey, you need to check this out.", "http://callback.com/api.sent", "test:true", "type:warning");
+    Push push = NotificationPush.newPush(
+        "Hey, you need to check this out.",
+        callbackUrl, "test:true", "type:warning");
 
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push, InetAddress.getLocalHost());
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"notification\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
         "    \"pushType\" : \"notification\",\n" +
         "    \"message\" : \"Hey, you need to check this out.\",\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
         "    \"traits\" : {\n" +
         "      \"test\" : \"true\",\n" +
         "      \"type\" : \"warning\"\n" +
@@ -203,7 +252,11 @@ public class ApiRequestTest {
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), ipAddress, hostName, oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 
@@ -219,33 +272,42 @@ public class ApiRequestTest {
         "os-type", "os-name", "os=produceer", "osproducer-url", "os-version-name", "os-version-number",
         "linux-distro"
     );
-    UserEventPush push = new UserEventPush(
-        "some-deviceId", "some-sessionId", "mickey", "192.168.1.36",
-        DateUtils.toLocalDateTime("2014-05-06T09:34"), "You logged in.",
-        map, userAgent, "http://callback.com/api.sent");
 
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push, InetAddress.getLocalHost());
+    CpRemoteClient remoteClient = new CpRemoteClient() {
+      @Override public String getUserName() { return "mickey"; }
+      @Override public String getIpAddress() { return "192.168.1.36"; }
+      @Override public String getSessionId() { return "some-sessionId"; }
+      @Override public String getDeviceId() { return "some-deviceId"; }
+    };
+
+    UserEventPush push = UserEventPush.newPush(
+        remoteClient,
+        DateUtils.toLocalDateTime("2014-05-06T09:34"),
+        "You logged in.",
+        userAgent, callbackUrl, "color:green");
+
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
         "  \"apiClientId\" : \"%s\",\n" +
+        "  \"apiClientName\" : \"api-client\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
-        "  \"ipAddress\" : \"%s\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
+        "  \"remoteAddress\" : \"%s\",\n" +
         "  \"pushType\" : \"userEvent\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
         "    \"pushType\" : \"userEvent\",\n" +
+        "    \"sendStory\" : false,\n" +
         "    \"deviceId\" : \"some-deviceId\",\n" +
         "    \"sessionId\" : \"some-sessionId\",\n" +
         "    \"userName\" : \"mickey\",\n" +
         "    \"ipAddress\" : \"192.168.1.36\",\n" +
         "    \"createdAt\" : \"2014-05-06T09:34\",\n" +
         "    \"message\" : \"You logged in.\",\n" +
-        "    \"traits\" : {\n" +
-        "      \"user\" : \"mickeym\"\n" +
-        "    },\n" +
         "    \"userAgent\" : {\n" +
         "      \"agentType\" : \"agent-type\",\n" +
         "      \"agentName\" : \"agent-name\",\n" +
@@ -260,12 +322,20 @@ public class ApiRequestTest {
         "      \"osVersionNumber\" : \"os-version-number\",\n" +
         "      \"linuxDistribution\" : \"linux-distro\"\n" +
         "    },\n" +
-        "    \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
-        "    \"sendStory\" : false\n" +
+        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
+        "    \"remoteHost\" : \"%s\",\n" +
+        "    \"remoteAddress\" : \"%s\",\n" +
+        "    \"traits\" : {\n" +
+        "      \"color\" : \"green\"\n" +
+        "    }\n" +
         "  },\n" +
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
-        "}", apiClient.getApiClientId(), oldApiRequest.getCreatedAt(), ipAddress, hostName, oldApiRequest.getApiRequestId());
+        "}",
+        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+        oldApiRequest.getApiRequestId());
 
     assertEquals(json, expected);
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.emails.EmailModel"-->
+  <head th:include="fragments::html_header" th:with="pageTitle=': Email'"></head>
+
+  <body>
+    <div style="position: absolute; top: 0; right: 10px;">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <h1 th:text="${it.apiClient.clientName}+': Email'"></h1>
+    <div th:include="fragments::client_sub_menu"></div>
+
+    <fieldset style="margin-top:1em">
+      <legend>Details</legend>
+      <form style="float: right" method="post" th:action="${contextRoot}+${it.retryUrl}" >
+        <button type="submit" onclick="return confirm('Are you sure you want to retry sending this email?');">Resend</button>
+      </form>
+      <table>
+        <tr>
+          <td><label>Status:</label></td>
+          <td th:style="'color: '+${it.request.requestStatus.color}" th:text="${it.request.requestStatus.label}"></td>
+        </tr>
+        <tr>
+          <td><label>Sent:</label></td>
+          <td th:text="${#temporals.format(it.request.createdAt, 'MM-dd-yy hh:mm a')}"></td>
+        </tr>
+        <tr>
+          <td><label>From:</label></td>
+          <td th:if="${it.request.remoteHost != it.request.remoteAddress}" th:text="|${it.request.remoteHost} (${it.request.remoteAddress})|"></td>
+          <td th:if="${it.request.remoteHost == it.request.remoteAddress}" th:text="${it.request.remoteHost}"></td>
+        </tr>
+      </table>
+
+    </fieldset>
+
+    <fieldset style="margin-top:1em">
+      <legend>Email</legend>
+      <div>To: <strong th:text="${it.request.emailPush.toAddress}"></strong></div>
+      <div>Fr: <strong th:text="${it.request.emailPush.fromAddress}"></strong></div>
+      <div>&nbsp;</div>
+      <div><strong th:text="${it.request.emailPush.emailSubject}"></strong></div>
+      <div style="border: 2px solid black; padding: 0" th:utext="${it.request.emailPush.htmlContent}"></div>
+    </fieldset>
+
+    <fieldset style="margin-top:1em">
+      <legend>Traits</legend>
+      <div th:include="fragments::push_traits" th:with="pushTraits=${it.request.pushTraits}"></div>
+    </fieldset>
+
+    <fieldset style="margin-top:1em">
+      <legend>Notes</legend>
+      <div th:if="${#lists.isEmpty(it.request.notes)}">-none-</div>
+      <div th:each="note : ${it.request.notes}">
+        <div th:text="${note}"></div>
+      </div>
+    </fieldset>
+
+  </body>
+</html>

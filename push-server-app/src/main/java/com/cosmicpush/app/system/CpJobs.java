@@ -1,42 +1,30 @@
 package com.cosmicpush.app.system;
 
-import com.cosmicpush.common.accounts.*;
+import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.*;
-import com.cosmicpush.common.system.CpCouchServer;
 import com.couchace.core.api.response.EntityDocument;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.PostConstruct;
 import org.apache.commons.logging.*;
 import org.crazyyak.dev.common.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 
 import static java.lang.String.format;
 
-@Service
 public class CpJobs {
 
   public static final Log log = LogFactory.getLog(CpJobs.class);
-
   public static final String PDT = "America/Los_Angeles";
-
-  @Autowired
-  private AccountStore accountStore;
-
-  @Autowired
-  private ApiRequestStore apiRequestStore;
-
-  @Autowired
-  private CpCouchServer couchServer;
 
   private static final AtomicBoolean runningCompact = new AtomicBoolean(false);
   private static final AtomicBoolean runningPruner = new AtomicBoolean(false);
 
-  public CpJobs() {
+  private final AppContext appContext;
+
+  public CpJobs(AppContext appContext) {
+    this.appContext = appContext;
   }
 
   @PostConstruct
@@ -45,7 +33,7 @@ public class CpJobs {
   }
 
   // Every night at midnight
-  @Scheduled(cron="0 0 0 * * *", zone=PDT)
+  // @Scheduled(cron="0 0 0 * * *", zone=PDT)
   public void cleanAndCompactDatabase() {
 
     if (runningCompact.compareAndSet(false, true) == false) {
@@ -53,7 +41,7 @@ public class CpJobs {
     }
 
     try {
-      couchServer.compactAndCleanAll();
+      appContext.getCouchServer().compactAndCleanAll();
 
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -62,7 +50,7 @@ public class CpJobs {
     }
   }
 
-  @Scheduled(initialDelay = 1000*60, fixedDelay = 1000*60*60, zone=PDT)
+  // @Scheduled(initialDelay = 1000*60, fixedDelay = 1000*60*60, zone=PDT)
   public void pruneEvents() {
 
     if (runningPruner.compareAndSet(false, true) == false) {
@@ -71,7 +59,7 @@ public class CpJobs {
 
     try {
       LocalDateTime now = DateUtils.currentLocalDateTime();
-      List<Account> accounts = accountStore.getAll();
+      List<Account> accounts = appContext.getAccountStore().getAll();
 
       for (Account account : accounts) {
         pruneEvents(now, account);
@@ -94,7 +82,7 @@ public class CpJobs {
     for (ApiClient apiClient : apiClients) {
 
       int count = 0;
-      QueryResult<ApiRequest> queryResult = apiRequestStore.getByClient(apiClient, 100);
+      QueryResult<ApiRequest> queryResult = appContext.getApiRequestStore().getByClient(apiClient, 100);
 
       do {
         List<EntityDocument<ApiRequest>> list = queryResult.getDocumentList();
@@ -114,10 +102,10 @@ public class CpJobs {
     ApiRequest apiRequest = document.getEntity();
     LocalDateTime later = apiRequest.getCreatedAt().plusWeeks(days);
     if (now.isAfter(later)) {
-        apiRequestStore.deleteByDocumentId(
-            document.getDocumentId(),
-            document.getDocumentRevision()
-        );
+      appContext.getApiRequestStore().deleteByDocumentId(
+        document.getDocumentId(),
+        document.getDocumentRevision()
+      );
     }
   }
 }

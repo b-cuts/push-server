@@ -7,17 +7,30 @@
 package com.cosmicpush.common.requests;
 
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushTraits;
+import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.internal.CpIdGenerator;
-import com.cosmicpush.pub.push.*;
-import com.couchace.annotations.*;
-import com.fasterxml.jackson.annotation.*;
-import java.net.InetAddress;
+import com.cosmicpush.pub.push.EmailPush;
+import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.UserEventPush;
+import com.couchace.annotations.CouchEntity;
+import com.couchace.annotations.CouchId;
+import com.couchace.annotations.CouchRevision;
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.crazyyak.dev.common.DateUtils;
+import org.crazyyak.dev.common.StringUtils;
+import org.crazyyak.dev.common.exceptions.ExceptionUtils;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import org.crazyyak.dev.common.*;
-import org.crazyyak.dev.common.exceptions.ExceptionUtils;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @CouchEntity(ApiRequestStore.API_REQUEST_DESIGN_NAME)
 public class ApiRequest implements Comparable<ApiRequest> {
@@ -26,12 +39,13 @@ public class ApiRequest implements Comparable<ApiRequest> {
   private final String revision;
 
   private final String apiClientId;
+  private final String apiClientName;
 
   private final LocalDateTime createdAt;
   private RequestStatus requestStatus;
 
-  private final String ipAddress;
   private final String remoteHost;
+  private final String remoteAddress;
 
   private final PushType pushType;
 
@@ -45,12 +59,13 @@ public class ApiRequest implements Comparable<ApiRequest> {
       @JacksonInject("revision") String revision,
 
       @JsonProperty("apiClientId") String apiClientId,
+      @JsonProperty("apiClientName") String apiClientName,
 
       @JsonProperty("createdAt") LocalDateTime createdAt,
       @JsonProperty("requestStatus") RequestStatus requestStatus,
 
-      @JsonProperty("ipAddress") String ipAddress,
       @JsonProperty("remoteHost") String remoteHost,
+      @JsonProperty("remoteAddress") String remoteAddress,
 
       @JsonProperty("pushType") PushType pushType,
       @JsonProperty("notes") List<String> notes,
@@ -60,12 +75,13 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.revision = revision;
 
     this.apiClientId = apiClientId;
+    this.apiClientName = apiClientName;
 
     this.createdAt = createdAt;
     this.requestStatus = requestStatus;
 
-    this.ipAddress = ipAddress;
     this.remoteHost = remoteHost;
+    this.remoteAddress = remoteAddress;
 
     this.pushType = pushType;
 
@@ -74,16 +90,18 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.push = push;
   }
 
-  public ApiRequest(ApiClient apiClient, Push push, InetAddress inetAddress) {
+  public ApiRequest(ApiClient apiClient, Push push) {
     this.apiRequestId = CpIdGenerator.newId();
     this.revision = null;
     this.apiClientId = apiClient.getApiClientId();
+    this.apiClientName = apiClient.getClientName();
 
-    this.createdAt = DateUtils.currentDateTime();
+    this.createdAt = DateUtils.currentLocalDateTime();
     this.requestStatus = RequestStatus.pending;
 
-    this.ipAddress = inetAddress.getHostAddress();
-    this.remoteHost = inetAddress.getCanonicalHostName();
+    this.remoteHost = push.getRemoteHost();
+    this.remoteAddress = push.getRemoteAddress();
+
     this.pushType = push.getPushType();
 
     this.push = push;
@@ -103,12 +121,16 @@ public class ApiRequest implements Comparable<ApiRequest> {
     return apiClientId;
   }
 
-  public String getIpAddress() {
-    return ipAddress;
+  public String getApiClientName() {
+    return apiClientName;
   }
 
   public String getRemoteHost() {
     return remoteHost;
+  }
+
+  public String getRemoteAddress() {
+    return remoteAddress;
   }
 
   public PushType getPushType() {
@@ -121,15 +143,6 @@ public class ApiRequest implements Comparable<ApiRequest> {
 
   public LocalDateTime getCreatedAt() {
     return createdAt;
-  }
-
-  /**
-   * Provided for Backwards compatibility with Java 7 libraries.
-   * @return The value of createdAt as a java.util.Date
-   */
-  @JsonIgnore
-  public Date getCreatedAtUtilDate() {
-    return DateUtils.toUtilDate(createdAt);
   }
 
   public RequestStatus getRequestStatus() {
@@ -247,5 +260,10 @@ public class ApiRequest implements Comparable<ApiRequest> {
 
   public String toString() {
     return push.getPushType().getLabel() + ": " + push.toString();
+  }
+
+  @JsonIgnore
+  public PushTraits getPushTraits() {
+    return new PushTraits(apiRequestId, apiClientName, push.getTraits());
   }
 }

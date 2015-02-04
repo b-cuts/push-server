@@ -12,19 +12,11 @@ import com.cosmicpush.common.accounts.queries.AccountQuery;
 import com.cosmicpush.pub.internal.RequestErrors;
 import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
 public class AccountServiceCouch implements AccountService {
 
-  @Autowired
-  private AccountStore accountStore;
-  @Autowired
-  private AccountOperationDelegate accountDelegate;
-
-  public AccountServiceCouch() {
-  }
+  private final AccountStore accountStore;
+  private final AccountOperationDelegate accountDelegate;
 
   public AccountServiceCouch(AccountStore accountStore, AccountOperationDelegate accountDelegate) {
     this.accountStore = accountStore;

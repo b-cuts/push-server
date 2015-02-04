@@ -22,7 +22,7 @@ public class UpdateSesEmailConfigActionTest {
 
     UpdateSesEmailConfigAction action = new UpdateSesEmailConfigAction(apiClient,
       "some-access-key-id", "some-secret-key",
-      "test@example.com", "override@example.com");
+      "to@example.com", "from@example.com", "override@example.com");
 
     SesEmailConfig config = new SesEmailConfig();
     config.apply(action);
@@ -30,9 +30,10 @@ public class UpdateSesEmailConfigActionTest {
     assertEquals(config.getApiClientId(), apiClient.getApiClientId());
 
     assertEquals(config.getAccessKeyId(), "some-access-key-id");
-    assertEquals(config.getSecretKey(), "some-secret-key");
+    assertEquals(config.getSecretKey(),   "some-secret-key");
 
-    assertEquals(config.getTestAddress(), "test@example.com");
+    assertEquals(config.getTestToAddress(),     "to@example.com");
+    assertEquals(config.getTestFromAddress(),   "from@example.com");
     assertEquals(config.getRecipientOverride(), "override@example.com");
   }
 }
