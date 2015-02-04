@@ -22,7 +22,7 @@ public class PluginManager {
       PushType.register(pushType);
     }
 
-    int expectedCount = 3;
+    int expectedCount = 4;
     if (map.size() < expectedCount) {
       String msg = String.format("Expected at least %s plugins but only found %s %s", expectedCount, map.size(), map.keySet());
       throw new IllegalStateException(msg);

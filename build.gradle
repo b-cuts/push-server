@@ -39,6 +39,7 @@ subprojects {
     pushServerPluginSmtp      = "4.0.0"
     pushServerPluginGtalk     = "4.0.0"
     pushServerPluginNotifier  = "4.0.0"
+    pushServerPluginOcs       = "1.0.0"
 
     pushServerIntegrationTestsV1 = "1.0.0"
     pushServerIntegrationTestsV2 = "1.0.0"
@@ -61,6 +62,12 @@ subprojects {
     yakAppCommon          = "1.0.1"
 
     jerseyVersion =       "2.15"
+  }
+
+  repositories {
+    flatDir {
+      dirs '../libs'
+    }
   }
 
   configurations.all({

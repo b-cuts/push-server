@@ -17,9 +17,11 @@
 package com.cosmicpush.pub.common;
 
 import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.OcsPush;
 import com.cosmicpush.pub.push.UserEventPush;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PushType implements Comparable<PushType>{
 
@@ -39,6 +41,7 @@ public class PushType implements Comparable<PushType>{
 
   public static PushType notification = new PushType(NotificationPush.class, "notification", "Notification");
   public static PushType userEvent = new PushType(UserEventPush.class, "userEvent", "User Event");
+  public static PushType ocs = new PushType(OcsPush.class, "ocs", "Office Communicator Server");
 
   private final String code;
   private final String label;
