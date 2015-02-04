@@ -27,7 +27,8 @@
         </tr>
         <tr>
           <td><label>From:</label></td>
-          <td th:text="${it.request.remoteHost}"></td>
+          <td th:if="${it.request.remoteHost != it.request.remoteAddress}" th:text="|${it.request.remoteHost} (${it.request.remoteAddress})|"></td>
+          <td th:if="${it.request.remoteHost == it.request.remoteAddress}" th:text="${it.request.remoteHost}"></td>
         </tr>
       </table>
 
@@ -39,7 +40,7 @@
       <div>Fr: <strong th:text="${it.request.emailPush.fromAddress}"></strong></div>
       <div>&nbsp;</div>
       <div><strong th:text="${it.request.emailPush.emailSubject}"></strong></div>
-      <div style="border: 2px solid black; padding: 0" th:text="${it.request.emailPush.htmlContent}"></div>
+      <div style="border: 2px solid black; padding: 0" th:utext="${it.request.emailPush.htmlContent}"></div>
     </fieldset>
 
     <fieldset style="margin-top:1em">

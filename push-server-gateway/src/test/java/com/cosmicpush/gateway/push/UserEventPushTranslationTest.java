@@ -17,14 +17,19 @@
 package com.cosmicpush.gateway.push;
 
 import com.cosmicpush.gateway.LiveCosmicPushGateway;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.UserAgent;
+import com.cosmicpush.pub.internal.CpRemoteClient;
 import com.cosmicpush.pub.push.UserEventPush;
-import java.time.LocalDateTime;
-import java.util.Map;
-import org.crazyyak.dev.common.*;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.ComparisonResults;
+import org.crazyyak.dev.common.EqualsUtils;
 import org.crazyyak.dev.common.json.JsonTranslator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.LocalDateTime;
+import java.util.Map;
 
 @Test
 public class UserEventPushTranslationTest {
@@ -41,10 +46,18 @@ public class UserEventPushTranslationTest {
         "linux-distro"
     );
 
-    UserEventPush oldPush = new UserEventPush(
-        "some-deviceId", "some-sessionId", "mickey", "192.168.1.36",
-        LocalDateTime.parse("2014-05-06T09:34"), "You logged in.",
-        map, userAgent, "http://callback.com/api.sent");
+    CpRemoteClient remoteClient = new CpRemoteClient() {
+      @Override public String getUserName() { return "mickey"; }
+      @Override public String getIpAddress() { return "192.168.1.36"; }
+      @Override public String getSessionId() { return "some-sessionId"; }
+      @Override public String getDeviceId() { return "some-deviceId"; }
+    };
+
+    UserEventPush oldPush = UserEventPush.newPush(
+        remoteClient,
+        LocalDateTime.parse("2014-05-06T09:34"),
+        "You logged in.",
+        userAgent, "http://callback.com/api.sent", null, map);
 
     String json = translator.toJson(oldPush);
     Assert.assertEquals(json, "{\n" +

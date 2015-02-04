@@ -2,14 +2,20 @@ package com.cosmicpush.plugins.gtalk;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.plugins.*;
+import com.cosmicpush.common.plugins.Plugin;
+import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.CpCouchServer;
-import com.cosmicpush.pub.common.*;
-import com.cosmicpush.pub.push.*;
-import java.io.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.push.GoogleTalkPush;
+import org.crazyyak.dev.common.Formats;
+import org.crazyyak.dev.common.IoUtils;
+
 import javax.ws.rs.core.MultivaluedMap;
-import org.crazyyak.dev.common.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetAddress;
 
 import static org.crazyyak.dev.common.StringUtils.*;
 
@@ -104,9 +110,9 @@ public class GoogleTalkPlugin implements Plugin {
 
     String when = Formats.defaultStamp(new java.util.Date());
     String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
-    GoogleTalkPush push = GoogleTalkPush.googleTalk(recipient, msg, null);
+    GoogleTalkPush push = GoogleTalkPush.newPush(recipient, msg, null, InetAddress.getLocalHost(), "gtalk-test:true");
 
-    ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
+    ApiRequest apiRequest = new ApiRequest(apiClient, push);
     context.getApiRequestStore().create(apiRequest);
 
     new GoogleTalkDelegate(context, account, apiClient, apiRequest, push, config).run();
@@ -131,7 +137,7 @@ public class GoogleTalkPlugin implements Plugin {
     String content = IoUtils.toString(stream);
 
     content = content.replace("${api-client-name}",   nullToString(apiClient.getClientName()));
-    content = content.replace("${push-server-base}",  nullToString(context.getServerRoot()));
+    content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
 
     content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));
     content = content.replace("${config-password}",   nullToString(config == null ? null : config.getPassword()));

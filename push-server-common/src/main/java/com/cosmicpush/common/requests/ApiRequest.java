@@ -7,17 +7,30 @@
 package com.cosmicpush.common.requests;
 
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushTraits;
+import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.internal.CpIdGenerator;
-import com.cosmicpush.pub.push.*;
-import com.couchace.annotations.*;
-import com.fasterxml.jackson.annotation.*;
-import java.net.InetAddress;
+import com.cosmicpush.pub.push.EmailPush;
+import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.UserEventPush;
+import com.couchace.annotations.CouchEntity;
+import com.couchace.annotations.CouchId;
+import com.couchace.annotations.CouchRevision;
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.crazyyak.dev.common.DateUtils;
+import org.crazyyak.dev.common.StringUtils;
+import org.crazyyak.dev.common.exceptions.ExceptionUtils;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import org.crazyyak.dev.common.*;
-import org.crazyyak.dev.common.exceptions.ExceptionUtils;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @CouchEntity(ApiRequestStore.API_REQUEST_DESIGN_NAME)
 public class ApiRequest implements Comparable<ApiRequest> {
@@ -31,8 +44,8 @@ public class ApiRequest implements Comparable<ApiRequest> {
   private final LocalDateTime createdAt;
   private RequestStatus requestStatus;
 
-  private final String ipAddress;
   private final String remoteHost;
+  private final String remoteAddress;
 
   private final PushType pushType;
 
@@ -51,8 +64,8 @@ public class ApiRequest implements Comparable<ApiRequest> {
       @JsonProperty("createdAt") LocalDateTime createdAt,
       @JsonProperty("requestStatus") RequestStatus requestStatus,
 
-      @JsonProperty("ipAddress") String ipAddress,
       @JsonProperty("remoteHost") String remoteHost,
+      @JsonProperty("remoteAddress") String remoteAddress,
 
       @JsonProperty("pushType") PushType pushType,
       @JsonProperty("notes") List<String> notes,
@@ -67,8 +80,8 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.createdAt = createdAt;
     this.requestStatus = requestStatus;
 
-    this.ipAddress = ipAddress;
     this.remoteHost = remoteHost;
+    this.remoteAddress = remoteAddress;
 
     this.pushType = pushType;
 
@@ -77,7 +90,7 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.push = push;
   }
 
-  public ApiRequest(ApiClient apiClient, Push push, InetAddress inetAddress) {
+  public ApiRequest(ApiClient apiClient, Push push) {
     this.apiRequestId = CpIdGenerator.newId();
     this.revision = null;
     this.apiClientId = apiClient.getApiClientId();
@@ -86,8 +99,9 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.createdAt = DateUtils.currentLocalDateTime();
     this.requestStatus = RequestStatus.pending;
 
-    this.ipAddress = inetAddress.getHostAddress();
-    this.remoteHost = inetAddress.getCanonicalHostName();
+    this.remoteHost = push.getRemoteHost();
+    this.remoteAddress = push.getRemoteAddress();
+
     this.pushType = push.getPushType();
 
     this.push = push;
@@ -111,12 +125,12 @@ public class ApiRequest implements Comparable<ApiRequest> {
     return apiClientName;
   }
 
-  public String getIpAddress() {
-    return ipAddress;
-  }
-
   public String getRemoteHost() {
     return remoteHost;
+  }
+
+  public String getRemoteAddress() {
+    return remoteAddress;
   }
 
   public PushType getPushType() {

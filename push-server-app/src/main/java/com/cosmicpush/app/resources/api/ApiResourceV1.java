@@ -12,11 +12,20 @@ import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.plugins.PushProcessor;
 import com.cosmicpush.pub.common.PushResponse;
-import com.cosmicpush.pub.push.*;
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
+import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.SmtpEmailPush;
+import com.cosmicpush.pub.push.UserEventPush;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @ApiAuthentication
 public class ApiResourceV1 {
@@ -80,11 +89,13 @@ public class ApiResourceV1 {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/email-to-sms")
-  public Response sendSmsViaEmail(SmsToEmailPush smsPush) {
-    SmtpEmailPush push = new SmtpEmailPush(
+  public Response sendSmsViaEmail(SmsToEmailPush smsPush) throws UnknownHostException {
+    SmtpEmailPush push = SmtpEmailPush.newPush(
         smsPush.getToAddress(), smsPush.getFromAddress(),
         smsPush.getEmailSubject(), smsPush.getHtmlContent(),
-        smsPush.getCallbackUrl(), smsPush.getTraits());
+        smsPush.getCallbackUrl(),
+        InetAddress.getByName(smsPush.getRemoteHost()),
+        smsPush.getTraits());
 
     PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);
     return Response.ok(response, MediaType.APPLICATION_JSON).build();

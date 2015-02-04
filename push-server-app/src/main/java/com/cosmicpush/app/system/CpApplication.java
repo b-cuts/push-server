@@ -12,15 +12,16 @@ import com.cosmicpush.app.jaxrs.security.SessionStore;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.PushType;
-import com.cosmicpush.pub.push.*;
-import java.util.concurrent.TimeUnit;
-import javax.ws.rs.ApplicationPath;
-
+import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.SmtpEmailPush;
 import org.apache.log4j.Level;
 import org.crazyyak.app.logging.LogUtils;
 import org.crazyyak.lib.jaxrs.YakJaxRsExceptionMapper;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+
+import javax.ws.rs.ApplicationPath;
+import java.util.concurrent.TimeUnit;
 
 @ApplicationPath("/")
 public class CpApplication extends ResourceConfig {
@@ -39,7 +40,7 @@ public class CpApplication extends ResourceConfig {
     executionContext.remove();
   }
 
-  public CpApplication() {
+  public CpApplication() throws Exception {
     LogUtils logUtils = new LogUtils();
     logUtils.initConsoleAppender(Level.WARN, LogUtils.DEFAULT_PATTERN);
 

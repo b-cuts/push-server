@@ -31,7 +31,7 @@ public class SesEmailPushTranslationTest {
   private JsonTranslator translator = gateway.getClient().getTranslator();
 
   public void translateEmailPush() throws Exception {
-    Push oldPush = new SesEmailPush("mickey.mouse@disney.com", "donald.duck@disney.com", "This is the subject", "<html><body><h1>Hello World</h1>So, how's it going?</body></html>", "http://callback.com/api.sent", "test:true", "type:email");
+    Push oldPush = SesEmailPush.newPush("mickey.mouse@disney.com", "donald.duck@disney.com", "This is the subject", "<html><body><h1>Hello World</h1>So, how's it going?</body></html>", "http://callback.com/api.sent", null, "test:true", "type:email");
     String json = translator.toJson(oldPush);
     Assert.assertEquals(json, "{\n" +
         "  \"pushType\" : \"ses-email\",\n" +

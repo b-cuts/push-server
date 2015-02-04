@@ -2,14 +2,22 @@ package com.cosmicpush.plugins.ses;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.plugins.*;
+import com.cosmicpush.common.plugins.Plugin;
+import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.CpCouchServer;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.SesEmailPush;
-import java.io.*;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.Formats;
+import org.crazyyak.dev.common.IoUtils;
+import org.crazyyak.dev.common.StringUtils;
+
 import javax.ws.rs.core.MultivaluedMap;
-import org.crazyyak.dev.common.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetAddress;
 
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
@@ -113,9 +121,9 @@ public class SesEmailPlugin implements Plugin {
     String when = Formats.defaultStamp(new java.util.Date());
     String msg = String.format("<html><head><title>Some Email</title></head><body style='background-color:red'><div style='background-color:#c0c0ff'><h1>Testing 123</h1>This is a test message from Cosmic Push sent at %s.</div></body>", when);
     String subject = "ASES test message from Cosmic Push";
-    SesEmailPush push = new SesEmailPush(toAddress, fromAddress, subject, msg, null, BeanUtils.toMap("aws-test:true"));
+    SesEmailPush push = SesEmailPush.newPush(toAddress, fromAddress, subject, msg, null, InetAddress.getLocalHost(), BeanUtils.toMap("ases-test:true"));
 
-    ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
+    ApiRequest apiRequest = new ApiRequest(apiClient, push);
     context.getApiRequestStore().create(apiRequest);
 
     new SesEmailDelegate(context, account, apiClient, apiRequest, push, config).run();
@@ -140,7 +148,7 @@ public class SesEmailPlugin implements Plugin {
     String content = IoUtils.toString(stream);
 
     content = content.replace("${api-client-name}",           nullToString(apiClient.getClientName()));
-    content = content.replace("${push-server-base}",          nullToString(context.getServerRoot()));
+    content = content.replace("${push-server-base}",          nullToString(context.getBaseURI()));
     content = content.replace("${config-access-key-id}",      nullToString(config == null ? null : config.getAccessKeyId()));
     content = content.replace("${config-secret-key}",         nullToString(config == null ? null : config.getSecretKey()));
     content = content.replace("${config-test-to-address}",    nullToString(config == null ? null : config.getTestToAddress()));

@@ -6,10 +6,12 @@
 package com.cosmicpush.app.resources;
 
 import com.cosmicpush.app.jaxrs.ExecutionContext;
-import com.cosmicpush.app.jaxrs.security.*;
-import com.cosmicpush.app.resources.api.*;
+import com.cosmicpush.app.jaxrs.security.Session;
+import com.cosmicpush.app.jaxrs.security.SessionStore;
+import com.cosmicpush.app.resources.api.ApiResourceV1;
+import com.cosmicpush.app.resources.api.ApiResourceV2;
 import com.cosmicpush.app.resources.manage.ManageResource;
-import com.cosmicpush.app.system.*;
+import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
@@ -17,16 +19,17 @@ import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.PushType;
-import java.io.IOException;
-import java.net.*;
-import java.util.*;
-import javax.servlet.http.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.crazyyak.dev.common.EqualsUtils;
+import org.crazyyak.dev.common.exceptions.ApiException;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.ws.rs.ext.Providers;
-import org.apache.commons.logging.*;
-import org.crazyyak.dev.common.EqualsUtils;
-import org.crazyyak.dev.common.exceptions.ApiException;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @Path("/")
 public class RootResource extends RootResourceSupport {
@@ -41,8 +44,6 @@ public class RootResource extends RootResourceSupport {
   public RootResource(@Context Providers providers,
                       @Context Application application,
                       @Context Request request,
-                      @Context HttpServletRequest servletRequest,
-                      @Context HttpServletResponse servletResponse,
                       @Context SecurityContext securityContext,
                       @Context UriInfo uriInfo,
                       @Context HttpHeaders headers) {
@@ -54,8 +55,6 @@ public class RootResource extends RootResourceSupport {
 
     context.setRequest(request);
     context.setProviders(providers);
-    context.setServletRequest(servletRequest);
-    context.setServletResponse(servletResponse);
     context.setUriInfo(uriInfo);
     context.setHeaders(headers);
     context.setSecurityContext(securityContext);

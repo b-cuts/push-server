@@ -16,36 +16,45 @@
 
 package com.cosmicpush.pub.push;
 
-import com.cosmicpush.pub.common.*;
-import com.cosmicpush.pub.internal.*;
-import com.fasterxml.jackson.annotation.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.internal.RequestErrors;
+import com.cosmicpush.pub.internal.ValidationUtils;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.ReflectUtils;
+import org.crazyyak.dev.common.StringUtils;
 
-import java.awt.*;
 import java.io.Serializable;
-import java.net.URI;
-import java.util.*;
-import org.crazyyak.dev.common.*;
+import java.net.InetAddress;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class NotificationPush implements Push, Serializable {
 
   private final String message;
   private final LinkedHashMap<String,String> traits = new LinkedHashMap<>();
 
+  private final String remoteHost;
+  private final String remoteAddress;
+
   private final String callbackUrl;
+
   private final PushType pushType = PushType.notification;
 
-  public NotificationPush(String message,
-                          String callbackUrl,
-                          String...traits) {
-    this(message, callbackUrl, BeanUtils.toMap(traits));
-  }
-
   @JsonCreator
-  public NotificationPush(@JsonProperty("message") String message,
+  private NotificationPush(@JsonProperty("message") String message,
                           @JsonProperty("callbackUrl") String callbackUrl,
+                          @JsonProperty("remoteHost") String remoteHost,
+                          @JsonProperty("remoteAddress") String remoteAddress,
                           @JsonProperty("traits") Map<String, String> traits) {
 
     this.message = (message == null) ? "No message" : message.trim();
+
+    this.remoteHost = remoteHost;
+    this.remoteAddress = remoteAddress;
+
     this.callbackUrl = callbackUrl;
 
     // Get a list of all the keys so that we can loop on the map
@@ -63,6 +72,16 @@ public class NotificationPush implements Push, Serializable {
   }
 
   @Override
+  public String getRemoteHost() {
+    return remoteHost;
+  }
+
+  @Override
+  public String getRemoteAddress() {
+    return remoteAddress;
+  }
+
+  @Override
   public String getCallbackUrl() {
     return callbackUrl;
   }
@@ -76,7 +95,8 @@ public class NotificationPush implements Push, Serializable {
     return message;
   }
 
-  public LinkedHashMap<String,String> getTraits() {
+  @Override
+  public Map<String,String> getTraits() {
     return traits;
   }
 
@@ -84,5 +104,27 @@ public class NotificationPush implements Push, Serializable {
   public RequestErrors validate(RequestErrors errors) {
     ValidationUtils.requireValue(errors, message, "The message must be specified.");
     return errors;
+  }
+
+  public static NotificationPush newPush(String message,
+                                         String callbackUrl,
+                                         InetAddress remoteAddress,
+                                         String...traits) {
+
+    return new NotificationPush(message, callbackUrl,
+                                remoteAddress.getCanonicalHostName(),
+                                remoteAddress.getHostAddress(),
+                                BeanUtils.toMap(traits));
+  }
+
+  public static NotificationPush newPush(String message,
+                                         String callbackUrl,
+                                         InetAddress remoteAddress,
+                                         Map<String,String> traits) {
+
+    return new NotificationPush(message, callbackUrl,
+                                remoteAddress.getCanonicalHostName(),
+                                remoteAddress.getHostAddress(),
+                                traits);
   }
 }

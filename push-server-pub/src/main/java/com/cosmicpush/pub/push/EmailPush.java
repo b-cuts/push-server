@@ -17,10 +17,14 @@
 package com.cosmicpush.pub.push;
 
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.internal.*;
+import com.cosmicpush.pub.internal.RequestErrors;
+import com.cosmicpush.pub.internal.ValidationUtils;
+import org.crazyyak.dev.common.ReflectUtils;
+import org.crazyyak.dev.common.StringUtils;
+
 import java.io.Serializable;
-import java.util.*;
-import org.crazyyak.dev.common.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public abstract class EmailPush implements Push, Serializable {
 
@@ -32,22 +36,18 @@ public abstract class EmailPush implements Push, Serializable {
 
   private final LinkedHashMap<String,String> traits = new LinkedHashMap<>();
 
+  private final String remoteHost;
+  private final String remoteAddress;
+
   private final String callbackUrl;
 
-  public EmailPush(String toAddress,
+  protected EmailPush(String toAddress,
                    String fromAddress,
                    String emailSubject,
                    String htmlContent,
                    String callbackUrl,
-                   String...traits) {
-    this(toAddress, fromAddress, emailSubject, htmlContent, callbackUrl, BeanUtils.toMap(traits));
-  }
-
-  public EmailPush(String toAddress,
-                   String fromAddress,
-                   String emailSubject,
-                   String htmlContent,
-                   String callbackUrl,
+                   String remoteHost,
+                   String remoteAddress,
                    Map<String, String> traits) {
 
     this.toAddress =   toAddress;
@@ -59,6 +59,9 @@ public abstract class EmailPush implements Push, Serializable {
     this.htmlContent = StringUtils.isNotBlank(content) ? content : htmlContent;
 
     this.callbackUrl = callbackUrl;
+
+    this.remoteHost = remoteHost;
+    this.remoteAddress = remoteAddress;
 
     // Get a list of all the keys so that we can loop on the map
     // and remove anything without an actual value (purge nulls).
@@ -72,6 +75,16 @@ public abstract class EmailPush implements Push, Serializable {
         this.traits.remove(key);
       }
     }
+  }
+
+  @Override
+  public String getRemoteHost() {
+    return remoteHost;
+  }
+
+  @Override
+  public String getRemoteAddress() {
+    return remoteAddress;
   }
 
   public String getFromAddress() {
@@ -95,6 +108,7 @@ public abstract class EmailPush implements Push, Serializable {
     return callbackUrl;
   }
 
+  @Override
   public Map<String, String> getTraits() {
     return traits;
   }

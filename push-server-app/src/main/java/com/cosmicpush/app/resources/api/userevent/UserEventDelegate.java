@@ -6,18 +6,27 @@
 
 package com.cosmicpush.app.resources.api.userevent;
 
-import com.cosmicpush.app.resources.manage.client.userevents.*;
+import com.cosmicpush.app.resources.manage.client.userevents.UserEventGroup;
+import com.cosmicpush.app.resources.manage.client.userevents.UserEventSession;
 import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.PluginManager;
-import com.cosmicpush.pub.common.*;
-import com.cosmicpush.pub.push.*;
+import com.cosmicpush.pub.common.RequestStatus;
+import com.cosmicpush.pub.common.UserAgent;
+import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.SesEmailPush;
+import com.cosmicpush.pub.push.SmtpEmailPush;
+import com.cosmicpush.pub.push.UserEventPush;
+import org.crazyyak.dev.common.StringUtils;
+import org.crazyyak.dev.common.exceptions.ApiException;
+import org.crazyyak.dev.common.exceptions.ExceptionUtils;
+
+import java.net.InetAddress;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import org.crazyyak.dev.common.*;
-import org.crazyyak.dev.common.exceptions.*;
 
 public class UserEventDelegate extends AbstractDelegate {
 
@@ -107,12 +116,13 @@ public class UserEventDelegate extends AbstractDelegate {
     story += "<legend>Events</legend><table>";
     for (ApiRequest request : session.getApiRequests()) {
       String msg = request.getUserEventPush().getMessage();
-      String time = Formats.defaultTime(request.getUserEventPush().getCreatedAt());
+
+      String time = request.getUserEventPush().getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_TIME);
       story += tableRow(time, msg);
     }
     story += "</table></fieldset>";
 
-    story += String.format("<p><a href='https://www.cosmicpush.com/manage/api-client/%s/user-events/%s'>More Information...</a></p>", apiClient.getClientName(), deviceId);
+    story += String.format("<p><a href='%s/manage/api-client/%s/user-events/%s'>More Information...</a></p>", context.getBaseURI(), apiClient.getClientName(), deviceId);
 
     story = String.format("<html>\n<body>\n%s</body>\n</html>\n", story);
 
@@ -145,10 +155,9 @@ public class UserEventDelegate extends AbstractDelegate {
 
   private void sendSmtpEmail(String userName, String htmlContent) {
     try {
-      SmtpEmailPush push = new SmtpEmailPush(
+      SmtpEmailPush push = SmtpEmailPush.newPush(
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
-          "New Story for " + userName, htmlContent, null
-      );
+          "New Story for " + userName, htmlContent, null, InetAddress.getLocalHost());
 
       context.getPushProcessor().execute(account, apiClient, push);
 
@@ -159,10 +168,9 @@ public class UserEventDelegate extends AbstractDelegate {
 
   private void sendSesEmail(String userName, String htmlContent) {
     try {
-      SesEmailPush push = new SesEmailPush(
+      SesEmailPush push = SesEmailPush.newPush(
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
-          "New Story for " + userName, htmlContent, null
-      );
+          "New Story for " + userName, htmlContent, null, InetAddress.getLocalHost());
 
       context.getPushProcessor().execute(account, apiClient, push);
 
@@ -175,7 +183,7 @@ public class UserEventDelegate extends AbstractDelegate {
     try {
       String id = apiRequest.getApiRequestId();
       String message = userEvent.getMessage() + " >> https://www.cosmicpush.com/q/" + id;
-      GoogleTalkPush push = new GoogleTalkPush("jacob.parr@gmail.com", message, null);
+      GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null, InetAddress.getLocalHost());
 
       context.getPushProcessor().execute(account, apiClient, push);
 

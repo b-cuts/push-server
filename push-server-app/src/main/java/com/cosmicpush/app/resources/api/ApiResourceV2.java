@@ -44,7 +44,7 @@ public class ApiResourceV2 {
 
     if (push instanceof UserEventPush) {
       UserEventPush userEventPush = (UserEventPush)push;
-      ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
+      ApiRequest apiRequest = new ApiRequest(apiClient, push);
       context.getApiRequestStore().create(apiRequest);
 
       new UserEventDelegate(context, account, apiClient, apiRequest, userEventPush).start();
@@ -52,7 +52,7 @@ public class ApiResourceV2 {
 
     } else if (push instanceof NotificationPush) {
       NotificationPush notificationPush = (NotificationPush)push;
-      ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
+      ApiRequest apiRequest = new ApiRequest(apiClient, push);
       context.getApiRequestStore().create(apiRequest);
 
       new NotificationDelegate(context, account, apiClient, apiRequest, notificationPush).start();

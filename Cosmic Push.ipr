@@ -19,6 +19,7 @@
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-pub/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-common:4.1.3" />
             <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
             <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-smtp-4.0.0.jar">
@@ -41,6 +42,8 @@
             </element>
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.0" />
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1" />
             <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
             <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.0" />
             <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.0" />
@@ -125,18 +128,15 @@
             <element id="library" level="project" name="Gradle: javax.servlet.jsp:jsp-api:2.2.1-b03" />
             <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
             <element id="library" level="project" name="Gradle: org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.1" />
             <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf:2.1.4.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/4.1.3/18f9f1098ffe766e5351822357b4bd106d06c8ce/yak-dev-common-4.1.3.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/4.1.1/9424d38220d198c0e9ada209ec370f4bacc2e49e/yak-dev-domain-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.1/d640847d130db93ab5130c89bc21f7e6602d70/yak-apis-google-2.2.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.1/cf096ff75949842a3e223f9c36925be858986e3f/yak-lib-jaxrs-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-servlet/4.1.1/436126764eb438b46ed9f1855e77750bbf6d7025/yak-lib-servlet-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/4.1.1/769f0a8e8271121556500a2b2f72b6f4a202860a/yak-lib-jaxrs-jackson-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.1/c5c34a6c7b4789b9194eed3d92b958194a425371/yak-app-common-1.0.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.1/4e5b45c67e2818e0e304d6afbca165122bc64663/yak-dev-jackson-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-testing/4.1.1/f5748e1cb2eb77d94abd55de6eefdbecacf316a5/yak-dev-testing-4.1.1.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -162,6 +162,7 @@
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-pub/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-common:4.1.3" />
             <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
             <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-smtp-4.0.0.jar">
@@ -184,6 +185,8 @@
             </element>
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.0" />
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.0" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1" />
             <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
             <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.0" />
             <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.0" />
@@ -268,18 +271,15 @@
             <element id="library" level="project" name="Gradle: javax.servlet.jsp:jsp-api:2.2.1-b03" />
             <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
             <element id="library" level="project" name="Gradle: org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.1" />
             <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf:2.1.4.RELEASE" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/4.1.3/18f9f1098ffe766e5351822357b4bd106d06c8ce/yak-dev-common-4.1.3.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/4.1.1/9424d38220d198c0e9ada209ec370f4bacc2e49e/yak-dev-domain-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.1/d640847d130db93ab5130c89bc21f7e6602d70/yak-apis-google-2.2.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.1/cf096ff75949842a3e223f9c36925be858986e3f/yak-lib-jaxrs-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-servlet/4.1.1/436126764eb438b46ed9f1855e77750bbf6d7025/yak-lib-servlet-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/4.1.1/769f0a8e8271121556500a2b2f72b6f4a202860a/yak-lib-jaxrs-jackson-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.1/c5c34a6c7b4789b9194eed3d92b958194a425371/yak-app-common-1.0.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.1/4e5b45c67e2818e0e304d6afbca165122bc64663/yak-dev-jackson-4.1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-testing/4.1.1/f5748e1cb2eb77d94abd55de6eefdbecacf316a5/yak-dev-testing-4.1.1.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -378,7 +378,11 @@
   </component>
   <component name="ProjectCodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
-      <value />
+      <value>
+        <XML>
+          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+        </XML>
+      </value>
     </option>
     <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
   </component>
@@ -646,7 +650,7 @@
       <method />
     </configuration>
     <configuration default="false" name="Cosmic Push" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:9010/push-server?username=admin&amp;password=admin" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:9010/push-server?username=test&amp;password=test" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Gradle : com.cosmicpush:push-server-app : push-server-app-4.0.0.war (exploded)">

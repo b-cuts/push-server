@@ -15,12 +15,18 @@ import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.PluginManager;
-import com.cosmicpush.pub.push.*;
-import java.net.URI;
-import java.util.*;
+import com.cosmicpush.pub.push.EmailPush;
+import com.cosmicpush.pub.push.SesEmailPush;
+import com.cosmicpush.pub.push.SmtpEmailPush;
+
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 @MngtAuthentication
 public class ManageEmailsResource {

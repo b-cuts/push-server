@@ -89,10 +89,12 @@
             <div th:include="/_fragments.html::traits-fragment" th:with="pushTraits=${apiRequest.pushTraits}"></div>
           </td>
           <td style="padding-right: 5px; border-left:0">
+<!--
             <th:block th:if="${apiRequest.userEventPush.traits.size() > 0}">
               <a id="'show-'+${apiRequest.key}" href="#" style="color: inherit; text-decoration: none"                th:onclick="'return showTraits(\''+${apiRequest.key}+'\')'">&uarr;&uarr;&uarr;</a>
               <a th:id="|hide-${apiRequest.key}|" href="#" style="color: inherit; text-decoration: none; display: none" th:onclick="|return hideTraits('${apiRequest.key}')|">&darr;&darr;&darr;</a>
             </th:block>
+-->
           </td>
         </tr>
       </tbody>

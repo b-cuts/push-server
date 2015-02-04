@@ -28,6 +28,9 @@ public interface Push extends ValidatableAction {
   @JsonIgnore
   PushType getPushType();
 
-  @JsonIgnore
   Map<String, String> getTraits();
+
+  String getRemoteHost();
+
+  String getRemoteAddress();
 }

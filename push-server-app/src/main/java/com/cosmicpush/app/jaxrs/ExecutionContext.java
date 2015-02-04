@@ -1,29 +1,34 @@
 package com.cosmicpush.app.jaxrs;
 
-import com.cosmicpush.app.jaxrs.security.*;
+import com.cosmicpush.app.jaxrs.security.Session;
+import com.cosmicpush.app.jaxrs.security.SessionStore;
 import com.cosmicpush.app.system.AppContext;
-import com.cosmicpush.common.accounts.*;
+import com.cosmicpush.common.accounts.Account;
+import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.plugins.*;
+import com.cosmicpush.common.plugins.PluginContext;
+import com.cosmicpush.common.plugins.PushProcessor;
 import com.cosmicpush.common.requests.ApiRequestStore;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
-import java.net.*;
-import javax.servlet.http.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.Providers;
+import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.json.JsonTranslator;
 
+import javax.ws.rs.core.*;
+import javax.ws.rs.ext.Providers;
+import java.net.InetAddress;
+import java.net.URI;
+import java.net.UnknownHostException;
+
 public class ExecutionContext implements PluginContext {
+
+  private final PushProcessor pushProcessor;
 
   private Session session;
   private Account account;
   private ApiClient apiClient;
 
-  public final PushProcessor pushProcessor;
-
-  private HttpServletRequest servletRequest;
-  private HttpServletResponse servletResponse;
+  InetAddress remoteAddress;
 
   private UriInfo uriInfo;
   private HttpHeaders headers;
@@ -63,22 +68,6 @@ public class ExecutionContext implements PluginContext {
     return apiClient;
   }
 
-  public HttpServletRequest getServletRequest() {
-    return servletRequest;
-  }
-
-  public void setServletRequest(HttpServletRequest servletRequest) {
-    this.servletRequest = servletRequest;
-  }
-
-  public HttpServletResponse getServletResponse() {
-    return servletResponse;
-  }
-
-  public void setServletResponse(HttpServletResponse servletResponse) {
-    this.servletResponse = servletResponse;
-  }
-
   public UriInfo getUriInfo() {
     return uriInfo;
   }
@@ -87,12 +76,32 @@ public class ExecutionContext implements PluginContext {
     this.uriInfo = uriInfo;
   }
 
+  @Override
+  public URI getBaseURI() {
+    String uri = uriInfo.getBaseUri().toASCIIString();
+    return URI.create(StringUtils.substring(uri, 0, -1));
+  }
+
   public HttpHeaders getHeaders() {
     return headers;
   }
 
   public void setHeaders(HttpHeaders headers) {
     this.headers = headers;
+
+    if (remoteAddress == null) {
+      remoteAddress = resolveFromHeaders(headers);
+    }
+  }
+
+  private InetAddress resolveFromHeaders(HttpHeaders headers) {
+    MultivaluedMap<String, String> values = headers.getRequestHeaders();
+    try {
+      return InetAddress.getByName("0.0.0.0");
+
+    } catch (UnknownHostException e) {
+      return null;
+    }
   }
 
   public SecurityContext getSecurityContext() {
@@ -135,32 +144,9 @@ public class ExecutionContext implements PluginContext {
     this.application = application;
   }
 
-  public boolean isLocalHost() {
-    String serverName = getServletRequest().getServerName();
-    return "localhost".equalsIgnoreCase(serverName) || "www.localhost".equalsIgnoreCase(serverName);
-  }
-
-  public boolean isNotLocalHost() {
-    return !isLocalHost();
-  }
-
   @Override
   public InetAddress getRemoteAddress() {
-    try {
-      String remoteAddress = getServletRequest().getRemoteAddr();
-      return InetAddress.getByName(remoteAddress);
-
-    } catch (UnknownHostException e) {
-      return null;
-    }
-  }
-
-  @Override
-  public String getServerRoot() {
-    String url = servletRequest.getRequestURL().toString();
-    String contextPath = servletRequest.getContextPath();
-    int pos = url.indexOf(contextPath) + contextPath.length();
-    return url.substring(0, pos);
+    return remoteAddress;
   }
 
   public AppContext getAppContext() {

@@ -37,7 +37,7 @@
 
     <traits-fragment>
       <!--@thymesVar id="pushTraits" type="com.cosmicpush.pub.common.PushTraits"-->
-      <th:block th:if="${pushTraits.traits.isEmpty()}">-none-</th:block>
+      <th:block th:if="${pushTraits.traits.isEmpty()}">Traits: -none-</th:block>
       <table class="traits-table" th:id="'traits-'+${pushTraits.apiRequestId}">
         <colgroup>
           <col style="width: 1em"/>

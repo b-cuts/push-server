@@ -19,6 +19,7 @@ import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.UserAgent;
+import com.cosmicpush.pub.internal.CpRemoteClient;
 import com.cosmicpush.pub.push.NotificationPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
 import com.cosmicpush.pub.push.UserEventPush;
@@ -31,6 +32,7 @@ import org.crazyyak.dev.common.DateUtils;
 import org.crazyyak.lib.couchace.DefaultCouchServer;
 
 import java.net.InetAddress;
+import java.net.URI;
 import java.net.UnknownHostException;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -109,8 +111,8 @@ public class TestFactory {
   public List<ApiRequest> createApiRequests_Notifications(ApiClient apiClient) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
-    Push push = new NotificationPush("Something bad happened", null, "test:true", "boy:girl", "color:red");
-    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+    Push push = NotificationPush.newPush("Something bad happened", null, InetAddress.getLocalHost(), "test:true", "boy:girl", "color:red");
+    requests.add(new ApiRequest(apiClient, push));
 
     return requests;
   }
@@ -118,8 +120,8 @@ public class TestFactory {
   public List<ApiRequest> createApiRequests_Emails(ApiClient apiClient) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
-    Push push = new SmtpEmailPush("to@example.com", "from@example.com", "This is the subject", "<html><body><h1>Hello World</h1></body></html>", null);
-    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+    Push push = SmtpEmailPush.newPush("to@example.com", "from@example.com", "This is the subject", "<html><body><h1>Hello World</h1></body></html>", null, InetAddress.getLocalHost());
+    requests.add(new ApiRequest(apiClient, push));
 
     return requests;
   }
@@ -128,19 +130,34 @@ public class TestFactory {
     List<ApiRequest> requests = new ArrayList<>();
 
     Push push;
-    UserAgent userAgent = new UserAgent("type","name","version","language","lang-tag","os-type","os-name","os-producer","os-producer-url", "os-version-name", "os-version-number", "linux-dist");
 
-    push = new UserEventPush("whatever", "session-id-123", "mickey.mouse", "127.0.0.1", DateUtils.currentLocalDateTime(), "I did this", BeanUtils.toMap("color:red","sex:boy"), userAgent, null);
-    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+    UserAgent userAgent = new UserAgent(
+        "agent-type", "agent-name", "agent-version", "agent-language", "agent-lang-tag",
+        "os-type", "os-name", "os=produceer", "osproducer-url", "os-version-name", "os-version-number",
+        "linux-distro"
+    );
 
-    push = new UserEventPush("whatever", "session-id-123", "mickey.mouse", "127.0.0.1", DateUtils.currentLocalDateTime(), "Then I did that", BeanUtils.toMap("color:red","sex:boy"), userAgent, null);
-    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+    CpRemoteClient remoteClient = new CpRemoteClient() {
+      @Override public String getUserName() { return "mickey"; }
+      @Override public String getIpAddress() { return "192.168.1.36"; }
+      @Override public String getSessionId() { return "some-sessionId"; }
+      @Override public String getDeviceId() { return "some-deviceId"; }
+    };
 
-    push = new UserEventPush("whatever", "session-id-123", "mickey.mouse", "127.0.0.1", DateUtils.currentLocalDateTime(), "I eventually got tired", BeanUtils.toMap("color:red","sex:boy"), userAgent, null);
-    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    String callBackUrl = "http://www.example.com/callback";
 
-    push = new UserEventPush("whatever", "session-id-123", "mickey.mouse", "127.0.0.1", DateUtils.currentLocalDateTime(), "So I took a nap", BeanUtils.toMap("color:red","sex:boy"), userAgent, null);
-    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I did this", userAgent, callBackUrl, remoteAddress, BeanUtils.toMap("color:red", "sex:boy"));
+    requests.add(new ApiRequest(apiClient, push));
+
+    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "Then I did that", userAgent, callBackUrl, remoteAddress, BeanUtils.toMap("color:red", "sex:boy"));
+    requests.add(new ApiRequest(apiClient, push));
+
+    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I eventually got tired", userAgent, callBackUrl, remoteAddress, BeanUtils.toMap("color:red", "sex:boy"));
+    requests.add(new ApiRequest(apiClient, push));
+
+    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "So I took a nap", userAgent, callBackUrl, remoteAddress, BeanUtils.toMap("color:red", "sex:boy"));
+    requests.add(new ApiRequest(apiClient, push));
 
     return requests;
   }
@@ -186,8 +203,8 @@ public class TestFactory {
       }
 
       @Override
-      public String getServerRoot() {
-        return "http://localhost:8080/push-server";
+      public URI getBaseURI() {
+        return URI.create("http://localhost:8080/push-server");
       }
 
       @Override
