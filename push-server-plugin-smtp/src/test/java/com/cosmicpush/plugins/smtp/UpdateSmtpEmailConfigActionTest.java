@@ -25,7 +25,7 @@ public class UpdateSmtpEmailConfigActionTest {
       apiClient,
       "mickey.mouse", "IamMickey",
       SmtpAuthType.ssl, "google.com", "99",
-      "test@example.com", "override@example.com");
+      "to@example.com", "from@example.com", "override@example.com");
 
 
     SmtpEmailConfig config = new SmtpEmailConfig();
@@ -36,11 +36,12 @@ public class UpdateSmtpEmailConfigActionTest {
     assertEquals(config.getUserName(), "mickey.mouse");
     assertEquals(config.getPassword(), "IamMickey");
 
-    assertEquals(config.getPortNumber(), "99");
-    assertEquals(config.getAuthType(), SmtpAuthType.ssl);
-    assertEquals(config.getServerName(), "google.com");
+    assertEquals(config.getPortNumber(),  "99");
+    assertEquals(config.getAuthType(),    SmtpAuthType.ssl);
+    assertEquals(config.getServerName(),  "google.com");
 
-    assertEquals(config.getTestAddress(), "test@example.com");
+    assertEquals(config.getTestToAddress(),     "to@example.com");
+    assertEquals(config.getTestFromAddress(),   "from@example.com");
     assertEquals(config.getRecipientOverride(), "override@example.com");
   }
 }

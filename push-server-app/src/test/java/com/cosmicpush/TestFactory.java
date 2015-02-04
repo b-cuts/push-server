@@ -18,20 +18,25 @@ import com.cosmicpush.common.requests.ApiRequestStore;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.push.EmailPush;
+import com.cosmicpush.pub.common.UserAgent;
+import com.cosmicpush.pub.push.NotificationPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
-import com.couchace.core.api.*;
-import com.couchace.core.api.request.*;
+import com.cosmicpush.pub.push.UserEventPush;
+import com.couchace.core.api.CouchDatabase;
+import com.couchace.core.api.CouchServer;
+import com.couchace.core.api.request.CouchFeature;
+import com.couchace.core.api.request.CouchFeatureSet;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.DateUtils;
+import org.crazyyak.lib.couchace.DefaultCouchServer;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.crazyyak.dev.common.DateUtils;
-import org.crazyyak.lib.couchace.DefaultCouchServer;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class TestFactory {
 
@@ -101,6 +106,15 @@ public class TestFactory {
     return account.add(createClient);
   }
 
+  public List<ApiRequest> createApiRequests_Notifications(ApiClient apiClient) throws Exception {
+    List<ApiRequest> requests = new ArrayList<>();
+
+    Push push = new NotificationPush("Something bad happened", null, "test:true", "boy:girl", "color:red");
+    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+
+    return requests;
+  }
+
   public List<ApiRequest> createApiRequests_Emails(ApiClient apiClient) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
@@ -110,12 +124,35 @@ public class TestFactory {
     return requests;
   }
 
-  public List<ApiRequest> createApiRequests(ApiClient apiClient) throws Exception {
+  public List<ApiRequest> createApiRequests_UserEvents(ApiClient apiClient) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
-    requests.addAll(createApiRequests_Emails(apiClient));
+    Push push;
+    UserAgent userAgent = new UserAgent("type","name","version","language","lang-tag","os-type","os-name","os-producer","os-producer-url", "os-version-name", "os-version-number", "linux-dist");
+
+    push = new UserEventPush("whatever", "session-id-123", "mickey.mouse", "127.0.0.1", DateUtils.currentLocalDateTime(), "I did this", BeanUtils.toMap("color:red","sex:boy"), userAgent, null);
+    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+
+    push = new UserEventPush("whatever", "session-id-123", "mickey.mouse", "127.0.0.1", DateUtils.currentLocalDateTime(), "Then I did that", BeanUtils.toMap("color:red","sex:boy"), userAgent, null);
+    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+
+    push = new UserEventPush("whatever", "session-id-123", "mickey.mouse", "127.0.0.1", DateUtils.currentLocalDateTime(), "I eventually got tired", BeanUtils.toMap("color:red","sex:boy"), userAgent, null);
+    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
+
+    push = new UserEventPush("whatever", "session-id-123", "mickey.mouse", "127.0.0.1", DateUtils.currentLocalDateTime(), "So I took a nap", BeanUtils.toMap("color:red","sex:boy"), userAgent, null);
+    requests.add(new ApiRequest(apiClient, push, InetAddress.getLocalHost()));
 
     return requests;
+  }
+
+  public List<ApiRequest> createApiRequests(ApiClient apiClient) throws Exception {
+    Set<ApiRequest> requests = new TreeSet<>();
+
+    requests.addAll(createApiRequests_Emails(apiClient));
+    requests.addAll(createApiRequests_Notifications(apiClient));
+    requests.addAll(createApiRequests_UserEvents(apiClient));
+
+    return new ArrayList<>(requests);
   }
 
   public PluginContext pluginContext(TestFactory testFactory) {

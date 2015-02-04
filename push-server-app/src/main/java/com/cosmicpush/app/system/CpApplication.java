@@ -26,6 +26,9 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class CpApplication extends ResourceConfig {
 
   private static final ThreadLocal<ExecutionContext> executionContext = new ThreadLocal<>();
+  public static boolean hasExecutionContext() {
+    return executionContext.get() != null;
+  }
   public static ExecutionContext getExecutionContext() {
     if (executionContext.get() == null) {
       executionContext.set(new ExecutionContext());
@@ -49,7 +52,6 @@ public class CpApplication extends ResourceConfig {
     property(AppContext.class.getName(), appContext);
 
     register(CpFilter.class);
-    register(CpReaderWriterProvider.class);
     register(MultiPartFeature.class);
     register(new CpReaderWriterProvider(appContext.getObjectMapper()));
 

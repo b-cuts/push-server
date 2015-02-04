@@ -19,7 +19,6 @@
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-pub/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-common:4.1.3" />
             <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
             <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-smtp-4.0.0.jar">
@@ -42,8 +41,6 @@
             </element>
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.0" />
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.0" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1" />
             <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
             <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.0" />
             <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.0" />
@@ -128,15 +125,18 @@
             <element id="library" level="project" name="Gradle: javax.servlet.jsp:jsp-api:2.2.1-b03" />
             <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
             <element id="library" level="project" name="Gradle: org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.1" />
             <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf:2.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/4.1.3/18f9f1098ffe766e5351822357b4bd106d06c8ce/yak-dev-common-4.1.3.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/4.1.1/9424d38220d198c0e9ada209ec370f4bacc2e49e/yak-dev-domain-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.1/d640847d130db93ab5130c89bc21f7e6602d70/yak-apis-google-2.2.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.1/cf096ff75949842a3e223f9c36925be858986e3f/yak-lib-jaxrs-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-servlet/4.1.1/436126764eb438b46ed9f1855e77750bbf6d7025/yak-lib-servlet-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/4.1.1/769f0a8e8271121556500a2b2f72b6f4a202860a/yak-lib-jaxrs-jackson-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.1/c5c34a6c7b4789b9194eed3d92b958194a425371/yak-app-common-1.0.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.1/4e5b45c67e2818e0e304d6afbca165122bc64663/yak-dev-jackson-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-testing/4.1.1/f5748e1cb2eb77d94abd55de6eefdbecacf316a5/yak-dev-testing-4.1.1.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -144,7 +144,7 @@
         </element>
       </root>
     </artifact>
-    <artifact type="exploded-war" name="Gradle : com.cosmicpush:push-server-app : push-server-app-4.0.0.war (exploded)">
+    <artifact type="exploded-war" build-on-make="true" name="Gradle : com.cosmicpush:push-server-app : push-server-app-4.0.0.war (exploded)">
       <output-path>$PROJECT_DIR$/build/artifacts/push-server-app/exploded/push-server-app-4.0.0.war</output-path>
       <properties id="gradle-properties">
         <options external-project-path="$PROJECT_DIR$/push-server-app" />
@@ -162,7 +162,6 @@
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-pub/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-common:4.1.3" />
             <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
             <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-smtp-4.0.0.jar">
@@ -185,8 +184,6 @@
             </element>
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.0" />
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.0" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1" />
             <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
             <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.0" />
             <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.0" />
@@ -271,15 +268,18 @@
             <element id="library" level="project" name="Gradle: javax.servlet.jsp:jsp-api:2.2.1-b03" />
             <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
             <element id="library" level="project" name="Gradle: org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.1" />
             <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf:2.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/4.1.3/18f9f1098ffe766e5351822357b4bd106d06c8ce/yak-dev-common-4.1.3.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/4.1.1/9424d38220d198c0e9ada209ec370f4bacc2e49e/yak-dev-domain-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.1/d640847d130db93ab5130c89bc21f7e6602d70/yak-apis-google-2.2.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.1/cf096ff75949842a3e223f9c36925be858986e3f/yak-lib-jaxrs-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-servlet/4.1.1/436126764eb438b46ed9f1855e77750bbf6d7025/yak-lib-servlet-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/4.1.1/769f0a8e8271121556500a2b2f72b6f4a202860a/yak-lib-jaxrs-jackson-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.1/c5c34a6c7b4789b9194eed3d92b958194a425371/yak-app-common-1.0.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.1/4e5b45c67e2818e0e304d6afbca165122bc64663/yak-dev-jackson-4.1.1.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-testing/4.1.1/f5748e1cb2eb77d94abd55de6eefdbecacf316a5/yak-dev-testing-4.1.1.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -376,12 +376,19 @@
     <option name="USE_PROJECT_PROFILE" value="true" />
     <version value="1.0" />
   </component>
+  <component name="ProjectCodeStyleSettingsManager">
+    <option name="PER_PROJECT_SETTINGS">
+      <value />
+    </option>
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
+  </component>
   <component name="ProjectDictionaryState">
     <dictionary name="jacobp">
       <words>
         <w>couchace</w>
         <w>databind</w>
         <w>doctype</w>
+        <w>smtp</w>
       </words>
     </dictionary>
   </component>
@@ -593,6 +600,45 @@
       <listeners />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="62128" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="IntegrationTestVersion2" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cosmicpush.v2.integration.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="push-server-v2-integration-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="" />
+      <option name="PACKAGE_NAME" value="com.cosmicpush.v2.integration.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v2.integration.tests.IntegrationTestVersion2" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54924" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -1399,19 +1445,23 @@
     <library name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/apis/yak-apis-google/2.2.1/yak-apis-google-2.2.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.1/d640847d130db93ab5130c89bc21f7e6602d70/yak-apis-google-2.2.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/apis/yak-apis-google/2.2.1/yak-apis-google-2.2.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.1/66f1e731cafe9b9d029b3a885e6797fab4ee049c/yak-apis-google-2.2.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.app:yak-app-common:1.0.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/1.0.1/yak-app-common-1.0.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.1/c5c34a6c7b4789b9194eed3d92b958194a425371/yak-app-common-1.0.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/1.0.1/yak-app-common-1.0.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.1/feeff05969f9f5efd425845fdd05d10362eb2b9e/yak-app-common-1.0.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-common:2.4.19">
@@ -1426,10 +1476,12 @@
     <library name="Gradle: org.crazyyak.dev:yak-dev-common:4.1.3">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/4.1.3/b82a3119fdb53673c2b92d00829a4968819d0ebd/yak-dev-common-4.1.3.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/4.1.3/18f9f1098ffe766e5351822357b4bd106d06c8ce/yak-dev-common-4.1.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/4.1.3/bf28cf33ac4f26f77aff17a4bf67c5aa6c96c0e8/yak-dev-common-4.1.3-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-common/4.1.3/fcaf5a7758c6441a3d5c98290663dba350c9c1f0/yak-dev-common-4.1.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-domain:2.4.19">
@@ -1444,10 +1496,12 @@
     <library name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-domain/4.1.1/yak-dev-domain-4.1.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/4.1.1/9424d38220d198c0e9ada209ec370f4bacc2e49e/yak-dev-domain-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-domain/4.1.1/yak-dev-domain-4.1.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/4.1.1/a199644fc4c85aaa6a3ac89ff79ef0322f39c8a9/yak-dev-domain-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-jackson:2.4.19">
@@ -1462,10 +1516,12 @@
     <library name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.1.1/yak-dev-jackson-4.1.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.1/4e5b45c67e2818e0e304d6afbca165122bc64663/yak-dev-jackson-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.1.1/yak-dev-jackson-4.1.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.1/e53a3e64c8b5db2c7ada706a7c236e427e80f5c2/yak-dev-jackson-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-jersey-client:2.4.19">
@@ -1480,10 +1536,12 @@
     <library name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-testing/4.1.1/yak-dev-testing-4.1.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-testing/4.1.1/f5748e1cb2eb77d94abd55de6eefdbecacf316a5/yak-dev-testing-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-testing/4.1.1/yak-dev-testing-4.1.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-testing/4.1.1/7852ce4c4e40a206e4bbebd4d70b14ec99f0a84/yak-dev-testing-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.2">
@@ -1498,28 +1556,34 @@
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/4.1.1/yak-lib-jaxrs-jackson-4.1.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/4.1.1/769f0a8e8271121556500a2b2f72b6f4a202860a/yak-lib-jaxrs-jackson-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/4.1.1/yak-lib-jaxrs-jackson-4.1.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/4.1.1/c0a747066899de85c815348805d85ad710ef2078/yak-lib-jaxrs-jackson-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs/4.1.1/yak-lib-jaxrs-4.1.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.1/cf096ff75949842a3e223f9c36925be858986e3f/yak-lib-jaxrs-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs/4.1.1/yak-lib-jaxrs-4.1.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.1/94a331ce8b3bf67e2fe9157a4ac53f48f93bee86/yak-lib-jaxrs-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-servlet/4.1.1/yak-lib-servlet-4.1.1.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-servlet/4.1.1/436126764eb438b46ed9f1855e77750bbf6d7025/yak-lib-servlet-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-servlet/4.1.1/yak-lib-servlet-4.1.1-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-servlet/4.1.1/636229b454a4c3a4327598b464877b2b2cfeac32/yak-lib-servlet-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.3.0-b05">

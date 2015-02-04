@@ -1,9 +1,11 @@
 package com.cosmicpush.app.jaxrs.security;
 
 import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.system.AppContext;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.*;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Arrays;
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
@@ -16,21 +18,24 @@ import javax.ws.rs.ext.Provider;
 @Priority(Priorities.AUTHENTICATION)
 public class SessionFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
+  private final AppContext appContext;
   private final Application application;
 
   public SessionFilter(@Context Application application) {
     this.application = application;
+    this.appContext = AppContext.from(application);
   }
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
     ExecutionContext execContext = CpApplication.getExecutionContext();
+    URI uri = requestContext.getUriInfo().getRequestUri();
 
     // Before anything, make sure the execution
     // context has a reference to the application.
     execContext.setApplication(application);
 
-    Session session = execContext.getAppContext().getSessionStore().getSession(requestContext);
+    Session session = appContext.getSessionStore().getSession(requestContext);
     CpApplication.getExecutionContext().setSession(session);
 
     AccountStore accountStore = execContext.getAccountStore();
@@ -43,10 +48,12 @@ public class SessionFilter implements ContainerRequestFilter, ContainerResponseF
 
   @Override
   public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
+    boolean x = CpApplication.hasExecutionContext();
     ExecutionContext execContext = CpApplication.getExecutionContext();
+    URI uri = requestContext.getUriInfo().getRequestUri();
 
     Session session = CpApplication.getExecutionContext().getSession();
-    boolean valid = execContext.getAppContext().getSessionStore().isValid(session);
+    boolean valid = appContext.getSessionStore().isValid(session);
 
     if (session != null && valid) {
       session.renew();

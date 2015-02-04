@@ -20,6 +20,8 @@ import com.cosmicpush.pub.common.*;
 import com.cosmicpush.pub.internal.*;
 import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Map;
 
 @JsonIgnoreProperties({"imType"})
 public class GoogleTalkPush implements Push, Serializable {
@@ -67,5 +69,10 @@ public class GoogleTalkPush implements Push, Serializable {
 
   public static GoogleTalkPush googleTalk(String recipient, String message, String callbackUrl) {
     return new GoogleTalkPush(recipient, message, callbackUrl);
+  }
+
+  @Override
+  public Map<String, String> getTraits() {
+    return Collections.emptyMap();
   }
 }

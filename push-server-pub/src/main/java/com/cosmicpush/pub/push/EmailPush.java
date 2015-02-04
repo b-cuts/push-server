@@ -95,7 +95,7 @@ public abstract class EmailPush implements Push, Serializable {
     return callbackUrl;
   }
 
-  public LinkedHashMap<String, String> getTraits() {
+  public Map<String, String> getTraits() {
     return traits;
   }
 

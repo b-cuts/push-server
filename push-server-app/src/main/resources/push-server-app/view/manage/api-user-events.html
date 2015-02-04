@@ -1,0 +1,74 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.userevents.UserEventGroupsModel"-->
+  <head th:include="/_fragments.html::header-fragment">
+    <title>Notifications</title>
+  </head>
+  <body>
+    <div style="position: absolute; top: 0; right: 10px;">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <h1 th:text="${it.apiClient.clientName}+': User Events'"></h1>
+    <div th:include="/_fragments.html::client-sub-menu-fragment"></div>
+
+    <table class="requests-table" style="width: 100%; margin-top: 1em">
+      <colgroup>
+        <col style="width:1em"/>
+        <col style="width:1em"/>
+        <col/>
+        <col style="width:1em"/>
+      </colgroup>
+
+      <th:block th:each="userEventGroups : ${it.collection}">
+        <th:block th:each="userEventGroup, statusA : ${userEventGroups}">
+          <thead th:if="${statusA.first}">
+            <tr>
+              <th>Updated</th>
+              <th>User Name</th>
+              <th colspan="2">
+                <div style="float:left">Messages (last 3)</div>
+                <div style="float:right" th:text="${#temporals.format(userEventGroup.updatedAt, 'EEEE, MMMM d, yyyy')}"></div>
+                <div style="clear: both;"></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td th:text="${#temporals.format(userEventGroup.updatedAt, 'hh:mm a')}"></td>
+              <td>
+                <c:choose>
+                  <c:when test="${userEventGroup.botName != null}">
+                    <div th:text="${userEventGroup.botName}"></div>
+                  </c:when>
+                  <c:otherwise>
+                    <div th:text="${userEventGroup.userName}"></div>
+                    <div th:text="${userEventGroup.ipAddress}"></div>
+                  </c:otherwise>
+                </c:choose>
+              </td>
+
+              <td style="border-right: 0; white-space: normal">
+                <div th:each="userEvent, statusB : ${userEventGroup.lastThree}">
+                  <th:block style="font-size:10px" th:if="${statusB.first and userEventGroup.lastThree.size > 1}">
+                    <span th:text="${userEventGroup.count}"></span>/<span th:text="${userEventGroup.sessions.size}"></span>...
+                  </th:block>
+                  <span th:text="${userEvent.userEventPush.message}"></span>
+                </div>
+              </td>
+
+              <td style="padding-right: 5px; border-left:0">
+                <a th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/user-events/${userEventGroup.deviceId}|" style="color: inherit">&gt;&gt;&gt;</a>
+              </td>
+            </tr>
+            <tr th:if="${statusA.last}">
+               <td style="border:0; background-color: transparent">&nbsp;</td>
+            </tr>
+          </tbody>
+        </th:block>
+      </th:block>
+
+    </table>
+  </body>
+</html>

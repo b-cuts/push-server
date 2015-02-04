@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.Provider;
 import org.crazyyak.lib.jaxrs.jackson.JacksonReaderWriterProvider;
 
-@Provider
 public class CpReaderWriterProvider extends JacksonReaderWriterProvider {
 
   public CpReaderWriterProvider(CpObjectMapper objectMapper) {

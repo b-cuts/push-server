@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
-  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.ApiClientRequestsModel"-->
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.notifications.ApiClientRequestsModel"-->
   <head th:include="/_fragments.html::header-fragment"></head>
   <body>
     <div style="position: absolute; top: 0; right: 10px;">
@@ -8,38 +8,47 @@
       <div>One API - Infinite Destinations</div>
     </div>
 
-    <h1 th:text="${it.apiClient.clientName}+': Requests'"></h1>
+    <h1 th:text="|${it.apiClient.clientName}: Notifications|"></h1>
     <div th:include="/_fragments.html::client-sub-menu-fragment"></div>
 
     <table class="requests-table" style="width: 100%; margin-top: 1em">
       <colgroup>
-        <col style="width:1em"/>
-        <col style="width:1em"/>
+        <col style="width:28px"/>
         <col style="width:1em"/>
         <col/>
+        <col style="width:1em"/>
       </colgroup>
       <thead>
         <tr>
           <th></th>
           <th>Sent</th>
-          <th>Type</th>
-          <th>Notes</th>
+          <th colspan="2">Details</th>
         </tr>
       </thead>
       <tbody>
-        <tr th:each="apiRequest : ${it.requests}">
+        <tr th:each="apiRequest : ${it.requests}" th:with="notification=${apiRequest.notificationPush}">
           <td style="padding:2px; text-align: center"
               th:include="/_fragments.html::req-icon-fragment"
               th:switch="${apiRequest.requestStatus.name}">
           </td>
+
           <td>
             <div th:text="${#temporals.format(apiRequest.createdAt, 'MM-dd-yy hh:mm a')}"></div>
             <div th:text="'from '+${apiRequest.remoteHost}"></div>
           </td>
-          <td th:text="${apiRequest.pushType.label}"></td>
-          <td>
-            <li th:each="note : ${apiRequest.notes}" th:text="${note}" style="white-space:pre-wrap"></li>
+
+          <td style="border-right: 0">
+
+            <div style="font-weight: bold; white-space: normal" th:text="${notification.message}"></div>
+
+            <div th:include="/_fragments.html::traits-fragment" th:with="pushTraits=${apiRequest.pushTraits}"></div>
+
           </td>
+
+          <td style="padding-right: 5px; border-left:0">
+            <a th:href="${contextRoot}+'/manage/api-client/'+${it.apiClient.clientName}+'/notifications/'+${apiRequest.apiRequestId}" style="color: inherit">&gt;&gt;&gt;</a>
+          </td>
+
         </tr>
       </tbody>
     </table>

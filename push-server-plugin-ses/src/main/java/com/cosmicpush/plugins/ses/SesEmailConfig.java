@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
 import org.crazyyak.dev.common.EqualsUtils;
 
+@JsonIgnoreProperties("testAddress")
 @CouchEntity(SesEmailConfigStore.SES_EMAIL_CONFIG_DESIGN_NAME)
 public class SesEmailConfig implements PluginConfig, Serializable {
 
@@ -24,7 +25,8 @@ public class SesEmailConfig implements PluginConfig, Serializable {
   private String accessKeyId;
   private String secretKey;
   private String recipientOverride;
-  private String testAddress;
+  private String testToAddress;
+  private String testFromAddress;
 
   public SesEmailConfig() {
   }
@@ -36,7 +38,8 @@ public class SesEmailConfig implements PluginConfig, Serializable {
                         @JsonProperty("accessKeyId") String accessKeyId,
                         @JsonProperty("secretKey") String secretKey,
                         @JsonProperty("recipientOverride") String recipientOverride,
-                        @JsonProperty("testAddress") String testAddress) {
+                        @JsonProperty("testToAddress") String testToAddress,
+                        @JsonProperty("testFromAddress") String testFromAddress) {
 
     this.configId = configId;
     this.revision = revision;
@@ -47,7 +50,8 @@ public class SesEmailConfig implements PluginConfig, Serializable {
     this.secretKey = secretKey;
 
     this.recipientOverride = recipientOverride;
-    this.testAddress = testAddress;
+    this.testToAddress = testToAddress;
+    this.testFromAddress = testFromAddress;
   }
 
   public SesEmailConfig apply(UpdateSesEmailConfigAction push) {
@@ -63,7 +67,8 @@ public class SesEmailConfig implements PluginConfig, Serializable {
 
     this.accessKeyId = push.getAccessKeyId();
     this.secretKey = push.getSecretKey();
-    this.testAddress = push.getTestAddress();
+    this.testToAddress = push.getTestToAddress();
+    this.testFromAddress = push.getTestFromAddress();
     this.recipientOverride = push.getRecipientOverride();
 
     return this;
@@ -95,7 +100,11 @@ public class SesEmailConfig implements PluginConfig, Serializable {
     return recipientOverride;
   }
 
-  public String getTestAddress() {
-    return testAddress;
+  public String getTestToAddress() {
+    return testToAddress;
+  }
+
+  public String getTestFromAddress() {
+    return testFromAddress;
   }
 }

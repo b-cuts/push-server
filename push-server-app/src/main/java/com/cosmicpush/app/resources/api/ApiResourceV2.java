@@ -25,14 +25,6 @@ public class ApiResourceV2 {
   public ApiResourceV2() throws Exception {
   }
 
-  private Account getAccount() {
-    return CpApplication.getExecutionContext().getAccount();
-  }
-
-  private ApiClient getApiClient() {
-    return CpApplication.getExecutionContext().getApiClient();
-  }
-
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
@@ -47,33 +39,34 @@ public class ApiResourceV2 {
   @Path("/pushes")
   public Response postPush(Push push) throws Exception {
 
-    SecurityContext securityContext = context.getSecurityContext();
+    Account account = context.getAccount();
+    ApiClient apiClient = context.getApiClient();
 
     if (push instanceof UserEventPush) {
       UserEventPush userEventPush = (UserEventPush)push;
-      ApiRequest apiRequest = new ApiRequest(getApiClient(), push, context.getRemoteAddress());
+      ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
       context.getApiRequestStore().create(apiRequest);
 
-      new UserEventDelegate(context, getAccount(), getApiClient(), apiRequest, userEventPush).start();
-      return buildResponse(apiRequest);
+      new UserEventDelegate(context, account, apiClient, apiRequest, userEventPush).start();
+      return buildResponse(apiRequest, account, apiClient);
 
     } else if (push instanceof NotificationPush) {
       NotificationPush notificationPush = (NotificationPush)push;
-      ApiRequest apiRequest = new ApiRequest(getApiClient(), push, context.getRemoteAddress());
+      ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
       context.getApiRequestStore().create(apiRequest);
 
-      new NotificationDelegate(context, getAccount(), getApiClient(), apiRequest, notificationPush).start();
-      return buildResponse(apiRequest);
+      new NotificationDelegate(context, account, apiClient, apiRequest, notificationPush).start();
+      return buildResponse(apiRequest, account, apiClient);
     }
 
-    PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);
+    PushResponse response = context.getPushProcessor().execute(account, apiClient, push);
     return Response.ok(response, MediaType.APPLICATION_JSON).build();
   }
 
-  private Response buildResponse(ApiRequest apiRequest) throws Exception {
+  private Response buildResponse(ApiRequest apiRequest, Account account, ApiClient apiClient) throws Exception {
     PushResponse response = new PushResponse(
-      getAccount().getAccountId(),
-      getApiClient().getApiClientId(),
+      account.getAccountId(),
+      apiClient.getApiClientId(),
       apiRequest.getApiRequestId(),
       apiRequest.getCreatedAt(),
       apiRequest.getRequestStatus(),

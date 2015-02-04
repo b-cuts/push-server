@@ -9,6 +9,7 @@ import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
@@ -46,7 +47,7 @@ public class ManageUserEventsResource {
     List<UserEventGroup> groups = toGroups(requests);
 
     UserEventGroupsModel model = new UserEventGroupsModel(account, apiClient, groups);
-    return new Thymeleaf("/manage/api-user-events.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EVENTS, model);
   }
 
   @GET
@@ -59,10 +60,10 @@ public class ManageUserEventsResource {
     List<UserEventSession> sessions = groups.get(0).getSessions();
 
     UserEventSessionsModel model = new UserEventSessionsModel(account, apiClient, deviceId, sessions);
-    return new Thymeleaf("/manage/api-user-event.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EVENT, model);
   }
 
-  private List<UserEventGroup> toGroups(List<ApiRequest> requests) {
+  public static List<UserEventGroup> toGroups(List<ApiRequest> requests) {
     Map<String,UserEventGroup> sessionsMap = new HashMap<String,UserEventGroup>();
     for (ApiRequest request : requests) {
       UserEventPush userEvent = request.getUserEventPush();

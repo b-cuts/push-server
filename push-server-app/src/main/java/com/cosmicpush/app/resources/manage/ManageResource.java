@@ -7,21 +7,21 @@
 package com.cosmicpush.app.resources.manage;
 
 import com.cosmicpush.app.jaxrs.ExecutionContext;
-import com.cosmicpush.app.jaxrs.security.*;
+import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.resources.manage.account.ManageAccountResource;
 import com.cosmicpush.app.resources.manage.client.ManageApiClientResource;
 import com.cosmicpush.app.system.CpApplication;
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.actions.CreateClientAction;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.PushType;
-import java.net.URI;
+import org.crazyyak.dev.common.exceptions.ApiException;
+import org.crazyyak.dev.common.net.InetMediaType;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import org.crazyyak.dev.common.exceptions.*;
-import org.crazyyak.dev.common.net.InetMediaType;
+import java.net.URI;
 
 @MngtAuthentication
 public class ManageResource {
@@ -29,10 +29,6 @@ public class ManageResource {
   private final ExecutionContext context = CpApplication.getExecutionContext();
 
   public ManageResource() {
-  }
-
-  private Account getAccount() {
-    return context.getAccount();
   }
 
   @GET
@@ -53,12 +49,12 @@ public class ManageResource {
 
   @Path("/account")
   public ManageAccountResource getManageAccountResource() {
-    return new ManageAccountResource(getAccount());
+    return new ManageAccountResource(context.getAccount());
   }
 
   @Path("/api-client/{clientName}")
   public ManageApiClientResource getManageApiClientResource(@PathParam("clientName") String clientName) throws Exception {
-    return new ManageApiClientResource(getAccount(), clientName);
+    return new ManageApiClientResource(clientName);
   }
 
   @POST
@@ -71,8 +67,8 @@ public class ManageResource {
 
     CreateClientAction action = new CreateClientAction(clientName, clientPassword);
 
-    ApiClient apiClient = getAccount().add(action);
-    context.getAccountStore().update(getAccount());
+    ApiClient apiClient = context.getAccount().add(action);
+    context.getAccountStore().update(context.getAccount());
 
     return Response.seeOther(new URI("manage/api-client/"+apiClient.getClientName())).build();
   }

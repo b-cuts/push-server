@@ -20,7 +20,7 @@ public class ExecutionContext implements PluginContext {
   private Account account;
   private ApiClient apiClient;
 
-  public PushProcessor pushProcessor;
+  public final PushProcessor pushProcessor;
 
   private HttpServletRequest servletRequest;
   private HttpServletResponse servletResponse;
@@ -36,6 +36,7 @@ public class ExecutionContext implements PluginContext {
   private Application application;
 
   public ExecutionContext() {
+    this.pushProcessor = new PushProcessor(this);
   }
 
   public void setSession(Session session) {
@@ -60,14 +61,6 @@ public class ExecutionContext implements PluginContext {
 
   public ApiClient getApiClient() {
     return apiClient;
-  }
-
-  public PushProcessor getPushProcessor() {
-    return pushProcessor;
-  }
-
-  public void setPushProcessor(PushProcessor pushProcessor) {
-    this.pushProcessor = pushProcessor;
   }
 
   public HttpServletRequest getServletRequest() {
@@ -151,6 +144,7 @@ public class ExecutionContext implements PluginContext {
     return !isLocalHost();
   }
 
+  @Override
   public InetAddress getRemoteAddress() {
     try {
       String remoteAddress = getServletRequest().getRemoteAddr();
@@ -161,6 +155,7 @@ public class ExecutionContext implements PluginContext {
     }
   }
 
+  @Override
   public String getServerRoot() {
     String url = servletRequest.getRequestURL().toString();
     String contextPath = servletRequest.getContextPath();
@@ -174,6 +169,11 @@ public class ExecutionContext implements PluginContext {
 
   public SessionStore getSessionStore() {
     return getAppContext().getSessionStore();
+  }
+
+  @Override
+  public PushProcessor getPushProcessor() {
+    return pushProcessor;
   }
 
   @Override

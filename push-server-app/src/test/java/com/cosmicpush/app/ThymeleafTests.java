@@ -7,6 +7,8 @@ import com.cosmicpush.app.resources.manage.client.ApiClientRequestsModel;
 import com.cosmicpush.app.resources.manage.client.ManageApiClientModel;
 import com.cosmicpush.app.resources.manage.client.emails.EmailModel;
 import com.cosmicpush.app.resources.manage.client.emails.EmailsModel;
+import com.cosmicpush.app.resources.manage.client.notifications.ApiClientNotificationModel;
+import com.cosmicpush.app.resources.manage.client.userevents.*;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafMessageBodyWriter;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
@@ -15,6 +17,7 @@ import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.pub.push.EmailPush;
+import com.cosmicpush.pub.push.NotificationPush;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -111,6 +114,64 @@ public class ThymeleafTests {
     EmailModel model = new EmailModel(account, apiClient, request, email);
 
     Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAIL, model);
+    msgBodyWriter.writeTo(leaf, writer);
+    String content = writer.toString();
+    assertNotNull(content);
+  }
+
+  public void testManageApiNotification() throws Exception {
+
+    Account account = testFactory.createAccount();
+    ApiClient apiClient = testFactory.createApiClient(account);
+    ApiRequest request = testFactory.createApiRequests_Notifications(apiClient).get(0);
+    NotificationPush notification = request.getNotificationPush();
+    ApiClientNotificationModel model = new ApiClientNotificationModel(account, apiClient, request, notification);
+
+    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
+    msgBodyWriter.writeTo(leaf, writer);
+    String content = writer.toString();
+    assertNotNull(content);
+  }
+
+  public void testManageApiNotifications() throws Exception {
+
+    Account account = testFactory.createAccount();
+    ApiClient apiClient = testFactory.createApiClient(account);
+    List<ApiRequest> requests = testFactory.createApiRequests_Notifications(apiClient);
+    ApiClientRequestsModel model = new ApiClientRequestsModel(account, apiClient, requests);
+
+    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
+    msgBodyWriter.writeTo(leaf, writer);
+    String content = writer.toString();
+    assertNotNull(content);
+  }
+
+  public void testManageUserEvent() throws Exception {
+
+    Account account = testFactory.createAccount();
+    ApiClient apiClient = testFactory.createApiClient(account);
+    List<ApiRequest> requests = testFactory.createApiRequests_UserEvents(apiClient);
+    List<UserEventGroup> groups = ManageUserEventsResource.toGroups(requests);
+    List<UserEventSession> sessions = groups.get(0).getSessions();
+
+    UserEventSessionsModel model = new UserEventSessionsModel(account, apiClient, "whatever", sessions);
+
+    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EVENT, model);
+    msgBodyWriter.writeTo(leaf, writer);
+    String content = writer.toString();
+    assertNotNull(content);
+  }
+
+  public void testManageUserEvents() throws Exception {
+
+    Account account = testFactory.createAccount();
+    ApiClient apiClient = testFactory.createApiClient(account);
+    List<ApiRequest> requests = testFactory.createApiRequests_UserEvents(apiClient);
+    List<UserEventGroup> groups = ManageUserEventsResource.toGroups(requests);
+
+    UserEventGroupsModel model = new UserEventGroupsModel(account, apiClient, groups);
+
+    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EVENTS, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);

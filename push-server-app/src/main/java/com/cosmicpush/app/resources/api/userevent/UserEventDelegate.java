@@ -146,7 +146,7 @@ public class UserEventDelegate extends AbstractDelegate {
   private void sendSmtpEmail(String userName, String htmlContent) {
     try {
       SmtpEmailPush push = new SmtpEmailPush(
-          "Jacob Parr <me@jacobparr.com>", "Munchie Monster Bot <bot@munchiemonster.com>",
+          "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
           "New Story for " + userName, htmlContent, null
       );
 
@@ -160,7 +160,7 @@ public class UserEventDelegate extends AbstractDelegate {
   private void sendSesEmail(String userName, String htmlContent) {
     try {
       SesEmailPush push = new SesEmailPush(
-          "Jacob Parr <me@jacobparr.com>", "Munchie Monster Bot <bot@munchiemonster.com>",
+          "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
           "New Story for " + userName, htmlContent, null
       );
 

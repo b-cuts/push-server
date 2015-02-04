@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.emails.EmailsModel"-->
   <head th:include="/_fragments.html::header-fragment"></head>
   <body>
     <div style="position: absolute; top: 0; right: 10px;">
@@ -7,7 +8,7 @@
       <div>One API - Infinite Destinations</div>
     </div>
 
-    <h1 th:text="${it.apiClient.clientName}+': Emails'"></h1>
+    <h1 th:text="|${it.apiClient.clientName}: Emails|"></h1>
     <div th:include="/_fragments.html::client-sub-menu-fragment"></div>
 
     <table class="requests-table" style="width: 100%; margin-top: 1em">

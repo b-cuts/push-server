@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
 
   <head th:include="/_fragments.html::header-fragment"></head>
@@ -10,12 +10,13 @@
       <div>One API - Infinite Destinations</div>
     </div>
 
-    <div th:if="${it.account} != null">
+    <!--@thymesVar id="it" type="com.cosmicpush.app.resources.RootResource.WelcomeModel"-->
+    <div th:if="${it.account != null}">
       <div style="float: right">
         <a th:href="${contextRoot}+'/manage/account'">My Account</a>
       </div>
     </div>
-    <div th:if="${it.account} == null">
+    <div th:if="${it.account == null}">
       <form name='f' th:action="${contextRoot}+'/sign-in'" method='POST' style="float: right" enctype="application/x-www-form-urlencoded">
 
         <table>

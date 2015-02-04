@@ -12,6 +12,7 @@ import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.plugins.PushProcessor;
 import com.cosmicpush.pub.common.PushResponse;
 import com.cosmicpush.pub.push.*;
 import javax.ws.rs.*;

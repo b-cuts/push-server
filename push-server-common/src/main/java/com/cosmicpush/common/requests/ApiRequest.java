@@ -26,6 +26,7 @@ public class ApiRequest implements Comparable<ApiRequest> {
   private final String revision;
 
   private final String apiClientId;
+  private final String apiClientName;
 
   private final LocalDateTime createdAt;
   private RequestStatus requestStatus;
@@ -45,6 +46,7 @@ public class ApiRequest implements Comparable<ApiRequest> {
       @JacksonInject("revision") String revision,
 
       @JsonProperty("apiClientId") String apiClientId,
+      @JsonProperty("apiClientName") String apiClientName,
 
       @JsonProperty("createdAt") LocalDateTime createdAt,
       @JsonProperty("requestStatus") RequestStatus requestStatus,
@@ -60,6 +62,7 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.revision = revision;
 
     this.apiClientId = apiClientId;
+    this.apiClientName = apiClientName;
 
     this.createdAt = createdAt;
     this.requestStatus = requestStatus;
@@ -78,8 +81,9 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.apiRequestId = CpIdGenerator.newId();
     this.revision = null;
     this.apiClientId = apiClient.getApiClientId();
+    this.apiClientName = apiClient.getClientName();
 
-    this.createdAt = DateUtils.currentDateTime();
+    this.createdAt = DateUtils.currentLocalDateTime();
     this.requestStatus = RequestStatus.pending;
 
     this.ipAddress = inetAddress.getHostAddress();
@@ -101,6 +105,10 @@ public class ApiRequest implements Comparable<ApiRequest> {
 
   public String getApiClientId() {
     return apiClientId;
+  }
+
+  public String getApiClientName() {
+    return apiClientName;
   }
 
   public String getIpAddress() {
@@ -238,5 +246,10 @@ public class ApiRequest implements Comparable<ApiRequest> {
 
   public String toString() {
     return push.getPushType().getLabel() + ": " + push.toString();
+  }
+
+  @JsonIgnore
+  public PushTraits getPushTraits() {
+    return new PushTraits(apiRequestId, apiClientName, push.getTraits());
   }
 }

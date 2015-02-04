@@ -23,7 +23,8 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
   private final String portNumber;
 
   private final String recipientOverride;
-  private String testAddress;
+  private String testToAddress;
+  private String testFromAddress;
 
   public UpdateSmtpEmailConfigAction(ApiClient apiClient, MultivaluedMap<String, String> formParams) {
 
@@ -36,11 +37,12 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
     this.serverName = formParams.getFirst("serverName");
     this.portNumber = formParams.getFirst("portNumber");
 
-    this.testAddress = formParams.getFirst("testAddress");
+    this.testToAddress = formParams.getFirst("testToAddress");
+    this.testFromAddress = formParams.getFirst("testFromAddress");
     this.recipientOverride = formParams.getFirst("recipientOverride");
   }
 
-  public UpdateSmtpEmailConfigAction(ApiClient apiClient, String userName, String password, SmtpAuthType authType, String serverName, String portNumber, String testAddress, String recipientOverride) {
+  public UpdateSmtpEmailConfigAction(ApiClient apiClient, String userName, String password, SmtpAuthType authType, String serverName, String portNumber, String testToAddress, String testFromAddress, String recipientOverride) {
 
     this.apiClient = apiClient;
 
@@ -51,7 +53,8 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
     this.serverName = serverName;
     this.portNumber = portNumber;
 
-    this.testAddress = testAddress;
+    this.testToAddress = testToAddress;
+    this.testFromAddress = testFromAddress;
     this.recipientOverride = recipientOverride;
   }
 
@@ -99,7 +102,11 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
     return recipientOverride;
   }
 
-  public String getTestAddress() {
-    return testAddress;
+  public String getTestToAddress() {
+    return testToAddress;
+  }
+
+  public String getTestFromAddress() {
+    return testFromAddress;
   }
 }

@@ -7,11 +7,19 @@ public class ThymeleafViewFactory {
 
   public static final String WELCOME = validate("/welcome.html");
 
-  public static final String MANAGE_API_REQUESTS =  validate("/manage/api-requests.html");
-  public static final String MANAGE_API_CLIENT =    validate("/manage/api-client.html");
-  public static final String MANAGE_ACCOUNT =       validate("/manage/account.html");
-  public static final String MANAGE_API_EMAIL =     validate("/manage/api-email.html");
-  public static final String MANAGE_API_EMAILS =    validate("/manage/api-emails.html");
+  public static final String MANAGE_ACCOUNT =           validate("/manage/account.html");
+  public static final String MANAGE_API_CLIENT =        validate("/manage/api-client.html");
+
+  public static final String MANAGE_API_REQUESTS =      validate("/manage/api-requests.html");
+
+  public static final String MANAGE_API_EMAIL =         validate("/manage/api-email.html");
+  public static final String MANAGE_API_EMAILS =        validate("/manage/api-emails.html");
+
+  public static final String MANAGE_API_NOTIFICATION =  validate("/manage/api-notification.html");
+  public static final String MANAGE_API_NOTIFICATIONS = validate("/manage/api-notifications.html");
+
+  public static final String MANAGE_API_EVENT =        validate("/manage/api-user-event.html");
+  public static final String MANAGE_API_EVENTS =        validate("/manage/api-user-events.html");
 
   private static String validate(String view) {
     String resource = ROOT+view;

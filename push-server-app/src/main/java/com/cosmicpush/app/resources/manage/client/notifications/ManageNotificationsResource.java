@@ -11,6 +11,7 @@ import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.resources.manage.client.ApiClientRequestsModel;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
+import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
@@ -43,7 +44,7 @@ public class ManageNotificationsResource {
     Collections.reverse(requests);
 
     ApiClientRequestsModel model = new ApiClientRequestsModel(account, apiClient, requests);
-    return new Thymeleaf("/manage/api-notifications.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
   }
 
   @GET
@@ -55,6 +56,6 @@ public class ManageNotificationsResource {
     NotificationPush notification = request.getNotificationPush();
 
     ApiClientNotificationModel model = new ApiClientNotificationModel(account, apiClient, request, notification);
-    return new Thymeleaf("/manage/api-notification.html", model);
+    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
   }
 }
