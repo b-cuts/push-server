@@ -64,6 +64,12 @@ subprojects {
     jerseyVersion =       "2.15"
   }
 
+  repositories {
+    flatDir {
+      dirs '../libs'
+    }
+  }
+
   configurations.all({
     resolutionStrategy({
       failOnVersionConflict()

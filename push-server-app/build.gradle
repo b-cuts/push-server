@@ -29,6 +29,7 @@ project(":push-server-app") {
     compile project(":push-server-plugin-ses")
     compile project(":push-server-plugin-smtp")
     compile project(":push-server-plugin-gtalk")
+    compile project(":push-server-plugin-ocs-message")
 
     compile ("org.crazyyak.dev:yak-dev-common:$yakDevCommon")
     compile ("org.crazyyak.dev:yak-dev-domain:$yakDevDomain")

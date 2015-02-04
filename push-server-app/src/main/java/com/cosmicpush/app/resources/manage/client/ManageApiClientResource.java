@@ -18,13 +18,18 @@ import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.actions.UpdateClientAction;
 import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.requests.*;
+import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.QueryResult;
 import com.cosmicpush.pub.common.PushType;
-import java.net.URI;
-import java.util.*;
+import org.crazyyak.dev.common.exceptions.ApiException;
+
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import org.crazyyak.dev.common.exceptions.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @MngtAuthentication
 public class ManageApiClientResource {
@@ -91,7 +96,7 @@ public class ManageApiClientResource {
 
   @Path("/ocs-message")
   public ManageOcsMessageResource getManageOcsMessagesResource() throws Exception {
-    return new ManageOcsMessageResource(config, account, apiClient);
+    return null; // new ManageOcsMessageResource(config, account, apiClient);
   }
 
   @POST

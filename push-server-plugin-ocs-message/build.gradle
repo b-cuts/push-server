@@ -11,12 +11,6 @@ project(":push-server-plugin-ocs-message") {
 
     apply from: "../build-config-deployer.gradle"
 
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
-
     dependencies {
         compile("javax.sip:jain-sip-api:1.2")
         compile("javax.sip:jain-sip-ri:1.2.149")

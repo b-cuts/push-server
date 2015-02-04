@@ -98,9 +98,9 @@ public class OcsMessagePlugin implements Plugin {
 
     String when = Formats.defaultStamp(new java.util.Date());
     String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
-    OcsPush push = new OcsPush(recipient, msg, null);
+    OcsPush push = OcsPush.newPush(recipient, msg, null);
 
-    ApiRequest apiRequest = new ApiRequest(apiClient, push, context.getRemoteAddress());
+    ApiRequest apiRequest = new ApiRequest(apiClient, push);
     context.getApiRequestStore().create(apiRequest);
 
     new OcsMessageDelegate(context, account, apiClient, apiRequest, push, config).run();
@@ -112,7 +112,7 @@ public class OcsMessagePlugin implements Plugin {
 
   @Override
   public byte[] getIcon() throws IOException {
-    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/ocs/icon.png");
+    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/ocs/message/icon.png");
     return IoUtils.toBytes(stream);
   }
 
@@ -121,11 +121,11 @@ public class OcsMessagePlugin implements Plugin {
 
     OcsMessageConfig config = getConfig(context.getCouchServer(), apiClient);
 
-    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/ocs/admin.html");
+    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/ocs/message/admin.html");
     String content = IoUtils.toString(stream);
 
     content = content.replace("${api-client-name}",   nullToString(apiClient.getClientName()));
-    content = content.replace("${push-server-base}",  nullToString(context.getServerRoot()));
+    content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
 
     content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));
     content = content.replace("${config-password}",   nullToString(config == null ? null : config.getPassword()));

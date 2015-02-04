@@ -1,6 +1,7 @@
 package com.cosmicpush.plugins.ocs;
 
 import com.cosmicpush.common.plugins.PluginConfig;
+import com.couchace.annotations.CouchEntity;
 import com.couchace.annotations.CouchId;
 import com.couchace.annotations.CouchRevision;
 import com.fasterxml.jackson.annotation.JacksonInject;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
+@CouchEntity(OcsMessageConfigStore.OCS_CONFIG_DESIGN_NAME)
 public class OcsMessageConfig implements PluginConfig, Serializable {
 
   private String configId;
