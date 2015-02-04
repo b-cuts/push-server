@@ -24,7 +24,6 @@ import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.ApiException;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 
-import java.net.InetAddress;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -157,7 +156,7 @@ public class UserEventDelegate extends AbstractDelegate {
     try {
       SmtpEmailPush push = SmtpEmailPush.newPush(
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
-          "New Story for " + userName, htmlContent, null, InetAddress.getLocalHost());
+          "New Story for " + userName, htmlContent, null);
 
       context.getPushProcessor().execute(account, apiClient, push);
 
@@ -170,7 +169,7 @@ public class UserEventDelegate extends AbstractDelegate {
     try {
       SesEmailPush push = SesEmailPush.newPush(
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
-          "New Story for " + userName, htmlContent, null, InetAddress.getLocalHost());
+          "New Story for " + userName, htmlContent, null);
 
       context.getPushProcessor().execute(account, apiClient, push);
 
@@ -183,7 +182,7 @@ public class UserEventDelegate extends AbstractDelegate {
     try {
       String id = apiRequest.getApiRequestId();
       String message = userEvent.getMessage() + " >> https://www.cosmicpush.com/q/" + id;
-      GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null, InetAddress.getLocalHost());
+      GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
 
       context.getPushProcessor().execute(account, apiClient, push);
 

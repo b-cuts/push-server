@@ -111,7 +111,7 @@ public class TestFactory {
   public List<ApiRequest> createApiRequests_Notifications(ApiClient apiClient) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
-    Push push = NotificationPush.newPush("Something bad happened", null, InetAddress.getLocalHost(), "test:true", "boy:girl", "color:red");
+    Push push = NotificationPush.newPush("Something bad happened", null, "test:true", "boy:girl", "color:red");
     requests.add(new ApiRequest(apiClient, push));
 
     return requests;
@@ -120,7 +120,7 @@ public class TestFactory {
   public List<ApiRequest> createApiRequests_Emails(ApiClient apiClient) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
-    Push push = SmtpEmailPush.newPush("to@example.com", "from@example.com", "This is the subject", "<html><body><h1>Hello World</h1></body></html>", null, InetAddress.getLocalHost());
+    Push push = SmtpEmailPush.newPush("to@example.com", "from@example.com", "This is the subject", "<html><body><h1>Hello World</h1></body></html>", null);
     requests.add(new ApiRequest(apiClient, push));
 
     return requests;
@@ -144,19 +144,18 @@ public class TestFactory {
       @Override public String getDeviceId() { return "some-deviceId"; }
     };
 
-    InetAddress remoteAddress = InetAddress.getLocalHost();
     String callBackUrl = "http://www.example.com/callback";
 
-    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I did this", userAgent, callBackUrl, remoteAddress, BeanUtils.toMap("color:red", "sex:boy"));
+    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I did this", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
     requests.add(new ApiRequest(apiClient, push));
 
-    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "Then I did that", userAgent, callBackUrl, remoteAddress, BeanUtils.toMap("color:red", "sex:boy"));
+    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "Then I did that", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
     requests.add(new ApiRequest(apiClient, push));
 
-    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I eventually got tired", userAgent, callBackUrl, remoteAddress, BeanUtils.toMap("color:red", "sex:boy"));
+    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I eventually got tired", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
     requests.add(new ApiRequest(apiClient, push));
 
-    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "So I took a nap", userAgent, callBackUrl, remoteAddress, BeanUtils.toMap("color:red", "sex:boy"));
+    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "So I took a nap", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
     requests.add(new ApiRequest(apiClient, push));
 
     return requests;

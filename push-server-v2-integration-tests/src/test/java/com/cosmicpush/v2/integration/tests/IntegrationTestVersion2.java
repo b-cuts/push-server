@@ -25,14 +25,11 @@ import static org.testng.Assert.assertNotNull;
 @Test
 public class IntegrationTestVersion2 {
 
-  private InetAddress remoteAddress;
   private LiveCosmicPushGateway gateway;
   private String callbackUrl = null;
 
   @BeforeClass
   public void beforeClass() throws Exception {
-    remoteAddress = InetAddress.getLocalHost();
-
     String url = "http://localhost:9010/push-server/api/v2";
     String username = EnvUtils.requireProperty("PUSH_TEST_USERNAME");
     String password = EnvUtils.requireProperty("PUSH_TEST_PASSWORD");
@@ -40,22 +37,22 @@ public class IntegrationTestVersion2 {
   }
 
   public void testNotificationPush() throws Exception {
-    NotificationPush action = NotificationPush.newPush("Notice what I'm doing?", callbackUrl, remoteAddress, BeanUtils.toMap("unit-test:true"));
+    NotificationPush action = NotificationPush.newPush("Notice what I'm doing?", callbackUrl, BeanUtils.toMap("unit-test:true"));
     PushResponse response = gateway.push(action);
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
 
-    action = NotificationPush.newPush("Now I want to share some info", callbackUrl, remoteAddress, BeanUtils.toMap("day:Sunday", "size:Large"));
+    action = NotificationPush.newPush("Now I want to share some info", callbackUrl, BeanUtils.toMap("day:Sunday", "size:Large"));
     response = gateway.push(action);
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
 
     String msg = ExceptionUtils.toString(new IllegalArgumentException("I think I might have broken it!"));
-    action = NotificationPush.newPush("Something really bad happened here!", callbackUrl, remoteAddress, BeanUtils.toMap("priority:Urgent", "exception:"+msg));
+    action = NotificationPush.newPush("Something really bad happened here!", callbackUrl, BeanUtils.toMap("priority:Urgent", "exception:"+msg));
     response = gateway.push(action);
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
   }
 
   public void testGoogleTalkPush() throws Exception {
-    GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", "Are you there?", callbackUrl, remoteAddress, BeanUtils.toMap("color:red", "test:yes"));
+    GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", "Are you there?", callbackUrl, BeanUtils.toMap("color:red", "test:yes"));
     PushResponse response = gateway.push(push);
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
   }
@@ -65,8 +62,7 @@ public class IntegrationTestVersion2 {
         "Test Parr <test@jacobparr.com>",
         "Bot Parr <bot@jacobparr.com>",
         "This is a test", "<html><body>Are you there?</body></html>",
-        callbackUrl, remoteAddress,
-        BeanUtils.toMap("unit-test:true"));
+        callbackUrl, BeanUtils.toMap("unit-test:true"));
 
     PushResponse response = gateway.push(action);
     assertNotNull(response);
@@ -79,8 +75,7 @@ public class IntegrationTestVersion2 {
         "Bot Parr <bot@jacobparr.com>",
         "This is a test",
         "Are you there?",
-        callbackUrl, remoteAddress,
-        BeanUtils.toMap("unit-test:true"));
+        callbackUrl, BeanUtils.toMap("unit-test:true"));
 
     PushResponse response = gateway.push(action);
     assertNotNull(response);
@@ -113,8 +108,7 @@ public class IntegrationTestVersion2 {
     UserEventPush push = UserEventPush.newPush(
         remoteClient, createdAt,
         "I'm just looking at the moment.",
-        userAgent, callbackUrl, remoteAddress,
-        BeanUtils.toMap("color:red"));
+        userAgent, callbackUrl, BeanUtils.toMap("color:red"));
     gateway.push(push);
 
     // Event #1
@@ -122,8 +116,7 @@ public class IntegrationTestVersion2 {
     push = UserEventPush.newPush(
         remoteClient, createdAt,
         "I just logged in.",
-        userAgent, callbackUrl, remoteAddress,
-        BeanUtils.toMap("color:green"));
+        userAgent, callbackUrl, BeanUtils.toMap("color:green"));
     gateway.push(push);
 
     // Event #2
@@ -136,7 +129,7 @@ public class IntegrationTestVersion2 {
     push = UserEventPush.newPush(
         remoteClient, createdAt,
         "This one has a user-agent.",
-        userAgent, callbackUrl, remoteAddress, map);
+        userAgent, callbackUrl, map);
     gateway.push(push);
 
     // Event #3
@@ -147,7 +140,7 @@ public class IntegrationTestVersion2 {
     push = UserEventPush.newPush(
         remoteClient, createdAt,
         "And now I have to go.",
-        userAgent, callbackUrl, remoteAddress, map);
+        userAgent, callbackUrl, map);
     gateway.push(push);
 
     // Event #4
@@ -158,10 +151,10 @@ public class IntegrationTestVersion2 {
     push = UserEventPush.newPush(
         remoteClient, createdAt,
         "Something really bad happened here.",
-        userAgent, callbackUrl, remoteAddress, map);
+        userAgent, callbackUrl, map);
     gateway.push(push);
 
     // Event #5
-    gateway.push(UserEventPush.sendStory(sessionId, DateUtils.currentLocalDateTime(), callbackUrl, remoteAddress));
+    gateway.push(UserEventPush.sendStory(sessionId, DateUtils.currentLocalDateTime(), callbackUrl));
   }
 }

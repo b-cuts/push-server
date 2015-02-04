@@ -11,12 +11,12 @@ import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
-import com.cosmicpush.pub.common.*;
-import com.cosmicpush.pub.push.*;
+import com.cosmicpush.pub.common.PushResponse;
+import com.cosmicpush.pub.common.RequestStatus;
+import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.NotificationPush;
 import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
-
-import java.net.InetAddress;
 
 public class NotificationDelegate extends AbstractDelegate {
 
@@ -43,7 +43,7 @@ public class NotificationDelegate extends AbstractDelegate {
 
     String id = apiRequest.getApiRequestId();
     String message = push.getMessage() + " >> https://www.cosmicpush.com/q/" + id;
-    GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null, InetAddress.getLocalHost());
+    GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
 
     PushResponse response = context.getPushProcessor().execute(account, apiClient, push);
     return response.getRequestStatus();

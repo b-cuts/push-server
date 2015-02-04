@@ -18,6 +18,7 @@ package com.cosmicpush.pub.push;
 
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.internal.PushUtils;
 import com.cosmicpush.pub.internal.RequestErrors;
 import com.cosmicpush.pub.internal.ValidationUtils;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -45,10 +46,10 @@ public class NotificationPush implements Push, Serializable {
 
   @JsonCreator
   private NotificationPush(@JsonProperty("message") String message,
-                          @JsonProperty("callbackUrl") String callbackUrl,
-                          @JsonProperty("remoteHost") String remoteHost,
-                          @JsonProperty("remoteAddress") String remoteAddress,
-                          @JsonProperty("traits") Map<String, String> traits) {
+                           @JsonProperty("callbackUrl") String callbackUrl,
+                           @JsonProperty("remoteHost") String remoteHost,
+                           @JsonProperty("remoteAddress") String remoteAddress,
+                           @JsonProperty("traits") Map<String, String> traits) {
 
     this.message = (message == null) ? "No message" : message.trim();
 
@@ -108,9 +109,9 @@ public class NotificationPush implements Push, Serializable {
 
   public static NotificationPush newPush(String message,
                                          String callbackUrl,
-                                         InetAddress remoteAddress,
                                          String...traits) {
 
+    InetAddress remoteAddress = PushUtils.getLocalHost();
     return new NotificationPush(message, callbackUrl,
                                 remoteAddress.getCanonicalHostName(),
                                 remoteAddress.getHostAddress(),
@@ -119,9 +120,9 @@ public class NotificationPush implements Push, Serializable {
 
   public static NotificationPush newPush(String message,
                                          String callbackUrl,
-                                         InetAddress remoteAddress,
                                          Map<String,String> traits) {
 
+    InetAddress remoteAddress = PushUtils.getLocalHost();
     return new NotificationPush(message, callbackUrl,
                                 remoteAddress.getCanonicalHostName(),
                                 remoteAddress.getHostAddress(),

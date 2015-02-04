@@ -18,6 +18,7 @@ package com.cosmicpush.pub.push;
 
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.internal.PushUtils;
 import com.cosmicpush.pub.internal.RequestErrors;
 import com.cosmicpush.pub.internal.ValidationUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -103,10 +104,11 @@ public class GoogleTalkPush implements Push, Serializable {
   }
 
   public static GoogleTalkPush newPush(String recipient,
-                                          String message,
-                                          String callbackUrl,
-                                          InetAddress remoteAddress,
-                                          String...traits) {
+                                       String message,
+                                       String callbackUrl,
+                                       String...traits) {
+
+    InetAddress remoteAddress = PushUtils.getLocalHost();
     return new GoogleTalkPush(
         recipient, message, callbackUrl,
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
@@ -114,10 +116,11 @@ public class GoogleTalkPush implements Push, Serializable {
   }
 
   public static GoogleTalkPush newPush(String recipient,
-                                          String message,
-                                          String callbackUrl,
-                                          InetAddress remoteAddress,
-                                          Map<String,String> traits) {
+                                       String message,
+                                       String callbackUrl,
+                                       Map<String,String> traits) {
+
+    InetAddress remoteAddress = PushUtils.getLocalHost();
     return new GoogleTalkPush(
         recipient, message, callbackUrl,
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),

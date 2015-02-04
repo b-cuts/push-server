@@ -3,15 +3,17 @@ package com.cosmicpush.app.jaxrs.security;
 import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.system.AppContext;
 import com.cosmicpush.app.system.CpApplication;
-import com.cosmicpush.common.accounts.*;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Arrays;
+import com.cosmicpush.common.accounts.Account;
+import com.cosmicpush.common.accounts.AccountStore;
+
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.*;
 import javax.ws.rs.core.*;
 import javax.ws.rs.ext.Provider;
+import java.io.IOException;
+import java.net.URI;
+import java.util.Arrays;
 
 @Provider
 @PreMatching

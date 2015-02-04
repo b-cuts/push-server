@@ -24,7 +24,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @ApiAuthentication
@@ -94,7 +93,6 @@ public class ApiResourceV1 {
         smsPush.getToAddress(), smsPush.getFromAddress(),
         smsPush.getEmailSubject(), smsPush.getHtmlContent(),
         smsPush.getCallbackUrl(),
-        InetAddress.getByName(smsPush.getRemoteHost()),
         smsPush.getTraits());
 
     PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);

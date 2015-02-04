@@ -57,7 +57,7 @@ public class UserEventPushTranslationTest {
         remoteClient,
         LocalDateTime.parse("2014-05-06T09:34"),
         "You logged in.",
-        userAgent, "http://callback.com/api.sent", null, map);
+        userAgent, "http://callback.com/api.sent", map);
 
     String json = translator.toJson(oldPush);
     Assert.assertEquals(json, "{\n" +

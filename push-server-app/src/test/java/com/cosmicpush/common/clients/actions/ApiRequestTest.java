@@ -32,7 +32,6 @@ import static org.testng.Assert.assertEquals;
 @Test
 public class ApiRequestTest {
 
-  private InetAddress remoteAddress;
   private String callbackUrl = "http://www.example.com/callback";
 
   // The test is really of the object mapper. We will use
@@ -46,7 +45,6 @@ public class ApiRequestTest {
   @BeforeClass
   public void beforeClass() throws Exception {
     this.apiRequestStore = TestFactory.get().getApiRequestStore();
-    this.remoteAddress = InetAddress.getLocalHost();
   }
 
   public void testCreate() throws Exception {
@@ -56,21 +54,21 @@ public class ApiRequestTest {
 
     SmtpEmailPush smtpEmailPush = SmtpEmailPush.newPush(
         "from", "to", "subject", "the HTML content",
-        callbackUrl, remoteAddress, BeanUtils.toMap("unit-test:true"));
+        callbackUrl, BeanUtils.toMap("unit-test:true"));
     ApiRequest request = new ApiRequest(apiClient, smtpEmailPush);
     apiRequestStore.create(request);
 
     SesEmailPush sesEmailPush = SesEmailPush.newPush(
         "from", "to", "subject", "the HTML content",
-        callbackUrl, remoteAddress, BeanUtils.toMap("unit-test:true"));
+        callbackUrl, BeanUtils.toMap("unit-test:true"));
     request = new ApiRequest(apiClient, sesEmailPush);
     apiRequestStore.create(request);
 
-    GoogleTalkPush imPush = GoogleTalkPush.newPush("recipient", "some message", callbackUrl, remoteAddress, "color:red");
+    GoogleTalkPush imPush = GoogleTalkPush.newPush("recipient", "some message", callbackUrl, "color:red");
     request = new ApiRequest(apiClient, imPush);
     apiRequestStore.create(request);
 
-    NotificationPush notificationPush = NotificationPush.newPush("message", callbackUrl, remoteAddress, BeanUtils.toMap("test:true"));
+    NotificationPush notificationPush = NotificationPush.newPush("message", callbackUrl, BeanUtils.toMap("test:true"));
     request = new ApiRequest(apiClient, notificationPush);
     apiRequestStore.create(request);
 
@@ -82,8 +80,9 @@ public class ApiRequestTest {
         "donald.duck@disney.com",
         "This is the subject",
         "<html><body><h1>Hello World</h1>So, how's it going?</body></html>",
-        callbackUrl, remoteAddress, "test:true", "type:email");
+        callbackUrl, "test:true", "type:email");
 
+    InetAddress remoteAddress = InetAddress.getLocalHost();
     ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
@@ -124,8 +123,9 @@ public class ApiRequestTest {
         "donald.duck@disney.com",
         "This is the subject",
         "<html><body><h1>Hello World</h1>So, how's it going?</body></html>",
-        callbackUrl, remoteAddress, "test:true", "type:email");
+        callbackUrl, "test:true", "type:email");
 
+    InetAddress remoteAddress = InetAddress.getLocalHost();
     ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
@@ -164,8 +164,9 @@ public class ApiRequestTest {
     Push push = GoogleTalkPush.newPush(
         "mickey.mouse@disney.com",
         "Just calling to say hello",
-        callbackUrl, remoteAddress, BeanUtils.toMap("color:green"));
+        callbackUrl, BeanUtils.toMap("color:green"));
 
+    InetAddress remoteAddress = InetAddress.getLocalHost();
     ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
@@ -197,8 +198,9 @@ public class ApiRequestTest {
   public void testNotificationPush() throws Exception {
     Push push = NotificationPush.newPush(
         "Hey, you need to check this out.",
-        callbackUrl, remoteAddress, "test:true", "type:warning");
+        callbackUrl, "test:true", "type:warning");
 
+    InetAddress remoteAddress = InetAddress.getLocalHost();
     ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 
@@ -249,8 +251,9 @@ public class ApiRequestTest {
         remoteClient,
         DateUtils.toLocalDateTime("2014-05-06T09:34"),
         "You logged in.",
-        userAgent, callbackUrl, remoteAddress, "color:green");
+        userAgent, callbackUrl, "color:green");
 
+    InetAddress remoteAddress = InetAddress.getLocalHost();
     ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
     String json = translator.toJson(oldApiRequest);
 

@@ -17,7 +17,6 @@ import org.crazyyak.dev.common.StringUtils;
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.InetAddress;
 
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
@@ -124,8 +123,7 @@ public class SmtpEmailPlugin implements Plugin {
     SmtpEmailPush push = SmtpEmailPush.newPush(
         toAddress, fromAddress,
         subject, msg,
-        null, InetAddress.getLocalHost(),
-        BeanUtils.toMap("smtp-test:true"));
+        null, BeanUtils.toMap("smtp-test:true"));
 
     ApiRequest apiRequest = new ApiRequest(apiClient, push);
     context.getApiRequestStore().create(apiRequest);

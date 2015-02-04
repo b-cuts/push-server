@@ -42,6 +42,10 @@ public class ExecutionContext implements PluginContext {
 
   public ExecutionContext() {
     this.pushProcessor = new PushProcessor(this);
+
+    try {
+      remoteAddress = InetAddress.getByName("0.0.0.0");
+    } catch (UnknownHostException ignored) {}
   }
 
   public void setSession(Session session) {
@@ -88,20 +92,6 @@ public class ExecutionContext implements PluginContext {
 
   public void setHeaders(HttpHeaders headers) {
     this.headers = headers;
-
-    if (remoteAddress == null) {
-      remoteAddress = resolveFromHeaders(headers);
-    }
-  }
-
-  private InetAddress resolveFromHeaders(HttpHeaders headers) {
-    MultivaluedMap<String, String> values = headers.getRequestHeaders();
-    try {
-      return InetAddress.getByName("0.0.0.0");
-
-    } catch (UnknownHostException e) {
-      return null;
-    }
   }
 
   public SecurityContext getSecurityContext() {

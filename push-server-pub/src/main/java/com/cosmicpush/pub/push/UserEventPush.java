@@ -20,6 +20,7 @@ import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.common.UserAgent;
 import com.cosmicpush.pub.internal.CpRemoteClient;
+import com.cosmicpush.pub.internal.PushUtils;
 import com.cosmicpush.pub.internal.RequestErrors;
 import com.cosmicpush.pub.internal.ValidationUtils;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -185,8 +186,9 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
     return message;
   }
 
-  public static UserEventPush sendStory(String sessionId, LocalDateTime createdAt, String callbackUrl, InetAddress remoteAddress) {
+  public static UserEventPush sendStory(String sessionId, LocalDateTime createdAt, String callbackUrl) {
 
+    InetAddress remoteAddress = PushUtils.getLocalHost();
     return new UserEventPush(
         true,
         null,
@@ -201,24 +203,23 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
   }
 
   public static UserEventPush newPush(CpRemoteClient remoteClient,
-                       LocalDateTime createdAt,
-                       String message,
-                       UserAgent userAgent,
-                       String callbackUrl,
-                       InetAddress remoteAddress,
-                       String...traits) {
+                                      LocalDateTime createdAt,
+                                      String message,
+                                      UserAgent userAgent,
+                                      String callbackUrl,
+                                      String...traits) {
 
-    return newPush(remoteClient, createdAt, message, userAgent, callbackUrl, remoteAddress, BeanUtils.toMap(traits));
+    return newPush(remoteClient, createdAt, message, userAgent, callbackUrl, BeanUtils.toMap(traits));
   }
 
   public static UserEventPush newPush(CpRemoteClient remoteClient,
-                       LocalDateTime createdAt,
-                       String message,
-                       UserAgent userAgent,
-                       String callbackUrl,
-                       InetAddress remoteAddress,
-                       Map<String, String> traits) {
+                                      LocalDateTime createdAt,
+                                      String message,
+                                      UserAgent userAgent,
+                                      String callbackUrl,
+                                      Map<String, String> traits) {
 
+    InetAddress remoteAddress = PushUtils.getLocalHost();
     ExceptionUtils.assertNotNull(remoteClient, "remoteClient");
     ExceptionUtils.assertNotNull(createdAt, "createdAt");
     ExceptionUtils.assertNotNull(remoteClient.getSessionId(), "sessionId");

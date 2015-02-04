@@ -17,7 +17,6 @@ import org.crazyyak.dev.common.StringUtils;
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.InetAddress;
 
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
@@ -121,7 +120,7 @@ public class SesEmailPlugin implements Plugin {
     String when = Formats.defaultStamp(new java.util.Date());
     String msg = String.format("<html><head><title>Some Email</title></head><body style='background-color:red'><div style='background-color:#c0c0ff'><h1>Testing 123</h1>This is a test message from Cosmic Push sent at %s.</div></body>", when);
     String subject = "ASES test message from Cosmic Push";
-    SesEmailPush push = SesEmailPush.newPush(toAddress, fromAddress, subject, msg, null, InetAddress.getLocalHost(), BeanUtils.toMap("ases-test:true"));
+    SesEmailPush push = SesEmailPush.newPush(toAddress, fromAddress, subject, msg, null, BeanUtils.toMap("ases-test:true"));
 
     ApiRequest apiRequest = new ApiRequest(apiClient, push);
     context.getApiRequestStore().create(apiRequest);

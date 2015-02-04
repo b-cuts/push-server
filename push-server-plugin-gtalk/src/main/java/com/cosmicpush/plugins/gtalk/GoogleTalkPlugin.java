@@ -15,7 +15,6 @@ import org.crazyyak.dev.common.IoUtils;
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.InetAddress;
 
 import static org.crazyyak.dev.common.StringUtils.*;
 
@@ -110,7 +109,7 @@ public class GoogleTalkPlugin implements Plugin {
 
     String when = Formats.defaultStamp(new java.util.Date());
     String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
-    GoogleTalkPush push = GoogleTalkPush.newPush(recipient, msg, null, InetAddress.getLocalHost(), "gtalk-test:true");
+    GoogleTalkPush push = GoogleTalkPush.newPush(recipient, msg, null, "gtalk-test:true");
 
     ApiRequest apiRequest = new ApiRequest(apiClient, push);
     context.getApiRequestStore().create(apiRequest);

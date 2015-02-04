@@ -31,7 +31,7 @@ public class ImPushTranslationTest {
   private JsonTranslator translator = gateway.getClient().getTranslator();
 
   public void translateImPush() throws Exception {
-    Push oldPush = GoogleTalkPush.newPush("mickey.mouse@disney.com", "Just calling to say hello", "http://callback.com/api.sent", null);
+    Push oldPush = GoogleTalkPush.newPush("mickey.mouse@disney.com", "Just calling to say hello", "http://callback.com/api.sent");
     String json = translator.toJson(oldPush);
     Assert.assertEquals(json, "{\n" +
       "  \"pushType\" : \"google-talk\",\n" +
