@@ -24,6 +24,8 @@ import org.crazyyak.dev.common.json.JsonTranslator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.InetAddress;
+
 @Test
 public class SesEmailPushTranslationTest {
 
@@ -33,21 +35,28 @@ public class SesEmailPushTranslationTest {
   public void translateEmailPush() throws Exception {
     Push oldPush = SesEmailPush.newPush("mickey.mouse@disney.com", "donald.duck@disney.com", "This is the subject", "<html><body><h1>Hello World</h1>So, how's it going?</body></html>", "http://callback.com/api.sent", null, "test:true", "type:email");
     String json = translator.toJson(oldPush);
-    Assert.assertEquals(json, "{\n" +
-        "  \"pushType\" : \"ses-email\",\n" +
-        "  \"toAddress\" : \"mickey.mouse@disney.com\",\n" +
-        "  \"fromAddress\" : \"donald.duck@disney.com\",\n" +
-        "  \"emailSubject\" : \"This is the subject\",\n" +
-        "  \"htmlContent\" : \"<h1>Hello World</h1>So, how's it going?\",\n" +
-        "  \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
-        "  \"traits\" : {\n" +
-        "    \"test\" : \"true\",\n" +
-        "    \"type\" : \"email\"\n" +
-        "  }\n" +
-        "}");
+
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    String expected = String.format(EXPECTED_JSON, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress());
+    Assert.assertEquals(json, expected);
 
     Push newPush = translator.fromJson(SesEmailPush.class, json);
     ComparisonResults results = EqualsUtils.compare(newPush, oldPush);
     results.assertValidationComplete();
   }
+
+  private static final String EXPECTED_JSON = "{\n" +
+    "  \"pushType\" : \"ses-email\",\n" +
+    "  \"toAddress\" : \"mickey.mouse@disney.com\",\n" +
+    "  \"fromAddress\" : \"donald.duck@disney.com\",\n" +
+    "  \"emailSubject\" : \"This is the subject\",\n" +
+    "  \"htmlContent\" : \"<h1>Hello World</h1>So, how's it going?\",\n" +
+    "  \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
+    "  \"remoteHost\" : \"%s\",\n" +
+    "  \"remoteAddress\" : \"%s\",\n" +
+    "  \"traits\" : {\n" +
+    "    \"test\" : \"true\",\n" +
+    "    \"type\" : \"email\"\n" +
+    "  }\n" +
+    "}";
 }

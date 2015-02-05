@@ -41,7 +41,7 @@ public class OcsMessagePlugin implements Plugin {
 
   @Override
   public PushType getPushType() {
-    return PushType.ocs;
+    return OcsPush.PUSH_TYPE;
   }
 
   @Override

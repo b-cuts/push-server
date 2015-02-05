@@ -5,22 +5,22 @@
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-spring3/2.11/ec47978d4143c1f9de7292f7dcf0cd868f33ab3a/jersey-spring3-2.11.jar!/jersey-spring-applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/push-server/push-server-spring.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/cosmicpush/app/system/CpSpringConfig.java</file>
+          <file>file://$MODULE_DIR$/../push-server-app/src/main/resources/push-server/push-server-spring.xml</file>
+          <file>file://$MODULE_DIR$/../push-server-app/src/main/java/com/cosmicpush/app/system/CpSpringConfig.java</file>
         </fileset>
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/build/classes/main" />
-    <output-test url="file://$MODULE_DIR$/build/classes/test" />
+    <output url="file://$MODULE_DIR$/../push-server-app/build/classes/main" />
+    <output-test url="file://$MODULE_DIR$/../push-server-app/build/classes/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
+      <sourceFolder url="file://$MODULE_DIR$/../push-server-app/src/test/resources" type="java-test-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../push-server-app/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
@@ -60,5 +60,6 @@
     <orderEntry type="library" exported="" name="Gradle: ognl:ognl:3.0.8" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" level="project" />
     <orderEntry type="module" module-name="push-server-plugin-ocs-message" exported="" />
+    <orderEntry type="module" module-name="push-server-plugin-twilio" exported="" />
   </component>
 </module>

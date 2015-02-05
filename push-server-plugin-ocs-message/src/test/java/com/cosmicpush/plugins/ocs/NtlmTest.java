@@ -24,6 +24,7 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+@Test(enabled = false)
 public class NtlmTest {
 
   private static final Log log = LogFactory.getLog(NtlmTest.class);
@@ -35,7 +36,6 @@ public class NtlmTest {
   private TestSipListener sipListener = new TestSipListener();
   private long sequenceNumber = 1;
 
-  @Test
   public void ntlmAuthenticationTest() throws Exception {
 
     int sipAuthVersion = 4;

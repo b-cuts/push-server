@@ -18,7 +18,8 @@ import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.PluginManager;
-import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.crazyyak.dev.common.EqualsUtils;
@@ -144,11 +145,11 @@ public class RootResource extends RootResourceSupport {
         throw ApiException.notFound("API client not found for " + request.getApiClientId());
       }
 
-      if (PushType.notification.equals(request.getPushType())) {
+      if (NotificationPush.PUSH_TYPE.equals(request.getPushType())) {
         String path = String.format("manage/api-client/%s/notifications/%s", apiClient.getClientName(), id);
         return Response.seeOther(new URI(path)).build();
 
-      } else if (PushType.userEvent.equals(request.getPushType())) {
+      } else if (UserEventPush.PUSH_TYPE.equals(request.getPushType())) {
         String deviceId = request.getUserEventPush().getDeviceId();
         String path = String.format("manage/api-client/%s/user-events/%s", apiClient.getClientName(), deviceId);
         return Response.seeOther(new URI(path)).build();

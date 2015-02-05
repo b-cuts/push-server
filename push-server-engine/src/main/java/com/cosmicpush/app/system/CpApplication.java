@@ -6,19 +6,22 @@
 
 package com.cosmicpush.app.system;
 
-import com.cosmicpush.app.deprecated.SmsToEmailPush;
+import com.cosmicpush.app.deprecated.EmailToSmsPush;
 import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.ApiAuthenticationFilter;
 import com.cosmicpush.app.jaxrs.security.MngtAuthenticationFilter;
 import com.cosmicpush.app.jaxrs.security.SessionFilter;
 import com.cosmicpush.app.jaxrs.security.SessionStore;
+import com.cosmicpush.app.resources.RootResource;
 import com.cosmicpush.app.view.LocalResourceMessageBodyWriter;
 import com.cosmicpush.app.view.ThymeleafMessageBodyWriter;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.NotificationPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
+import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.log4j.Level;
 import org.crazyyak.app.logging.LogUtils;
 import org.crazyyak.lib.jaxrs.YakJaxRsExceptionMapper;
@@ -73,6 +76,7 @@ public class CpApplication extends Application {
     classes.add(MngtAuthenticationFilter.class);
     classes.add(ThymeleafMessageBodyWriter.class);
     classes.add(LocalResourceMessageBodyWriter.class);
+    classes.add(RootResource.class);
 
     singletons.add(new CpReaderWriterProvider(appContext.getObjectMapper()));
     singletons.add(new YakJaxRsExceptionMapper(true) {
@@ -84,10 +88,12 @@ public class CpApplication extends Application {
       }
     });
 
-    // Force a reference to this deprecated push.
-    new PushType(GoogleTalkPush.class, "im", "Deprecated IM Push");
-    new PushType(SmtpEmailPush.class, "email", "Deprecated Email Push");
-    SmsToEmailPush.PUSH_TYPE.getCode();
+    // TODO - remove these once these are properly referenced by their plugins
+    UserEventPush.PUSH_TYPE.getCode();
+    NotificationPush.PUSH_TYPE.getCode();
+    new PushType(GoogleTalkPush.class, "im", "IM");
+    new PushType(SmtpEmailPush.class, "email", "eMail");
+    new PushType(EmailToSmsPush.class, "emailToSms", "eMail->SMS");
 
     this.classes = Collections.unmodifiableSet(classes);
     this.singletons = Collections.unmodifiableSet(singletons);
@@ -118,6 +124,8 @@ public class CpApplication extends Application {
         throw new IllegalArgumentException(msg);
       }
     }
+
+    existing.clear();
   }
 
   @Override

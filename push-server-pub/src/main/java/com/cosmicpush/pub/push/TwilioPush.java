@@ -21,6 +21,8 @@ import java.util.Map;
 
 public class TwilioPush implements Push, Serializable {
 
+  public static final PushType PUSH_TYPE = new PushType(TwilioPush.class, "twilio", "Twilio");
+
   private final String recipient;
   private final String message;
 
@@ -56,7 +58,7 @@ public class TwilioPush implements Push, Serializable {
 
   @Override
   public PushType getPushType() {
-    return PushType.ocs;
+    return PUSH_TYPE;
   }
 
   @Override

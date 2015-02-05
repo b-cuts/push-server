@@ -13,11 +13,14 @@ import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
-import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.UserEventPush;
-import java.util.*;
-import javax.ws.rs.*;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.*;
 
 @MngtAuthentication
 public class ManageUserEventsResource {
@@ -37,7 +40,7 @@ public class ManageUserEventsResource {
 
     List<ApiRequest> requests = new ArrayList<>();
 
-    List<ApiRequest> apiRequests = context.getApiRequestStore().getByClientAndType(apiClient, PushType.userEvent);
+    List<ApiRequest> apiRequests = context.getApiRequestStore().getByClientAndType(apiClient, UserEventPush.PUSH_TYPE);
     for (ApiRequest request : apiRequests) {
       if (request.getUserEventPush().isSendStory() == false) {
         requests.add(request);

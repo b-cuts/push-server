@@ -40,6 +40,8 @@ import java.util.Map;
 
 public class UserEventPush implements Push, Comparable<UserEventPush>, Serializable {
 
+  public static final PushType PUSH_TYPE = new PushType(UserEventPush.class, "userEvent", "User Event");
+
   private final boolean sendStory;
 
   private final String deviceId;
@@ -58,8 +60,6 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
   private final String remoteAddress;
 
   private final String callbackUrl;
-
-  private final PushType pushType = PushType.userEvent;
 
   @JsonCreator
   private UserEventPush(@JsonProperty("sendStory") boolean sendStory,
@@ -119,7 +119,7 @@ public class UserEventPush implements Push, Comparable<UserEventPush>, Serializa
 
   @Override
   public PushType getPushType() {
-    return pushType;
+    return PUSH_TYPE;
   }
 
   public String getMessage() {

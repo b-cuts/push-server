@@ -15,11 +15,16 @@ import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
-import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.NotificationPush;
-import java.util.*;
-import javax.ws.rs.*;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @MngtAuthentication
 public class ManageNotificationsResource {
@@ -38,7 +43,7 @@ public class ManageNotificationsResource {
   public Thymeleaf viewNotifications() throws Exception {
 
     List<ApiRequest> requests = new ArrayList<>();
-    requests.addAll(context.getApiRequestStore().getByClientAndType(apiClient, PushType.notification));
+    requests.addAll(context.getApiRequestStore().getByClientAndType(apiClient, NotificationPush.PUSH_TYPE));
 
     Collections.sort(requests);
     Collections.reverse(requests);

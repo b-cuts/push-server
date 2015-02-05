@@ -9,11 +9,11 @@ import org.crazyyak.dev.common.BeanUtils;
 import java.net.InetAddress;
 import java.util.Map;
 
-public class SmsToEmailPush extends EmailPush {
+public class EmailToSmsPush extends EmailPush {
 
-  public static final PushType PUSH_TYPE = new PushType(SmsToEmailPush.class, "emailToSms", "Deprecated SMS Push");
+  public static final PushType PUSH_TYPE = new PushType(EmailToSmsPush.class, "emailToSms", "Deprecated SMS Push");
 
-  private SmsToEmailPush(@JsonProperty("toAddress") String toAddress,
+  private EmailToSmsPush(@JsonProperty("toAddress") String toAddress,
                          @JsonProperty("fromAddress") String fromAddress,
                          @JsonProperty("message") String message,
                          @JsonProperty("callbackUrl") String callbackUrl,
@@ -26,16 +26,16 @@ public class SmsToEmailPush extends EmailPush {
 
   @Override
   public PushType getPushType() {
-    return SmsToEmailPush.PUSH_TYPE;
+    return PUSH_TYPE;
   }
 
-  public static SmsToEmailPush newPush(String toAddress, String fromAddress, String emailSubject, String callbackUrl, String... traits) {
+  public static EmailToSmsPush newPush(String toAddress, String fromAddress, String emailSubject, String callbackUrl, String... traits) {
     InetAddress remoteAddress = PushUtils.getLocalHost();
-    return new SmsToEmailPush(toAddress, fromAddress, emailSubject, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), BeanUtils.toMap(traits));
+    return new EmailToSmsPush(toAddress, fromAddress, emailSubject, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), BeanUtils.toMap(traits));
   }
 
-  public static SmsToEmailPush newPush(String toAddress, String fromAddress, String emailSubject, String callbackUrl, Map<String,String> traits) {
+  public static EmailToSmsPush newPush(String toAddress, String fromAddress, String emailSubject, String callbackUrl, Map<String,String> traits) {
     InetAddress remoteAddress = PushUtils.getLocalHost();
-    return new SmsToEmailPush(toAddress, fromAddress, emailSubject, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), traits);
+    return new EmailToSmsPush(toAddress, fromAddress, emailSubject, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), traits);
   }
 }

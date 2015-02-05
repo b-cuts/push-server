@@ -3,15 +3,12 @@
  *
  * This software may not be used without permission.
  */
-
 package com.cosmicpush.app.resources.manage.client;
 
 import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.resources.manage.client.emails.ManageEmailsResource;
 import com.cosmicpush.app.resources.manage.client.notifications.ManageNotificationsResource;
-import com.cosmicpush.app.resources.manage.client.ocsmessage.ManageOcsMessageResource;
-import com.cosmicpush.app.resources.manage.client.twilio.ManageTwilioResource;
 import com.cosmicpush.app.resources.manage.client.userevents.ManageUserEventsResource;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
@@ -93,16 +90,6 @@ public class ManageApiClientResource {
   @Path("/notifications")
   public ManageNotificationsResource getManageNotificationsResource() throws Exception {
     return new ManageNotificationsResource(account, getApiClient());
-  }
-
-  @Path("/ocs-message")
-  public ManageTwilioResource getManageOcsMessagesResource() throws Exception {
-    return new ManageTwilioResource();
-  }
-
-  @Path("/ocs-message")
-  public ManageOcsMessageResource getManageTwilioResource() throws Exception {
-    return null; // new ManageOcsMessageResource(config, account, apiClient);
   }
 
   @POST

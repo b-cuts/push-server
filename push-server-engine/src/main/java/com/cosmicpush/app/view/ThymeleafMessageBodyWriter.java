@@ -1,24 +1,19 @@
 package com.cosmicpush.app.view;
 
+import org.crazyyak.dev.common.StringUtils;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.ext.MessageBodyWriter;
 import java.io.*;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
 import java.lang.reflect.Type;
-import java.net.URI;
-import java.net.URL;
 import java.nio.charset.Charset;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.*;
-
-import org.crazyyak.dev.common.IoUtils;
-import org.crazyyak.dev.common.ReflectUtils;
-import org.crazyyak.dev.common.StringUtils;
-import org.thymeleaf.*;
-import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
-import org.thymeleaf.resourceresolver.ClassLoaderResourceResolver;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import org.thymeleaf.templateresolver.UrlTemplateResolver;
 
 public class ThymeleafMessageBodyWriter implements MessageBodyWriter<Thymeleaf> {
 
@@ -58,16 +53,26 @@ public class ThymeleafMessageBodyWriter implements MessageBodyWriter<Thymeleaf> 
     writeTo(thymeleaf, entityStream);
   }
 
-  /** Provided mainly for testing, writes the thymeleaf to the specified writer. */
-  public void writeTo(Thymeleaf thymeleaf, Writer writer) throws IOException, WebApplicationException {
+  /**
+   * Provided mainly for testing, writes the thymeleaf to the specified writer.
+   * @param thymeleaf the thymeleaf instanace to be rendered
+   * @param writer the writer that the thymeleaf will be rendered to
+   * @throws java.io.IOException if we are having a bad day
+   */
+  public void writeTo(Thymeleaf thymeleaf, Writer writer) throws IOException {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     writeTo(thymeleaf, out);
     String text = new String(out.toByteArray(), Charset.forName("UTF-8"));
     writer.write(text);
   }
 
-  /** Writes the thymeleaf to the specified writer. */
-  public void writeTo(Thymeleaf thymeleaf, OutputStream entityStream) throws IOException, WebApplicationException {
+  /**
+   * Writes the thymeleaf to the specified writer.
+   * @param thymeleaf the thymeleaf instanace to be rendered
+   * @param outputStream the output stream that the thymeleaf will be rendered to
+   * @throws java.io.IOException if we are having a bad day
+   */
+  public void writeTo(Thymeleaf thymeleaf, OutputStream outputStream) throws IOException {
     String view = thymeleaf.getView();
 
     org.thymeleaf.context.Context context = new org.thymeleaf.context.Context();
@@ -80,6 +85,6 @@ public class ThymeleafMessageBodyWriter implements MessageBodyWriter<Thymeleaf> 
     engine.process(view, context, writer);
 
     String content = writer.toString();
-    entityStream.write(content.getBytes());
+    outputStream.write(content.getBytes());
   }
 }

@@ -6,7 +6,7 @@
 
 package com.cosmicpush.app.resources.api;
 
-import com.cosmicpush.app.deprecated.SmsToEmailPush;
+import com.cosmicpush.app.deprecated.EmailToSmsPush;
 import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
 import com.cosmicpush.app.system.CpApplication;
@@ -88,7 +88,7 @@ public class ApiResourceV1 {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/email-to-sms")
-  public Response sendSmsViaEmail(SmsToEmailPush smsPush) throws UnknownHostException {
+  public Response sendSmsViaEmail(EmailToSmsPush smsPush) throws UnknownHostException {
     SmtpEmailPush push = SmtpEmailPush.newPush(
         smsPush.getToAddress(), smsPush.getFromAddress(),
         smsPush.getEmailSubject(), smsPush.getHtmlContent(),

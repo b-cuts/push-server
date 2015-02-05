@@ -34,6 +34,8 @@ import java.util.Map;
 
 public class NotificationPush implements Push, Serializable {
 
+  public static final PushType PUSH_TYPE = new PushType(NotificationPush.class, "notification", "Notification");
+
   private final String message;
   private final LinkedHashMap<String,String> traits = new LinkedHashMap<>();
 
@@ -41,8 +43,6 @@ public class NotificationPush implements Push, Serializable {
   private final String remoteAddress;
 
   private final String callbackUrl;
-
-  private final PushType pushType = PushType.notification;
 
   @JsonCreator
   private NotificationPush(@JsonProperty("message") String message,
@@ -89,7 +89,7 @@ public class NotificationPush implements Push, Serializable {
 
   @Override
   public PushType getPushType() {
-    return pushType;
+    return PUSH_TYPE;
   }
 
   public String getMessage() {

@@ -3,7 +3,7 @@
  *
  * This software may not be used without permission.
  */
-project(":push-server-app") {
+project(":push-server-engine") {
   description = "Cosmic Push Engine"
 
   version = pushServerApp

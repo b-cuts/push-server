@@ -28,6 +28,7 @@ import org.crazyyak.dev.jackson.YakJacksonTranslator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -59,37 +60,43 @@ public class UserEventPushTranslationTest {
         userAgent, "http://callback.com/api.sent", map);
 
     String json = translator.toJson(oldPush);
-    Assert.assertEquals(json, "{\n" +
-        "  \"pushType\" : \"userEvent\",\n" +
-        "  \"deviceId\" : \"some-deviceId\",\n" +
-        "  \"sessionId\" : \"some-sessionId\",\n" +
-        "  \"userName\" : \"mickey\",\n" +
-        "  \"ipAddress\" : \"192.168.1.36\",\n" +
-        "  \"createdAt\" : \"2014-05-06T09:34\",\n" +
-        "  \"message\" : \"You logged in.\",\n" +
-        "  \"traits\" : {\n" +
-        "    \"user\" : \"mickeym\"\n" +
-        "  },\n" +
-        "  \"userAgent\" : {\n" +
-        "    \"agentType\" : \"agent-type\",\n" +
-        "    \"agentName\" : \"agent-name\",\n" +
-        "    \"agentVersion\" : \"agent-version\",\n" +
-        "    \"agentLanguage\" : \"agent-language\",\n" +
-        "    \"agentLanguageTag\" : \"agent-lang-tag\",\n" +
-        "    \"osType\" : \"os-type\",\n" +
-        "    \"osName\" : \"os-name\",\n" +
-        "    \"osProducer\" : \"os=produceer\",\n" +
-        "    \"osProducerUrl\" : \"osproducer-url\",\n" +
-        "    \"osVersionName\" : \"os-version-name\",\n" +
-        "    \"osVersionNumber\" : \"os-version-number\",\n" +
-        "    \"linuxDistribution\" : \"linux-distro\"\n" +
-        "  },\n" +
-        "  \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
-        "  \"sendStory\" : false\n" +
-        "}");
+
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    String expected = String.format(EXPECTED_JSON, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress());
+    Assert.assertEquals(json, expected);
 
     Push newPush = translator.fromJson(UserEventPush.class, json);
     ComparisonResults results = EqualsUtils.compare(newPush, oldPush);
     results.assertValidationComplete();
   }
+
+  private static final String EXPECTED_JSON = "{\n" +
+    "  \"sendStory\" : false,\n" +
+    "  \"deviceId\" : \"some-deviceId\",\n" +
+    "  \"sessionId\" : \"some-sessionId\",\n" +
+    "  \"userName\" : \"mickey\",\n" +
+    "  \"ipAddress\" : \"192.168.1.36\",\n" +
+    "  \"createdAt\" : \"2014-05-06T09:34\",\n" +
+    "  \"message\" : \"You logged in.\",\n" +
+    "  \"userAgent\" : {\n" +
+    "    \"agentType\" : \"agent-type\",\n" +
+    "    \"agentName\" : \"agent-name\",\n" +
+    "    \"agentVersion\" : \"agent-version\",\n" +
+    "    \"agentLanguage\" : \"agent-language\",\n" +
+    "    \"agentLanguageTag\" : \"agent-lang-tag\",\n" +
+    "    \"osType\" : \"os-type\",\n" +
+    "    \"osName\" : \"os-name\",\n" +
+    "    \"osProducer\" : \"os=produceer\",\n" +
+    "    \"osProducerUrl\" : \"osproducer-url\",\n" +
+    "    \"osVersionName\" : \"os-version-name\",\n" +
+    "    \"osVersionNumber\" : \"os-version-number\",\n" +
+    "    \"linuxDistribution\" : \"linux-distro\"\n" +
+    "  },\n" +
+    "  \"callbackUrl\" : \"http://callback.com/api.sent\",\n" +
+    "  \"remoteHost\" : \"%s\",\n" +
+    "  \"remoteAddress\" : \"%s\",\n" +
+    "  \"traits\" : {\n" +
+    "    \"user\" : \"mickeym\"\n" +
+    "  }\n" +
+    "}";
 }

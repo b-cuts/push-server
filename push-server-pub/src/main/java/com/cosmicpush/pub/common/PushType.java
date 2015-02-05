@@ -16,11 +16,6 @@
 
 package com.cosmicpush.pub.common;
 
-import com.cosmicpush.pub.push.NotificationPush;
-import com.cosmicpush.pub.push.OcsPush;
-import com.cosmicpush.pub.push.TwilioPush;
-import com.cosmicpush.pub.push.UserEventPush;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,11 +34,6 @@ public class PushType implements Comparable<PushType>{
   public static void register(PushType pushType) {
     map.put(pushType.getCode(), pushType);
   }
-
-  public static PushType notification = new PushType(NotificationPush.class, "notification", "Notification");
-  public static PushType userEvent = new PushType(UserEventPush.class, "userEvent", "User Event");
-  public static PushType ocs = new PushType(OcsPush.class, "ocs", "Office Communicator Server");
-  public static PushType twilio = new PushType(TwilioPush.class, "twilio", "Twilio");
 
   private final String code;
   private final String label;

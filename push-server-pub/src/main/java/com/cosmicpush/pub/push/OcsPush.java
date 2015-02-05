@@ -16,6 +16,8 @@ import java.util.Map;
 
 public class OcsPush implements Push, Serializable {
 
+  public static final PushType PUSH_TYPE = new PushType(OcsPush.class, "ocs", "Office Communicator Server");
+
   private final String recipient;
   private final String message;
 
@@ -54,7 +56,7 @@ public class OcsPush implements Push, Serializable {
 
   @Override
   public PushType getPushType() {
-    return PushType.ocs;
+    return PUSH_TYPE;
   }
 
   @Override

@@ -24,6 +24,8 @@ import org.crazyyak.dev.common.json.JsonTranslator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.InetAddress;
+
 @Test
 public class ImPushTranslationTest {
 
@@ -31,17 +33,25 @@ public class ImPushTranslationTest {
   private JsonTranslator translator = gateway.getClient().getTranslator();
 
   public void translateImPush() throws Exception {
-    Push oldPush = GoogleTalkPush.newPush("mickey.mouse@disney.com", "Just calling to say hello", "http://callback.com/api.sent");
+    Push oldPush = GoogleTalkPush.newPush("mickey.mouse@disney.com", "Just calling to say hello", "http://example.com/callback");
     String json = translator.toJson(oldPush);
-    Assert.assertEquals(json, "{\n" +
-      "  \"pushType\" : \"google-talk\",\n" +
-      "  \"recipient\" : \"mickey.mouse@disney.com\",\n" +
-      "  \"message\" : \"Just calling to say hello\",\n" +
-      "  \"callbackUrl\" : \"http://callback.com/api.sent\"\n" +
-      "}");
+
+    InetAddress remoteAddress = InetAddress.getLocalHost();
+    String expected = String.format(EXPECTED_JSON, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress());
+    Assert.assertEquals(json, expected);
 
     Push newPush = translator.fromJson(GoogleTalkPush.class, json);
     ComparisonResults results = EqualsUtils.compare(newPush, oldPush);
     results.assertValidationComplete();
   }
+
+  private static final String EXPECTED_JSON = "{\n" +
+      "  \"pushType\" : \"google-talk\",\n" +
+      "  \"recipient\" : \"mickey.mouse@disney.com\",\n" +
+      "  \"message\" : \"Just calling to say hello\",\n" +
+      "  \"callbackUrl\" : \"http://example.com/callback\",\n" +
+      "  \"remoteHost\" : \"%s\",\n" +
+      "  \"remoteAddress\" : \"%s\",\n" +
+      "  \"traits\" : { }\n" +
+      "}";
 }
