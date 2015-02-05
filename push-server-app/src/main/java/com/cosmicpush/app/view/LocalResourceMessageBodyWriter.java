@@ -8,7 +8,6 @@ import javax.ws.rs.core.*;
 import javax.ws.rs.ext.*;
 import org.crazyyak.dev.common.IoUtils;
 
-@Provider
 public class LocalResourceMessageBodyWriter implements MessageBodyWriter<LocalResource> {
 
   @Context UriInfo uriInfo;

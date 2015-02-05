@@ -17,7 +17,6 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.util.Arrays;
 
-@Provider
 @PreMatching
 @Priority(Priorities.AUTHENTICATION)
 public class SessionFilter implements ContainerRequestFilter, ContainerResponseFilter {

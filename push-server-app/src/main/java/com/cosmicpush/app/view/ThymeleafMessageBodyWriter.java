@@ -20,7 +20,6 @@ import org.thymeleaf.resourceresolver.ClassLoaderResourceResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.UrlTemplateResolver;
 
-@Provider
 public class ThymeleafMessageBodyWriter implements MessageBodyWriter<Thymeleaf> {
 
   UriInfo uriInfo;
