@@ -10,16 +10,6 @@ project(":push-server-engine") {
 
   apply (from: "../build-config-deployer.gradle")
 
-  configurations {
-    provided
-  }
-
-  sourceSets {
-    main.compileClasspath += configurations.provided
-    test.compileClasspath += configurations.provided
-    test.runtimeClasspath += configurations.provided
-  }
-
   dependencies {
     compile project(":push-server-pub")
     compile project(":push-server-jackson")

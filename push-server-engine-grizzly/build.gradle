@@ -1,0 +1,30 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+project(":push-server-engine-grizzly") {
+  description = "Cosmic Push Engine - Grizzly Bundling"
+
+  version = pushServerEngineServlet
+
+  apply (from: "../build-config-deployer.gradle")
+
+  dependencies {
+    compile project(":push-server-engine")
+    compile("org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.13")
+  }
+
+  configurations.all({
+    resolutionStrategy({
+      force(
+          "org.slf4j:slf4j:1.7.10",
+          "org.slf4j:slf4j-api:1.7.10",
+          "org.javassist:javassist:3.18.1-GA",
+          "commons-logging:commons-logging:1.2",
+          "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
+          "com.fasterxml.jackson.core:jackson-databind:2.5.0",
+      )
+    })
+  })
+}
