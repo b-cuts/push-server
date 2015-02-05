@@ -14,7 +14,6 @@ import javax.ws.rs.ext.Provider;
 import javax.xml.bind.DatatypeConverter;
 import org.crazyyak.dev.common.EqualsUtils;
 
-@Provider
 @ApiAuthentication
 @Priority(Priorities.AUTHENTICATION + 1)
 public class ApiAuthenticationFilter implements ContainerRequestFilter {

@@ -8,7 +8,12 @@ package com.cosmicpush.app.system;
 
 import com.cosmicpush.app.deprecated.SmsToEmailPush;
 import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.app.jaxrs.security.ApiAuthenticationFilter;
+import com.cosmicpush.app.jaxrs.security.MngtAuthenticationFilter;
+import com.cosmicpush.app.jaxrs.security.SessionFilter;
 import com.cosmicpush.app.jaxrs.security.SessionStore;
+import com.cosmicpush.app.view.LocalResourceMessageBodyWriter;
+import com.cosmicpush.app.view.ThymeleafMessageBodyWriter;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.PushType;
@@ -18,13 +23,12 @@ import org.apache.log4j.Level;
 import org.crazyyak.app.logging.LogUtils;
 import org.crazyyak.lib.jaxrs.YakJaxRsExceptionMapper;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
-import org.glassfish.jersey.server.ResourceConfig;
 
-import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-@ApplicationPath("/")
-public class CpApplication extends ResourceConfig {
+public class CpApplication extends Application {
 
   private static final ThreadLocal<ExecutionContext> executionContext = new ThreadLocal<>();
   public static boolean hasExecutionContext() {
@@ -40,7 +44,15 @@ public class CpApplication extends ResourceConfig {
     executionContext.remove();
   }
 
+  private final Set<Class<?>> classes;
+  private final Set<Object> singletons;
+  private final Map<String, Object> properties;
+
   public CpApplication() throws Exception {
+    Map<String, Object> properties = new HashMap<>();
+    Set<Class<?>> classes = new HashSet<>();
+    Set<Object> singletons = new HashSet<>();
+
     LogUtils logUtils = new LogUtils();
     logUtils.initConsoleAppender(Level.WARN, LogUtils.DEFAULT_PATTERN);
 
@@ -50,22 +62,74 @@ public class CpApplication extends ResourceConfig {
       new SessionStore(TimeUnit.MINUTES.toMillis(60)),
       new CpObjectMapper(),
       new CpCouchServer(databaseName));
-    property(AppContext.class.getName(), appContext);
+    properties.put(AppContext.class.getName(), appContext);
 
-    register(CpFilter.class);
-    register(MultiPartFeature.class);
-    register(new CpReaderWriterProvider(appContext.getObjectMapper()));
+    getSingletons();
 
-    register(new YakJaxRsExceptionMapper(true) {
-      @Override protected void logInfo(String msg, Throwable ex) { logUtils.info(CpApplication.class, msg, ex); }
-      @Override protected void logError(String msg, Throwable ex) { logUtils.fatal(CpApplication.class, msg, ex); }
+    classes.add(CpFilter.class);
+    classes.add(SessionFilter.class);
+    classes.add(MultiPartFeature.class);
+    classes.add(ApiAuthenticationFilter.class);
+    classes.add(MngtAuthenticationFilter.class);
+    classes.add(ThymeleafMessageBodyWriter.class);
+    classes.add(LocalResourceMessageBodyWriter.class);
+
+    singletons.add(new CpReaderWriterProvider(appContext.getObjectMapper()));
+    singletons.add(new YakJaxRsExceptionMapper(true) {
+      @Override protected void logInfo(String msg, Throwable ex) {
+        logUtils.info(CpApplication.class, msg, ex);
+      }
+      @Override protected void logError(String msg, Throwable ex) {
+        logUtils.fatal(CpApplication.class, msg, ex);
+      }
     });
-
-    packages("com.cosmicpush");
 
     // Force a reference to this deprecated push.
     new PushType(GoogleTalkPush.class, "im", "Deprecated IM Push");
     new PushType(SmtpEmailPush.class, "email", "Deprecated Email Push");
     SmsToEmailPush.PUSH_TYPE.getCode();
+
+    this.classes = Collections.unmodifiableSet(classes);
+    this.singletons = Collections.unmodifiableSet(singletons);
+    this.properties = Collections.unmodifiableMap(properties);
+
+    checkForDuplicates();
+  }
+
+  private void checkForDuplicates() {
+    Set<Class> existing = new HashSet<>();
+
+    for (Object object : singletons) {
+      if (object == null) continue;
+      if (object instanceof Class) {
+        String msg = String.format("The class %s was registered as a singleton.", Class.class.getName());
+        throw new IllegalArgumentException(msg);
+
+      } else if (existing.contains(object.getClass())) {
+        String msg = String.format("The singleton %s has already been registered.", object.getClass().getName());
+        throw new IllegalArgumentException(msg);
+      }
+    }
+
+    for (Class type : classes) {
+      if (type == null) continue;
+      if (existing.contains(type)) {
+        String msg = String.format("The class %s has already been registered.", type.getName());
+        throw new IllegalArgumentException(msg);
+      }
+    }
+  }
+
+  @Override
+  public Map<String, Object> getProperties() {
+    return properties;
+  }
+  @Override
+  public Set<Class<?>> getClasses() {
+    return classes;
+  }
+  @Override
+  public Set<Object> getSingletons() {
+    return singletons;
   }
 }

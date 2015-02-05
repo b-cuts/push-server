@@ -1,0 +1,78 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+project(":push-server-engine-servlet") {
+  description = "Cosmic Push Engine - Servlet Bundling"
+
+  version = pushServerEngineServlet
+
+  apply (plugin: "war")
+  apply (from: "../build-config-deployer.gradle")
+
+  configurations {
+    provided
+  }
+
+  sourceSets {
+    main.compileClasspath += configurations.provided
+    test.compileClasspath += configurations.provided
+    test.runtimeClasspath += configurations.provided
+  }
+
+  dependencies {
+    compile project(":push-server-app")
+
+    compile("org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion")
+    compile("org.glassfish.jersey.media:jersey-media-multipart:$jerseyVersion")
+
+    provided ("javax.servlet.jsp:jsp-api:2.2.1-b03")
+    provided ("javax.servlet:javax.servlet-api:3.1.0")
+
+    testCompile ("org.testng:testng:6.8.17")
+  }
+
+  configurations.all({
+    resolutionStrategy({
+      force(
+          "org.slf4j:slf4j:1.7.10",
+          "org.slf4j:slf4j-api:1.7.10",
+          "org.javassist:javassist:3.18.1-GA",
+          "commons-logging:commons-logging:1.2",
+          "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
+          "com.fasterxml.jackson.core:jackson-databind:2.5.0",
+      )
+    })
+  })
+
+
+
+  /********************************************
+   * Deploys the app to the production server *
+   ********************************************/
+
+  apply plugin: "org.hidetake.ssh"
+  remotes {
+    webServer {
+      host = "107.170.247.182"
+      user = "root"
+    }
+  }
+  task stageFiles(type: SshTask, dependsOn: war) {
+    ssh {
+      identity = file("${cosmicPushKey}") // Enable public key authentication
+      knownHosts = allowAnyHosts          // Disable host key verification
+      pty = true; // Enable PTY allocation for sudo
+    }
+    session(remotes.webServer) {
+      // Put a built WAR to the server
+      def copyOf = new File((File)war.archivePath.parentFile, "push-server-${project.version}.war");
+      if (copyOf.exists() == false) {
+        copyOf.bytes = war.archivePath.bytes
+      }
+      System.out.printf("Uploading " + copyOf);
+      put(copyOf.absolutePath, "/opt/staging/")
+    }
+  }
+}

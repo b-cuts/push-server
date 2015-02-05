@@ -13,7 +13,6 @@ import javax.ws.rs.core.*;
 import javax.ws.rs.ext.*;
 import org.crazyyak.dev.common.exceptions.ApiException;
 
-@Provider
 @MngtAuthentication
 @Priority(Priorities.AUTHENTICATION + 1)
 public class MngtAuthenticationFilter implements ContainerRequestFilter {
