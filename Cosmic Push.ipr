@@ -14,7 +14,7 @@
             <element id="dir-copy" path="$PROJECT_DIR$/push-server-engine-servlet/build/resources/main" />
           </element>
           <element id="directory" name="lib">
-            <element id="archive" name="com.cosmicpush-push-server-app-4.0.0.jar">
+            <element id="archive" name="com.cosmicpush-push-server-engine-4.0.0.jar">
               <element id="module-output" name="push-server-engine" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-engine/build/resources/main" />
             </element>
@@ -177,7 +177,7 @@
             <element id="dir-copy" path="$PROJECT_DIR$/push-server-engine-servlet/build/resources/main" />
           </element>
           <element id="directory" name="lib">
-            <element id="archive" name="com.cosmicpush-push-server-app-4.0.0.jar">
+            <element id="archive" name="com.cosmicpush-push-server-engine-4.0.0.jar">
               <element id="module-output" name="push-server-engine" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-engine/build/resources/main" />
             </element>
@@ -367,8 +367,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/push-server-app" />
             <option value="$PROJECT_DIR$/push-server-common" />
+            <option value="$PROJECT_DIR$/push-server-engine" />
             <option value="$PROJECT_DIR$/push-server-engine-servlet" />
             <option value="$PROJECT_DIR$/push-server-gateway" />
             <option value="$PROJECT_DIR$/push-server-jackson" />
