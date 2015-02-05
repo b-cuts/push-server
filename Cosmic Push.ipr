@@ -561,7 +561,7 @@
     <output url="file://$PROJECT_DIR$/build" />
   </component>
   <component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="GrizzlyPushServer" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration default="false" name="Grizzly Push Server" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.cosmicpush.engine.grizzly.*" />
@@ -570,7 +570,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="com.cosmicpush.engine.grizzly.GrizzlyPushServer" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="port 9010 shutdown 9009 context push-server open true" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />

@@ -8,46 +8,61 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class GrizzlyPushServer {
 
-  public static final String serverName = "localhost";
-  private static final int testPort = 8080;
-  private static final int shutdownPort = 9081;
+  public String serverName = "localhost";
+  private int port = 8080;
+  private int shutdownPort = 8005;
+  private String context = "push-server";
+  private boolean openBrowser;
 
-  String[] packages = new String[]{
-    "com.lqnotifier"
-  };
+  public URI baseUri;
 
-  public static final URI BASE_URI = URI.create("http://"+serverName+":"+testPort+"/push-engine/");
-
+  private HttpServer httpServer;
   private ServerSocket socket;
   private Thread acceptThread;
   /** handlerLock is used to synchronize access to socket, acceptThread and callExecutor. */
   private final ReentrantLock handlerLock = new ReentrantLock();
   private static final int socketAcceptTimeoutMilli = 5000;
 
-  private HttpServer httpServer;
+  public GrizzlyPushServer() {
+  }
 
   /**
    * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
    * @return Grizzly HTTP server.
    */
-  public HttpServer startServer() throws Exception {
-    shutdownExisting();
+  public HttpServer startServer(String...args) throws Exception {
+    if (args.length % 2 != 0) {
+      throw new IllegalArgumentException("Expected an even number of arguments: " + Arrays.asList(args));
+    }
 
-    final Map<String, String> initParams = new HashMap<String, String>();
-    initParams.put("com.sun.jersey.config.property.packages",
-                   "com.cosmicpush");
+    for (int i = 0; i < args.length; i += 2) {
+      String key = args[i];
+      String value = args[i+1];
+      if ("port".equals(key)) {
+        port = Integer.valueOf(value);
+      } else if ("shutdown".equals(key)) {
+        shutdownPort = Integer.valueOf(value);
+      } else if ("context".equals(key)) {
+        context = value;
+      } else if ("open".equals(key)) {
+        openBrowser = Boolean.valueOf(value);
+      }
+    }
+
+    this.baseUri = URI.create("http://"+serverName+":"+ port+"/"+context+"/");
+
+    shutdownExisting();
 
     CpApplication application = new CpApplication();
     CpResourceConfig rc = new CpResourceConfig(application);
-    httpServer = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, rc);
+    httpServer = GrizzlyHttpServerFactory.createHttpServer(baseUri, rc);
 
 
     // Lock the handler, IllegalStateException thrown if we fail.
@@ -110,6 +125,26 @@ public class GrizzlyPushServer {
     handlerLock.unlock();
   }
 
+  public String getServerName() {
+    return serverName;
+  }
+
+  public int getPort() {
+    return port;
+  }
+
+  public int getShutdownPort() {
+    return shutdownPort;
+  }
+
+  public String getContext() {
+    return context;
+  }
+
+  public URI getBaseUri() {
+    return baseUri;
+  }
+
   private void socketAcceptLoop() {
 
     // Socket accept loop.
@@ -165,19 +200,22 @@ public class GrizzlyPushServer {
    */
   public static void main(String[] args) {
     try {
-      final HttpServer server = new GrizzlyPushServer().startServer();
-      System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl\nHit enter to stop it...", BASE_URI));
+      GrizzlyPushServer pushServer = new GrizzlyPushServer();
+      final HttpServer server = pushServer.startServer(args);
+      System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl%nHit [Enter] to stop the server...", pushServer.getBaseUri()));
 
-      java.awt.Desktop.getDesktop().browse(BASE_URI);
+      if (pushServer.openBrowser) {
+        URI uri = URI.create(pushServer.getBaseUri().toString()+"?username=test&password=test");
+        java.awt.Desktop.getDesktop().browse(uri);
+      }
 
-      // noinspection ResultOfMethodCallIgnored
-      System.in.read();
-      server.shutdownNow();
+      if (System.in.read() > Integer.MIN_VALUE) {
+        server.shutdownNow();
+      }
 
     } catch (Throwable e) {
       e.printStackTrace();
     }
-
     System.exit(0);
   }
 }
