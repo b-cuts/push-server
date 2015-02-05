@@ -11,6 +11,7 @@ import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.resources.manage.client.emails.ManageEmailsResource;
 import com.cosmicpush.app.resources.manage.client.notifications.ManageNotificationsResource;
 import com.cosmicpush.app.resources.manage.client.ocsmessage.ManageOcsMessageResource;
+import com.cosmicpush.app.resources.manage.client.twilio.ManageTwilioResource;
 import com.cosmicpush.app.resources.manage.client.userevents.ManageUserEventsResource;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
@@ -95,7 +96,12 @@ public class ManageApiClientResource {
   }
 
   @Path("/ocs-message")
-  public ManageOcsMessageResource getManageOcsMessagesResource() throws Exception {
+  public ManageTwilioResource getManageOcsMessagesResource() throws Exception {
+    return new ManageTwilioResource();
+  }
+
+  @Path("/ocs-message")
+  public ManageOcsMessageResource getManageTwilioResource() throws Exception {
     return null; // new ManageOcsMessageResource(config, account, apiClient);
   }
 

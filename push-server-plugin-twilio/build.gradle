@@ -1,0 +1,32 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+project(":push-server-plugin-twilio") {
+    description = "Cosmic Push Twilio Plugin"
+
+    version = pushServerPluginTwilio
+
+    apply from: "../build-config-deployer.gradle"
+
+    dependencies {
+        compile project(":push-server-common")
+
+        compile("com.twilio.sdk:twilio-java-sdk:3.4.5") {
+            exclude group: 'commons-logging'
+        }
+
+        compile("log4j:log4j:1.2.17")
+
+        testCompile ("org.testng:testng:6.8.17")
+    }
+
+    configurations.all({
+        resolutionStrategy({
+            force(
+            )
+        })
+    })
+}

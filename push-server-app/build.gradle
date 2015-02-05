@@ -30,6 +30,7 @@ project(":push-server-app") {
     compile project(":push-server-plugin-smtp")
     compile project(":push-server-plugin-gtalk")
     compile project(":push-server-plugin-ocs-message")
+    compile project(":push-server-plugin-twilio")
 
     compile ("org.crazyyak.dev:yak-dev-common:$yakDevCommon")
     compile ("org.crazyyak.dev:yak-dev-domain:$yakDevDomain")
@@ -64,6 +65,7 @@ project(":push-server-app") {
           "commons-logging:commons-logging:1.2",
           "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
           "com.fasterxml.jackson.core:jackson-databind:2.5.0",
+              "org.apache.httpcomponents:httpclient:4.3.4"
       )
     })
   })
