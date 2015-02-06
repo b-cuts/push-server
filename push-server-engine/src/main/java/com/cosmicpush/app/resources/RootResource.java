@@ -27,6 +27,7 @@ import org.crazyyak.dev.common.exceptions.ApiException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -41,13 +42,11 @@ public class RootResource extends RootResourceSupport {
 
   private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  public RootResource(@Context UriInfo uriInfo) {
+  public RootResource() {
     log.info("Created ");
 
     // Force initialization.
     PluginManager.getPlugins();
-
-    context.setUriInfo(uriInfo);
   }
 
   @Override

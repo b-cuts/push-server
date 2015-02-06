@@ -35,6 +35,7 @@ public class GrizzlyPushServer {
 
   /**
    * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
+   * @param args varius command line arguments for the server.
    * @return Grizzly HTTP server.
    */
   public HttpServer startServer(String...args) throws Exception {

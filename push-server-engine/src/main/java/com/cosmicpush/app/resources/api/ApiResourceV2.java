@@ -19,6 +19,7 @@ import com.cosmicpush.pub.common.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.util.List;
 
 @ApiAuthentication
 public class ApiResourceV2 {
@@ -37,9 +38,9 @@ public class ApiResourceV2 {
   }
 
   @POST
+  @Path("/pushes")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  @Path("/pushes")
   public Response postPush(Push push) throws Exception {
 
     Account account = context.getAccount();

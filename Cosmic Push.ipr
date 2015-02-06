@@ -138,25 +138,18 @@
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
-            <element id="archive" name="com.cosmicpush-push-server-plugin-ocs-message-1.0.0.jar">
-              <element id="module-output" name="push-server-plugin-ocs-message" />
-              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-ocs-message/build/resources/main" />
-            </element>
-            <element id="library" level="project" name="Gradle: javax.sip:jain-sip-api:1.2" />
-            <element id="library" level="project" name="Gradle: javax.sip:jain-sip-ri:1.2.149" />
-            <element id="library" level="project" name="Gradle: :ntlm-core-1.0-r17:" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-twilio-1.0.0.jar">
               <element id="module-output" name="push-server-plugin-twilio" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-twilio/build/resources/main" />
             </element>
+            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.4.5" />
+            <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
+            <element id="library" level="project" name="Gradle: com.googlecode.json-simple:json-simple:1.1" />
+            <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" />
+            <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.15" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.4.5/e679168ac8629b3f3a41a85332adbdb2bf61b6ae/twilio-java-sdk-3.4.5.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/5e303a03d04e6788dddfa3655272580ae0fc13bb/json-simple-1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.3/dd1373fe304f64ae3daa50e67b9b9cf6995ec1a0/jackson-mapper-asl-1.9.3.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.3/e96286e8ebe4c5523d5621278dc2114116108a0e/jackson-core-asl-1.9.3.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -301,25 +294,18 @@
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
-            <element id="archive" name="com.cosmicpush-push-server-plugin-ocs-message-1.0.0.jar">
-              <element id="module-output" name="push-server-plugin-ocs-message" />
-              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-ocs-message/build/resources/main" />
-            </element>
-            <element id="library" level="project" name="Gradle: javax.sip:jain-sip-api:1.2" />
-            <element id="library" level="project" name="Gradle: javax.sip:jain-sip-ri:1.2.149" />
-            <element id="library" level="project" name="Gradle: :ntlm-core-1.0-r17:" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-twilio-1.0.0.jar">
               <element id="module-output" name="push-server-plugin-twilio" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-twilio/build/resources/main" />
             </element>
+            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.4.5" />
+            <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
+            <element id="library" level="project" name="Gradle: com.googlecode.json-simple:json-simple:1.1" />
+            <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" />
+            <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.15" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.4.5/e679168ac8629b3f3a41a85332adbdb2bf61b6ae/twilio-java-sdk-3.4.5.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/5e303a03d04e6788dddfa3655272580ae0fc13bb/json-simple-1.1.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.3/dd1373fe304f64ae3daa50e67b9b9cf6995ec1a0/jackson-mapper-asl-1.9.3.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.3/e96286e8ebe4c5523d5621278dc2114116108a0e/jackson-core-asl-1.9.3.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -375,7 +361,6 @@
             <option value="$PROJECT_DIR$/push-server-jackson" />
             <option value="$PROJECT_DIR$/push-server-plugin-gtalk" />
             <option value="$PROJECT_DIR$/push-server-plugin-notifier" />
-            <option value="$PROJECT_DIR$/push-server-plugin-ocs-message" />
             <option value="$PROJECT_DIR$/push-server-plugin-ses" />
             <option value="$PROJECT_DIR$/push-server-plugin-smtp" />
             <option value="$PROJECT_DIR$/push-server-plugin-twilio" />
@@ -548,7 +533,6 @@
       <module fileurl="file://$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" filepath="$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" filepath="$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" filepath="$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" />
-      <module fileurl="file://$PROJECT_DIR$/push-server-plugin-ocs-message/push-server-plugin-ocs-message.iml" filepath="$PROJECT_DIR$/push-server-plugin-ocs-message/push-server-plugin-ocs-message.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" filepath="$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" filepath="$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-twilio/push-server-plugin-twilio.iml" filepath="$PROJECT_DIR$/push-server-plugin-twilio/push-server-plugin-twilio.iml" />
@@ -581,6 +565,45 @@
       <envs />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="IntegrationTestVersion1" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cosmicpush.v1.integration.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="push-server-v1-integration-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="" />
+      <option name="PACKAGE_NAME" value="com.cosmicpush.v1.integration.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v1.integration.tests.IntegrationTestVersion1" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="63039" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -688,45 +711,6 @@
       <listeners />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="54924" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
-      <method />
-    </configuration>
-    <configuration default="false" name="IntegrationTestVersion1" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cosmicpush.v1.integration.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="push-server-v1-integration-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="SUITE_NAME" value="" />
-      <option name="PACKAGE_NAME" value="com.cosmicpush.v1.integration.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v1.integration.tests.IntegrationTestVersion1" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" value="" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" value="" />
-      <envs />
-      <properties />
-      <listeners />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="63039" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -1357,33 +1341,27 @@
     <library name="Gradle: com.googlecode.json-simple:json-simple:1.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/5e303a03d04e6788dddfa3655272580ae0fc13bb/json-simple-1.1.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/5e303a03d04e6788dddfa3655272580ae0fc13bb/json-simple-1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/19c6d8dee6803c520d855ff7e8a8c3d97f1271ec/json-simple-1.1-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/19c6d8dee6803c520d855ff7e8a8c3d97f1271ec/json-simple-1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.twilio.sdk:twilio-java-sdk:3.4.5">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.4.5/e679168ac8629b3f3a41a85332adbdb2bf61b6ae/twilio-java-sdk-3.4.5.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.4.5/e679168ac8629b3f3a41a85332adbdb2bf61b6ae/twilio-java-sdk-3.4.5.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.4.5/7c2dc52f12e0743a0cbc9ca04cd956d4871aaa71/twilio-java-sdk-3.4.5-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.4.5/7c2dc52f12e0743a0cbc9ca04cd956d4871aaa71/twilio-java-sdk-3.4.5-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: commons-codec:commons-codec:1.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.4/4216af16d38465bbab0f3dff8efa14204f7a399a/commons-codec-1.4.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.4/4216af16d38465bbab0f3dff8efa14204f7a399a/commons-codec-1.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.4/5310da9f90e843883309e9e0bf5950faa79882a0/commons-codec-1.4-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.4/5310da9f90e843883309e9e0bf5950faa79882a0/commons-codec-1.4-sources.jar!/" />
       </SOURCES>
     </library>
@@ -1399,11 +1377,9 @@
     <library name="Gradle: commons-lang:commons-lang:2.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/67313d715fbf0ea4fd0bdb69217fb77f807a8ce5/commons-lang-2.6-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/67313d715fbf0ea4fd0bdb69217fb77f807a8ce5/commons-lang-2.6-sources.jar!/" />
       </SOURCES>
     </library>
@@ -1586,11 +1562,9 @@
     <library name="Gradle: org.apache.httpcomponents:httpclient:4.1.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.1.2/9003011c1b6d28a7331f04251a25e7ccf63c98f8/httpclient-4.1.2.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.1.2/9003011c1b6d28a7331f04251a25e7ccf63c98f8/httpclient-4.1.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.1.2/dc49f8801031e5318f9487e2aa9e23a301c39dcd/httpclient-4.1.2-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.1.2/dc49f8801031e5318f9487e2aa9e23a301c39dcd/httpclient-4.1.2-sources.jar!/" />
       </SOURCES>
     </library>
@@ -1606,11 +1580,9 @@
     <library name="Gradle: org.apache.httpcomponents:httpcore:4.1.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.1.2/39e30fb2ddfcf32b9dd663039ca6e847b698aa6f/httpcore-4.1.2.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.1.2/39e30fb2ddfcf32b9dd663039ca6e847b698aa6f/httpcore-4.1.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.1.2/b3141b5e74071e25f0f5bb337fa2ceae580bfc35/httpcore-4.1.2-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.1.2/b3141b5e74071e25f0f5bb337fa2ceae580bfc35/httpcore-4.1.2-sources.jar!/" />
       </SOURCES>
     </library>
@@ -1642,11 +1614,9 @@
     <library name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.3/dd1373fe304f64ae3daa50e67b9b9cf6995ec1a0/jackson-mapper-asl-1.9.3.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.3/dd1373fe304f64ae3daa50e67b9b9cf6995ec1a0/jackson-mapper-asl-1.9.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.3/ff4fdbc6c12ac7ff7a727cd80cd71a059a0ec179/jackson-mapper-asl-1.9.3-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.3/ff4fdbc6c12ac7ff7a727cd80cd71a059a0ec179/jackson-mapper-asl-1.9.3-sources.jar!/" />
       </SOURCES>
     </library>

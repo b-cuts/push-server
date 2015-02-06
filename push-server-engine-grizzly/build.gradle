@@ -27,4 +27,7 @@ project(":push-server-engine-grizzly") {
       )
     })
   })
+
+
+  apply plugin: 'eu.appsatori.fatjar'
 }

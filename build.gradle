@@ -13,6 +13,7 @@ buildscript {
   dependencies {
     classpath "org.hidetake:gradle-ssh-plugin:1.0.1"
     classpath "com.github.ben-manes:gradle-versions-plugin:0.7"
+    classpath 'eu.appsatori:gradle-fatjar-plugin:0.3'
   }
 }
 

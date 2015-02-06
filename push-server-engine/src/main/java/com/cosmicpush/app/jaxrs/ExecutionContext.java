@@ -14,6 +14,7 @@ import com.cosmicpush.jackson.CpObjectMapper;
 import org.crazyyak.dev.common.StringUtils;
 
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
@@ -21,11 +22,13 @@ public class ExecutionContext implements PluginContext {
 
   private final PushProcessor pushProcessor;
 
+  private URI baseURI;
   private Session session;
   private Account account;
   private ApiClient apiClient;
 
   private UriInfo uriInfo;
+  private HttpHeaders headers;
 
   private Application application;
 
@@ -63,12 +66,14 @@ public class ExecutionContext implements PluginContext {
 
   public void setUriInfo(UriInfo uriInfo) {
     this.uriInfo = uriInfo;
+
+    String uri = uriInfo.getBaseUri().toASCIIString();
+    this.baseURI = URI.create(StringUtils.substring(uri, 0, -1));
   }
 
   @Override
   public URI getBaseURI() {
-    String uri = uriInfo.getBaseUri().toASCIIString();
-    return URI.create(StringUtils.substring(uri, 0, -1));
+    return baseURI;
   }
 
   public Application getApplication() {
@@ -85,6 +90,14 @@ public class ExecutionContext implements PluginContext {
 
   public SessionStore getSessionStore() {
     return getAppContext().getSessionStore();
+  }
+
+  public HttpHeaders getHeaders() {
+    return headers;
+  }
+
+  public void setHeaders(HttpHeaders headers) {
+    this.headers = headers;
   }
 
   @Override

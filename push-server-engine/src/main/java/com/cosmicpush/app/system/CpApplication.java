@@ -24,8 +24,6 @@ import com.cosmicpush.pub.push.SmtpEmailPush;
 import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.log4j.Level;
 import org.crazyyak.app.logging.LogUtils;
-import org.crazyyak.lib.jaxrs.YakJaxRsExceptionMapper;
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 import javax.ws.rs.core.Application;
 import java.util.*;
@@ -50,14 +48,15 @@ public class CpApplication extends Application {
   private final Set<Class<?>> classes;
   private final Set<Object> singletons;
   private final Map<String, Object> properties;
+  private final LogUtils logUtils = new LogUtils();
 
   public CpApplication() throws Exception {
+    // Make sure our logging is working before ANYTHING else.
+    logUtils.initConsoleAppender(Level.WARN, LogUtils.DEFAULT_PATTERN);
+
     Map<String, Object> properties = new HashMap<>();
     Set<Class<?>> classes = new HashSet<>();
     Set<Object> singletons = new HashSet<>();
-
-    LogUtils logUtils = new LogUtils();
-    logUtils.initConsoleAppender(Level.WARN, LogUtils.DEFAULT_PATTERN);
 
     String databaseName = "cosmic-push";
 
@@ -67,26 +66,15 @@ public class CpApplication extends Application {
       new CpCouchServer(databaseName));
     properties.put(AppContext.class.getName(), appContext);
 
-    getSingletons();
-
     classes.add(CpFilter.class);
     classes.add(SessionFilter.class);
-    classes.add(MultiPartFeature.class);
     classes.add(ApiAuthenticationFilter.class);
     classes.add(MngtAuthenticationFilter.class);
     classes.add(ThymeleafMessageBodyWriter.class);
     classes.add(LocalResourceMessageBodyWriter.class);
     classes.add(RootResource.class);
-
-    singletons.add(new CpReaderWriterProvider(appContext.getObjectMapper()));
-    singletons.add(new YakJaxRsExceptionMapper(true) {
-      @Override protected void logInfo(String msg, Throwable ex) {
-        logUtils.info(CpApplication.class, msg, ex);
-      }
-      @Override protected void logError(String msg, Throwable ex) {
-        logUtils.fatal(CpApplication.class, msg, ex);
-      }
-    });
+    classes.add(CpReaderWriterProvider.class);
+    classes.add(CpJaxRsExceptionMapper.class);
 
     // TODO - remove these once these are properly referenced by their plugins
     UserEventPush.PUSH_TYPE.getCode();
@@ -140,4 +128,5 @@ public class CpApplication extends Application {
   public Set<Object> getSingletons() {
     return singletons;
   }
+
 }

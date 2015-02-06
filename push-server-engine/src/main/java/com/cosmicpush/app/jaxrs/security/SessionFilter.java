@@ -9,10 +9,7 @@ import com.cosmicpush.common.accounts.AccountStore;
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.*;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.*;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.util.Arrays;
@@ -23,8 +20,15 @@ public class SessionFilter implements ContainerRequestFilter, ContainerResponseF
 
   private final AppContext appContext;
   private final Application application;
+  private final UriInfo uriInfo;
+  private final HttpHeaders headers;
 
-  public SessionFilter(@Context Application application) {
+  public SessionFilter(@Context Application application,
+                       @Context UriInfo uriInfo,
+                       @Context HttpHeaders headers) {
+
+    this.uriInfo = uriInfo;
+    this.headers = headers;
     this.application = application;
     this.appContext = AppContext.from(application);
   }
@@ -36,6 +40,8 @@ public class SessionFilter implements ContainerRequestFilter, ContainerResponseF
     // Before anything, make sure the execution
     // context has a reference to the application.
     execContext.setApplication(application);
+    execContext.setUriInfo(uriInfo);
+    execContext.setHeaders(headers);
 
     Session session = appContext.getSessionStore().getSession(requestContext);
     CpApplication.getExecutionContext().setSession(session);
