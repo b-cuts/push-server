@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class GrizzlyPushServer {
 
-  public String serverName = "localhost";
+  public String serverName = "www.localhost";
   private int port = 8080;
   private int shutdownPort = 8005;
   private String context = "push-server";
@@ -46,7 +46,9 @@ public class GrizzlyPushServer {
     for (int i = 0; i < args.length; i += 2) {
       String key = args[i];
       String value = args[i+1];
-      if ("port".equals(key)) {
+      if ("serverName".equals(key)) {
+        serverName = value;
+      } else if ("port".equals(key)) {
         port = Integer.valueOf(value);
       } else if ("shutdown".equals(key)) {
         shutdownPort = Integer.valueOf(value);

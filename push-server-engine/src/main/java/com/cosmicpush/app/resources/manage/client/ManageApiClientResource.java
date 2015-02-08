@@ -33,15 +33,18 @@ import java.util.List;
 public class ManageApiClientResource {
 
   private final ExecutionContext context = CpApplication.getExecutionContext();
-  private final Account account = context.getAccount();
   private final String clientName;
 
   public ManageApiClientResource(String clientName) {
     this.clientName = clientName;
   }
 
+  private Account getAccount() {
+    return context.getAccount();
+  }
+
   private ApiClient getApiClient() {
-    ApiClient apiClient = account.getApiClientByName(clientName);
+    ApiClient apiClient = getAccount().getApiClientByName(clientName);
     if (apiClient == null) throw ApiException.notFound(clientName);
     return apiClient;
   }
@@ -56,9 +59,9 @@ public class ManageApiClientResource {
   public Thymeleaf viewApiClient() throws Exception {
     String lastMessage = getApiClient().getLastMessage();
     getApiClient().setLastMessage(null);
-    context.getAccountStore().update(account);
+    context.getAccountStore().update(getAccount());
 
-    ManageApiClientModel model = new ManageApiClientModel(context, account, getApiClient(), lastMessage);
+    ManageApiClientModel model = new ManageApiClientModel(context, getAccount(), getApiClient(), lastMessage);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_CLIENT, model);
   }
 
@@ -73,23 +76,23 @@ public class ManageApiClientResource {
     Collections.sort(requests);
     Collections.reverse(requests);
 
-    ApiClientRequestsModel model = new ApiClientRequestsModel(account, getApiClient(), requests);
+    ApiClientRequestsModel model = new ApiClientRequestsModel(getAccount(), getApiClient(), requests);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
   }
 
   @Path("/emails")
   public ManageEmailsResource getManageEmailsResource() throws Exception {
-    return new ManageEmailsResource(account, getApiClient());
+    return new ManageEmailsResource(getAccount(), getApiClient());
   }
 
   @Path("/user-events")
   public ManageUserEventsResource getManageUserEventsResource() throws Exception {
-    return new ManageUserEventsResource(account, getApiClient());
+    return new ManageUserEventsResource(getAccount(), getApiClient());
   }
 
   @Path("/notifications")
   public ManageNotificationsResource getManageNotificationsResource() throws Exception {
-    return new ManageNotificationsResource(account, getApiClient());
+    return new ManageNotificationsResource(getAccount(), getApiClient());
   }
 
   @POST
@@ -105,7 +108,7 @@ public class ManageApiClientResource {
     UpdateClientAction action = new UpdateClientAction(clientName, clientPassword);
 
     getApiClient().apply(action);
-    context.getAccountStore().update(account);
+    context.getAccountStore().update(getAccount());
 
     return redirect();
   }
@@ -114,14 +117,14 @@ public class ManageApiClientResource {
   @Path("/client/delete")
   public Response deleteClient() throws Exception {
 
-    account.remove(getApiClient());
-    context.getAccountStore().update(account);
+    getAccount().remove(getApiClient());
+    context.getAccountStore().update(getAccount());
 
     return Response.seeOther(new URI("manage/account")).build();
   }
 
   @Path("/{pushType}")
   public ManagePluginApi getManagePluginApi(@PathParam("pushType") PushType pushType) throws Exception {
-    return new ManagePluginApi(account, getApiClient(), pushType);
+    return new ManagePluginApi(getAccount(), getApiClient(), pushType);
   }
 }

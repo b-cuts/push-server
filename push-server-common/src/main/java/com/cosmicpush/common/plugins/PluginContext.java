@@ -2,6 +2,7 @@ package com.cosmicpush.common.plugins;
 
 import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 
@@ -19,4 +20,6 @@ public interface PluginContext {
   PushProcessor getPushProcessor();
 
   URI getBaseURI();
+
+  AppContext getAppContext();
 }

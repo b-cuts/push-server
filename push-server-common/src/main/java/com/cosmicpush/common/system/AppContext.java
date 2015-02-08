@@ -1,26 +1,32 @@
-package com.cosmicpush.app.system;
+package com.cosmicpush.common.system;
 
-import com.cosmicpush.app.jaxrs.security.SessionStore;
 import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.requests.ApiRequestStore;
-import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
+import org.crazyyak.apis.bitly.BitlyApis;
+
 import javax.ws.rs.core.Application;
 
 public class AppContext {
 
+  private final BitlyApis bitlyApis;
   private final SessionStore sessionStore;
   private final CpObjectMapper objectMapper;
   private final CpCouchServer cpCouchServer;
   private final AccountStore accountStore;
   private final ApiRequestStore apiRequestStore;
 
-  public AppContext(SessionStore sessionStore, CpObjectMapper objectMapper, CpCouchServer cpCouchServer) {
+  public AppContext(SessionStore sessionStore, CpObjectMapper objectMapper, CpCouchServer cpCouchServer, BitlyApis bitlyApis) {
+    this.bitlyApis = bitlyApis;
     this.sessionStore = sessionStore;
     this.objectMapper = objectMapper;
     this.cpCouchServer = cpCouchServer;
     this.accountStore = new AccountStore(cpCouchServer);
     this.apiRequestStore = new ApiRequestStore(cpCouchServer);
+  }
+
+  public BitlyApis getBitlyApi() {
+    return bitlyApis;
   }
 
   public CpObjectMapper getObjectMapper() {

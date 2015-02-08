@@ -1,4 +1,4 @@
-package com.cosmicpush.app.jaxrs.security;
+package com.cosmicpush.common.system;
 
 import org.crazyyak.dev.common.id.uuid.TimeUuid;
 

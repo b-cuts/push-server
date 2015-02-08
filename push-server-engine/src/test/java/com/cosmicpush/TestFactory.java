@@ -15,6 +15,7 @@ import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.plugins.PushProcessor;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
@@ -189,6 +190,7 @@ public class TestFactory {
       @Override public PushProcessor getPushProcessor() {
         return null;
       }
+      @Override public AppContext getAppContext() { return null; }
     };
   }
 }

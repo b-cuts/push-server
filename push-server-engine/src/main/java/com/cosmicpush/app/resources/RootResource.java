@@ -6,8 +6,6 @@
 package com.cosmicpush.app.resources;
 
 import com.cosmicpush.app.jaxrs.ExecutionContext;
-import com.cosmicpush.app.jaxrs.security.Session;
-import com.cosmicpush.app.jaxrs.security.SessionStore;
 import com.cosmicpush.app.resources.api.ApiResourceV1;
 import com.cosmicpush.app.resources.api.ApiResourceV2;
 import com.cosmicpush.app.resources.manage.ManageResource;
@@ -18,6 +16,8 @@ import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.PluginManager;
+import com.cosmicpush.common.system.Session;
+import com.cosmicpush.common.system.SessionStore;
 import com.cosmicpush.pub.push.NotificationPush;
 import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.commons.logging.Log;
@@ -26,8 +26,10 @@ import org.crazyyak.dev.common.EqualsUtils;
 import org.crazyyak.dev.common.exceptions.ApiException;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.Provider;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;

@@ -1,9 +1,14 @@
-package com.cosmicpush.app.jaxrs.security;
+package com.cosmicpush.common.system;
 
-import java.util.*;
+import org.crazyyak.dev.common.ReflectUtils;
+import org.crazyyak.dev.common.StringUtils;
+
 import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.core.*;
-import org.crazyyak.dev.common.*;
+import javax.ws.rs.core.Cookie;
+import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.UriInfo;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SessionStore {
 

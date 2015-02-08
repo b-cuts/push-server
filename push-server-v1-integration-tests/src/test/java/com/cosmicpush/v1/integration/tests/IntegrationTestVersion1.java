@@ -1,15 +1,22 @@
 package com.cosmicpush.v1.integration.tests;
 
 import com.cosmicpush.gateway.LiveCosmicPushGateway;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.PushResponse;
+import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.internal.CpIdGenerator;
 import com.cosmicpush.pub.push.*;
-import java.io.*;
-import java.util.*;
-import org.crazyyak.dev.common.*;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.DateUtils;
+import org.crazyyak.dev.common.EnvUtils;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 import org.joda.time.LocalDateTime;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -21,7 +28,7 @@ public class IntegrationTestVersion1 {
 
   @BeforeClass
   public void beforeClass() throws Exception {
-    String url = "http://localhost:9010/push-server/api";
+    String url = "http://www.localhost:9010/push-server/api";
 
     String username = EnvUtils.findProperty("PUSH_TEST_USERNAME");
     ExceptionUtils.assertNotNull(username, "PUSH_TEST_USERNAME");

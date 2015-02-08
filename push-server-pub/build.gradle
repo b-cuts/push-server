@@ -13,9 +13,9 @@ project(":push-server-pub") {
 
   dependencies {
   	compile ("org.crazyyak.dev:yak-dev-common:${yakDevCommon}")
-    compile ("com.fasterxml.jackson.core:jackson-annotations:2.5.0")
+    compile ("com.fasterxml.jackson.core:jackson-annotations:2.5.1")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

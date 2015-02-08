@@ -15,9 +15,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="push-server-engine" exported="" />
-    <orderEntry type="library" exported="" name="Gradle: org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.13" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.grizzly:grizzly-http-server:2.3.16" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.glassfish.jersey.core:jersey-server:2.13" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.javassist:javassist:3.18.1-GA" level="project" />
@@ -34,5 +32,7 @@
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.hk2:hk2-locator:2.4.0-b06" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b06" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b06" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.15" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.glassfish.jersey.core:jersey-server:2.15" level="project" />
   </component>
 </module>

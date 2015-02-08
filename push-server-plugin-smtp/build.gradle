@@ -16,7 +16,7 @@ project(":push-server-plugin-smtp") {
 
     compile("javax.mail:mail:1.5.0-b01")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

@@ -36,7 +36,7 @@ project(":push-server-engine") {
     compile ("org.thymeleaf:thymeleaf:2.1.4.RELEASE")
     compile ("org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

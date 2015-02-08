@@ -11,11 +11,12 @@ import com.cosmicpush.app.jaxrs.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.ApiAuthenticationFilter;
 import com.cosmicpush.app.jaxrs.security.MngtAuthenticationFilter;
 import com.cosmicpush.app.jaxrs.security.SessionFilter;
-import com.cosmicpush.app.jaxrs.security.SessionStore;
 import com.cosmicpush.app.resources.RootResource;
 import com.cosmicpush.app.view.LocalResourceMessageBodyWriter;
 import com.cosmicpush.app.view.ThymeleafMessageBodyWriter;
+import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
+import com.cosmicpush.common.system.SessionStore;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.GoogleTalkPush;
@@ -23,7 +24,9 @@ import com.cosmicpush.pub.push.NotificationPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
 import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.log4j.Level;
+import org.crazyyak.apis.bitly.BitlyApis;
 import org.crazyyak.app.logging.LogUtils;
+import org.crazyyak.dev.jackson.YakJacksonTranslator;
 
 import javax.ws.rs.core.Application;
 import java.util.*;
@@ -59,11 +62,16 @@ public class CpApplication extends Application {
     Set<Object> singletons = new HashSet<>();
 
     String databaseName = "cosmic-push";
+    String bitlyAccessToken = "9f5ed9c08c695b4a017bfb432eea58876a5d40cb";
+
+    CpObjectMapper objectMapper = new CpObjectMapper();
+    YakJacksonTranslator translator = new YakJacksonTranslator(objectMapper);
 
     AppContext appContext = new AppContext(
       new SessionStore(TimeUnit.MINUTES.toMillis(60)),
-      new CpObjectMapper(),
-      new CpCouchServer(databaseName));
+      objectMapper,
+      new CpCouchServer(databaseName),
+      new BitlyApis(translator, bitlyAccessToken));
     properties.put(AppContext.class.getName(), appContext);
 
     classes.add(CpFilter.class);

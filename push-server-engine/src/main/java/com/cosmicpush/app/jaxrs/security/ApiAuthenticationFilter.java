@@ -1,18 +1,23 @@
 package com.cosmicpush.app.jaxrs.security;
 
-import com.cosmicpush.app.system.*;
+import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.system.AppContext;
+import org.crazyyak.dev.common.EqualsUtils;
+
+import javax.annotation.Priority;
+import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.Priorities;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
-import javax.annotation.Priority;
-import javax.ws.rs.*;
-import javax.ws.rs.container.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.Provider;
-import javax.xml.bind.DatatypeConverter;
-import org.crazyyak.dev.common.EqualsUtils;
 
 @ApiAuthentication
 @Priority(Priorities.AUTHENTICATION + 1)

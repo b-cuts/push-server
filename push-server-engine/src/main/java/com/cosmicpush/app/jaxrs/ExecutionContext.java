@@ -1,15 +1,15 @@
 package com.cosmicpush.app.jaxrs;
 
-import com.cosmicpush.app.jaxrs.security.Session;
-import com.cosmicpush.app.jaxrs.security.SessionStore;
-import com.cosmicpush.app.system.AppContext;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.clients.ApiClient;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.plugins.PushProcessor;
 import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
+import com.cosmicpush.common.system.Session;
+import com.cosmicpush.common.system.SessionStore;
 import com.cosmicpush.jackson.CpObjectMapper;
 import org.crazyyak.dev.common.StringUtils;
 
@@ -84,6 +84,7 @@ public class ExecutionContext implements PluginContext {
     this.application = application;
   }
 
+  @Override
   public AppContext getAppContext() {
     return AppContext.from(getApplication());
   }
