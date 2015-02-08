@@ -28,6 +28,12 @@ project(":push-server-engine-grizzly") {
     })
   })
 
-
   apply plugin: 'eu.appsatori.fatjar'
-}
+
+  fatJar {
+    baseName = project.name + '-uber'
+    manifest {
+        attributes 'Implementation-Title': 'Grizzly Push Server', 'Implementation-Version': version
+        attributes 'Main-Class': 'com.cosmicpush.engine.grizzly.GrizzlyPushServer'
+    }
+  }}
