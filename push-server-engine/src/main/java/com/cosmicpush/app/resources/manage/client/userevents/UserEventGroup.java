@@ -8,9 +8,11 @@ package com.cosmicpush.app.resources.manage.client.userevents;
 
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.pub.push.UserEventPush;
+import org.crazyyak.dev.common.EqualsUtils;
+import org.crazyyak.dev.common.StringUtils;
+
 import java.time.LocalDateTime;
 import java.util.*;
-import org.crazyyak.dev.common.*;
 
 public class UserEventGroup implements Comparable<UserEventGroup> {
 
@@ -21,8 +23,6 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
   private int count;
   private String userName;
   private String ipAddress;
-
-  private String botName;
 
   public UserEventGroup(UserEventPush userEvent) {
     this.deviceId = userEvent.getDeviceId();
@@ -40,7 +40,7 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
     UserEventPush userEvent = apiRequest.getUserEventPush();
     if (userEvent.isSendStory()) return;
 
-    if (BeanUtils.objectsNotEqual(deviceId, userEvent.getDeviceId())) {
+    if (EqualsUtils.objectsNotEqual(deviceId, userEvent.getDeviceId())) {
       String msg = String.format("Invalid device id for push %s.", userEvent.getDeviceId());
       throw new IllegalArgumentException(msg);
     }
@@ -90,10 +90,6 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
 
   public String getIpAddress() {
     return ipAddress;
-  }
-
-  public String getBotName() {
-    return botName;
   }
 
   public List<UserEventSession> getSessions() {

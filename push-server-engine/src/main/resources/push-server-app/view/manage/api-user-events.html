@@ -37,15 +37,8 @@
             <tr>
               <td th:text="${#temporals.format(userEventGroup.updatedAt, 'hh:mm a')}"></td>
               <td>
-                <c:choose>
-                  <c:when test="${userEventGroup.botName != null}">
-                    <div th:text="${userEventGroup.botName}"></div>
-                  </c:when>
-                  <c:otherwise>
-                    <div th:text="${userEventGroup.userName}"></div>
-                    <div th:text="${userEventGroup.ipAddress}"></div>
-                  </c:otherwise>
-                </c:choose>
+                <div th:text="${userEventGroup.userName}"></div>
+                <div th:text="${userEventGroup.ipAddress}"></div>
               </td>
 
               <td style="border-right: 0; white-space: normal">
