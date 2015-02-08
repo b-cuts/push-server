@@ -24,6 +24,8 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
   private String userName;
   private String ipAddress;
 
+  private String botName;
+
   public UserEventGroup(UserEventPush userEvent) {
     this.deviceId = userEvent.getDeviceId();
     this.updatedAt = userEvent.getCreatedAt();
@@ -90,6 +92,10 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
 
   public String getIpAddress() {
     return ipAddress;
+  }
+
+  public String getBotName() {
+    return botName;
   }
 
   public List<UserEventSession> getSessions() {
