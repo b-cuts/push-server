@@ -14,6 +14,7 @@ import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.internal.CpIdGenerator;
 import com.cosmicpush.pub.push.EmailPush;
 import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.TwilioPush;
 import com.cosmicpush.pub.push.UserEventPush;
 import com.couchace.annotations.CouchEntity;
 import com.couchace.annotations.CouchId;
@@ -228,6 +229,11 @@ public class ApiRequest implements Comparable<ApiRequest> {
 
   public Push getPush() {
     return push;
+  }
+
+  @JsonIgnore
+  public TwilioPush getTwilioPush() {
+    return (push instanceof TwilioPush) ? (TwilioPush)push : null;
   }
 
   @JsonIgnore

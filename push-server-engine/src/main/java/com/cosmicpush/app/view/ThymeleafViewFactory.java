@@ -16,6 +16,9 @@ public class ThymeleafViewFactory {
   public static final String MANAGE_API_EMAIL =         validate("manage/api-email");
   public static final String MANAGE_API_EMAILS =        validate("manage/api-emails");
 
+  public static final String MANAGE_API_TWILIO =  validate("manage/api-twilio");
+  public static final String MANAGE_API_TWILIOS = validate("manage/api-twilios");
+
   public static final String MANAGE_API_NOTIFICATION =  validate("manage/api-notification");
   public static final String MANAGE_API_NOTIFICATIONS = validate("manage/api-notifications");
 

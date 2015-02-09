@@ -15,7 +15,6 @@ public class TwilioApiTest {
 
   @Test(enabled=false)
   public void sendSmsTest() throws TwilioRestException {
-    // Find your Account Sid and Token at twilio.com/user/account
     String ACCOUNT_SID = "AC1584175437f3ba4d8697150c90334d9b";
     String AUTH_TOKEN = "0185f31b1ab051af661acd2d9a7d384f";
 
@@ -28,6 +27,5 @@ public class TwilioApiTest {
     params.add(new BasicNameValuePair("From", "+15596440005"));
     MessageFactory messageFactory = client.getAccount().getMessageFactory();
     Message message = messageFactory.create(params);
-    System.out.println(message.getSid());
   }
 }
