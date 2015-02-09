@@ -6,11 +6,13 @@
 
 package com.cosmicpush.app.resources.manage.client.userevents;
 
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.pub.push.UserEventPush;
+import org.crazyyak.dev.common.EqualsUtils;
+import org.crazyyak.dev.common.StringUtils;
+
 import java.time.LocalDateTime;
 import java.util.*;
-import org.crazyyak.dev.common.*;
 
 public class UserEventGroup implements Comparable<UserEventGroup> {
 
@@ -29,18 +31,18 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
     this.updatedAt = userEvent.getCreatedAt();
   }
 
-  public UserEventGroup(List<ApiRequest> apiRequests) {
-    this(apiRequests.get(0).getUserEventPush());
-    for (ApiRequest apiRequest : apiRequests) {
-      add(apiRequest);
+  public UserEventGroup(List<PushRequest> pushRequests) {
+    this(pushRequests.get(0).getUserEventPush());
+    for (PushRequest pushRequest : pushRequests) {
+      add(pushRequest);
     }
   }
 
-  public void add(ApiRequest apiRequest) {
-    UserEventPush userEvent = apiRequest.getUserEventPush();
+  public void add(PushRequest pushRequest) {
+    UserEventPush userEvent = pushRequest.getUserEventPush();
     if (userEvent.isSendStory()) return;
 
-    if (BeanUtils.objectsNotEqual(deviceId, userEvent.getDeviceId())) {
+    if (EqualsUtils.objectsNotEqual(deviceId, userEvent.getDeviceId())) {
       String msg = String.format("Invalid device id for push %s.", userEvent.getDeviceId());
       throw new IllegalArgumentException(msg);
     }
@@ -52,7 +54,7 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
       sessions.add(session);
     }
 
-    session.add(apiRequest);
+    session.add(pushRequest);
 
     if (userEvent.getCreatedAt().isAfter(this.updatedAt)) {
       this.updatedAt = userEvent.getCreatedAt();
@@ -104,9 +106,9 @@ public class UserEventGroup implements Comparable<UserEventGroup> {
     return count;
   }
 
-  public Set<ApiRequest> getLastThree() {
+  public Set<PushRequest> getLastThree() {
     return sessions.isEmpty() ?
-        Collections.<ApiRequest>emptySet() :
+        Collections.<PushRequest>emptySet() :
         sessions.get(0).getLastThree();
   }
 

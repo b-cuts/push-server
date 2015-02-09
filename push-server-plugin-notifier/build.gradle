@@ -14,7 +14,7 @@ project(":push-server-plugin-notifier") {
   dependencies {
     compile project(":push-server-common")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

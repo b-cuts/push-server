@@ -28,18 +28,18 @@
 
     <client_sub_menu>
       <a style="margin-left: 10px" th:href="|${contextRoot}/manage/account|">My Account</a>
-      <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.ApiClientRequestsModel"-->
-      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}|">Manage</a>
-      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/requests|">All Requests</a>
-      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/emails|">Emails</a>
-      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/notifications|">Notifications</a>
-      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/user-events|">User Events</a>
+      <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.DomainRequestsModel"-->
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/domain/${it.domain.domainKey}|">Manage</a>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/domain/${it.domain.domainKey}/requests|">All Requests</a>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/domain/${it.domain.domainKey}/emails|">Emails</a>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/domain/${it.domain.domainKey}/notifications|">Notifications</a>
+      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/domain/${it.domain.domainKey}/user-events|">User Events</a>
     </client_sub_menu>
 
     <push_traits>
       <!--@thymesVar id="pushTraits" type="com.cosmicpush.pub.common.PushTraits"-->
       <th:block th:if="${pushTraits.traits.isEmpty()}">Traits: -none-</th:block>
-      <table class="traits-table" th:id="'traits-'+${pushTraits.apiRequestId}">
+      <table class="traits-table" th:id="'traits-'+${pushTraits.pushRequestId}">
         <colgroup>
           <col style="width: 1em"/>
           <col/>
@@ -53,12 +53,12 @@
             </td>
 
             <!--<td class="value" th:if="${compact} and ${trait.key == 'exception'}">-->
-              <!--<a th:href="|${contextRoot}/manage/api-client/${pushTraits.clientName}/${path}/${pushTraits.apiRequestId}|" style="color: inherit">view...</a>-->
+              <!--<a th:href="|${contextRoot}/manage/domain/${pushTraits.domainKey}/${path}/${pushTraits.pushRequestId}|" style="color: inherit">view...</a>-->
             <!--</td>-->
             <td class="value-data" th:if="${trait.key == 'exception'}" th:text="${trait.value}"></td>
 
             <!--<td class="value" th:if="${compact} and ${trait.key == 'json'}">-->
-              <!--<a th:href="|${contextRoot}/manage/api-client/${pushTraits.clientName}/${path}/${pushTraits.apiRequestId}|" style="color: inherit">view...</a>-->
+              <!--<a th:href="|${contextRoot}/manage/domain/${pushTraits.domainKey}/${path}/${pushTraits.pushRequestId}|" style="color: inherit">view...</a>-->
             <!--</td>-->
             <td class="value-data" th:if="${trait.key == 'json'}" th:text="${trait.value}"></td>
 

@@ -9,19 +9,23 @@ package com.cosmicpush.plugins.smtp;
 import com.cosmicpush.common.config.SmtpAuthType;
 import com.cosmicpush.common.plugins.PluginConfig;
 import com.cosmicpush.pub.internal.RequestErrors;
-import com.couchace.annotations.*;
-import com.fasterxml.jackson.annotation.*;
-import java.io.Serializable;
-import org.crazyyak.dev.common.*;
+import com.couchace.annotations.CouchEntity;
+import com.couchace.annotations.CouchId;
+import com.couchace.annotations.CouchRevision;
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.crazyyak.dev.common.EqualsUtils;
 
-@JsonIgnoreProperties("testAddress")
+import java.io.Serializable;
+
 @CouchEntity(SmtpEmailConfigStore.SMTP_EMAIL_CONFIG_DESIGN_NAME)
 public class SmtpEmailConfig implements PluginConfig, Serializable {
 
   private String configId;
   private String revision;
 
-  private String apiClientId;
+  private String domainId;
 
   private String userName;
   private String password;
@@ -40,7 +44,7 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
   @JsonCreator
   public SmtpEmailConfig(@JacksonInject("configId") String configId,
                          @JacksonInject("revision") String revision,
-                         @JsonProperty("apiClientId") String apiClientId,
+                         @JsonProperty("domainId") String domainId,
                          @JsonProperty("userName") String userName,
                          @JsonProperty("password") String password,
                          @JsonProperty("authType") SmtpAuthType authType,
@@ -53,7 +57,7 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
     this.configId = configId;
     this.revision = revision;
 
-    this.apiClientId = apiClientId;
+    this.domainId = domainId;
 
     this.userName = userName;
     this.password = password;
@@ -70,25 +74,20 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
   public SmtpEmailConfig apply(UpdateSmtpEmailConfigAction action) {
     action.validate(new RequestErrors()).assertNoErrors();
 
-    if (apiClientId != null && EqualsUtils.objectsNotEqual(apiClientId, action.getApiClient().getApiClientId())) {
-      String msg = "The specified action and this class are not for the same API Client ID.";
+    if (domainId != null && EqualsUtils.objectsNotEqual(domainId, action.getDomain().getDomainId())) {
+      String msg = "The specified action and this class are not for the same domain.";
       throw new IllegalArgumentException(msg);
     }
 
-    this.apiClientId = action.getApiClient().getApiClientId();
-    this.configId = SmtpEmailConfigStore.toDocumentId(action.getApiClient());
+    this.domainId = action.getDomain().getDomainId();
+    this.configId = SmtpEmailConfigStore.toDocumentId(action.getDomain());
 
     this.userName = action.getUserName();
     this.password = action.getPassword();
 
     this.authType = action.getAuthType();
     this.serverName = action.getServerName();
-
-    if (StringUtils.isNotBlank(action.getPortNumber())) {
-      this.portNumber = action.getPortNumber();
-    } else {
-      this.portNumber = this.authType.getDefaultPort();
-    }
+    this.portNumber = action.getPortNumber();
 
     this.testToAddress = action.getTestToAddress();
     this.testFromAddress = action.getTestFromAddress();
@@ -107,8 +106,8 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
     return revision;
   }
 
-  public String getApiClientId() {
-    return apiClientId;
+  public String getDomainId() {
+    return domainId;
   }
 
   public String getUserName() {

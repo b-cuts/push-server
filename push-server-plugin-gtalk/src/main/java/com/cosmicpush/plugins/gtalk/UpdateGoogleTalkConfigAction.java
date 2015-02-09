@@ -6,22 +6,22 @@
 
 package com.cosmicpush.plugins.gtalk;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.pub.internal.*;
 import javax.ws.rs.core.MultivaluedMap;
 
 public class UpdateGoogleTalkConfigAction implements ValidatableAction {
 
-  private final ApiClient apiClient;
+  private final Domain domain;
 
   private final String userName;
   private final String password;
   private final String recipientOverride;
   private String testAddress;
 
-  public UpdateGoogleTalkConfigAction(ApiClient apiClient, MultivaluedMap<String, String> formParams) {
+  public UpdateGoogleTalkConfigAction(Domain domain, MultivaluedMap<String, String> formParams) {
 
-    this.apiClient = apiClient;
+    this.domain = domain;
 
     this.userName = formParams.getFirst("userName");
     this.password = formParams.getFirst("password");
@@ -30,9 +30,9 @@ public class UpdateGoogleTalkConfigAction implements ValidatableAction {
     this.recipientOverride = formParams.getFirst("recipientOverride");
   }
 
-  public UpdateGoogleTalkConfigAction(ApiClient apiClient, String userName, String password, String testAddress, String recipientOverride) {
+  public UpdateGoogleTalkConfigAction(Domain domain, String userName, String password, String testAddress, String recipientOverride) {
 
-    this.apiClient = apiClient;
+    this.domain = domain;
 
     this.userName = userName;
     this.password = password;
@@ -48,8 +48,8 @@ public class UpdateGoogleTalkConfigAction implements ValidatableAction {
     return errors;
   }
 
-  public ApiClient getApiClient() {
-    return apiClient;
+  public Domain getDomain() {
+    return domain;
   }
 
   public String getUserName() {

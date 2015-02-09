@@ -15,7 +15,7 @@ project(":push-server-jackson") {
     compile project(":push-server-pub")
   	compile ("org.crazyyak.dev:yak-dev-jackson:${yakDevJackson}")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

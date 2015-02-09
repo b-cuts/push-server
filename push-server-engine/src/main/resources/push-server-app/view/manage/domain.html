@@ -1,0 +1,54 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.ManageDomainModel"-->
+  <head th:include="fragments::html_header" th:with="pageTitle=': Manage'"></head>
+
+  <body>
+    <div style="position: absolute; top: 0; right: 10px;">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <h1 th:text="${it.domain.domainKey}+': Manage'"></h1>
+    <div th:include="fragments::client_sub_menu"></div>
+
+    <div th:if="${it.message != null}">
+      <div class="message" th:text="${it.message}"></div>
+    </div>
+
+    <form style="margin-top: 1em" method="post">
+      <fieldset style="margin-top: 1em">
+        <legend>Domain</legend>
+        <table style="width: 100%">
+          <colgroup>
+            <col style="width: 1em"/>
+            <col style="width: 1em"/>
+            <col/>
+          </colgroup>
+          <tbody>
+            <tr>
+              <td><label for="cp-client-name">Name:</label></td>
+              <td><input type="text" id="cp-client-name" name="domainKey" th:value="${it.domain.domainKey}" style="width:200px;"/></td>
+              <td rowspan="3">&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="cp-client-password">Password:</label></td>
+              <td><input type="text" id="cp-client-password" name="domainPassword" th:value="${it.domain.domainPassword}" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: right">
+                <button type="submit" th:formaction="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}+'/client'" style="float:right">Update</button>
+                <button type="submit" th:formaction="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}+'/client/delete'" style="float:left">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+          </table>
+      </fieldset>
+    </form>
+
+    <div th:each="plugin : ${it.plugins}">
+      <div th:utext="${plugin.htmlContent}"></div>
+    </div>
+
+  </body>
+</html>

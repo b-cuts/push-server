@@ -13,9 +13,10 @@ project(":push-server-common") {
   dependencies {
     compile project(":push-server-jackson")
 
+    compile("org.crazyyak.apis:yak-apis-bitly:$yakApisBitly")
     compile("org.crazyyak.lib:yak-lib-couchace:$yakLibCouchAce")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

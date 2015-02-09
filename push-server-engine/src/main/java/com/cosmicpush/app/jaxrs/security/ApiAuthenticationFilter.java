@@ -1,18 +1,23 @@
 package com.cosmicpush.app.jaxrs.security;
 
-import com.cosmicpush.app.system.*;
+import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
+import com.cosmicpush.common.system.AppContext;
+import org.crazyyak.dev.common.EqualsUtils;
+
+import javax.annotation.Priority;
+import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.Priorities;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
+import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
-import javax.annotation.Priority;
-import javax.ws.rs.*;
-import javax.ws.rs.container.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.Provider;
-import javax.xml.bind.DatatypeConverter;
-import org.crazyyak.dev.common.EqualsUtils;
 
 @ApiAuthentication
 @Priority(Priorities.AUTHENTICATION + 1)
@@ -41,44 +46,44 @@ public class ApiAuthenticationFilter implements ContainerRequestFilter {
 
     int pos = basicAuth.indexOf(":");
 
-    String clientName;
+    String domainKey;
     String password;
 
     if (pos < 0) {
-      clientName = basicAuth;
+      domainKey = basicAuth;
       password = null;
 
     } else {
-      clientName = basicAuth.substring(0, pos);
+      domainKey = basicAuth.substring(0, pos);
       password = basicAuth.substring(pos+1);
     }
 
-    Account account = appContext.getAccountStore().getByClientName(clientName);
+    Domain domain = appContext.getDomainStore().getByDomainKey(domainKey);
+    if (domain == null) {
+      throw new NotAuthorizedException("API");
+    }
+
+    Account account = appContext.getAccountStore().getByDocumentId(domain.getAccountId());
     if (account == null) {
       throw new NotAuthorizedException("API");
     }
 
-    ApiClient apiClient = account.getApiClientByName(clientName);
-    if (apiClient == null) {
-      throw new NotAuthorizedException("API");
-    }
-
-    if (EqualsUtils.objectsNotEqual(password, apiClient.getClientPassword())) {
+    if (EqualsUtils.objectsNotEqual(password, domain.getDomainPassword())) {
       throw new NotAuthorizedException("API");
     }
 
     final SecurityContext securityContext = requestContext.getSecurityContext();
-    requestContext.setSecurityContext(new ApiSecurityContext(securityContext, apiClient));
+    requestContext.setSecurityContext(new ApiSecurityContext(securityContext, domain));
 
     CpApplication.getExecutionContext().setAccount(account);
-    CpApplication.getExecutionContext().setApiClient(apiClient);
+    CpApplication.getExecutionContext().setDomain(domain);
   }
 
   private class ApiSecurityContext implements SecurityContext {
     private final boolean secure;
-    private final ApiClient apiClient;
-    public ApiSecurityContext(SecurityContext securityContext, ApiClient apiClient) {
-      this.apiClient = apiClient;
+    private final Domain domain;
+    public ApiSecurityContext(SecurityContext securityContext, Domain domain) {
+      this.domain = domain;
       this.secure = securityContext.isSecure();
     }
     @Override public boolean isUserInRole(String role) {
@@ -91,7 +96,7 @@ public class ApiAuthenticationFilter implements ContainerRequestFilter {
       return "BASIC_AUTH";
     }
     @Override public Principal getUserPrincipal() {
-      return apiClient::getClientName;
+      return domain::getDomainKey;
     }
   }
 }

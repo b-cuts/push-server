@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+project(":push-server-test") {
+  description = "Push Server Test Module"
+
+  version = pushServerTest
+
+  dependencies {
+    compile project(":push-server-common")
+    testCompile ("org.testng:testng:$testNgVersion")
+  }
+
+  configurations.all({
+    resolutionStrategy({
+      force()
+    })
+  })
+}
+

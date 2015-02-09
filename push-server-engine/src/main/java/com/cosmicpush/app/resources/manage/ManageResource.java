@@ -6,13 +6,13 @@
 
 package com.cosmicpush.app.resources.manage;
 
-import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.resources.manage.account.ManageAccountResource;
-import com.cosmicpush.app.resources.manage.client.ManageApiClientResource;
+import com.cosmicpush.app.resources.manage.client.ManageDomainResource;
 import com.cosmicpush.app.system.CpApplication;
-import com.cosmicpush.common.actions.CreateClientAction;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.actions.CreateDomainAction;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.PushType;
@@ -52,24 +52,25 @@ public class ManageResource {
     return new ManageAccountResource(context.getAccount());
   }
 
-  @Path("/api-client/{clientName}")
-  public ManageApiClientResource getManageApiClientResource(@PathParam("clientName") String clientName) throws Exception {
-    return new ManageApiClientResource(clientName);
+  @Path("/domain/{domainKey}")
+  public ManageDomainResource getManageDomainResource(@PathParam("domainKey") String domainKey) throws Exception {
+    return new ManageDomainResource(domainKey);
   }
 
   @POST
-  @Path("/api-client")
-  public Response newApiClient(@FormParam("clientName") String clientName, @FormParam("clientPassword") String clientPassword) throws Exception {
+  @Path("/domain")
+  public Response newDomain(@FormParam("domainKey") String domainKey, @FormParam("domainPassword") String domainPassword) throws Exception {
 
-    if (context.getAccountStore().getByClientName(clientName) != null) {
-      throw ApiException.badRequest(String.format("The client name %s already exists.", clientName));
+    if (context.getDomainStore().getByDomainKey(domainKey) != null) {
+      throw ApiException.badRequest(String.format("The domain key %s already exists.", domainKey));
     }
 
-    CreateClientAction action = new CreateClientAction(clientName, clientPassword);
+    CreateDomainAction action = new CreateDomainAction(context.getAccount(), domainKey, domainPassword);
 
-    ApiClient apiClient = context.getAccount().add(action);
+    Domain domain = context.getAccount().add(action);
+    context.getDomainStore().create(domain);
     context.getAccountStore().update(context.getAccount());
 
-    return Response.seeOther(new URI("manage/api-client/"+apiClient.getClientName())).build();
+    return Response.seeOther(new URI("manage/domain/"+domain.getDomainKey())).build();
   }
 }

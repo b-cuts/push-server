@@ -9,8 +9,9 @@ package com.cosmicpush.common.accounts;
 import com.cosmicpush.common.accounts.queries.*;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.internal.RequestErrors;
-import java.util.List;
 import org.crazyyak.lib.couchace.DefaultCouchStore;
+
+import java.util.List;
 
 public class AccountStore extends DefaultCouchStore<Account> {
 
@@ -18,6 +19,11 @@ public class AccountStore extends DefaultCouchStore<Account> {
 
   public AccountStore(CpCouchServer couchServer) {
     super(couchServer, couchServer.getDatabaseName(), Account.class);
+  }
+
+  @Override
+  public String getDesignName() {
+    return ACCOUNT_DESIGN_NAME;
   }
 
   public Account get(AccountQuery accountQuery) {
@@ -66,22 +72,5 @@ public class AccountStore extends DefaultCouchStore<Account> {
     if (emailAddress == null) return null;
     List<Account> response = super.getEntities("byEmailAddress", emailAddress);
     return response.isEmpty() ? null : response.get(0);
-  }
-
-  public Account getByClientId(String clientId) {
-    if (clientId == null) return null;
-    List<Account> response = super.getEntities("byClientId", clientId);
-    return response.isEmpty() ? null : response.get(0);
-  }
-
-  public Account getByClientName(String clientName) {
-    if (clientName == null) return null;
-    List<Account> response = super.getEntities("byClientName", clientName);
-    return response.isEmpty() ? null : response.get(0);
-  }
-
-  @Override
-  public String getDesignName() {
-    return ACCOUNT_DESIGN_NAME;
   }
 }

@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class GrizzlyPushServer {
 
-  public String serverName = "localhost";
+  public String serverName = "www.localhost";
   private int port = 8080;
   private int shutdownPort = 8005;
   private String context = "push-server";
@@ -46,7 +46,9 @@ public class GrizzlyPushServer {
     for (int i = 0; i < args.length; i += 2) {
       String key = args[i];
       String value = args[i+1];
-      if ("port".equals(key)) {
+      if ("serverName".equals(key)) {
+        serverName = value;
+      } else if ("port".equals(key)) {
         port = Integer.valueOf(value);
       } else if ("shutdown".equals(key)) {
         shutdownPort = Integer.valueOf(value);
@@ -86,6 +88,9 @@ public class GrizzlyPushServer {
         System.err.println(msg);
         ex.printStackTrace();
       }
+
+      Thread shutdownThread = new Thread(httpServer::shutdown, "shutdownHook");
+      Runtime.getRuntime().addShutdownHook(shutdownThread);
 
       Runnable acceptRun = GrizzlyPushServer.this::socketAcceptLoop;
       acceptThread = new Thread(acceptRun);
@@ -202,21 +207,19 @@ public class GrizzlyPushServer {
   public static void main(String[] args) {
     try {
       GrizzlyPushServer pushServer = new GrizzlyPushServer();
-      final HttpServer server = pushServer.startServer(args);
-      System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl%nHit [Enter] to stop the server...", pushServer.getBaseUri()));
+      pushServer.startServer(args);
+
+      System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl", pushServer.getBaseUri()));
 
       if (pushServer.openBrowser) {
         URI uri = URI.create(pushServer.getBaseUri().toString()+"?username=test&password=test");
         java.awt.Desktop.getDesktop().browse(uri);
       }
 
-      if (System.in.read() > Integer.MIN_VALUE) {
-        server.shutdownNow();
-      }
+      Thread.currentThread().join();
 
     } catch (Throwable e) {
       e.printStackTrace();
     }
-    System.exit(0);
   }
 }

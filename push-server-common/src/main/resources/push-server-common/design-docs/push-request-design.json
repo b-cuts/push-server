@@ -1,0 +1,21 @@
+{
+   "_id": "_design/push-request",
+   "language": "javascript",
+   "views": {
+       "allPushRequests": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'push-request') {\n    emit(doc._id, null);\n  }\n}"
+       },
+       "byClientAndType": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'push-request' && doc.entity.pushType) {\n    emit([doc.entity.domainId, doc.entity.pushType], null);\n  }\n}"
+       },
+       "byClientAndSession": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'push-request' && doc.entity.pushType == 'userEvent' && doc.entity.push.sessionId) {\n    emit([doc.entity.domainId, doc.entity.push.sessionId], null);\n  }\n}"
+       },
+       "byClientAndDevice": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'push-request' && doc.entity.pushType == 'userEvent' && doc.entity.push.deviceId) {\n    emit([doc.entity.domainId, doc.entity.push.deviceId], null);\n  }\n}"
+       },
+       "byClient": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'push-request' && doc.entity.pushType) {\n    emit(doc.entity.domainId, null);\n  }\n}"
+       }
+   }
+}

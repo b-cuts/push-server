@@ -16,16 +16,16 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="push-server-common" exported="" />
     <orderEntry type="library" exported="" name="Gradle: log4j:log4j:1.2.17" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.17" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.beanshell:bsh:2.0b4" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.beust:jcommander:1.27" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.4.5" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.googlecode.json-simple:json-simple:1.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpclient:4.1.2" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpcore:4.1.2" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: commons-codec:commons-codec:1.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.6.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpclient:4.2.6" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpcore:4.2.5" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-codec:commons-codec:1.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.21" level="project" />
   </component>
 </module>

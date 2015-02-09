@@ -7,19 +7,19 @@
 package com.cosmicpush.app.resources.manage.client.userevents;
 
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import java.time.LocalDate;
 import java.util.*;
 
 public class UserEventGroupsModel {
 
   private final Account account;
-  private final ApiClient apiClient;
+  private final Domain domain;
   private final Map<LocalDate,List<UserEventGroup>> userEventGroups = new TreeMap<>();
 
-  public UserEventGroupsModel(Account account, ApiClient apiClient, List<UserEventGroup> userEventGroups) {
+  public UserEventGroupsModel(Account account, Domain domain, List<UserEventGroup> userEventGroups) {
     this.account = account;
-    this.apiClient = apiClient;
+    this.domain = domain;
 
     for (UserEventGroup group : userEventGroups) {
       LocalDate date = group.getUpdatedAt().toLocalDate();
@@ -34,8 +34,8 @@ public class UserEventGroupsModel {
     return account;
   }
 
-  public ApiClient getApiClient() {
-    return apiClient;
+  public Domain getDomain() {
+    return domain;
   }
 
   public List<List<UserEventGroup>> getCollection() {

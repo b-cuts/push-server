@@ -6,17 +6,22 @@
 
 package com.cosmicpush.app.resources.manage.account;
 
-import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.accounts.actions.UpdateAccountAction;
+import com.cosmicpush.common.clients.Domain;
+
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.net.URI;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
+import java.util.List;
 
 @MngtAuthentication
 public class ManageAccountResource {
@@ -31,8 +36,11 @@ public class ManageAccountResource {
 
   @GET
   public Thymeleaf viewAccount() throws IOException {
-    Account account = CpApplication.getExecutionContext().getAccount();
-    ManageAccountModel model = new ManageAccountModel(account);
+    ExecutionContext execContext = CpApplication.getExecutionContext();
+    Account account = execContext.getAccount();
+    List<Domain> domains = execContext.getDomainStore().getDomains(account);
+
+    ManageAccountModel model = new ManageAccountModel(account, domains);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_ACCOUNT, model);
   }
 

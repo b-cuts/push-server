@@ -6,14 +6,16 @@
 
 package com.cosmicpush.plugins.smtp;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.config.SmtpAuthType;
 import com.cosmicpush.pub.internal.*;
+import org.crazyyak.dev.common.StringUtils;
+
 import javax.ws.rs.core.MultivaluedMap;
 
 public class UpdateSmtpEmailConfigAction implements ValidatableAction {
 
-  private final ApiClient apiClient;
+  private final Domain domain;
 
   private final String userName;
   private final String password;
@@ -26,32 +28,43 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
   private String testToAddress;
   private String testFromAddress;
 
-  public UpdateSmtpEmailConfigAction(ApiClient apiClient, MultivaluedMap<String, String> formParams) {
+  public UpdateSmtpEmailConfigAction(Domain domain, MultivaluedMap<String, String> formParams) {
 
-    this.apiClient = apiClient;
+    this.domain = domain;
 
     this.userName = formParams.getFirst("userName");
     this.password = formParams.getFirst("password");
 
     this.authType = (formParams.containsKey("authType") == false) ? null : SmtpAuthType.valueOf(formParams.getFirst("authType"));
     this.serverName = formParams.getFirst("serverName");
-    this.portNumber = formParams.getFirst("portNumber");
+
+    String portNumber = formParams.getFirst("portNumber");
+    if (StringUtils.isBlank(portNumber) && authType != null) {
+      this.portNumber = authType.getDefaultPort();
+    } else {
+      this.portNumber = portNumber;
+    }
 
     this.testToAddress = formParams.getFirst("testToAddress");
     this.testFromAddress = formParams.getFirst("testFromAddress");
     this.recipientOverride = formParams.getFirst("recipientOverride");
   }
 
-  public UpdateSmtpEmailConfigAction(ApiClient apiClient, String userName, String password, SmtpAuthType authType, String serverName, String portNumber, String testToAddress, String testFromAddress, String recipientOverride) {
+  public UpdateSmtpEmailConfigAction(Domain domain, String userName, String password, SmtpAuthType authType, String serverName, String portNumber, String testToAddress, String testFromAddress, String recipientOverride) {
 
-    this.apiClient = apiClient;
+    this.domain = domain;
 
     this.userName = userName;
     this.password = password;
 
     this.authType = authType;
     this.serverName = serverName;
-    this.portNumber = portNumber;
+
+    if (StringUtils.isBlank(portNumber) && authType != null) {
+      this.portNumber = authType.getDefaultPort();
+    } else {
+      this.portNumber = portNumber;
+    }
 
     this.testToAddress = testToAddress;
     this.testFromAddress = testFromAddress;
@@ -61,7 +74,7 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
   @Override
   public RequestErrors validate(RequestErrors errors) {
 
-    ValidationUtils.requireValue(errors, apiClient, "The api client must be specified.");
+    ValidationUtils.requireValue(errors, domain, "The domain must be specified.");
 
     ValidationUtils.requireValue(errors, userName, "The user's name must be specified.");
     ValidationUtils.requireValue(errors, password, "The password must be specified.");
@@ -74,8 +87,8 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
     return errors;
   }
 
-  public ApiClient getApiClient() {
-    return apiClient;
+  public Domain getDomain() {
+    return domain;
   }
 
   public String getUserName() {

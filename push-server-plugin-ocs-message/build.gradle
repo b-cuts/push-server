@@ -20,7 +20,7 @@ project(":push-server-plugin-ocs-message") {
         compile("log4j:log4j:1.2.17")
 
         testCompile ("junit:junit:4.9")
-        testCompile ("org.testng:testng:6.8.17")
+        testCompile ("org.testng:testng:$testNgVersion")
 
         compile name: "ntlm-core-1.0-r17"
 //        compile files("lib/ntlm-core-1.0-r17.jar")

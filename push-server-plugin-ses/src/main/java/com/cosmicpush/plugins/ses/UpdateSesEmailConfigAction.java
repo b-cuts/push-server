@@ -6,13 +6,13 @@
 
 package com.cosmicpush.plugins.ses;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.pub.internal.*;
 import javax.ws.rs.core.MultivaluedMap;
 
 public class UpdateSesEmailConfigAction implements ValidatableAction {
 
-  private final ApiClient apiClient;
+  private final Domain domain;
 
   private String accessKeyId;
   private String secretKey;
@@ -20,9 +20,9 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
   private String testToAddress;
   private String testFromAddress;
 
-  public UpdateSesEmailConfigAction(ApiClient apiClient, MultivaluedMap<String, String> formParams) {
+  public UpdateSesEmailConfigAction(Domain domain, MultivaluedMap<String, String> formParams) {
 
-    this.apiClient = apiClient;
+    this.domain = domain;
 
     this.accessKeyId = formParams.getFirst("accessKeyId");
     this.secretKey = formParams.getFirst("secretKey");
@@ -32,9 +32,9 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
     this.recipientOverride = formParams.getFirst("recipientOverride");
   }
 
-  public UpdateSesEmailConfigAction(ApiClient apiClient, String accessKeyId, String secretKey, String testToAddress, String testFromAddress, String recipientOverride) {
+  public UpdateSesEmailConfigAction(Domain domain, String accessKeyId, String secretKey, String testToAddress, String testFromAddress, String recipientOverride) {
 
-    this.apiClient = apiClient;
+    this.domain = domain;
 
     this.accessKeyId = accessKeyId;
     this.secretKey = secretKey;
@@ -53,8 +53,8 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
     return errors;
   }
 
-  public ApiClient getApiClient() {
-    return apiClient;
+  public Domain getDomain() {
+    return domain;
   }
 
   public String getAccessKeyId() {

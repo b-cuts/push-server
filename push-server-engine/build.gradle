@@ -14,10 +14,12 @@ project(":push-server-engine") {
     compile project(":push-server-pub")
     compile project(":push-server-jackson")
     compile project(":push-server-common");
+    testCompile project(":push-server-test");
 
     compile project(":push-server-plugin-ses")
     compile project(":push-server-plugin-smtp")
     compile project(":push-server-plugin-gtalk")
+    compile project(":push-server-plugin-notifier")
     // compile project(":push-server-plugin-ocs-message")
     compile project(":push-server-plugin-twilio")
 
@@ -36,7 +38,7 @@ project(":push-server-engine") {
     compile ("org.thymeleaf:thymeleaf:2.1.4.RELEASE")
     compile ("org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

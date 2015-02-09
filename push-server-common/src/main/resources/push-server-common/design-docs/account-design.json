@@ -1,0 +1,15 @@
+{
+   "_id": "_design/account",
+   "language": "javascript",
+   "views": {
+       "allAccounts": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'account') {\n    emit(doc._id, null);\n  }\n}"
+       },
+       "byUserName": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'account' && doc.entity.userName) {\n    emit(doc.entity.userName, null);\n  }\n}"
+       },
+       "byEmailAddress": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'account' && doc.entity.emailAddress) {\n    emit(doc.entity.emailAddress, null);\n  }\n}"
+       }
+   }
+}

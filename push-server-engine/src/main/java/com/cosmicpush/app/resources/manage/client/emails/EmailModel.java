@@ -6,21 +6,21 @@
 package com.cosmicpush.app.resources.manage.client.emails;
 
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.clients.Domain;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.pub.push.*;
 
 public class EmailModel {
 
   private final Account account;
-  private final ApiClient apiClient;
+  private final Domain domain;
 
-  private final ApiRequest request;
+  private final PushRequest request;
   private final EmailPush email;
 
-  public EmailModel(Account account, ApiClient apiClient, ApiRequest request, EmailPush email) {
+  public EmailModel(Account account, Domain domain, PushRequest request, EmailPush email) {
     this.account = account;
-    this.apiClient = apiClient;
+    this.domain = domain;
     this.request = request;
     this.email = email;
   }
@@ -29,11 +29,11 @@ public class EmailModel {
     return account;
   }
 
-  public ApiClient getApiClient() {
-    return apiClient;
+  public Domain getDomain() {
+    return domain;
   }
 
-  public ApiRequest getRequest() {
+  public PushRequest getRequest() {
     return request;
   }
 
@@ -42,6 +42,6 @@ public class EmailModel {
   }
 
   public String getRetryUrl() {
-    return String.format("/manage/api-client/%s/emails/%s/retry", apiClient.getClientName(), request.getApiRequestId());
+    return String.format("/manage/domain/%s/emails/%s/retry", domain.getDomainKey(), request.getPushRequestId());
   }
 }

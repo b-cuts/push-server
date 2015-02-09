@@ -7,18 +7,29 @@
 package com.cosmicpush.common.accounts;
 
 import com.cosmicpush.common.accounts.actions.*;
-import com.cosmicpush.common.actions.CreateClientAction;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.actions.CreateDomainAction;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.internal.*;
-import com.couchace.annotations.*;
-import com.fasterxml.jackson.annotation.*;
-import java.time.LocalDateTime;
-import java.util.*;
-import org.crazyyak.dev.common.*;
+import com.cosmicpush.pub.internal.CpIdGenerator;
+import com.cosmicpush.pub.internal.RequestErrors;
+import com.couchace.annotations.CouchEntity;
+import com.couchace.annotations.CouchId;
+import com.couchace.annotations.CouchRevision;
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.crazyyak.dev.common.BeanUtils;
+import org.crazyyak.dev.common.DateUtils;
+import org.crazyyak.dev.common.EqualsUtils;
+import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.ApiException;
+import org.crazyyak.dev.domain.account.AccountStatus;
 
-@JsonIgnoreProperties({"testConfig"})
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @CouchEntity(AccountStore.ACCOUNT_DESIGN_NAME)
 public class Account {
 
@@ -43,9 +54,9 @@ public class Account {
   /*package*/ Permissions permissions;
   /*package*/ AccountStatus accountStatus;
 
-  private List<ApiClient> apiClients = new ArrayList<>();
-
   private int retentionDays;
+
+  private List<String> domainIds = new ArrayList<>();
 
   @JsonCreator
   private Account(
@@ -68,7 +79,7 @@ public class Account {
       @JsonProperty("roleTypes") Set<String> roleTypes,
       @JsonProperty("accountStatus") AccountStatus accountStatus,
 
-      @JsonProperty("apiClients") List<ApiClient> apiClients) {
+      @JsonProperty("domainIds") List<String> domainIds) {
 
     this.accountId = accountId;
 
@@ -90,13 +101,15 @@ public class Account {
     this.permissions = new Permissions(roleTypes);
     this.accountStatus = accountStatus;
 
-    this.apiClients = apiClients;
+    if (domainIds != null) {
+      this.domainIds.addAll(domainIds);
+    }
   }
 
   public Account(CreateAccountAction action) {
 
     this.accountId = CpIdGenerator.newId();
-    this.createdAt = DateUtils.currentDateTime();
+    this.createdAt = DateUtils.currentLocalDateTime();
 
     this.permissions = new Permissions();
 
@@ -126,41 +139,49 @@ public class Account {
     return revision;
   }
 
-  public List<ApiClient> getApiClients() {
-    return apiClients;
-  }
-  public ApiClient add(CreateClientAction action) {
-    action.validate(new RequestErrors()).assertNoErrors();
-    ApiClient apiClient = new ApiClient().create(action);
-    apiClients.add(apiClient);
-    return apiClient;
-  }
-  public void remove(ApiClient apiClient) {
-    if (apiClient == null) {
-      throw ApiException.badRequest("The API Client must be specified.");
-    }
-    apiClients.remove(apiClient);
+  public List<String> getDomainIds() {
+    return domainIds;
   }
 
-  public ApiClient getApiClientById(String apiClientId) {
-    for (ApiClient apiClient : apiClients) {
-      if (BeanUtils.objectsEqual(apiClient.getApiClientId(), apiClientId)) {
-        return apiClient;
-      }
-    }
-    return null;
+  //  public List<Domain> getDomains() {
+//    return domains;
+//  }
+  public Domain add(CreateDomainAction action) {
+    action.validate(new RequestErrors()).assertNoErrors();
+    Domain domain = new Domain(action);
+    domainIds.add(domain.getDomainId());
+    return domain;
   }
-  public ApiClient getApiClientByName(String clientName) {
-    for (ApiClient apiClient : apiClients) {
-      if (BeanUtils.objectsEqual(apiClient.getClientName(), clientName)) {
-        return apiClient;
-      }
+
+  public void remove(Domain domain) {
+    if (domain == null) {
+      throw ApiException.badRequest("The domain must be specified.");
     }
-    return null;
+    domainIds.remove(domain.getDomainId());
   }
+
+//  public Domain getDomainById(String domainId) {
+//    for (Domain domain : domains) {
+//      if (BeanUtils.objectsEqual(domain.getDomainId(), domainId)) {
+//        return domain;
+//      }
+//    }
+//    return null;
+//  }
+//  public Domain getDomainByName(String domainKey) {
+//    for (Domain domain : domains) {
+//      if (BeanUtils.objectsEqual(domain.getDomainKey(), domainKey)) {
+//        return domain;
+//      }
+//    }
+//    return null;
+//  }
 
   public void apply(UpdateAccountStatusAction action) {
-    accountStatus.apply(action);
+    accountStatus.setAccountNonExpired(action.isAccountNonExpired());
+    accountStatus.setAccountNonLocked(action.isAccountNonLocked());
+    accountStatus.setCredentialsNonExpired(action.isCredentialsNonExpired());
+    accountStatus.setEnabled(action.isEnabled());
   }
 
   public void apply(UpdatePermissionsAction action) {
@@ -287,7 +308,7 @@ public class Account {
   }
 
   public void confirmEmail(ConfirmEmailAction action) {
-    if (BeanUtils.objectsNotEqual(action.getConfirmationCode(), this.emailConfirmationCode)) {
+    if (EqualsUtils.objectsNotEqual(action.getConfirmationCode(), this.emailConfirmationCode)) {
       throw ApiException.badRequest("Invalid confirmation code.");
     }
     this.emailConfirmed = true;
@@ -300,5 +321,13 @@ public class Account {
 
   public String toString() {
     return emailAddress;
+  }
+
+  public boolean isOwner(Domain domain) {
+    return domainIds.contains(domain.getDomainId());
+  }
+
+  public boolean isNotOwner(Domain domain) {
+    return !isOwner(domain);
   }
 }

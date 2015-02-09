@@ -9,21 +9,18 @@ public class ThymeleafViewFactory {
   public static final String WELCOME = validate("welcome");
 
   public static final String MANAGE_ACCOUNT =           validate("manage/account");
-  public static final String MANAGE_API_CLIENT =        validate("manage/api-client");
+  public static final String MANAGE_API_CLIENT =        validate("manage/domain");
 
-  public static final String MANAGE_API_REQUESTS =      validate("manage/api-requests");
+  public static final String MANAGE_API_REQUESTS =      validate("manage/push-request");
 
-  public static final String MANAGE_API_EMAIL =         validate("manage/api-email");
-  public static final String MANAGE_API_EMAILS =        validate("manage/api-emails");
+  public static final String MANAGE_API_EMAIL =         validate("manage/push-email");
+  public static final String MANAGE_API_EMAILS =        validate("manage/push-emails");
 
-  public static final String MANAGE_API_TWILIO =  validate("manage/api-twilio");
-  public static final String MANAGE_API_TWILIOS = validate("manage/api-twilios");
+  public static final String MANAGE_API_NOTIFICATION =  validate("manage/push-notification");
+  public static final String MANAGE_API_NOTIFICATIONS = validate("manage/push-notifications");
 
-  public static final String MANAGE_API_NOTIFICATION =  validate("manage/api-notification");
-  public static final String MANAGE_API_NOTIFICATIONS = validate("manage/api-notifications");
-
-  public static final String MANAGE_API_EVENT =        validate("manage/api-user-event");
-  public static final String MANAGE_API_EVENTS =        validate("manage/api-user-events");
+  public static final String MANAGE_API_EVENT =         validate("manage/push-user-event");
+  public static final String MANAGE_API_EVENTS =        validate("manage/push-user-events");
 
   private static String validate(String view) {
     String resource = ROOT+view+TAIL;

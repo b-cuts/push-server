@@ -1,10 +1,11 @@
 package com.cosmicpush.plugins.ocs;
 
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
@@ -34,8 +35,8 @@ public class OcsMessagePlugin implements Plugin {
   }
 
   @Override
-  public OcsMessageConfig getConfig(CpCouchServer couchServer, ApiClient apiClient) {
-    String docId = OcsMessageConfigStore.toDocumentId(apiClient);
+  public OcsMessageConfig getConfig(CpCouchServer couchServer, Domain domain) {
+    String docId = OcsMessageConfigStore.toDocumentId(domain);
     return getConfigStore(couchServer).getByDocumentId(docId);
   }
 
@@ -45,40 +46,40 @@ public class OcsMessagePlugin implements Plugin {
   }
 
   @Override
-  public OcsMessageDelegate newDelegate(PluginContext context, Account account, ApiClient apiClient, ApiRequest apiRequest, Push push) {
-    OcsMessageConfig config = getConfig(context.getCouchServer(), apiClient);
-    return new OcsMessageDelegate(context, account, apiClient, apiRequest, (OcsPush)push, config);
+  public OcsMessageDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
+    OcsMessageConfig config = getConfig(context.getCouchServer(), domain);
+    return new OcsMessageDelegate(context, account, domain, pushRequest, (OcsPush)push, config);
   }
 
   @Override
-  public void deleteConfig(PluginContext context, Account account, ApiClient apiClient) {
+  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
 
-    OcsMessageConfig config = getConfig(context.getCouchServer(), apiClient);
+    OcsMessageConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config != null) {
-      getConfigStore(context.getCouchServer()).delete(config);
-      apiClient.setLastMessage("OCS (Office Communicator Server) configuration deleted.");
+      getConfigStore(pluginContext.getCouchServer()).delete(config);
+      pluginContext.setLastMessage("OCS (Office Communicator Server) configuration deleted.");
     } else {
-      apiClient.setLastMessage("OCS (Office Communicator Server) configuration doesn't exist.");
+      pluginContext.setLastMessage("OCS (Office Communicator Server) configuration doesn't exist.");
     }
 
-    context.getAccountStore().update(account);
+    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void updateConfig(PluginContext context, Account account, ApiClient apiClient, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext context, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
     // do nothing...
   }
 
   @Override
-  public void test(PluginContext context, Account account, ApiClient apiClient) throws Exception {
+  public void test(PluginContext pluginContext, Account account, Domain domain) throws Exception {
 
-    OcsMessageConfig config = getConfig(context.getCouchServer(), apiClient);
+    OcsMessageConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config == null) {
       String msg = "The OCS (Office Communicator Server) config has not been specified.";
-      apiClient.setLastMessage(msg);
-      context.getAccountStore().update(account);
+      pluginContext.setLastMessage(msg);
+      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -86,8 +87,8 @@ public class OcsMessagePlugin implements Plugin {
 
     if (isBlank((recipient))) {
       String msg = "Test message cannot be sent with out specifying the test address.";
-      apiClient.setLastMessage(msg);
-      context.getAccountStore().update(account);
+      pluginContext.setLastMessage(msg);
+      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -100,14 +101,14 @@ public class OcsMessagePlugin implements Plugin {
     String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
     OcsPush push = OcsPush.newPush(recipient, msg, null);
 
-    ApiRequest apiRequest = new ApiRequest(apiClient, push);
-    context.getApiRequestStore().create(apiRequest);
+    PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    pluginContext.getPushRequestStore().create(pushRequest);
 
-    new OcsMessageDelegate(context, account, apiClient, apiRequest, push, config).run();
+    new OcsMessageDelegate(pluginContext, account, domain, pushRequest, push, config).run();
 
     msg = String.format("Test message sent to %s:\n%s", recipient, msg);
-    apiClient.setLastMessage(msg);
-    context.getAccountStore().update(account);
+    pluginContext.setLastMessage(msg);
+    pluginContext.getAccountStore().update(account);
   }
 
   @Override
@@ -117,14 +118,14 @@ public class OcsMessagePlugin implements Plugin {
   }
 
   @Override
-  public String getAdminUi(PluginContext context, Account account, ApiClient apiClient) throws IOException {
+  public String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException {
 
-    OcsMessageConfig config = getConfig(context.getCouchServer(), apiClient);
+    OcsMessageConfig config = getConfig(context.getCouchServer(), domain);
 
     InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/ocs/message/admin.html");
     String content = IoUtils.toString(stream);
 
-    content = content.replace("${api-client-name}",   nullToString(apiClient.getClientName()));
+    content = content.replace("${domain-name}",   nullToString(domain.getDomainKey()));
     content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
 
     content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));

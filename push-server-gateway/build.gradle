@@ -17,7 +17,8 @@ project(":push-server-gateway") {
 
     compile ("org.crazyyak.lib:yak-lib-jaxrs-jackson:${yakLibJaxrsJackson}")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile project(":push-server-test")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

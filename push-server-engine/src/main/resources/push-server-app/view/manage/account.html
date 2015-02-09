@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.account.ManageAccountModel"-->
   <head th:include="fragments::html_header" th:with="pageTitle=': My Account'"></head>
 
   <body>
@@ -12,20 +13,20 @@
     <a th:href="${contextRoot}">Home Page</a>
 
     <fieldset style="margin-top: 1em">
-      <legend>API Clients</legend>
-      <div th:each="apiClient : ${it.account.apiClients}">
-        <span style="color: #FFD700; font-size:22px;" th:text="${apiClient.clientName}"></span>
+      <legend>Domain</legend>
+      <div th:each="domain : ${it.domains}">
+        <span style="color: #FFD700; font-size:22px;" th:text="${domain.domainKey}"></span>
 
         <span th:each="pushType : ${it.pushType}">
           <img th:src="${contextRoot}+'/manage/'+${pushType}+'/icon'" class="icon" style="margin-left: 5px"/>
         </span>
 
         <div style="float: right">
-          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}">Manage</a>
-          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}+'/requests'">All Requests</a>
-          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}+'/emails'">Emails</a>
-          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}+'/notifications'">Notifications</a>
-          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/api-client/'+${apiClient.clientName}+'/user-events'">User Events</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/domain/'+${domain.domainKey}">Manage</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/domain/'+${domain.domainKey}+'/requests'">All Requests</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/domain/'+${domain.domainKey}+'/emails'">Emails</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/domain/'+${domain.domainKey}+'/notifications'">Notifications</a>
+          <a style="margin-left: 10px" th:href="${contextRoot}+'/manage/domain/'+${domain.domainKey}+'/user-events'">User Events</a>
         </div>
         <div style="clear:both"></div>
 
@@ -40,15 +41,15 @@
           <tbody>
             <tr>
               <td><label for="client-name">Name:</label></td>
-              <td><input type="text" id="client-name" name="clientName" style="width:200px;"/></td>
+              <td><input type="text" id="client-name" name="domainKey" style="width:200px;"/></td>
             </tr>
             <tr>
               <td><label for="client-password">Password:</label></td>
-              <td><input type="text" id="client-password" name="clientPassword" style="width:200px;"/></td>
+              <td><input type="text" id="client-password" name="domainPassword" style="width:200px;"/></td>
             </tr>
             <tr>
               <td colspan="2">
-                <button style="float :right" type="submit" th:formaction="${contextRoot}+'/manage/api-client'">Create</button>
+                <button style="float :right" type="submit" th:formaction="${contextRoot}+'/manage/domain'">Create</button>
               </td>
             </tr>
           </tbody>

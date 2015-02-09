@@ -12,7 +12,7 @@ project(":push-server-engine-grizzly") {
 
   dependencies {
     compile project(":push-server-engine")
-    compile("org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.13")
+    compile("org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.15")
   }
 
   configurations.all({
@@ -28,6 +28,12 @@ project(":push-server-engine-grizzly") {
     })
   })
 
-
   apply plugin: 'eu.appsatori.fatjar'
-}
+
+  fatJar {
+    baseName = project.name + '-uber'
+    manifest {
+        attributes 'Implementation-Title': 'Grizzly Push Server', 'Implementation-Version': version
+        attributes 'Main-Class': 'com.cosmicpush.engine.grizzly.GrizzlyPushServer'
+    }
+  }}

@@ -1,8 +1,8 @@
 <form style="margin-top: 1em" method="post">
   <fieldset>
     <legend>
-      <img src="${push-server-base}/manage/notifier/icon" class="icon"/>
-      <span>Google Talk</span>
+      <img src="${push-server-base}/manage/liquid-notification/icon" class="icon"/>
+      <span>Liquid Notifications</span>
     </legend>
 
     <table style="width: 100%; float: left">
@@ -13,32 +13,15 @@
       </colgroup>
       <tbody>
         <tr>
-          <td><label for="gt-user-name">User Name:</label></td>
-          <td><input type="text" id="gt-user-name" name="userName" value="${config-user-name}" style="width:200px;"></td>
-          <td rowspan="4" class="help">
-            Use this push to send &quot;chat&quot; messages with Google's messaging service.<br/><br/>
-            The <span style="font-weight: bold; color: white">Recipient Override</span> may be specified to force all messages to
-            be sent to this specific recipient. When specified, messages will never be delivered to the API's requested recipient.
-          </td>
-        </tr>
-        <tr>
-          <td><label for="gt-password">Password:</label></td>
-          <td><input type="text" id="gt-password" name="password" value="${config-password}" style="width:200px;"></td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
-          <td><label for="gt-test">Test Address:</label></td>
-          <td><input type="text" id="gt-test" name="testAddress" value="${config-test-address}" style="width:200px;"></td>
-        </tr>
-        <tr>
-          <td><label for="gt-override">Recipient Override:</label></td>
-          <td><input type="text" id="gt-override" name="recipientOverride" value="${config-recipient-override}" style="width:200px;"></td>
+          <td><label for="lq-gtalk-account">Google Talk:</label></td>
+          <td><input type="text" id="lq-gtalk-account" name="userName" value="${config-user-name}" style="width:200px;"></td>
+          <td rowspan="4" class="help"></td>
         </tr>
         <tr>
           <td colspan="2" style="text-align: right">
-            <button type="submit" formaction="${push-server-base}/manage/api-client/${api-client-name}/google-talk" style="float:right">Update</button>
-            <button type="submit" formaction="${push-server-base}/manage/api-client/${api-client-name}/google-talk/test" style="float:right">Test</button>
-            <button type="submit" formaction="${push-server-base}/manage/api-client/${api-client-name}/google-talk/delete" style="float:left">Delete</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/liquid-notification" style="float:right">Update</button>
+            <!--<button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/liquid-notification/test" style="float:right">Test</button>-->
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/liquid-notification/delete" style="float:left">Delete</button>
           </td>
         </tr>
       </tbody>

@@ -6,6 +6,7 @@ import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.common.UserAgent;
 import com.cosmicpush.pub.internal.CpIdGenerator;
 import com.cosmicpush.pub.push.*;
+import com.cosmicpush.test.TestFactory;
 import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.DateUtils;
 import org.crazyyak.dev.common.EnvUtils;
@@ -24,28 +25,30 @@ import static org.testng.Assert.assertNotNull;
 @Test
 public class IntegrationTestVersion2 {
 
+  private TestFactory testFactory;
   private LiveCosmicPushGateway gateway;
   private String callbackUrl = null;
 
   @BeforeClass
   public void beforeClass() throws Exception {
-    String url = "http://localhost:9010/push-server/api/v2";
+    testFactory = TestFactory.get();
+    String url = "http://www.localhost:9010/push-server/api/v2";
     String username = EnvUtils.requireProperty("PUSH_TEST_USERNAME");
     String password = EnvUtils.requireProperty("PUSH_TEST_PASSWORD");
     gateway = new LiveCosmicPushGateway(url, username, password);
   }
 
   public void testNotificationPush() throws Exception {
-    NotificationPush action = NotificationPush.newPush("Notice what I'm doing?", callbackUrl, BeanUtils.toMap("unit-test:true"));
+    LqNotificationPush action = LqNotificationPush.newPush("integration-test", "Notice what I'm doing?", "tracking-id", callbackUrl, BeanUtils.toMap("unit-test:true"));
     PushResponse response = gateway.push(action);
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
 
-    action = NotificationPush.newPush("Now I want to share some info", callbackUrl, BeanUtils.toMap("day:Sunday", "size:Large"));
+    action = LqNotificationPush.newPush("integration-test", "Now I want to share some info", "tracking-id", callbackUrl, BeanUtils.toMap("day:Sunday", "size:Large"));
     response = gateway.push(action);
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
 
     String msg = ExceptionUtils.toString(new IllegalArgumentException("I think I might have broken it!"));
-    action = NotificationPush.newPush("Something really bad happened here!", callbackUrl, BeanUtils.toMap("priority:Urgent", "exception:"+msg));
+    action = LqNotificationPush.newPush("integration-test", "Something really bad happened here!", "tracking-id", callbackUrl, BeanUtils.toMap("priority:Urgent", "exception:" + msg));
     response = gateway.push(action);
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
   }
@@ -90,11 +93,7 @@ public class IntegrationTestVersion2 {
     int posB = sessionId.indexOf("-", posA+1);
     String userName = "Test" + sessionId.substring(posA, posB);
 
-    UserAgent userAgent = new UserAgent(
-        "agent-type", "agent-name", "agent-version", "agent-language", "agent-lang-tag",
-        "os-type", "os-name", "os=produceer", "osproducer-url", "os-version-name", "os-version-number",
-        "linux-distro"
-    );
+    UserAgent userAgent = testFactory.createUserAgent();
 
     TestRemoteClient remoteClient = new TestRemoteClient(
         userName,

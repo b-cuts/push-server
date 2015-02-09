@@ -24,8 +24,8 @@ import java.util.*;
 public class PushResponse implements Serializable {
 
   private final String accountId;
-  private final String apiClientId;
-  private final String apiRequestId;
+  private final String domainId;
+  private final String pushRequestId;
 
   private final LocalDateTime createdAt;
   private final RequestStatus requestStatus;
@@ -34,15 +34,15 @@ public class PushResponse implements Serializable {
 
   @JsonCreator
   public PushResponse(@JsonProperty("accountId") String accountId,
-                      @JsonProperty("apiClientId") String apiClientId,
-                      @JsonProperty("apiRequestId") String apiRequestId,
+                      @JsonProperty("domainId") String domainId,
+                      @JsonProperty("pushRequestId") String pushRequestId,
                       @JsonProperty("createdAt") LocalDateTime createdAt,
                       @JsonProperty("requestStatus") RequestStatus requestStatus,
                       @JsonProperty("notes") Collection<String> notes) {
 
     this.accountId = accountId;
-    this.apiClientId = apiClientId;
-    this.apiRequestId = apiRequestId;
+    this.domainId = domainId;
+    this.pushRequestId = pushRequestId;
 
     this.createdAt = createdAt;
     this.requestStatus = requestStatus;
@@ -54,12 +54,12 @@ public class PushResponse implements Serializable {
     return accountId;
   }
 
-  public String getApiClientId() {
-    return apiClientId;
+  public String getDomainId() {
+    return domainId;
   }
 
-  public String getApiRequestId() {
-    return apiRequestId;
+  public String getPushRequestId() {
+    return pushRequestId;
   }
 
   public LocalDateTime getCreatedAt() {

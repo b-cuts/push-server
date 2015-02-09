@@ -5,9 +5,7 @@
  */
 package com.cosmicpush.app.resources;
 
-import com.cosmicpush.app.jaxrs.ExecutionContext;
-import com.cosmicpush.app.jaxrs.security.Session;
-import com.cosmicpush.app.jaxrs.security.SessionStore;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.resources.api.ApiResourceV1;
 import com.cosmicpush.app.resources.api.ApiResourceV2;
 import com.cosmicpush.app.resources.manage.ManageResource;
@@ -15,10 +13,12 @@ import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.clients.Domain;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.PluginManager;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.common.system.Session;
+import com.cosmicpush.common.system.SessionStore;
+import com.cosmicpush.pub.push.LqNotificationPush;
 import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,8 +26,10 @@ import org.crazyyak.dev.common.EqualsUtils;
 import org.crazyyak.dev.common.exceptions.ApiException;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.Provider;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -121,36 +123,36 @@ public class RootResource extends RootResourceSupport {
     return new ManageResource();
   }
 
-  @GET @Path("/q/{id}")
-  public Response resolveCallback(@PathParam("id") String id) throws URISyntaxException {
+  @GET @Path("/q/{pushRequestId}")
+  public Response resolveCallback(@PathParam("pushRequestId") String pushRequestId) throws URISyntaxException {
 
-    if (id.startsWith("api-request:")) {
-      id = id.substring(12);
-      return resolveCallback(id);
+    if (pushRequestId.startsWith("push-request:")) {
+      pushRequestId = pushRequestId.substring(12);
+      return resolveCallback(pushRequestId);
 
-    } else if (id.contains(":") == false) {
-      ApiRequest request = context.getApiRequestStore().getByApiRequestId(id);
+    } else if (pushRequestId.contains(":") == false) {
+      PushRequest request = context.getPushRequestStore().getByPushRequestId(pushRequestId);
       if (request == null) {
-        throw ApiException.notFound("API request not found for " + id);
+        throw ApiException.notFound("API request not found for " + pushRequestId);
       }
 
-      Account account = context.getAccountStore().getByClientId(request.getApiClientId());
+      Domain domain = context.getDomainStore().getByDocumentId(request.getDomainId());
+      if (domain == null) {
+        throw ApiException.notFound("Domain not found for " + request.getDomainId());
+      }
+
+      Account account = context.getAccountStore().getByDocumentId(domain.getAccountId());
       if (account == null) {
-        throw ApiException.notFound("Account not found given client id " + request.getApiClientId());
+        throw ApiException.notFound("Account not found given client id " + request.getDomainId());
       }
 
-      ApiClient apiClient = account.getApiClientById(request.getApiClientId());
-      if (apiClient == null) {
-        throw ApiException.notFound("API client not found for " + request.getApiClientId());
-      }
-
-      if (NotificationPush.PUSH_TYPE.equals(request.getPushType())) {
-        String path = String.format("manage/api-client/%s/notifications/%s", apiClient.getClientName(), id);
+      if (LqNotificationPush.PUSH_TYPE.equals(request.getPushType())) {
+        String path = String.format("manage/domain/%s/notifications/%s", domain.getDomainKey(), pushRequestId);
         return Response.seeOther(new URI(path)).build();
 
       } else if (UserEventPush.PUSH_TYPE.equals(request.getPushType())) {
         String deviceId = request.getUserEventPush().getDeviceId();
-        String path = String.format("manage/api-client/%s/user-events/%s", apiClient.getClientName(), deviceId);
+        String path = String.format("manage/domain/%s/user-events/%s", domain.getDomainKey(), deviceId);
         return Response.seeOther(new URI(path)).build();
       }
 

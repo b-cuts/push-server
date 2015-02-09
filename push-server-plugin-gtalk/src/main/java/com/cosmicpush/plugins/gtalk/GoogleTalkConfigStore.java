@@ -1,6 +1,6 @@
 package com.cosmicpush.plugins.gtalk;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.system.CpCouchServer;
 import org.crazyyak.lib.couchace.DefaultCouchStore;
 
@@ -17,7 +17,7 @@ public class GoogleTalkConfigStore extends DefaultCouchStore<GoogleTalkConfig> {
     return GOOGLE_TALK_CONFIG_DESIGN_NAME;
   }
 
-  public static String toDocumentId(ApiClient apiClient) {
-    return String.format("%s:google-talk-config", apiClient.getApiClientId());
+  public static String toDocumentId(Domain domain) {
+    return String.format("%s:google-talk-config", domain.getDomainId());
   }
 }

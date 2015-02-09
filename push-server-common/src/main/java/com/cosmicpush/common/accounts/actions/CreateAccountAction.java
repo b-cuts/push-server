@@ -6,15 +6,15 @@
 
 package com.cosmicpush.common.accounts.actions;
 
-import com.cosmicpush.pub.internal.*;
-import java.time.ZoneId;
-import java.util.List;
+import com.cosmicpush.pub.internal.RequestErrors;
+import com.cosmicpush.pub.internal.ValidationUtils;
 import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.ApiException;
 
-public class CreateAccountAction extends AccountAction {
+import java.time.ZoneId;
+import java.util.List;
 
-  private final boolean authenticate;
+public class CreateAccountAction extends AccountAction {
 
   private final ZoneId timeZone;
 
@@ -28,13 +28,10 @@ public class CreateAccountAction extends AccountAction {
   private final String passwordConfirmed;
 
   public CreateAccountAction(
-      boolean authenticate,
       ZoneId timeZone,
       String userName, String emailAddress,
       String firstName, String lastName,
       String password, String passwordConfirmed) {
-
-    this.authenticate = authenticate;
 
     this.timeZone = timeZone;
 
@@ -74,10 +71,6 @@ public class CreateAccountAction extends AccountAction {
 
   public String getPasswordConfirmed() {
     return passwordConfirmed;
-  }
-
-  public boolean isAuthenticate() {
-    return authenticate;
   }
 
   @Override

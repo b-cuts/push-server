@@ -38,27 +38,27 @@ public class WipeRequests {
     CpCouchServer couchServer = new CpCouchServer(couchSetup);
 
     AccountStore accountStore = new AccountStore(couchServer, "cosmic-push");
-    ApiRequestStore apiRequestStore = new ApiRequestStore(couchServer, "cosmic-push");
+    PushRequestStore pushRequestStore = new PushRequestStore(couchServer, "cosmic-push");
 
     List<Account> accounts = accountStore.getAll();
     for (Account account : accounts) {
       accountStore.update(account);
-      deleteForAccount(accountStore, apiRequestStore, account);
+      deleteForAccount(accountStore, pushRequestStore, account);
     }
 
-    deleteOrphans(apiRequestStore);
+    deleteOrphans(pushRequestStore);
 */
   }
 
 /*
-  private void deleteOrphans(ApiRequestStore apiRequestStore) {
+  private void deleteOrphans(PushRequestStore pushRequestStore) {
 
     int count = 0;
-    QueryResult<ApiRequest> queryResult = apiRequestStore.getAll(100);
+    QueryResult<PushRequest> queryResult = pushRequestStore.getAll(100);
 
     do {
-      for (ApiRequest request : queryResult.getEntityList()) {
-        apiRequestStore.delete(request);
+      for (PushRequest request : queryResult.getEntityList()) {
+        pushRequestStore.delete(request);
       }
       count += queryResult.getSize();
       System.out.printf("Deleted %s records\n", count);
@@ -69,16 +69,16 @@ public class WipeRequests {
 */
 
 /*
-  private void deleteForAccount(accountStore accountStore, ApiRequestStore apiRequestStore, Account account) {
+  private void deleteForAccount(accountStore accountStore, PushRequestStore pushRequestStore, Account account) {
 
-    for (ApiClient apiClient : account.getApiClients()) {
+    for (Domain domain : account.getDomains()) {
 
       int count = 0;
-      QueryResult<ApiRequest> queryResult = apiRequestStore.getByClient(apiClient, 100);
+      QueryResult<PushRequest> queryResult = pushRequestStore.getByClient(domain, 100);
 
       do {
-        for (ApiRequest request : queryResult.getEntityList()) {
-          apiRequestStore.delete(request);
+        for (PushRequest request : queryResult.getEntityList()) {
+          pushRequestStore.delete(request);
         }
         count += queryResult.getSize();
         System.out.printf("Deleted %s records\n", count);

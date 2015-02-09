@@ -1,0 +1,53 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+  <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.DomainRequestsModel"-->
+  <head th:include="fragments::html_header" th:with="pageTitle=': All Requests'"></head>
+
+  <body>
+    <div style="position: absolute; top: 0; right: 10px;">
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+    </div>
+
+    <h1 th:text="${it.domain.domainKey}+': Requests'"></h1>
+    <div th:include="fragments::client_sub_menu"></div>
+
+    <table class="requests-table" style="width: 100%; margin-top: 1em">
+      <colgroup>
+        <col style="width:1em"/>
+        <col style="width:1em"/>
+        <col style="width:1em"/>
+        <col/>
+      </colgroup>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Sent</th>
+          <th>Type</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="pushRequest : ${it.requests}">
+          <td style="padding:2px; text-align: center"
+              th:include="fragments::req_icon"
+              th:switch="${pushRequest.requestStatus.name}">
+          </td>
+          <td>
+            <div th:text="${#temporals.format(pushRequest.createdAt, 'MM-dd-yy hh:mm a')}"></div>
+            <div th:text="'from '+${pushRequest.remoteHost}"></div>
+          </td>
+          <td th:text="|${pushRequest.pushType.label} (v${pushRequest.apiVersion})|"></td>
+          <td>
+            <li th:each="note : ${pushRequest.notes}" th:text="${note}" style="white-space:pre-wrap"></li>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <form style="margin: 1em 0; float: right" method="post" th:action="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}+'/requests/delete-all'" >
+      <button type="submit" onclick="return confirm('Are you sure you want to delete all requests?');">Delete All</button>
+    </form>
+
+  </body>
+</html>

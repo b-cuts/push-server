@@ -15,7 +15,8 @@ project(":push-server-plugin-gtalk") {
     compile(project(":push-server-common"))
     compile("jivesoftware:smackx:3.1.0")
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile(project(":push-server-test"))
+    testCompile("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

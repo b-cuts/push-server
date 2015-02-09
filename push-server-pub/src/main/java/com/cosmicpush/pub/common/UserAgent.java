@@ -17,11 +17,13 @@
 package com.cosmicpush.pub.common;
 
 
-import com.fasterxml.jackson.annotation.*;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.crazyyak.dev.common.StringUtils;
 
-@JsonIgnoreProperties("linuxDistibution")
+import java.io.Serializable;
+
 public class UserAgent implements Serializable {
 
   private final String agentType;

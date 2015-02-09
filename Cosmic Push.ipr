@@ -22,8 +22,8 @@
               <element id="module-output" name="push-server-pub" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-pub/build/resources/main" />
             </element>
-            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-common:4.1.3" />
+            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.1" />
             <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
             <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-smtp-4.0.0.jar">
@@ -49,11 +49,7 @@
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.1" />
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1" />
             <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.0" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.0" />
             <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.4.0" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.4.0" />
             <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.10" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-common:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.15" />
@@ -64,7 +60,16 @@
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-locator:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b06" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.2" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.3" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.4.1" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.1" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.1" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.4.1" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.15" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.1" />
             <element id="library" level="project" name="Gradle: javax.mail:mail:1.5.0-b01" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-ses-4.0.0.jar">
               <element id="module-output" name="push-server-plugin-ses" />
@@ -130,26 +135,26 @@
             <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
             <element id="library" level="project" name="Gradle: org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE" />
             <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1" />
             <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.1" />
             <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf:2.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-twilio-1.0.0.jar">
               <element id="module-output" name="push-server-plugin-twilio" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-twilio/build/resources/main" />
             </element>
-            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.4.5" />
             <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
             <element id="library" level="project" name="Gradle: com.googlecode.json-simple:json-simple:1.1" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" />
+            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.6.2" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-notifier-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-notifier" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-notifier/build/resources/main" />
+            </element>
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.15" />
-            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.15" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -157,7 +162,7 @@
         </element>
       </root>
     </artifact>
-    <artifact type="exploded-war" build-on-make="true" name="Gradle : com.cosmicpush:push-server-engine-servlet : push-server-engine-servlet-1.0.0.war (exploded)">
+    <artifact type="exploded-war" name="Gradle : com.cosmicpush:push-server-engine-servlet : push-server-engine-servlet-1.0.0.war (exploded)">
       <output-path>$PROJECT_DIR$/build/artifacts/push-server-engine-servlet/exploded/push-server-engine-servlet-1.0.0.war</output-path>
       <properties id="gradle-properties">
         <options external-project-path="$PROJECT_DIR$/push-server-engine-servlet" />
@@ -178,8 +183,8 @@
               <element id="module-output" name="push-server-pub" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-pub/build/resources/main" />
             </element>
-            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-common:4.1.3" />
+            <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.1" />
             <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
             <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-smtp-4.0.0.jar">
@@ -205,11 +210,7 @@
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.1" />
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1" />
             <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.0" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.0" />
             <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.4.0" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.4.0" />
             <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.10" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-common:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.15" />
@@ -220,7 +221,16 @@
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-locator:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b06" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b06" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.2" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.3" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.4.1" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.1" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.1" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.4.1" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.15" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.1" />
             <element id="library" level="project" name="Gradle: javax.mail:mail:1.5.0-b01" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-ses-4.0.0.jar">
               <element id="module-output" name="push-server-plugin-ses" />
@@ -286,26 +296,26 @@
             <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" />
             <element id="library" level="project" name="Gradle: org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE" />
             <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.1" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1" />
             <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.1" />
             <element id="library" level="project" name="Gradle: org.thymeleaf:thymeleaf:2.1.4.RELEASE" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-testing:4.1.1" />
             <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
             <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-twilio-1.0.0.jar">
               <element id="module-output" name="push-server-plugin-twilio" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-twilio/build/resources/main" />
             </element>
-            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.4.5" />
             <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
             <element id="library" level="project" name="Gradle: com.googlecode.json-simple:json-simple:1.1" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" />
+            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.6.2" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-notifier-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-notifier" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-notifier/build/resources/main" />
+            </element>
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.15" />
-            <element id="library" level="project" name="Gradle: org.glassfish.jersey.core:jersey-server:2.15" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -365,6 +375,7 @@
             <option value="$PROJECT_DIR$/push-server-plugin-smtp" />
             <option value="$PROJECT_DIR$/push-server-plugin-twilio" />
             <option value="$PROJECT_DIR$/push-server-pub" />
+            <option value="$PROJECT_DIR$/push-server-test" />
             <option value="$PROJECT_DIR$/push-server-v1-integration-tests" />
             <option value="$PROJECT_DIR$/push-server-v2-integration-tests" />
           </set>
@@ -537,6 +548,7 @@
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" filepath="$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-twilio/push-server-plugin-twilio.iml" filepath="$PROJECT_DIR$/push-server-plugin-twilio/push-server-plugin-twilio.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-pub/push-server-pub.iml" filepath="$PROJECT_DIR$/push-server-pub/push-server-pub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-test/push-server-test.iml" filepath="$PROJECT_DIR$/push-server-test/push-server-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-v1-integration-tests/push-server-v1-integration-tests.iml" filepath="$PROJECT_DIR$/push-server-v1-integration-tests/push-server-v1-integration-tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-v2-integration-tests/push-server-v2-integration-tests.iml" filepath="$PROJECT_DIR$/push-server-v2-integration-tests/push-server-v2-integration-tests.iml" />
     </modules>
@@ -554,7 +566,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="com.cosmicpush.engine.grizzly.GrizzlyPushServer" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="port 9010 shutdown 9009 context push-server open true" />
+      <option name="PROGRAM_PARAMETERS" value="serverName www.localhost port 9010 shutdown 9009 context push-server open true" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -571,84 +583,6 @@
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="IntegrationTestVersion1" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cosmicpush.v1.integration.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="push-server-v1-integration-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="SUITE_NAME" value="" />
-      <option name="PACKAGE_NAME" value="com.cosmicpush.v1.integration.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v1.integration.tests.IntegrationTestVersion1" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" value="" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" value="" />
-      <envs />
-      <properties />
-      <listeners />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="63039" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
-      <method />
-    </configuration>
-    <configuration default="false" name="IntegrationTestVersion2" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cosmicpush.v2.integration.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="push-server-v2-integration-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="SUITE_NAME" value="" />
-      <option name="PACKAGE_NAME" value="com.cosmicpush.v2.integration.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v2.integration.tests.IntegrationTestVersion2" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" value="" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" value="" />
-      <envs />
-      <properties />
-      <listeners />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="54924" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
       <method />
     </configuration>
     <configuration default="false" name="push-server-gateway" type="TestNG" factoryName="TestNG">
@@ -713,6 +647,84 @@
       <listeners />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="62128" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="IntegrationTestVersion2" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cosmicpush.v2.integration.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="push-server-v2-integration-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="" />
+      <option name="PACKAGE_NAME" value="com.cosmicpush.v2.integration.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v2.integration.tests.IntegrationTestVersion2" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54924" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="IntegrationTestVersion1" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cosmicpush.v1.integration.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="push-server-v1-integration-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="" />
+      <option name="PACKAGE_NAME" value="com.cosmicpush.v1.integration.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v1.integration.tests.IntegrationTestVersion1" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="63039" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -794,9 +806,7 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method>
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="Gradle : com.cosmicpush:push-server-engine-servlet : push-server-engine-servlet-1.0.0.war (exploded)" />
-        </option>
+        <option name="BuildArtifacts" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -1234,40 +1244,40 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-pub/1.5.6/950f937c36d400cbcc2c436bd9fd1093c101f528/push-server-pub-1.5.6-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.couchace:couchace-annotations:1.4.0">
+    <library name="Gradle: com.couchace:couchace-annotations:1.4.1">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.4.0/c33b5415da5752da9555aa72786c2190a85971d4/couchace-annotations-1.4.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.4.1/51cfd65729cf9b62b2966efa8537cc0a037a5d54/couchace-annotations-1.4.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.4.0/a74d6c19362dc3554d3179b7d11a9a8666edd63f/couchace-annotations-1.4.0-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.4.1/eb4f9e438076c90d28d48f7bb7ed76b5a011b19e/couchace-annotations-1.4.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.couchace:couchace-core:1.4.0">
+    <library name="Gradle: com.couchace:couchace-core:1.4.1">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.4.0/885afac7299eef3afff00d6bf7af70838534213d/couchace-core-1.4.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.4.1/efc5a58f00ff70a38baedd88026bb51ac57036bb/couchace-core-1.4.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.4.0/dc5cf3edd770d44f296f3d98789adf5bc4d5e36c/couchace-core-1.4.0-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.4.1/e8095095b7c167d6014e5bd65872ea67686cc298/couchace-core-1.4.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.couchace:couchace-jackson:1.4.0">
+    <library name="Gradle: com.couchace:couchace-jackson:1.4.1">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.4.0/847362e372f3427ef8dfa5003665591969410d37/couchace-jackson-1.4.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.4.1/392878cbc05aa623b08762e752d3189b868c39f8/couchace-jackson-1.4.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.4.0/806f47d9999743f276df1b41af02dde99ffbcc9/couchace-jackson-1.4.0-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.4.1/a5b575bbfbf1bf1f7b90e1db00778e2ee05458b1/couchace-jackson-1.4.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.couchace:couchace-jersey:1.4.0">
+    <library name="Gradle: com.couchace:couchace-jersey:1.4.1">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.4.0/2851ffae8160044e8ad2b6f006d9b58456031ecd/couchace-jersey-1.4.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.4.1/cf15d35115ded8c7a106fc506dabece13a29b5b3/couchace-jersey-1.4.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.4.0/63d5938d556f50be928368eeb708c0c3609c1f9f/couchace-jersey-1.4.0-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.4.1/850c01cf3932b968f60e297cf58dc63a179725c9/couchace-jersey-1.4.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.1">
@@ -1279,13 +1289,13 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.1/60007e1eb9be41c619875b725cb982012dff8a99/jackson-annotations-2.4.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0">
+    <library name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.1">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.5.0/a2a55a3375bc1cef830ca426d68d2ea22961190e/jackson-annotations-2.5.0.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.5.1/71c1992c0cf5e0ce62574e96009572062ba0f4d9/jackson-annotations-2.5.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.5.0/88b177349b719fe0636b50889687b9ed036bfd89/jackson-annotations-2.5.0-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.5.1/46e0be991f38bfa0589b5a08147bf5c51d864624/jackson-annotations-2.5.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.1.1">
@@ -1342,22 +1352,13 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/19c6d8dee6803c520d855ff7e8a8c3d97f1271ec/json-simple-1.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.twilio.sdk:twilio-java-sdk:3.4.5">
+    <library name="Gradle: com.twilio.sdk:twilio-java-sdk:3.6.2">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.4.5/e679168ac8629b3f3a41a85332adbdb2bf61b6ae/twilio-java-sdk-3.4.5.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.6.2/cf12efd0f0382acc15ea074dc041addffdd805cb/twilio-java-sdk-3.6.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.4.5/7c2dc52f12e0743a0cbc9ca04cd956d4871aaa71/twilio-java-sdk-3.4.5-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: commons-codec:commons-codec:1.4">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.4/4216af16d38465bbab0f3dff8efa14204f7a399a/commons-codec-1.4.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.4/5310da9f90e843883309e9e0bf5950faa79882a0/commons-codec-1.4-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.6.2/6796ad4ac1e5b3d5118a81a3ae24b6a1067dfb3e/twilio-java-sdk-3.6.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: commons-codec:commons-codec:1.6">
@@ -1527,13 +1528,13 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ognl/ognl/3.0.8/1b6bace3760cdf6dfb2c0fea0b266fa9d802c403/ognl-3.0.8-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.apache.httpcomponents:httpclient:4.1.2">
+    <library name="Gradle: org.apache.httpcomponents:httpclient:4.2.6">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.1.2/9003011c1b6d28a7331f04251a25e7ccf63c98f8/httpclient-4.1.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.2.6/e4ca30a6a3a075053a61c6fc850d2432dc012ba7/httpclient-4.2.6.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.1.2/dc49f8801031e5318f9487e2aa9e23a301c39dcd/httpclient-4.1.2-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.2.6/b4e00fa279b1d45af3cb6daebcc1fee3f5402392/httpclient-4.2.6-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.apache.httpcomponents:httpclient:4.3.4">
@@ -1545,13 +1546,13 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.4/7a14aafed8c5e2c4e360a2c1abd1602efa768b1f/httpclient-4.3.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.apache.httpcomponents:httpcore:4.1.2">
+    <library name="Gradle: org.apache.httpcomponents:httpcore:4.2.5">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.1.2/39e30fb2ddfcf32b9dd663039ca6e847b698aa6f/httpcore-4.1.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.2.5/472f0f5f8dba5d1962cb9d7739feed739a31c30d/httpcore-4.2.5.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.1.2/b3141b5e74071e25f0f5bb337fa2ceae580bfc35/httpcore-4.1.2-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.2.5/4fd9ac94cd3c26551bc7aecd62fce8e49f076635/httpcore-4.2.5-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.apache.httpcomponents:httpcore:4.3.2">
@@ -1588,25 +1589,30 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.3/ff4fdbc6c12ac7ff7a727cd80cd71a059a0ec179/jackson-mapper-asl-1.9.3-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/apis/yak-apis-bitly/1.1.1/yak-apis-bitly-1.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/apis/yak-apis-bitly/1.1.1/yak-apis-bitly-1.1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/apis/yak-apis-google/2.2.1/yak-apis-google-2.2.1.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.1/d640847d130db93ab5130c89bc21f7e6602d70/yak-apis-google-2.2.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/apis/yak-apis-google/2.2.1/yak-apis-google-2.2.1-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.1/66f1e731cafe9b9d029b3a885e6797fab4ee049c/yak-apis-google-2.2.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.app:yak-app-common:1.0.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/1.0.1/yak-app-common-1.0.1.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.1/c5c34a6c7b4789b9194eed3d92b958194a425371/yak-app-common-1.0.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/1.0.1/yak-app-common-1.0.1-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.1/feeff05969f9f5efd425845fdd05d10362eb2b9e/yak-app-common-1.0.1-sources.jar!/" />
       </SOURCES>
     </library>
@@ -1641,12 +1647,10 @@
     </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-domain/4.1.1/yak-dev-domain-4.1.1.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/4.1.1/9424d38220d198c0e9ada209ec370f4bacc2e49e/yak-dev-domain-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-domain/4.1.1/yak-dev-domain-4.1.1-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-domain/4.1.1/a199644fc4c85aaa6a3ac89ff79ef0322f39c8a9/yak-dev-domain-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
@@ -1661,12 +1665,10 @@
     </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.1.1/yak-dev-jackson-4.1.1.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.1/4e5b45c67e2818e0e304d6afbca165122bc64663/yak-dev-jackson-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.1.1/yak-dev-jackson-4.1.1-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.1/e53a3e64c8b5db2c7ada706a7c236e427e80f5c2/yak-dev-jackson-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
@@ -1690,45 +1692,39 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-testing/4.1.1/7852ce4c4e40a206e4bbebd4d70b14ec99f0a84/yak-dev-testing-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.2">
+    <library name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.3">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-couchace/4.1.2/5d34872ee3cd3e63085569cfa11b59f5f7a8646a/yak-lib-couchace-4.1.2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-couchace/4.1.3/yak-lib-couchace-4.1.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-couchace/4.1.2/d8d9a1b2f95695d46ad9792b21a8abc2b6a9812/yak-lib-couchace-4.1.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-couchace/4.1.3/yak-lib-couchace-4.1.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:4.1.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/4.1.1/yak-lib-jaxrs-jackson-4.1.1.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/4.1.1/769f0a8e8271121556500a2b2f72b6f4a202860a/yak-lib-jaxrs-jackson-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/4.1.1/yak-lib-jaxrs-jackson-4.1.1-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/4.1.1/c0a747066899de85c815348805d85ad710ef2078/yak-lib-jaxrs-jackson-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs/4.1.1/yak-lib-jaxrs-4.1.1.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.1/cf096ff75949842a3e223f9c36925be858986e3f/yak-lib-jaxrs-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs/4.1.1/yak-lib-jaxrs-4.1.1-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.1/94a331ce8b3bf67e2fe9157a4ac53f48f93bee86/yak-lib-jaxrs-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-servlet/4.1.1/yak-lib-servlet-4.1.1.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-servlet/4.1.1/436126764eb438b46ed9f1855e77750bbf6d7025/yak-lib-servlet-4.1.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-servlet/4.1.1/yak-lib-servlet-4.1.1-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-servlet/4.1.1/636229b454a4c3a4327598b464877b2b2cfeac32/yak-lib-servlet-4.1.1-sources.jar!/" />
       </SOURCES>
     </library>
@@ -1876,13 +1872,13 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.15/77fa4cf2089905b0cd3bda5a70c67cbec5c21da4/jersey-guava-2.15-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.13">
+    <library name="Gradle: org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.15">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-grizzly2-http/2.13/7bc61f655b75c9dcacc6109365d3930e4429026a/jersey-container-grizzly2-http-2.13.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-grizzly2-http/2.15/4922d4b781d5833f15ef920e7bc05553820a19fb/jersey-container-grizzly2-http-2.15.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-grizzly2-http/2.13/f566de1b9e3576c1aa829ccc2e6afb1946e3f5c9/jersey-container-grizzly2-http-2.13-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-grizzly2-http/2.15/a094d1d9e9fe30f349fde4c9471bff484965a6a6/jersey-container-grizzly2-http-2.15-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.15">
@@ -1937,15 +1933,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.15/632e2a637882a8f571fda2f2927347b249067d/jersey-common-2.15-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.glassfish.jersey.core:jersey-server:2.13">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.13/b33036bd63f6f972bc2eb1e14d44aa609b12df27/jersey-server-2.13.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.13/1922dfac1a9aa08d418a936c2a7b753d44b9fe7/jersey-server-2.13-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.glassfish.jersey.core:jersey-server:2.15">
@@ -2011,13 +1998,13 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.10/4f46e6fc4bbaafe144b31c2472edcba7812c71aa/slf4j-simple-1.7.10-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.testng:testng:6.8.17">
+    <library name="Gradle: org.testng:testng:6.8.21">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testng/testng/6.8.17/dc5371b55480e3c9549352c8279b50ff369d343b/testng-6.8.17.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testng/testng/6.8.21/15e02d8d7be3c3640b585b97eda56026fdb5bf4d/testng-6.8.21.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testng/testng/6.8.17/7e7572ffc09eac6942fac58bab584e8539090e3a/testng-6.8.17-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testng/testng/6.8.21/b9afc760cabb3f2008f8c2d3fcfa5cf2327ea3d1/testng-6.8.21-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE">

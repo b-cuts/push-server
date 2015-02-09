@@ -17,7 +17,7 @@
 package com.cosmicpush.gateway.push;
 
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.LqNotificationPush;
 import org.crazyyak.dev.common.*;
 import org.crazyyak.dev.common.json.JsonTranslator;
 import org.crazyyak.dev.jackson.YakJacksonTranslator;
@@ -30,7 +30,7 @@ public class NotificationPushTranslationTest {
   private JsonTranslator translator = new YakJacksonTranslator();
 
   public void translateNotificationPush() throws Exception {
-    Push oldPush = NotificationPush.newPush("Hey, you need to check this out.", "http://callback.com/api.sent", null, "test:true", "type:warning");
+    Push oldPush = LqNotificationPush.newPush("Hey, you need to check this out.", "http://callback.com/api.sent", null, "test:true", "type:warning");
     String json = translator.toJson(oldPush);
     Assert.assertEquals(json, "{\n" +
         "  \"pushType\" : \"notification\",\n" +
@@ -42,7 +42,7 @@ public class NotificationPushTranslationTest {
         "  }\n" +
         "}");
 
-    Push newPush = translator.fromJson(NotificationPush.class, json);
+    Push newPush = translator.fromJson(LqNotificationPush.class, json);
     ComparisonResults results = EqualsUtils.compare(newPush, oldPush);
     results.assertValidationComplete();
   }

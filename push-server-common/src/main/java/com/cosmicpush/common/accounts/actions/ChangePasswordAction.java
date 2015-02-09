@@ -11,8 +11,6 @@ import org.crazyyak.dev.common.exceptions.ApiException;
 
 public class ChangePasswordAction extends AccountAction {
 
-  private final boolean authenticate;
-
   private final String current;
   private final String password;
   private final String confirmed;
@@ -21,7 +19,6 @@ public class ChangePasswordAction extends AccountAction {
     this.current = current;
     this.password = password;
     this.confirmed = confirmed;
-    this.authenticate = authenticate;
   }
 
   public String getCurrent() {
@@ -34,10 +31,6 @@ public class ChangePasswordAction extends AccountAction {
 
   public String getConfirmed() {
     return confirmed;
-  }
-
-  public boolean isAuthenticate() {
-    return authenticate;
   }
 
   @Override

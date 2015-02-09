@@ -19,7 +19,7 @@ project(":push-server-v1-integration-tests") {
     compile ("com.cosmicpush:push-server-pub:1.5.6"){force=true}
     compile ("com.fasterxml.jackson.core:jackson-annotations:2.4.1"){force=true}
 
-    testCompile ("org.testng:testng:6.8.17")
+    testCompile ("org.testng:testng:$testNgVersion")
   }
 
   configurations.all({

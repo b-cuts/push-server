@@ -8,10 +8,15 @@ package com.cosmicpush.plugins.gtalk;
 
 import com.cosmicpush.common.plugins.PluginConfig;
 import com.cosmicpush.pub.internal.RequestErrors;
-import com.couchace.annotations.*;
-import com.fasterxml.jackson.annotation.*;
-import java.io.Serializable;
+import com.couchace.annotations.CouchEntity;
+import com.couchace.annotations.CouchId;
+import com.couchace.annotations.CouchRevision;
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.crazyyak.dev.common.EqualsUtils;
+
+import java.io.Serializable;
 
 @CouchEntity(GoogleTalkConfigStore.GOOGLE_TALK_CONFIG_DESIGN_NAME)
 public class GoogleTalkConfig implements PluginConfig, Serializable {
@@ -19,7 +24,7 @@ public class GoogleTalkConfig implements PluginConfig, Serializable {
   private String configId;
   private String revision;
 
-  private String apiClientId;
+  private String domainId;
 
   private String userName;
   private String password;
@@ -32,7 +37,7 @@ public class GoogleTalkConfig implements PluginConfig, Serializable {
   @JsonCreator
   public GoogleTalkConfig(@JacksonInject("configId") String configId,
                           @JacksonInject("revision") String revision,
-                          @JsonProperty("apiClientId") String apiClientId,
+                          @JsonProperty("domainId") String domainId,
                           @JsonProperty("userName") String userName,
                           @JsonProperty("password") String password,
                           @JsonProperty("recipientOverride") String recipientOverride,
@@ -41,7 +46,7 @@ public class GoogleTalkConfig implements PluginConfig, Serializable {
     this.configId = configId;
     this.revision = revision;
 
-    this.apiClientId = apiClientId;
+    this.domainId = domainId;
 
     this.userName = userName;
     this.password = password;
@@ -52,13 +57,13 @@ public class GoogleTalkConfig implements PluginConfig, Serializable {
   public GoogleTalkConfig apply(UpdateGoogleTalkConfigAction push) {
     push.validate(new RequestErrors()).assertNoErrors();
 
-    if (apiClientId != null && EqualsUtils.objectsNotEqual(apiClientId, push.getApiClient().getApiClientId())) {
-      String msg = "The specified push and this class are not for the same API Client ID.";
+    if (domainId != null && EqualsUtils.objectsNotEqual(domainId, push.getDomain().getDomainId())) {
+      String msg = "The specified push and this class are not for the same domain.";
       throw new IllegalArgumentException(msg);
     }
 
-    this.apiClientId = push.getApiClient().getApiClientId();
-    this.configId = GoogleTalkConfigStore.toDocumentId(push.getApiClient());
+    this.domainId = push.getDomain().getDomainId();
+    this.configId = GoogleTalkConfigStore.toDocumentId(push.getDomain());
 
     this.userName = push.getUserName();
     this.password = push.getPassword();
@@ -78,8 +83,8 @@ public class GoogleTalkConfig implements PluginConfig, Serializable {
     return revision;
   }
 
-  public String getApiClientId() {
-    return apiClientId;
+  public String getDomainId() {
+    return domainId;
   }
 
   public String getUserName() {
