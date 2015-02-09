@@ -27,27 +27,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr th:each="apiRequest : ${it.requests}" th:with="notification=${apiRequest.notificationPush}">
+        <tr th:each="pushRequest : ${it.requests}" th:with="notification=${pushRequest.notificationPush}">
           <td style="padding:2px; text-align: center"
               th:include="fragments::req_icon"
-              th:switch="${apiRequest.requestStatus.name}">
+              th:switch="${pushRequest.requestStatus.name}">
           </td>
 
           <td>
-            <div th:text="${#temporals.format(apiRequest.createdAt, 'MM-dd-yy hh:mm a')}"></div>
-            <div th:text="'from '+${apiRequest.remoteHost}"></div>
+            <div th:text="${#temporals.format(pushRequest.createdAt, 'MM-dd-yy hh:mm a')}"></div>
+            <div th:text="'from '+${pushRequest.remoteHost}"></div>
           </td>
 
           <td style="border-right: 0">
 
             <div style="font-weight: bold; white-space: normal" th:text="${notification.message}"></div>
 
-            <div th:include="fragments::push_traits" th:with="pushTraits=${apiRequest.pushTraits}"></div>
+            <div th:include="fragments::push_traits" th:with="pushTraits=${pushRequest.pushTraits}"></div>
 
           </td>
 
           <td style="padding-right: 5px; border-left:0">
-            <a th:href="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}+'/notifications/'+${apiRequest.apiRequestId}" style="color: inherit">&gt;&gt;&gt;</a>
+            <a th:href="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}+'/notifications/'+${pushRequest.pushRequestId}" style="color: inherit">&gt;&gt;&gt;</a>
           </td>
 
         </tr>

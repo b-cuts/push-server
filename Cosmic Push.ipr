@@ -363,7 +363,6 @@
             <option value="$PROJECT_DIR$/push-server-jackson" />
             <option value="$PROJECT_DIR$/push-server-plugin-gtalk" />
             <option value="$PROJECT_DIR$/push-server-plugin-notifier" />
-            <option value="$PROJECT_DIR$/push-server-plugin-ocs-message" />
             <option value="$PROJECT_DIR$/push-server-plugin-ses" />
             <option value="$PROJECT_DIR$/push-server-plugin-smtp" />
             <option value="$PROJECT_DIR$/push-server-plugin-twilio" />
@@ -537,7 +536,6 @@
       <module fileurl="file://$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" filepath="$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" filepath="$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" filepath="$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" />
-      <module fileurl="file://$PROJECT_DIR$/push-server-plugin-ocs-message/push-server-plugin-ocs-message.iml" filepath="$PROJECT_DIR$/push-server-plugin-ocs-message/push-server-plugin-ocs-message.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" filepath="$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" filepath="$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-twilio/push-server-plugin-twilio.iml" filepath="$PROJECT_DIR$/push-server-plugin-twilio/push-server-plugin-twilio.iml" />
@@ -808,13 +806,6 @@
     <mapping directory="" vcs="Git" />
   </component>
   <component name="libraryTable">
-    <library name="Gradle: :ntlm-core-1.0-r17:">
-      <CLASSES>
-        <root url="jar://$PROJECT_DIR$/libs/ntlm-core-1.0-r17.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-autoscaling:1.9.17">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.17/2038d0bd1dbd49a7c8a0fd896d63bba2208ab8a/aws-java-sdk-autoscaling-1.9.17.jar!/" />
@@ -1452,24 +1443,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/javax.servlet-api/3.1.0/ab3976d4574c48d22dc1abf6a9e8bd0fdf928223/javax.servlet-api-3.1.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: javax.sip:jain-sip-api:1.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.sip/jain-sip-api/1.2/526a6bfd0156033bc1de9ab53fcf38ce2108d53c/jain-sip-api-1.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.sip/jain-sip-api/1.2/d0bcbd789c040e529ec984dbe7c4ba8bfec44f83/jain-sip-api-1.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: javax.sip:jain-sip-ri:1.2.149">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.sip/jain-sip-ri/1.2.149/7f7dd6460accab7c0da80b4acb4568f8a2d23f7a/jain-sip-ri-1.2.149.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.sip/jain-sip-ri/1.2.149/89a1c0111e88dc3d6f7d3f48432d972224f62bcd/jain-sip-ri-1.2.149-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: javax.validation:validation-api:1.1.0.Final">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar!/" />
@@ -1527,15 +1500,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.7/1fc633cf2a3f5a1767ef28b81ebc5d0ecfa1ffda/joda-time-2.7-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: junit:junit:4.9">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.9/1013627e3993319870863a020034004717505815/junit-4.9.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.9/84b903feddab2bd58f5ab2fc0c5c636df42df74d/junit-4.9-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: log4j:log4j:1.2.17">
@@ -1979,15 +1943,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-multipart/2.15/552ed455bda28fb3aa57cf0e8a4a16223c0c7afa/jersey-media-multipart-2.15-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.hamcrest:hamcrest-core:1.1">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/2ccf1154d1a8936042a8a742dc3e611d02ac7213/hamcrest-core-1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.javassist:javassist:3.18.1-GA">

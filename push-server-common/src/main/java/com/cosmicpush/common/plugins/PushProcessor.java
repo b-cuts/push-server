@@ -3,7 +3,7 @@ package com.cosmicpush.common.plugins;
 import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.*;
 
@@ -19,21 +19,21 @@ public class PushProcessor {
 
     // TODO - validate the remoteHost and remoteAddress specifeid in the push as really coming from them.
 
-    ApiRequest apiRequest = new ApiRequest(apiVersion, domain, push);
-    context.getApiRequestStore().create(apiRequest);
+    PushRequest pushRequest = new PushRequest(apiVersion, domain, push);
+    context.getPushRequestStore().create(pushRequest);
 
     Plugin plugin = PluginManager.getPlugin(push.getPushType());
-    AbstractDelegate delegate = plugin.newDelegate(context, account, domain, apiRequest, push);
+    AbstractDelegate delegate = plugin.newDelegate(context, account, domain, pushRequest, push);
 
     delegate.start();
 
     return new PushResponse(
         account.getAccountId(),
         domain.getDomainId(),
-        apiRequest.getApiRequestId(),
-        apiRequest.getCreatedAt(),
-        apiRequest.getRequestStatus(),
-        apiRequest.getNotes()
+        pushRequest.getPushRequestId(),
+        pushRequest.getCreatedAt(),
+        pushRequest.getRequestStatus(),
+        pushRequest.getNotes()
     );
   }
 }

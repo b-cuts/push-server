@@ -6,8 +6,8 @@
 
 package com.cosmicpush.app.system;
 
-import com.cosmicpush.app.deprecated.EmailToSmsPush;
-import com.cosmicpush.common.system.ExecutionContext;
+import com.cosmicpush.app.deprecated.EmailToSmsPushV1;
+import com.cosmicpush.app.deprecated.NotificationPushV1;
 import com.cosmicpush.app.jaxrs.security.ApiAuthenticationFilter;
 import com.cosmicpush.app.jaxrs.security.MngtAuthenticationFilter;
 import com.cosmicpush.app.jaxrs.security.SessionFilter;
@@ -16,11 +16,12 @@ import com.cosmicpush.app.view.LocalResourceMessageBodyWriter;
 import com.cosmicpush.app.view.ThymeleafMessageBodyWriter;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.common.system.SessionStore;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.GoogleTalkPush;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.LqNotificationPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
 import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.log4j.Level;
@@ -30,6 +31,8 @@ import org.crazyyak.dev.jackson.YakJacksonTranslator;
 
 import javax.ws.rs.core.Application;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class CpApplication extends Application {
@@ -86,16 +89,23 @@ public class CpApplication extends Application {
 
     // TODO - remove these once these are properly referenced by their plugins
     UserEventPush.PUSH_TYPE.getCode();
-    NotificationPush.PUSH_TYPE.getCode();
+    NotificationPushV1.PUSH_TYPE.getCode();
+    LqNotificationPush.PUSH_TYPE.getCode();
+    EmailToSmsPushV1.PUSH_TYPE.getCode();
     new PushType(GoogleTalkPush.class, "im", "IM");
     new PushType(SmtpEmailPush.class, "email", "eMail");
-    new PushType(EmailToSmsPush.class, "emailToSms", "eMail->SMS");
 
     this.classes = Collections.unmodifiableSet(classes);
     this.singletons = Collections.unmodifiableSet(singletons);
     this.properties = Collections.unmodifiableMap(properties);
 
     checkForDuplicates();
+
+    CpJobs jobs = new CpJobs(appContext);
+
+    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    scheduler.scheduleAtFixedRate(jobs::pruneEvents, 0, 1, TimeUnit.HOURS);
+//    scheduler.scheduleAtFixedRate(jobs::cleanAndCompactDatabase, 0, 4, TimeUnit.HOURS);
   }
 
   private void checkForDuplicates() {

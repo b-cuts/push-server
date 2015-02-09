@@ -16,7 +16,6 @@ import com.fasterxml.jackson.annotation.JacksonInject;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.crazyyak.dev.common.EqualsUtils;
-import org.crazyyak.dev.common.StringUtils;
 
 import java.io.Serializable;
 
@@ -88,12 +87,7 @@ public class SmtpEmailConfig implements PluginConfig, Serializable {
 
     this.authType = action.getAuthType();
     this.serverName = action.getServerName();
-
-    if (StringUtils.isNotBlank(action.getPortNumber())) {
-      this.portNumber = action.getPortNumber();
-    } else {
-      this.portNumber = this.authType.getDefaultPort();
-    }
+    this.portNumber = action.getPortNumber();
 
     this.testToAddress = action.getTestToAddress();
     this.testFromAddress = action.getTestFromAddress();

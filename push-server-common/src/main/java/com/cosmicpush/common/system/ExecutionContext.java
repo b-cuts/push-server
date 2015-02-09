@@ -6,7 +6,7 @@ import com.cosmicpush.common.accounts.DomainStore;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.plugins.PushProcessor;
-import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.jackson.CpObjectMapper;
 import org.crazyyak.dev.common.StringUtils;
 
@@ -119,8 +119,8 @@ public class ExecutionContext implements PluginContext {
   }
 
   @Override
-  public ApiRequestStore getApiRequestStore() {
-    return getAppContext().getApiRequestStore();
+  public PushRequestStore getPushRequestStore() {
+    return getAppContext().getPushRequestStore();
   }
 
   @Override

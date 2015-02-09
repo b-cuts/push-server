@@ -2,7 +2,7 @@ package com.cosmicpush.common.system;
 
 import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.accounts.DomainStore;
-import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.jackson.CpObjectMapper;
 import org.crazyyak.apis.bitly.BitlyApis;
 
@@ -17,7 +17,7 @@ public class AppContext {
   private final CpObjectMapper objectMapper;
   private final CpCouchServer cpCouchServer;
   private final AccountStore accountStore;
-  private final ApiRequestStore apiRequestStore;
+  private final PushRequestStore pushRequestStore;
   private final DomainStore domainStore;
 
   public AppContext(SessionStore sessionStore, CpObjectMapper objectMapper, CpCouchServer cpCouchServer, BitlyApis bitlyApis) {
@@ -27,7 +27,7 @@ public class AppContext {
     this.cpCouchServer = cpCouchServer;
     this.accountStore = new AccountStore(cpCouchServer);
     this.domainStore = new DomainStore(cpCouchServer);
-    this.apiRequestStore = new ApiRequestStore(cpCouchServer);
+    this.pushRequestStore = new PushRequestStore(cpCouchServer);
   }
 
   public BitlyApis getBitlyApi() {
@@ -46,8 +46,8 @@ public class AppContext {
     return accountStore;
   }
 
-  public ApiRequestStore getApiRequestStore() {
-    return apiRequestStore;
+  public PushRequestStore getPushRequestStore() {
+    return pushRequestStore;
   }
 
   public CpCouchServer getCouchServer() {

@@ -82,17 +82,17 @@
       </thead>
 
       <tbody>
-        <tr th:each="apiRequest : ${session.apiRequests}">
-          <td th:text="${#temporals.format(apiRequest.createdAt, 'MM-dd-yy hh:mm a')}"></td>
+        <tr th:each="pushRequest : ${session.pushRequests}">
+          <td th:text="${#temporals.format(pushRequest.createdAt, 'MM-dd-yy hh:mm a')}"></td>
           <td style="border-right:0">
-            <div th:text="${apiRequest.userEventPush.message}"></div>
-            <div th:include="fragments::push_traits" th:with="pushTraits=${apiRequest.pushTraits}"></div>
+            <div th:text="${pushRequest.userEventPush.message}"></div>
+            <div th:include="fragments::push_traits" th:with="pushTraits=${pushRequest.pushTraits}"></div>
           </td>
           <td style="padding-right: 5px; border-left:0">
 <!--
-            <th:block th:if="${apiRequest.userEventPush.traits.size() > 0}">
-              <a id="'show-'+${apiRequest.key}" href="#" style="color: inherit; text-decoration: none"                th:onclick="'return showTraits(\''+${apiRequest.key}+'\')'">&uarr;&uarr;&uarr;</a>
-              <a th:id="|hide-${apiRequest.key}|" href="#" style="color: inherit; text-decoration: none; display: none" th:onclick="|return hideTraits('${apiRequest.key}')|">&darr;&darr;&darr;</a>
+            <th:block th:if="${pushRequest.userEventPush.traits.size() > 0}">
+              <a id="'show-'+${pushRequest.key}" href="#" style="color: inherit; text-decoration: none"                th:onclick="'return showTraits(\''+${pushRequest.key}+'\')'">&uarr;&uarr;&uarr;</a>
+              <a th:id="|hide-${pushRequest.key}|" href="#" style="color: inherit; text-decoration: none; display: none" th:onclick="|return hideTraits('${pushRequest.key}')|">&darr;&darr;&darr;</a>
             </th:block>
 -->
           </td>

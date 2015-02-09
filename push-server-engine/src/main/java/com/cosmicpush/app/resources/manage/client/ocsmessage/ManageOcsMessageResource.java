@@ -16,25 +16,25 @@ public class ManageOcsMessageResource {
 //  @Produces(MediaType.TEXT_HTML)
 //  public Viewable viewMessages() throws Exception {
 //
-//    List<ApiRequest> requests = new ArrayList<>();
-//    requests.addAll(config.getApiRequestStore().getByClientAndType(domain, PushType.ocs));
+//    List<PushRequest> requests = new ArrayList<>();
+//    requests.addAll(config.getPushRequestStore().getByClientAndType(domain, PushType.ocs));
 //
 //    Collections.sort(requests);
 //    Collections.reverse(requests);
 //
 //    DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
-//    return new Viewable("/manage/api-notifications.jsp", model);
+//    return new Viewable("/manage/push-notifications.jsp", model);
 //  }
 //
 //  @GET
-//  @Path("/{apiRequestId}")
+//  @Path("/{pushRequestId}")
 //  @Produces(MediaType.TEXT_HTML)
-//  public Viewable viewNotifications(@PathParam("apiRequestId") String apiRequestId) throws Exception {
+//  public Viewable viewNotifications(@PathParam("pushRequestId") String pushRequestId) throws Exception {
 //
-//    ApiRequest request = config.getApiRequestStore().getByApiRequestId(apiRequestId);
+//    PushRequest request = config.getPushRequestStore().getByPushRequestId(pushRequestId);
 //    NotificationPush notification = request.getNotificationPush();
 //
 //    DomainNotificationModel model = new DomainNotificationModel(account, domain, request, notification);
-//    return new Viewable("/manage/api-notification.jsp", model);
+//    return new Viewable("/manage/push-notification.jsp", model);
 //  }
 }

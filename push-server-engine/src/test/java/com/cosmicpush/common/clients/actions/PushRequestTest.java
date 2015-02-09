@@ -8,8 +8,8 @@ package com.cosmicpush.common.clients.actions;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.requests.ApiRequest;
-import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
@@ -30,7 +30,7 @@ import java.net.InetAddress;
 import static org.testng.Assert.assertEquals;
 
 @Test
-public class ApiRequestTest {
+public class PushRequestTest {
 
   private TestFactory testFactory;
 
@@ -41,12 +41,12 @@ public class ApiRequestTest {
   private CpObjectMapper objectMapper = new CpObjectMapper();
   private YakJacksonTranslator translator = new YakJacksonTranslator(objectMapper);
 
-  private ApiRequestStore apiRequestStore;
+  private PushRequestStore pushRequestStore;
 
   @BeforeClass
   public void beforeClass() throws Exception {
     testFactory = TestFactory.get();
-    this.apiRequestStore = testFactory.getApiRequestStore();
+    this.pushRequestStore = testFactory.getPushRequestStore();
   }
 
   public void testCreate() throws Exception {
@@ -57,22 +57,22 @@ public class ApiRequestTest {
     SmtpEmailPush smtpEmailPush = SmtpEmailPush.newPush(
         "from", "to", "subject", "the HTML content",
         callbackUrl, BeanUtils.toMap("unit-test:true"));
-    ApiRequest request = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, smtpEmailPush);
-    apiRequestStore.create(request);
+    PushRequest request = new PushRequest(AppContext.CURRENT_API_VERSION, domain, smtpEmailPush);
+    pushRequestStore.create(request);
 
     SesEmailPush sesEmailPush = SesEmailPush.newPush(
         "from", "to", "subject", "the HTML content",
         callbackUrl, BeanUtils.toMap("unit-test:true"));
-    request = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, sesEmailPush);
-    apiRequestStore.create(request);
+    request = new PushRequest(AppContext.CURRENT_API_VERSION, domain, sesEmailPush);
+    pushRequestStore.create(request);
 
     GoogleTalkPush imPush = GoogleTalkPush.newPush("recipient", "some message", callbackUrl, "color:red");
-    request = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, imPush);
-    apiRequestStore.create(request);
+    request = new PushRequest(AppContext.CURRENT_API_VERSION, domain, imPush);
+    pushRequestStore.create(request);
 
-    NotificationPush notificationPush = NotificationPush.newPush("message", callbackUrl, BeanUtils.toMap("test:true"));
-    request = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, notificationPush);
-    apiRequestStore.create(request);
+    LqNotificationPush lqNotificationPush = LqNotificationPush.newPush("unit-test", "summary", "tracking-id", callbackUrl, BeanUtils.toMap("test:true"));
+    request = new PushRequest(AppContext.CURRENT_API_VERSION, domain, lqNotificationPush);
+    pushRequestStore.create(request);
 
   }
 
@@ -89,12 +89,13 @@ public class ApiRequestTest {
         callbackUrl, "test:true", "type:email");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    String json = translator.toJson(oldApiRequest);
+    PushRequest oldPushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    String json = translator.toJson(oldPushRequest);
 
     String expected = String.format("{\n" +
+        "  \"apiVersion\" : 2,\n" +
         "  \"domainId\" : \"%s\",\n" +
-        "  \"apiDomainKey\" : \"some-key\",\n" +
+        "  \"domainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -115,18 +116,18 @@ public class ApiRequestTest {
         "      \"type\" : \"email\"\n" +
         "    }\n" +
         "  },\n" +
-        "  \"apiRequestId\" : \"%s\",\n" +
+        "  \"pushRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        domain.getDomainId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldPushRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-        oldApiRequest.getApiRequestId());
+        oldPushRequest.getPushRequestId());
 
     assertEquals(json, expected);
 
-    ApiRequest newApiRequest = translator.fromJson(ApiRequest.class, json);
-    ComparisonResults results = EqualsUtils.compare(newApiRequest, oldApiRequest);
+    PushRequest newPushRequest = translator.fromJson(PushRequest.class, json);
+    ComparisonResults results = EqualsUtils.compare(newPushRequest, oldPushRequest);
     results.assertValidationComplete();
   }
 
@@ -143,12 +144,13 @@ public class ApiRequestTest {
         callbackUrl, "test:true", "type:email");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    String json = translator.toJson(oldApiRequest);
+    PushRequest oldPushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    String json = translator.toJson(oldPushRequest);
 
     String expected = String.format("{\n" +
+        "  \"apiVersion\" : 2,\n" +
         "  \"domainId\" : \"%s\",\n" +
-        "  \"apiDomainKey\" : \"some-key\",\n" +
+        "  \"domainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -169,18 +171,18 @@ public class ApiRequestTest {
         "      \"type\" : \"email\"\n" +
         "    }\n" +
         "  },\n" +
-        "  \"apiRequestId\" : \"%s\",\n" +
+        "  \"pushRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        domain.getDomainId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldPushRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-        oldApiRequest.getApiRequestId());
+        oldPushRequest.getPushRequestId());
 
     assertEquals(json, expected);
 
-    ApiRequest newApiRequest = translator.fromJson(ApiRequest.class, json);
-    ComparisonResults results = EqualsUtils.compare(newApiRequest, oldApiRequest);
+    PushRequest newPushRequest = translator.fromJson(PushRequest.class, json);
+    ComparisonResults results = EqualsUtils.compare(newPushRequest, oldPushRequest);
     results.assertValidationComplete();
   }
 
@@ -195,12 +197,13 @@ public class ApiRequestTest {
         callbackUrl, BeanUtils.toMap("color:green"));
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    String json = translator.toJson(oldApiRequest);
+    PushRequest oldPushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    String json = translator.toJson(oldPushRequest);
 
     String expected = String.format("{\n" +
+        "  \"apiVersion\" : 2,\n" +
         "  \"domainId\" : \"%s\",\n" +
-        "  \"apiDomainKey\" : \"some-key\",\n" +
+        "  \"domainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -218,18 +221,18 @@ public class ApiRequestTest {
         "      \"color\" : \"green\"\n" +
         "    }\n"+
         "  },\n" +
-        "  \"apiRequestId\" : \"%s\",\n" +
+        "  \"pushRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        domain.getDomainId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldPushRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-        oldApiRequest.getApiRequestId());
+        oldPushRequest.getPushRequestId());
 
     assertEquals(json, expected);
 
-    ApiRequest newApiRequest = translator.fromJson(ApiRequest.class, json);
-    ComparisonResults results = EqualsUtils.compare(newApiRequest, oldApiRequest);
+    PushRequest newPushRequest = translator.fromJson(PushRequest.class, json);
+    ComparisonResults results = EqualsUtils.compare(newPushRequest, oldPushRequest);
     results.assertValidationComplete();
   }
 
@@ -238,17 +241,18 @@ public class ApiRequestTest {
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
 
-    Push push = NotificationPush.newPush(
-        "Hey, you need to check this out.",
-        callbackUrl, "test:true", "type:warning");
+    Push push = LqNotificationPush.newPush(
+      "Hey, you need to check this out.",
+      callbackUrl, "test:true", "type:warning");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    String json = translator.toJson(oldApiRequest);
+    PushRequest oldPushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    String json = translator.toJson(oldPushRequest);
 
     String expected = String.format("{\n" +
+        "  \"apiVersion\" : 2,\n" +
         "  \"domainId\" : \"%s\",\n" +
-        "  \"apiDomainKey\" : \"some-key\",\n" +
+        "  \"domainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -266,18 +270,18 @@ public class ApiRequestTest {
         "      \"type\" : \"warning\"\n" +
         "    }\n" +
         "  },\n" +
-        "  \"apiRequestId\" : \"%s\",\n" +
+        "  \"pushRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        domain.getDomainId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldPushRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-        oldApiRequest.getApiRequestId());
+        oldPushRequest.getPushRequestId());
 
     assertEquals(json, expected);
 
-    ApiRequest newApiRequest = translator.fromJson(ApiRequest.class, json);
-    ComparisonResults results = EqualsUtils.compare(newApiRequest, oldApiRequest);
+    PushRequest newPushRequest = translator.fromJson(PushRequest.class, json);
+    ComparisonResults results = EqualsUtils.compare(newPushRequest, oldPushRequest);
     results.assertValidationComplete();
   }
 
@@ -301,12 +305,13 @@ public class ApiRequestTest {
         userAgent, callbackUrl, "color:green");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    String json = translator.toJson(oldApiRequest);
+    PushRequest oldPushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    String json = translator.toJson(oldPushRequest);
 
     String expected = String.format("{\n" +
+        "  \"apiVersion\" : 2,\n" +
         "  \"domainId\" : \"%s\",\n" +
-        "  \"apiDomainKey\" : \"some-key\",\n" +
+        "  \"domainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -343,18 +348,18 @@ public class ApiRequestTest {
         "      \"color\" : \"green\"\n" +
         "    }\n" +
         "  },\n" +
-        "  \"apiRequestId\" : \"%s\",\n" +
+        "  \"pushRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        domain.getDomainId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldPushRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-        oldApiRequest.getApiRequestId());
+        oldPushRequest.getPushRequestId());
 
     assertEquals(json, expected);
 
-    ApiRequest newApiRequest = translator.fromJson(ApiRequest.class, json);
-    ComparisonResults results = EqualsUtils.compare(newApiRequest, oldApiRequest);
+    PushRequest newPushRequest = translator.fromJson(PushRequest.class, json);
+    ComparisonResults results = EqualsUtils.compare(newPushRequest, oldPushRequest);
     results.assertValidationComplete();
   }
 }

@@ -8,18 +8,18 @@ package com.cosmicpush.app.resources.manage.client.notifications;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.requests.ApiRequest;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.pub.push.LqNotificationPush;
 
 public class DomainNotificationModel {
 
   private final Account account;
   private final Domain domain;
 
-  private final ApiRequest request;
-  private final NotificationPush notification;
+  private final PushRequest request;
+  private final LqNotificationPush notification;
 
-  public DomainNotificationModel(Account account, Domain domain, ApiRequest request, NotificationPush notification) {
+  public DomainNotificationModel(Account account, Domain domain, PushRequest request, LqNotificationPush notification) {
     this.account = account;
     this.domain = domain;
     this.request = request;
@@ -34,11 +34,11 @@ public class DomainNotificationModel {
     return domain;
   }
 
-  public ApiRequest getRequest() {
+  public PushRequest getRequest() {
     return request;
   }
 
-  public NotificationPush getNotification() {
+  public LqNotificationPush getNotification() {
     return notification;
   }
 }

@@ -8,16 +8,16 @@ package com.cosmicpush.app.resources.manage.client;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import java.util.List;
 
 public class DomainRequestsModel {
 
   private final Account account;
   private final Domain domain;
-  private final List<ApiRequest> requests;
+  private final List<PushRequest> requests;
 
-  public DomainRequestsModel(Account account, Domain domain, List<ApiRequest> requests) {
+  public DomainRequestsModel(Account account, Domain domain, List<PushRequest> requests) {
     this.account = account;
     this.domain = domain;
     this.requests = requests;
@@ -31,7 +31,7 @@ public class DomainRequestsModel {
     return domain;
   }
 
-  public List<ApiRequest> getRequests() {
+  public List<PushRequest> getRequests() {
     return requests;
   }
 }

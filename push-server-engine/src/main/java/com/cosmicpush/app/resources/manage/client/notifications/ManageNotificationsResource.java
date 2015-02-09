@@ -14,8 +14,8 @@ import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.requests.ApiRequest;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.pub.push.LqNotificationPush;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -42,8 +42,8 @@ public class ManageNotificationsResource {
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf viewNotifications() throws Exception {
 
-    List<ApiRequest> requests = new ArrayList<>();
-    requests.addAll(context.getApiRequestStore().getByClientAndType(domain, NotificationPush.PUSH_TYPE));
+    List<PushRequest> requests = new ArrayList<>();
+    requests.addAll(context.getPushRequestStore().getByClientAndType(domain, LqNotificationPush.PUSH_TYPE));
 
     Collections.sort(requests);
     Collections.reverse(requests);
@@ -53,12 +53,12 @@ public class ManageNotificationsResource {
   }
 
   @GET
-  @Path("/{apiRequestId}")
+  @Path("/{pushRequestId}")
   @Produces(MediaType.TEXT_HTML)
-  public Thymeleaf viewNotifications(@PathParam("apiRequestId") String apiRequestId) throws Exception {
+  public Thymeleaf viewNotifications(@PathParam("pushRequestId") String pushRequestId) throws Exception {
 
-    ApiRequest request = context.getApiRequestStore().getByApiRequestId(apiRequestId);
-    NotificationPush notification = request.getNotificationPush();
+    PushRequest request = context.getPushRequestStore().getByPushRequestId(pushRequestId);
+    LqNotificationPush notification = request.getNotificationPush();
 
     DomainNotificationModel model = new DomainNotificationModel(account, domain, request, notification);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);

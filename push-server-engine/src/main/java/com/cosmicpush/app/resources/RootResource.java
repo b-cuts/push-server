@@ -14,11 +14,11 @@ import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.common.system.Session;
 import com.cosmicpush.common.system.SessionStore;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.LqNotificationPush;
 import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -123,17 +123,17 @@ public class RootResource extends RootResourceSupport {
     return new ManageResource();
   }
 
-  @GET @Path("/q/{apiRequestId}")
-  public Response resolveCallback(@PathParam("apiRequestId") String apiRequestId) throws URISyntaxException {
+  @GET @Path("/q/{pushRequestId}")
+  public Response resolveCallback(@PathParam("pushRequestId") String pushRequestId) throws URISyntaxException {
 
-    if (apiRequestId.startsWith("api-request:")) {
-      apiRequestId = apiRequestId.substring(12);
-      return resolveCallback(apiRequestId);
+    if (pushRequestId.startsWith("push-request:")) {
+      pushRequestId = pushRequestId.substring(12);
+      return resolveCallback(pushRequestId);
 
-    } else if (apiRequestId.contains(":") == false) {
-      ApiRequest request = context.getApiRequestStore().getByApiRequestId(apiRequestId);
+    } else if (pushRequestId.contains(":") == false) {
+      PushRequest request = context.getPushRequestStore().getByPushRequestId(pushRequestId);
       if (request == null) {
-        throw ApiException.notFound("API request not found for " + apiRequestId);
+        throw ApiException.notFound("API request not found for " + pushRequestId);
       }
 
       Domain domain = context.getDomainStore().getByDocumentId(request.getDomainId());
@@ -146,8 +146,8 @@ public class RootResource extends RootResourceSupport {
         throw ApiException.notFound("Account not found given client id " + request.getDomainId());
       }
 
-      if (NotificationPush.PUSH_TYPE.equals(request.getPushType())) {
-        String path = String.format("manage/domain/%s/notifications/%s", domain.getDomainKey(), apiRequestId);
+      if (LqNotificationPush.PUSH_TYPE.equals(request.getPushType())) {
+        String path = String.format("manage/domain/%s/notifications/%s", domain.getDomainKey(), pushRequestId);
         return Response.seeOther(new URI(path)).build();
 
       } else if (UserEventPush.PUSH_TYPE.equals(request.getPushType())) {

@@ -18,7 +18,7 @@ public class CpCouchServer extends DefaultCouchServer {
   private final String databaseName;
   private final CouchDatabase database;
 
-  private static final List<String> designNames = Arrays.asList("account", "api-request", "domain");
+  private static final List<String> designNames = Arrays.asList("account", "push-request", "domain");
   private static final String prefix = "/push-server-common/design-docs/";
   private static final String suffix = "-design.json";
 

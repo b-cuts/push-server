@@ -9,46 +9,47 @@ import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.PushType;
 import com.couchace.core.api.query.CouchViewQuery;
-import java.util.List;
 import org.crazyyak.lib.couchace.DefaultCouchStore;
 
-public class ApiRequestStore extends DefaultCouchStore<ApiRequest> {
+import java.util.List;
 
-  public static final String API_REQUEST_DESIGN_NAME = "api-request";
+public class PushRequestStore extends DefaultCouchStore<PushRequest> {
 
-  public ApiRequestStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), ApiRequest.class);
+  public static final String PUSH_REQUEST_DESIGN_NAME = "push-request";
+
+  public PushRequestStore(CpCouchServer couchServer) {
+    super(couchServer, couchServer.getDatabaseName(), PushRequest.class);
   }
 
-  public ApiRequest getByApiRequestId(String apiRequestId) {
-    return super.getByDocumentId(apiRequestId);
+  public PushRequest getByPushRequestId(String pushRequestId) {
+    return super.getByDocumentId(pushRequestId);
   }
 
-  public QueryResult<ApiRequest> getByClient(Domain domain, int limit) {
+  public QueryResult<PushRequest> getByClient(Domain domain, int limit) {
 
     CouchViewQuery viewQuery = CouchViewQuery.builder(getDesignName(), "byClient")
         .limit(limit)
         .key(domain.getDomainId())
         .build();
 
-    return new QueryResult<>(ApiRequest.class, database, viewQuery);
+    return new QueryResult<>(PushRequest.class, database, viewQuery);
   }
 
-  public List<ApiRequest> getByClientAndType(Domain domain, PushType type) {
+  public List<PushRequest> getByClientAndType(Domain domain, PushType type) {
     return super.getEntities("byClientAndType", domain.getDomainId(), type.getCode());
   }
 
-  public List<ApiRequest> getByClientAndSession(Domain domain, String sessionId) {
+  public List<PushRequest> getByClientAndSession(Domain domain, String sessionId) {
     return super.getEntities("byClientAndSession", domain.getDomainId(), sessionId);
   }
 
-  public List<ApiRequest> getByClientAndDevice(Domain domain, String deviceId) {
+  public List<PushRequest> getByClientAndDevice(Domain domain, String deviceId) {
     return super.getEntities("byClientAndDevice", domain.getDomainId(), deviceId);
   }
 
   @Override
   public String getDesignName() {
-    return API_REQUEST_DESIGN_NAME;
+    return PUSH_REQUEST_DESIGN_NAME;
   }
 
 }

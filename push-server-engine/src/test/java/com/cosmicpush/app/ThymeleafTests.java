@@ -14,9 +14,9 @@ import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.pub.push.EmailPush;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.LqNotificationPush;
 import com.cosmicpush.test.TestFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -56,11 +56,11 @@ public class ThymeleafTests {
     assertNotNull(content);
   }
 
-  public void testManageApiRequests() throws Exception {
+  public void testManagePushRequests() throws Exception {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    List<ApiRequest> requests = testFactory.createApiRequests(domain);
+    List<PushRequest> requests = testFactory.createPushRequests(domain);
     DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
 
     Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
@@ -98,7 +98,7 @@ public class ThymeleafTests {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    List<ApiRequest> requests = testFactory.createApiRequests_Emails(domain);
+    List<PushRequest> requests = testFactory.createPushRequests_Emails(domain);
     EmailsModel model = new EmailsModel(account, domain, requests);
 
     Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAILS, model);
@@ -111,7 +111,7 @@ public class ThymeleafTests {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    ApiRequest request = testFactory.createApiRequests_Emails(domain).get(0);
+    PushRequest request = testFactory.createPushRequests_Emails(domain).get(0);
     EmailPush email = request.getEmailPush();
     EmailModel model = new EmailModel(account, domain, request, email);
 
@@ -125,8 +125,8 @@ public class ThymeleafTests {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    ApiRequest request = testFactory.createApiRequests_Notifications(domain).get(0);
-    NotificationPush notification = request.getNotificationPush();
+    PushRequest request = testFactory.createPushRequests_Notifications(domain).get(0);
+    LqNotificationPush notification = request.getNotificationPush();
     DomainNotificationModel model = new DomainNotificationModel(account, domain, request, notification);
 
     Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
@@ -139,7 +139,7 @@ public class ThymeleafTests {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    List<ApiRequest> requests = testFactory.createApiRequests_Notifications(domain);
+    List<PushRequest> requests = testFactory.createPushRequests_Notifications(domain);
     DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
 
     Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
@@ -152,7 +152,7 @@ public class ThymeleafTests {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    List<ApiRequest> requests = testFactory.createApiRequests_UserEvents(domain);
+    List<PushRequest> requests = testFactory.createPushRequests_UserEvents(domain);
     List<UserEventGroup> groups = ManageUserEventsResource.toGroups(requests);
     List<UserEventSession> sessions = groups.get(0).getSessions();
 
@@ -168,7 +168,7 @@ public class ThymeleafTests {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    List<ApiRequest> requests = testFactory.createApiRequests_UserEvents(domain);
+    List<PushRequest> requests = testFactory.createPushRequests_UserEvents(domain);
     List<UserEventGroup> groups = ManageUserEventsResource.toGroups(requests);
 
     UserEventGroupsModel model = new UserEventGroupsModel(account, domain, groups);

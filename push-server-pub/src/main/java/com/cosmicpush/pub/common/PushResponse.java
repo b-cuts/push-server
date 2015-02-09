@@ -25,7 +25,7 @@ public class PushResponse implements Serializable {
 
   private final String accountId;
   private final String domainId;
-  private final String apiRequestId;
+  private final String pushRequestId;
 
   private final LocalDateTime createdAt;
   private final RequestStatus requestStatus;
@@ -35,14 +35,14 @@ public class PushResponse implements Serializable {
   @JsonCreator
   public PushResponse(@JsonProperty("accountId") String accountId,
                       @JsonProperty("domainId") String domainId,
-                      @JsonProperty("apiRequestId") String apiRequestId,
+                      @JsonProperty("pushRequestId") String pushRequestId,
                       @JsonProperty("createdAt") LocalDateTime createdAt,
                       @JsonProperty("requestStatus") RequestStatus requestStatus,
                       @JsonProperty("notes") Collection<String> notes) {
 
     this.accountId = accountId;
     this.domainId = domainId;
-    this.apiRequestId = apiRequestId;
+    this.pushRequestId = pushRequestId;
 
     this.createdAt = createdAt;
     this.requestStatus = requestStatus;
@@ -58,8 +58,8 @@ public class PushResponse implements Serializable {
     return domainId;
   }
 
-  public String getApiRequestId() {
-    return apiRequestId;
+  public String getPushRequestId() {
+    return pushRequestId;
   }
 
   public LocalDateTime getCreatedAt() {

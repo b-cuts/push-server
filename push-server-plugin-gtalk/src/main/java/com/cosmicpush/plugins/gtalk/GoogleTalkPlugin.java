@@ -4,7 +4,7 @@ import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
@@ -45,9 +45,9 @@ public class GoogleTalkPlugin implements Plugin {
   }
 
   @Override
-  public GoogleTalkDelegate newDelegate(PluginContext context, Account account, Domain domain, ApiRequest apiRequest, Push push) {
+  public GoogleTalkDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
     GoogleTalkConfig config = getConfig(context.getCouchServer(), domain);
-    return new GoogleTalkDelegate(context, account, domain, apiRequest, (GoogleTalkPush)push, config);
+    return new GoogleTalkDelegate(context, account, domain, pushRequest, (GoogleTalkPush)push, config);
   }
 
   @Override
@@ -112,10 +112,10 @@ public class GoogleTalkPlugin implements Plugin {
     String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
     GoogleTalkPush push = GoogleTalkPush.newPush(recipient, msg, null, "gtalk-test:true");
 
-    ApiRequest apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    pluginContext.getApiRequestStore().create(apiRequest);
+    PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    pluginContext.getPushRequestStore().create(pushRequest);
 
-    new GoogleTalkDelegate(pluginContext, account, domain, apiRequest, push, config).run();
+    new GoogleTalkDelegate(pluginContext, account, domain, pushRequest, push, config).run();
 
     msg = String.format("Test message sent to %s:\n%s", recipient, msg);
     pluginContext.setLastMessage(msg);

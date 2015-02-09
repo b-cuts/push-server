@@ -1,20 +1,4 @@
-/*
- * Copyright (c) 2014 Jacob D. Parr
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-package com.cosmicpush.pub.push;
+package com.cosmicpush.app.deprecated;
 
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
@@ -32,9 +16,9 @@ import java.net.InetAddress;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class NotificationPush implements Push, Serializable {
+public class NotificationPushV1 implements Push, Serializable {
 
-  public static final PushType PUSH_TYPE = new PushType(NotificationPush.class, "notification", "Notification");
+  public static final PushType PUSH_TYPE = new PushType(NotificationPushV1.class, "notification", "Notification");
 
   private final String message;
   private final LinkedHashMap<String,String> traits = new LinkedHashMap<>();
@@ -45,11 +29,11 @@ public class NotificationPush implements Push, Serializable {
   private final String callbackUrl;
 
   @JsonCreator
-  private NotificationPush(@JsonProperty("message") String message,
-                           @JsonProperty("callbackUrl") String callbackUrl,
-                           @JsonProperty("remoteHost") String remoteHost,
-                           @JsonProperty("remoteAddress") String remoteAddress,
-                           @JsonProperty("traits") Map<String, String> traits) {
+  private NotificationPushV1(@JsonProperty("message") String message,
+                             @JsonProperty("callbackUrl") String callbackUrl,
+                             @JsonProperty("remoteHost") String remoteHost,
+                             @JsonProperty("remoteAddress") String remoteAddress,
+                             @JsonProperty("traits") Map<String, String> traits) {
 
     this.message = (message == null) ? "No message" : message.trim();
 
@@ -107,25 +91,26 @@ public class NotificationPush implements Push, Serializable {
     return errors;
   }
 
-  public static NotificationPush newPush(String message,
-                                         String callbackUrl,
-                                         String...traits) {
+  public static NotificationPushV1 newPush(String message,
+                                           String callbackUrl,
+                                           String...traits) {
 
     InetAddress remoteAddress = PushUtils.getLocalHost();
-    return new NotificationPush(message, callbackUrl,
-                                remoteAddress.getCanonicalHostName(),
-                                remoteAddress.getHostAddress(),
-                                BeanUtils.toMap(traits));
+    return new NotificationPushV1(message, callbackUrl,
+                                  remoteAddress.getCanonicalHostName(),
+                                  remoteAddress.getHostAddress(),
+                                  BeanUtils.toMap(traits));
   }
 
-  public static NotificationPush newPush(String message,
-                                         String callbackUrl,
-                                         Map<String,String> traits) {
+  public static NotificationPushV1 newPush(String message,
+                                           String callbackUrl,
+                                           Map<String,String> traits) {
 
     InetAddress remoteAddress = PushUtils.getLocalHost();
-    return new NotificationPush(message, callbackUrl,
-                                remoteAddress.getCanonicalHostName(),
-                                remoteAddress.getHostAddress(),
-                                traits);
+    return new NotificationPushV1(message, callbackUrl,
+                                  remoteAddress.getCanonicalHostName(),
+                                  remoteAddress.getHostAddress(),
+                                  traits);
   }
 }
+

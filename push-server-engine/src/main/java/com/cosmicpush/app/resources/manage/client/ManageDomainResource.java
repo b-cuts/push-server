@@ -17,8 +17,8 @@ import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.accounts.DomainStore;
 import com.cosmicpush.common.actions.UpdateDomainAction;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.requests.ApiRequest;
-import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.common.requests.QueryResult;
 import com.cosmicpush.pub.common.PushType;
 import org.crazyyak.dev.common.exceptions.ApiException;
@@ -77,8 +77,8 @@ public class ManageDomainResource {
   public Thymeleaf viewEvents() throws Exception {
     Domain domain = getDomain();
 
-    QueryResult<ApiRequest> queryResult = execContext.getApiRequestStore().getByClient(domain, 500);
-    List<ApiRequest> requests = new ArrayList<>(queryResult.getEntityList());
+    QueryResult<PushRequest> queryResult = execContext.getPushRequestStore().getByClient(domain, 500);
+    List<PushRequest> requests = new ArrayList<>(queryResult.getEntityList());
 
     Collections.sort(requests);
     Collections.reverse(requests);
@@ -91,12 +91,12 @@ public class ManageDomainResource {
   @Path("/requests/delete-all")
   public Response deleteEvents() throws Exception {
     Domain domain = getDomain();
-    ApiRequestStore requestStore = execContext.getApiRequestStore();
+    PushRequestStore requestStore = execContext.getPushRequestStore();
 
-    QueryResult<ApiRequest> queryResult = requestStore.getByClient(domain, 500);
-    List<ApiRequest> requests = new ArrayList<>(queryResult.getEntityList());
+    QueryResult<PushRequest> queryResult = requestStore.getByClient(domain, 500);
+    List<PushRequest> requests = new ArrayList<>(queryResult.getEntityList());
 
-    for (ApiRequest request : requests) {
+    for (PushRequest request : requests) {
       requestStore.delete(request);
     }
 

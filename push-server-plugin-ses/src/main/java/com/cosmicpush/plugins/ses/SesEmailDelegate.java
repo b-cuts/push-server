@@ -14,7 +14,7 @@ import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.push.SesEmailPush;
@@ -30,8 +30,8 @@ public class SesEmailDelegate extends AbstractDelegate {
   private final SesEmailConfig config;
   private final AppContext appContext;
 
-  public SesEmailDelegate(PluginContext context, Account account, Domain domain, ApiRequest apiRequest, SesEmailPush push, SesEmailConfig config) {
-    super(context.getObjectMapper(), apiRequest, context.getApiRequestStore());
+  public SesEmailDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, SesEmailPush push, SesEmailConfig config) {
+    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
     this.push = ExceptionUtils.assertNotNull(push, "push");
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.account = ExceptionUtils.assertNotNull(account, "account");
@@ -43,12 +43,12 @@ public class SesEmailDelegate extends AbstractDelegate {
   public synchronized RequestStatus processRequest() throws Exception {
     String reasonNotPermitted = account.getReasonNotPermitted(push);
     if (StringUtils.isNotBlank(reasonNotPermitted)) {
-      return apiRequest.denyRequest(reasonNotPermitted);
+      return pushRequest.denyRequest(reasonNotPermitted);
     }
 
     String apiMessage = sendEmail();
 
-    return apiRequest.processed(apiMessage);
+    return pushRequest.processed(apiMessage);
   }
 
   /**

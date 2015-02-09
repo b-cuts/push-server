@@ -10,7 +10,7 @@ import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.push.GoogleTalkPush;
@@ -27,8 +27,8 @@ public class GoogleTalkDelegate extends AbstractDelegate {
   private final GoogleTalkConfig config;
   private final AppContext appContext;
 
-  public GoogleTalkDelegate(PluginContext context, Account account, Domain domain, ApiRequest apiRequest, GoogleTalkPush push, GoogleTalkConfig config) {
-    super(context.getObjectMapper(), apiRequest, context.getApiRequestStore());
+  public GoogleTalkDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, GoogleTalkPush push, GoogleTalkConfig config) {
+    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.push = ExceptionUtils.assertNotNull(push, "push");
     this.account = ExceptionUtils.assertNotNull(account, "account");
@@ -40,12 +40,12 @@ public class GoogleTalkDelegate extends AbstractDelegate {
   public synchronized RequestStatus processRequest() throws Exception {
     String reasonNotPermitted = account.getReasonNotPermitted(push);
     if (StringUtils.isNotBlank(reasonNotPermitted)) {
-      return apiRequest.denyRequest(reasonNotPermitted);
+      return pushRequest.denyRequest(reasonNotPermitted);
     }
 
     String apiMessage = sendMessage();
 
-    return apiRequest.processed(apiMessage);
+    return pushRequest.processed(apiMessage);
   }
 
   public String sendMessage() throws XMPPException {

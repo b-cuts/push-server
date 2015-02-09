@@ -6,28 +6,35 @@
 
 package com.cosmicpush.common;
 
-import com.cosmicpush.common.requests.*;
+import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.RequestStatus;
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
 import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.uri.internal.JerseyUriBuilder;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 
 public abstract class AbstractDelegate implements Runnable {
 
   protected abstract RequestStatus processRequest() throws Exception;
 
   protected final CpObjectMapper objectMapper;
-  protected final ApiRequest apiRequest;
-  protected final ApiRequestStore apiRequestStore;
+  protected final PushRequest pushRequest;
+  protected final PushRequestStore pushRequestStore;
 
-  protected AbstractDelegate(CpObjectMapper objectMapper, ApiRequest apiRequest, ApiRequestStore apiRequestStore) {
+  protected AbstractDelegate(CpObjectMapper objectMapper, PushRequest pushRequest, PushRequestStore pushRequestStore) {
     this.objectMapper = ExceptionUtils.assertNotNull(objectMapper, "objectMapper");
-    this.apiRequest = ExceptionUtils.assertNotNull(apiRequest, "apiRequest");
-    this.apiRequestStore = ExceptionUtils.assertNotNull(apiRequestStore, "apiRequestStore");
+    this.pushRequest = ExceptionUtils.assertNotNull(pushRequest, "pushRequest");
+    this.pushRequestStore = ExceptionUtils.assertNotNull(pushRequestStore, "pushRequestStore");
   }
 
   @Override
@@ -42,31 +49,31 @@ public abstract class AbstractDelegate implements Runnable {
   private void execute(boolean retry) {
 
     if (retry) {
-      apiRequest.addNote("** WARNING ** the API Request is being reprocessed.");
+      pushRequest.addNote("** WARNING ** the API Request is being reprocessed.");
     }
 
     try {
       processRequest();
     } catch (Exception ex) {
       ex.printStackTrace();
-      apiRequest.failed(ex);
+      pushRequest.failed(ex);
     }
 
     try {
       processCallback();
     } catch (Exception ex) {
       ex.printStackTrace();
-      apiRequest.warn(ex);
+      pushRequest.warn(ex);
     }
 
-    apiRequestStore.update(apiRequest);
+    pushRequestStore.update(pushRequest);
   }
 
   private void processCallback() throws Exception {
 
-    String callbackURL = apiRequest.getPush().getCallbackUrl();
+    String callbackURL = pushRequest.getPush().getCallbackUrl();
     if (callbackURL == null) {
-      apiRequest.addNote("Callback not processed - url not specified");
+      pushRequest.addNote("Callback not processed - url not specified");
       return;
     }
 
@@ -77,9 +84,9 @@ public abstract class AbstractDelegate implements Runnable {
     Client client = ClientBuilder.newBuilder().build();
     UriBuilder uriBuilder = new JerseyUriBuilder().uri(callbackURL);
 
-    apiRequest.addNote("Executing callback to " + callbackURL);
+    pushRequest.addNote("Executing callback to " + callbackURL);
 
-    String json = objectMapper.writeValueAsString(apiRequest);
+    String json = objectMapper.writeValueAsString(pushRequest);
     Invocation.Builder builder;
 
     if (userName != null) {
@@ -96,9 +103,9 @@ public abstract class AbstractDelegate implements Runnable {
     int status = jerseyResponse.getStatus();
 
     if (status / 100 == 2) {
-      apiRequest.addNote("Callback completed: HTTP " + status);
+      pushRequest.addNote("Callback completed: HTTP " + status);
     } else {
-      apiRequest.warn("Callback failed: HTTP " + status);
+      pushRequest.warn("Callback failed: HTTP " + status);
     }
   }
 

@@ -4,7 +4,7 @@ import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
@@ -46,9 +46,9 @@ public class OcsMessagePlugin implements Plugin {
   }
 
   @Override
-  public OcsMessageDelegate newDelegate(PluginContext context, Account account, Domain domain, ApiRequest apiRequest, Push push) {
+  public OcsMessageDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
     OcsMessageConfig config = getConfig(context.getCouchServer(), domain);
-    return new OcsMessageDelegate(context, account, domain, apiRequest, (OcsPush)push, config);
+    return new OcsMessageDelegate(context, account, domain, pushRequest, (OcsPush)push, config);
   }
 
   @Override
@@ -101,10 +101,10 @@ public class OcsMessagePlugin implements Plugin {
     String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
     OcsPush push = OcsPush.newPush(recipient, msg, null);
 
-    ApiRequest apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    pluginContext.getApiRequestStore().create(apiRequest);
+    PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    pluginContext.getPushRequestStore().create(pushRequest);
 
-    new OcsMessageDelegate(pluginContext, account, domain, apiRequest, push, config).run();
+    new OcsMessageDelegate(pluginContext, account, domain, pushRequest, push, config).run();
 
     msg = String.format("Test message sent to %s:\n%s", recipient, msg);
     pluginContext.setLastMessage(msg);

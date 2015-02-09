@@ -9,6 +9,8 @@ package com.cosmicpush.plugins.smtp;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.config.SmtpAuthType;
 import com.cosmicpush.pub.internal.*;
+import org.crazyyak.dev.common.StringUtils;
+
 import javax.ws.rs.core.MultivaluedMap;
 
 public class UpdateSmtpEmailConfigAction implements ValidatableAction {
@@ -35,7 +37,13 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
 
     this.authType = (formParams.containsKey("authType") == false) ? null : SmtpAuthType.valueOf(formParams.getFirst("authType"));
     this.serverName = formParams.getFirst("serverName");
-    this.portNumber = formParams.getFirst("portNumber");
+
+    String portNumber = formParams.getFirst("portNumber");
+    if (StringUtils.isBlank(portNumber) && authType != null) {
+      this.portNumber = authType.getDefaultPort();
+    } else {
+      this.portNumber = portNumber;
+    }
 
     this.testToAddress = formParams.getFirst("testToAddress");
     this.testFromAddress = formParams.getFirst("testFromAddress");
@@ -51,7 +59,12 @@ public class UpdateSmtpEmailConfigAction implements ValidatableAction {
 
     this.authType = authType;
     this.serverName = serverName;
-    this.portNumber = portNumber;
+
+    if (StringUtils.isBlank(portNumber) && authType != null) {
+      this.portNumber = authType.getDefaultPort();
+    } else {
+      this.portNumber = portNumber;
+    }
 
     this.testToAddress = testToAddress;
     this.testFromAddress = testFromAddress;

@@ -5,18 +5,20 @@
  */
 package com.cosmicpush.app.resources.api;
 
-import com.cosmicpush.common.system.AppContext;
-import com.cosmicpush.common.system.ExecutionContext;
+import com.cosmicpush.app.deprecated.NotificationPushV1;
 import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
-import com.cosmicpush.app.resources.api.deprecated.NotificationDelegate;
+import com.cosmicpush.app.resources.api.deprecated.LqNotificationDelegate;
+import com.cosmicpush.app.resources.api.deprecated.NotificationDelegateV1;
 import com.cosmicpush.app.resources.api.deprecated.UserEventDelegate;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.common.system.AppContext;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushResponse;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.LqNotificationPush;
 import com.cosmicpush.pub.push.UserEventPush;
 
 import javax.ws.rs.Consumes;
@@ -60,33 +62,41 @@ public class ApiResourceV2 {
 
     if (push instanceof UserEventPush) {
       UserEventPush userEventPush = (UserEventPush)push;
-      ApiRequest apiRequest = new ApiRequest(apiVersion, domain, push);
-      context.getApiRequestStore().create(apiRequest);
+      PushRequest pushRequest = new PushRequest(apiVersion, domain, push);
+      context.getPushRequestStore().create(pushRequest);
 
-      new UserEventDelegate(context, account, domain, apiRequest, userEventPush).start();
-      return buildResponse(apiRequest, account, domain);
+      new UserEventDelegate(context, account, domain, pushRequest, userEventPush).start();
+      return buildResponse(pushRequest, account, domain);
 
-    } else if (push instanceof NotificationPush) {
-      NotificationPush notificationPush = (NotificationPush)push;
-      ApiRequest apiRequest = new ApiRequest(apiVersion, domain, push);
-      context.getApiRequestStore().create(apiRequest);
+    } else if (push instanceof NotificationPushV1) {
+      NotificationPushV1 notificationPushV1 = (NotificationPushV1)push;
+      PushRequest pushRequest = new PushRequest(apiVersion, domain, push);
+      context.getPushRequestStore().create(pushRequest);
 
-      new NotificationDelegate(context, account, domain, apiRequest, notificationPush).start();
-      return buildResponse(apiRequest, account, domain);
+      new NotificationDelegateV1(context, account, domain, pushRequest, notificationPushV1).start();
+      return buildResponse(pushRequest, account, domain);
+
+    } else if (push instanceof LqNotificationPush) {
+      LqNotificationPush lqNotificationPush = (LqNotificationPush)push;
+      PushRequest pushRequest = new PushRequest(apiVersion, domain, push);
+      context.getPushRequestStore().create(pushRequest);
+
+      new LqNotificationDelegate(context, account, domain, pushRequest, lqNotificationPush).start();
+      return buildResponse(pushRequest, account, domain);
     }
 
     PushResponse response = context.getPushProcessor().execute(apiVersion, account, domain, push);
     return Response.ok(response, MediaType.APPLICATION_JSON).build();
   }
 
-  private Response buildResponse(ApiRequest apiRequest, Account account, Domain domain) throws Exception {
+  private Response buildResponse(PushRequest pushRequest, Account account, Domain domain) throws Exception {
     PushResponse response = new PushResponse(
       account.getAccountId(),
       domain.getDomainId(),
-      apiRequest.getApiRequestId(),
-      apiRequest.getCreatedAt(),
-      apiRequest.getRequestStatus(),
-      apiRequest.getNotes()
+      pushRequest.getPushRequestId(),
+      pushRequest.getCreatedAt(),
+      pushRequest.getRequestStatus(),
+      pushRequest.getNotes()
     );
     return Response.ok(response, MediaType.APPLICATION_JSON).build();
   }

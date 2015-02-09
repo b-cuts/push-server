@@ -13,7 +13,7 @@ import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.internal.CpIdGenerator;
 import com.cosmicpush.pub.push.EmailPush;
-import com.cosmicpush.pub.push.NotificationPush;
+import com.cosmicpush.pub.push.LqNotificationPush;
 import com.cosmicpush.pub.push.UserEventPush;
 import com.couchace.annotations.CouchEntity;
 import com.couchace.annotations.CouchId;
@@ -32,16 +32,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@CouchEntity(ApiRequestStore.API_REQUEST_DESIGN_NAME)
-public class ApiRequest implements Comparable<ApiRequest> {
+@CouchEntity(PushRequestStore.PUSH_REQUEST_DESIGN_NAME)
+public class PushRequest implements Comparable<PushRequest> {
 
-  private final String apiRequestId;
+  private final String pushRequestId;
   private final String revision;
 
   private final int apiVersion;
 
   private final String domainId;
-  private final String apiDomainKey;
+  private final String domainKey;
 
   private final LocalDateTime createdAt;
   private RequestStatus requestStatus;
@@ -56,30 +56,30 @@ public class ApiRequest implements Comparable<ApiRequest> {
   private final Push push;
 
   @JsonCreator
-  private ApiRequest(
-      @JacksonInject("apiRequestId") String apiRequestId,
-      @JacksonInject("revision") String revision,
+  private PushRequest(
+    @JacksonInject("pushRequestId") String pushRequestId,
+    @JacksonInject("revision") String revision,
 
-      @JsonProperty("apiVersion") int apiVersion,
-      @JsonProperty("domainId") String domainId,
-      @JsonProperty("apiDomainKey") String apiDomainKey,
+    @JsonProperty("apiVersion") int apiVersion,
+    @JsonProperty("domainId") String domainId,
+    @JsonProperty("domainKey") String domainKey,
 
-      @JsonProperty("createdAt") LocalDateTime createdAt,
-      @JsonProperty("requestStatus") RequestStatus requestStatus,
+    @JsonProperty("createdAt") LocalDateTime createdAt,
+    @JsonProperty("requestStatus") RequestStatus requestStatus,
 
-      @JsonProperty("remoteHost") String remoteHost,
-      @JsonProperty("remoteAddress") String remoteAddress,
+    @JsonProperty("remoteHost") String remoteHost,
+    @JsonProperty("remoteAddress") String remoteAddress,
 
-      @JsonProperty("pushType") PushType pushType,
-      @JsonProperty("notes") List<String> notes,
-      @JsonProperty("push") Push push) {
+    @JsonProperty("pushType") PushType pushType,
+    @JsonProperty("notes") List<String> notes,
+    @JsonProperty("push") Push push) {
 
-    this.apiRequestId = apiRequestId;
+    this.pushRequestId = pushRequestId;
     this.revision = revision;
 
     this.apiVersion= apiVersion;
     this.domainId = domainId;
-    this.apiDomainKey = apiDomainKey;
+    this.domainKey = domainKey;
 
     this.createdAt = createdAt;
     this.requestStatus = requestStatus;
@@ -94,13 +94,13 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.push = push;
   }
 
-  public ApiRequest(int apiVersion, Domain domain, Push push) {
-    this.apiRequestId = CpIdGenerator.newId();
+  public PushRequest(int apiVersion, Domain domain, Push push) {
+    this.pushRequestId = CpIdGenerator.newId();
     this.revision = null;
 
     this.apiVersion = apiVersion;
     this.domainId = domain.getDomainId();
-    this.apiDomainKey = domain.getDomainKey();
+    this.domainKey = domain.getDomainKey();
 
     this.createdAt = DateUtils.currentLocalDateTime();
     this.requestStatus = RequestStatus.pending;
@@ -114,8 +114,8 @@ public class ApiRequest implements Comparable<ApiRequest> {
   }
 
   @CouchId
-  public String getApiRequestId() {
-    return apiRequestId;
+  public String getPushRequestId() {
+    return pushRequestId;
   }
 
   @CouchRevision
@@ -131,8 +131,8 @@ public class ApiRequest implements Comparable<ApiRequest> {
     return apiVersion;
   }
 
-  public String getApiDomainKey() {
-    return apiDomainKey;
+  public String getDomainKey() {
+    return domainKey;
   }
 
   public String getRemoteHost() {
@@ -246,8 +246,8 @@ public class ApiRequest implements Comparable<ApiRequest> {
   }
 
   @JsonIgnore
-  public NotificationPush getNotificationPush() {
-    return (push instanceof NotificationPush) ? (NotificationPush)push : null;
+  public LqNotificationPush getNotificationPush() {
+    return (push instanceof LqNotificationPush) ? (LqNotificationPush)push : null;
   }
 
   @JsonIgnore
@@ -256,15 +256,15 @@ public class ApiRequest implements Comparable<ApiRequest> {
   }
 
   public boolean equals(Object object) {
-    if (object instanceof ApiRequest) {
-      ApiRequest that = (ApiRequest)object;
-      return this.apiRequestId.equals(that.apiRequestId);
+    if (object instanceof PushRequest) {
+      PushRequest that = (PushRequest)object;
+      return this.pushRequestId.equals(that.pushRequestId);
     }
     return false;
   }
 
   @Override
-  public int compareTo(ApiRequest that) {
+  public int compareTo(PushRequest that) {
     return this.createdAt.compareTo(that.createdAt);
   }
 
@@ -274,6 +274,6 @@ public class ApiRequest implements Comparable<ApiRequest> {
 
   @JsonIgnore
   public PushTraits getPushTraits() {
-    return new PushTraits(apiRequestId, apiDomainKey, push.getTraits());
+    return new PushTraits(pushRequestId, domainKey, push.getTraits());
   }
 }

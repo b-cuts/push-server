@@ -6,19 +6,18 @@
 
 package com.cosmicpush.app.resources.api;
 
-import org.testng.annotations.*;
-
-import static org.testng.Assert.assertNotNull;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 @Test
 public class UserEventDelegateTest {
 
-//  private ApiRequestStore store;
+//  private PushRequestStore store;
 
   @BeforeClass
   public void beforeClass() throws Exception {
 //    LocalCouchStrategy strategy = new LocalCouchStrategy();
-//    store = new ApiRequestStore(strategy);
+//    store = new PushRequestStore(strategy);
   }
 
 //  public void testLookupUserAgent() throws Exception {
@@ -28,8 +27,8 @@ public class UserEventDelegateTest {
 //  }
 
 //  public void testLoad() {
-//    String id = "api-request:a7473491-f578-4ec5-b8ed-8097997fbdf0";
-//    ApiRequest request = store.get(id);
+//    String id = "push-request:a7473491-f578-4ec5-b8ed-8097997fbdf0";
+//    PushRequest request = store.get(id);
 //    assertNotNull(request);
 //  }
 }

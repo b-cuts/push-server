@@ -12,7 +12,7 @@ import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.common.UserAgent;
@@ -35,8 +35,8 @@ public class UserEventDelegate extends AbstractDelegate {
   private final PluginContext context;
   private final UserEventPush userEvent;
 
-  public UserEventDelegate(PluginContext context, Account account, Domain domain, ApiRequest apiRequest, UserEventPush userEvent) {
-    super(context.getObjectMapper(), apiRequest, context.getApiRequestStore());
+  public UserEventDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, UserEventPush userEvent) {
+    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
     this.context = context;
     this.userEvent = ExceptionUtils.assertNotNull(userEvent, "userEvent");
     this.account = ExceptionUtils.assertNotNull(account, "account");
@@ -47,7 +47,7 @@ public class UserEventDelegate extends AbstractDelegate {
   public synchronized RequestStatus processRequest() throws Exception {
     String reasonNotPermitted = account.getReasonNotPermitted(userEvent);
     if (StringUtils.isNotBlank(reasonNotPermitted)) {
-      return apiRequest.denyRequest(reasonNotPermitted);
+      return pushRequest.denyRequest(reasonNotPermitted);
 
     } else if (userEvent.isSendStory()) {
       return sendEmail(); // This is the "last" event so we can send the email.
@@ -56,15 +56,15 @@ public class UserEventDelegate extends AbstractDelegate {
       sendGoogleTalkIm(); // THIS is an "urgent" request so send the message now.
     }
 
-    return apiRequest.processed();
+    return pushRequest.processed();
   }
 
   private RequestStatus sendEmail() {
     String sessionId = userEvent.getSessionId();
-    List<ApiRequest> requests = apiRequestStore.getByClientAndSession(domain, sessionId);
+    List<PushRequest> requests = pushRequestStore.getByClientAndSession(domain, sessionId);
 
     String deviceId = null;
-    for (ApiRequest request : requests) {
+    for (PushRequest request : requests) {
       if (request.getUserEventPush().getDeviceId() != null) {
         deviceId = request.getUserEventPush().getDeviceId();
         break;
@@ -73,15 +73,15 @@ public class UserEventDelegate extends AbstractDelegate {
 
     if (deviceId == null) {
       // We never found a device ID, we have an "invalid" request.
-      return apiRequest.processed();
+      return pushRequest.processed();
     }
 
-    requests = apiRequestStore.getByClientAndDevice(domain, deviceId);
+    requests = pushRequestStore.getByClientAndDevice(domain, deviceId);
     UserEventGroup group = new UserEventGroup(requests);
 
     if (group.getBotName() != null || requests.size() == 1) {
       // not interested in sending an email.
-      return apiRequest.processed();
+      return pushRequest.processed();
     }
 
     UserEventSession session = group.findSession(userEvent);
@@ -113,7 +113,7 @@ public class UserEventDelegate extends AbstractDelegate {
 
     story += "<fieldset style='margin-top:1em'>";
     story += "<legend>Events</legend><table>";
-    for (ApiRequest request : session.getApiRequests()) {
+    for (PushRequest request : session.getPushRequests()) {
       String msg = request.getUserEventPush().getMessage();
 
       String time = request.getUserEventPush().getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_TIME);
@@ -127,7 +127,7 @@ public class UserEventDelegate extends AbstractDelegate {
 
     sendEmail(userName, story);
 
-    return apiRequest.processed();
+    return pushRequest.processed();
   }
 
   private String tableRow(String label, String value) {
@@ -158,7 +158,7 @@ public class UserEventDelegate extends AbstractDelegate {
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
           "New Story for " + userName, htmlContent, null);
 
-      context.getPushProcessor().execute(apiRequest.getApiVersion(), account, domain, push);
+      context.getPushProcessor().execute(pushRequest.getApiVersion(), account, domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -171,7 +171,7 @@ public class UserEventDelegate extends AbstractDelegate {
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
           "New Story for " + userName, htmlContent, null);
 
-      context.getPushProcessor().execute(apiRequest.getApiVersion(), account, domain, push);
+      context.getPushProcessor().execute(pushRequest.getApiVersion(), account, domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -180,11 +180,11 @@ public class UserEventDelegate extends AbstractDelegate {
 
   private void sendGoogleTalkIm() {
     try {
-      String id = apiRequest.getApiRequestId();
+      String id = pushRequest.getPushRequestId();
       String message = userEvent.getMessage() + " >> https://www.cosmicpush.com/q/" + id;
       GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
 
-      context.getPushProcessor().execute(apiRequest.getApiVersion(), account, domain, push);
+      context.getPushProcessor().execute(pushRequest.getApiVersion(), account, domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();

@@ -5,16 +5,16 @@
  */
 package com.cosmicpush.app.resources.api;
 
-import com.cosmicpush.app.deprecated.EmailToSmsPush;
-import com.cosmicpush.common.system.ExecutionContext;
+import com.cosmicpush.app.deprecated.EmailToSmsPushV1;
+import com.cosmicpush.app.deprecated.NotificationPushV1;
 import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.pub.common.PushResponse;
 import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.push.GoogleTalkPush;
-import com.cosmicpush.pub.push.NotificationPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
 import com.cosmicpush.pub.push.UserEventPush;
 
@@ -58,7 +58,7 @@ public class ApiResourceV1 {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/notification")
-  public Response sendNotification(NotificationPush push) throws Exception {
+  public Response sendNotification(NotificationPushV1 push) throws Exception {
     Response response = new ApiResourceV2().postPushV1(push);
     PushResponse pushResponse = (PushResponse)response.getEntity();
     return buildResponse(pushResponse);
@@ -96,7 +96,7 @@ public class ApiResourceV1 {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/email-to-sms")
-  public Response sendSmsViaEmail(EmailToSmsPush smsPush) throws UnknownHostException {
+  public Response sendSmsViaEmail(EmailToSmsPushV1 smsPush) throws UnknownHostException {
     SmtpEmailPush push = SmtpEmailPush.newPush(
         smsPush.getToAddress(), smsPush.getFromAddress(),
         smsPush.getEmailSubject(), smsPush.getHtmlContent(),
@@ -120,7 +120,7 @@ public class ApiResourceV1 {
     private final List<String> notes = new ArrayList<>();
     public PushResponseV1(PushResponse pushResponse) {
       this.accountId = pushResponse.getAccountId();
-      this.apiRequestId = pushResponse.getApiRequestId();
+      this.apiRequestId = pushResponse.getPushRequestId();
       this.createdAt = pushResponse.getCreatedAt();
       this.requestStatus = pushResponse.getRequestStatus();
     }

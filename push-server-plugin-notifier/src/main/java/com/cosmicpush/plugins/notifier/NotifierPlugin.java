@@ -4,7 +4,7 @@ import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
@@ -43,9 +43,9 @@ public class NotifierPlugin implements Plugin {
   }
 
   @Override
-  public NotifierDelegate newDelegate(PluginContext context, Account account, Domain domain, ApiRequest apiRequest, Push push) {
+  public NotifierDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
     NotifierConfig config = getConfig(context.getCouchServer(), domain);
-    return new NotifierDelegate(context, account, domain, apiRequest, (GoogleTalkPush)push, config);
+    return new NotifierDelegate(context, account, domain, pushRequest, (GoogleTalkPush)push, config);
   }
 
   @Override
@@ -98,10 +98,10 @@ public class NotifierPlugin implements Plugin {
 //    String msg = String.format("This is a test message from Cosmic Push sent at %s.", when);
 //    GoogleTalkPush push = GoogleTalkPush.newPush(recipient, msg, null, InetAddress.getLocalHost());
 //
-//    ApiRequest apiRequest = new ApiRequest(domain, push);
-//    context.getApiRequestStore().create(apiRequest);
+//    PushRequest pushRequest = new PushRequest(domain, push);
+//    context.getPushRequestStore().create(pushRequest);
 //
-//    new NotifierDelegate(context, account, domain, apiRequest, push, config).run();
+//    new NotifierDelegate(context, account, domain, pushRequest, push, config).run();
 //
 //    msg = String.format("Test message sent to %s:\n%s", recipient, msg);
 //    domain.setLastMessage(msg);

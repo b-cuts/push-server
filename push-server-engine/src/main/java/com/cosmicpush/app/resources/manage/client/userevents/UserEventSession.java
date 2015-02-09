@@ -6,7 +6,7 @@
 
 package com.cosmicpush.app.resources.manage.client.userevents;
 
-import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.pub.common.UserAgent;
 import com.cosmicpush.pub.push.UserEventPush;
 import java.net.*;
@@ -26,22 +26,22 @@ public class UserEventSession implements Comparable<UserEventSession> {
   private String userName;
   private LocalDateTime updatedAt;
 
-  private final List<ApiRequest> apiRequests = new ArrayList<ApiRequest>();
+  private final List<PushRequest> pushRequests = new ArrayList<PushRequest>();
 
   public UserEventSession(UserEventPush userEvent) {
     this.updatedAt = userEvent.getCreatedAt();
     this.sessionId = ExceptionUtils.assertNotNull(userEvent.getSessionId(), "sessionId");
   }
 
-  public UserEventSession(List<ApiRequest> requests) {
+  public UserEventSession(List<PushRequest> requests) {
     this(requests.get(0).getUserEventPush());
-    for (ApiRequest request : requests) {
+    for (PushRequest request : requests) {
       add(request);
     }
   }
 
-  public void add(ApiRequest apiRequest) {
-    UserEventPush userEvent = apiRequest.getUserEventPush();
+  public void add(PushRequest pushRequest) {
+    UserEventPush userEvent = pushRequest.getUserEventPush();
     if (userEvent.isSendStory()) return;
 
     if (userEvent.getCreatedAt().isAfter(this.updatedAt)) {
@@ -60,8 +60,8 @@ public class UserEventSession implements Comparable<UserEventSession> {
       this.userAgent = userEvent.getUserAgent();
     }
 
-    this.apiRequests.add(apiRequest);
-    Collections.sort(apiRequests);
+    this.pushRequests.add(pushRequest);
+    Collections.sort(pushRequests);
   }
 
   public String getSessionId() {
@@ -94,15 +94,15 @@ public class UserEventSession implements Comparable<UserEventSession> {
     return updatedAt;
   }
 
-  public List<ApiRequest> getApiRequests() {
-    return Collections.unmodifiableList(apiRequests);
+  public List<PushRequest> getPushRequests() {
+    return Collections.unmodifiableList(pushRequests);
   }
 
-  public Set<ApiRequest> getLastThree() {
-    Set<ApiRequest> set = new TreeSet<ApiRequest>();
-    int max = Math.min(3, apiRequests.size());
-    for (int i = apiRequests.size()-1; i >= apiRequests.size()-max; i--) {
-      set.add(apiRequests.get(i));
+  public Set<PushRequest> getLastThree() {
+    Set<PushRequest> set = new TreeSet<PushRequest>();
+    int max = Math.min(3, pushRequests.size());
+    for (int i = pushRequests.size()-1; i >= pushRequests.size()-max; i--) {
+      set.add(pushRequests.get(i));
     }
     return set;
   }
@@ -123,8 +123,8 @@ public class UserEventSession implements Comparable<UserEventSession> {
     return -1 * this.getSessionId().compareTo(that.getSessionId());
   }
 
-  public boolean contains(ApiRequest apiRequest) {
-    return apiRequests.contains(apiRequest);
+  public boolean contains(PushRequest pushRequest) {
+    return pushRequests.contains(pushRequest);
   }
 
   public String toString() {

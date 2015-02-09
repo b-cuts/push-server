@@ -89,6 +89,9 @@ public class GrizzlyPushServer {
         ex.printStackTrace();
       }
 
+      Thread shutdownThread = new Thread(httpServer::shutdown, "shutdownHook");
+      Runtime.getRuntime().addShutdownHook(shutdownThread);
+
       Runnable acceptRun = GrizzlyPushServer.this::socketAcceptLoop;
       acceptThread = new Thread(acceptRun);
       acceptThread.start();
@@ -204,21 +207,19 @@ public class GrizzlyPushServer {
   public static void main(String[] args) {
     try {
       GrizzlyPushServer pushServer = new GrizzlyPushServer();
-      final HttpServer server = pushServer.startServer(args);
-      System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl%nHit [Enter] to stop the server...", pushServer.getBaseUri()));
+      pushServer.startServer(args);
+
+      System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl", pushServer.getBaseUri()));
 
       if (pushServer.openBrowser) {
         URI uri = URI.create(pushServer.getBaseUri().toString()+"?username=test&password=test");
         java.awt.Desktop.getDesktop().browse(uri);
       }
 
-      if (System.in.read() > Integer.MIN_VALUE) {
-        server.shutdownNow();
-      }
+      Thread.currentThread().join();
 
     } catch (Throwable e) {
       e.printStackTrace();
     }
-    System.exit(0);
   }
 }
