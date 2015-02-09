@@ -6,6 +6,7 @@ import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.common.UserAgent;
 import com.cosmicpush.pub.internal.CpIdGenerator;
 import com.cosmicpush.pub.push.*;
+import com.cosmicpush.test.TestFactory;
 import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.DateUtils;
 import org.crazyyak.dev.common.EnvUtils;
@@ -24,11 +25,13 @@ import static org.testng.Assert.assertNotNull;
 @Test
 public class IntegrationTestVersion2 {
 
+  private TestFactory testFactory;
   private LiveCosmicPushGateway gateway;
   private String callbackUrl = null;
 
   @BeforeClass
   public void beforeClass() throws Exception {
+    testFactory = TestFactory.get();
     String url = "http://www.localhost:9010/push-server/api/v2";
     String username = EnvUtils.requireProperty("PUSH_TEST_USERNAME");
     String password = EnvUtils.requireProperty("PUSH_TEST_PASSWORD");
@@ -90,11 +93,7 @@ public class IntegrationTestVersion2 {
     int posB = sessionId.indexOf("-", posA+1);
     String userName = "Test" + sessionId.substring(posA, posB);
 
-    UserAgent userAgent = new UserAgent(
-        "agent-type", "agent-name", "agent-version", "agent-language", "agent-lang-tag",
-        "os-type", "os-name", "os=produceer", "osproducer-url", "os-version-name", "os-version-number",
-        "linux-distro"
-    );
+    UserAgent userAgent = testFactory.createUserAgent();
 
     TestRemoteClient remoteClient = new TestRemoteClient(
         userName,

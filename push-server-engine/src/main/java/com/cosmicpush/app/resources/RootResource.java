@@ -5,7 +5,7 @@
  */
 package com.cosmicpush.app.resources;
 
-import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.resources.api.ApiResourceV1;
 import com.cosmicpush.app.resources.api.ApiResourceV2;
 import com.cosmicpush.app.resources.manage.ManageResource;
@@ -13,7 +13,7 @@ import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.common.system.Session;
@@ -123,36 +123,36 @@ public class RootResource extends RootResourceSupport {
     return new ManageResource();
   }
 
-  @GET @Path("/q/{id}")
-  public Response resolveCallback(@PathParam("id") String id) throws URISyntaxException {
+  @GET @Path("/q/{apiRequestId}")
+  public Response resolveCallback(@PathParam("apiRequestId") String apiRequestId) throws URISyntaxException {
 
-    if (id.startsWith("api-request:")) {
-      id = id.substring(12);
-      return resolveCallback(id);
+    if (apiRequestId.startsWith("api-request:")) {
+      apiRequestId = apiRequestId.substring(12);
+      return resolveCallback(apiRequestId);
 
-    } else if (id.contains(":") == false) {
-      ApiRequest request = context.getApiRequestStore().getByApiRequestId(id);
+    } else if (apiRequestId.contains(":") == false) {
+      ApiRequest request = context.getApiRequestStore().getByApiRequestId(apiRequestId);
       if (request == null) {
-        throw ApiException.notFound("API request not found for " + id);
+        throw ApiException.notFound("API request not found for " + apiRequestId);
       }
 
-      Account account = context.getAccountStore().getByClientId(request.getApiClientId());
+      Domain domain = context.getDomainStore().getByDocumentId(request.getDomainId());
+      if (domain == null) {
+        throw ApiException.notFound("Domain not found for " + request.getDomainId());
+      }
+
+      Account account = context.getAccountStore().getByDocumentId(domain.getAccountId());
       if (account == null) {
-        throw ApiException.notFound("Account not found given client id " + request.getApiClientId());
-      }
-
-      ApiClient apiClient = account.getApiClientById(request.getApiClientId());
-      if (apiClient == null) {
-        throw ApiException.notFound("API client not found for " + request.getApiClientId());
+        throw ApiException.notFound("Account not found given client id " + request.getDomainId());
       }
 
       if (NotificationPush.PUSH_TYPE.equals(request.getPushType())) {
-        String path = String.format("manage/api-client/%s/notifications/%s", apiClient.getClientName(), id);
+        String path = String.format("manage/domain/%s/notifications/%s", domain.getDomainKey(), apiRequestId);
         return Response.seeOther(new URI(path)).build();
 
       } else if (UserEventPush.PUSH_TYPE.equals(request.getPushType())) {
         String deviceId = request.getUserEventPush().getDeviceId();
-        String path = String.format("manage/api-client/%s/user-events/%s", apiClient.getClientName(), deviceId);
+        String path = String.format("manage/domain/%s/user-events/%s", domain.getDomainKey(), deviceId);
         return Response.seeOther(new URI(path)).build();
       }
 

@@ -3,12 +3,12 @@ package com.cosmicpush.app.resources.manage.client.ocsmessage;
 public class ManageOcsMessageResource {
 //
 //  private final Account account;
-//  private final ApiClient apiClient;
+//  private final Domain domain;
 //  private final UserRequestConfig config;
 //
-//  public ManageOcsMessageResource(UserRequestConfig config, Account account, ApiClient apiClient) {
+//  public ManageOcsMessageResource(UserRequestConfig config, Account account, Domain domain) {
 //    this.account = account;
-//    this.apiClient = apiClient;
+//    this.domain = domain;
 //    this.config = config;
 //  }
 //
@@ -17,12 +17,12 @@ public class ManageOcsMessageResource {
 //  public Viewable viewMessages() throws Exception {
 //
 //    List<ApiRequest> requests = new ArrayList<>();
-//    requests.addAll(config.getApiRequestStore().getByClientAndType(apiClient, PushType.ocs));
+//    requests.addAll(config.getApiRequestStore().getByClientAndType(domain, PushType.ocs));
 //
 //    Collections.sort(requests);
 //    Collections.reverse(requests);
 //
-//    ApiClientRequestsModel model = new ApiClientRequestsModel(account, apiClient, requests);
+//    DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
 //    return new Viewable("/manage/api-notifications.jsp", model);
 //  }
 //
@@ -34,7 +34,7 @@ public class ManageOcsMessageResource {
 //    ApiRequest request = config.getApiRequestStore().getByApiRequestId(apiRequestId);
 //    NotificationPush notification = request.getNotificationPush();
 //
-//    ApiClientNotificationModel model = new ApiClientNotificationModel(account, apiClient, request, notification);
+//    DomainNotificationModel model = new DomainNotificationModel(account, domain, request, notification);
 //    return new Viewable("/manage/api-notification.jsp", model);
 //  }
 }

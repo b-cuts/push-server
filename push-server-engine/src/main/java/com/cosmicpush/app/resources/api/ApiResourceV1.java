@@ -3,16 +3,16 @@
  *
  * This software may not be used without permission.
  */
-
 package com.cosmicpush.app.resources.api;
 
 import com.cosmicpush.app.deprecated.EmailToSmsPush;
-import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.pub.common.PushResponse;
+import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.push.GoogleTalkPush;
 import com.cosmicpush.pub.push.NotificationPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
@@ -24,7 +24,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.Serializable;
 import java.net.UnknownHostException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @ApiAuthentication
 public class ApiResourceV1 {
@@ -38,8 +42,8 @@ public class ApiResourceV1 {
     return CpApplication.getExecutionContext().getAccount();
   }
 
-  private ApiClient getApiClient() {
-    return CpApplication.getExecutionContext().getApiClient();
+  private Domain getDomain() {
+    return CpApplication.getExecutionContext().getDomain();
   }
 
   @POST
@@ -55,7 +59,9 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/notification")
   public Response sendNotification(NotificationPush push) throws Exception {
-    return new ApiResourceV2().postPush(push);
+    Response response = new ApiResourceV2().postPushV1(push);
+    PushResponse pushResponse = (PushResponse)response.getEntity();
+    return buildResponse(pushResponse);
   }
 
   @POST
@@ -63,7 +69,9 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/user-event")
   public Response sendUserEvent(UserEventPush push) throws Exception {
-    return new ApiResourceV2().postPush(push);
+    Response response = new ApiResourceV2().postPushV1(push);
+    PushResponse pushResponse = (PushResponse)response.getEntity();
+    return buildResponse(pushResponse);
   }
 
   @POST
@@ -71,8 +79,8 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/im")
   public Response sendIm(GoogleTalkPush push) {
-    PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);
-    return Response.ok(response, MediaType.APPLICATION_JSON).build();
+    PushResponse pushResponse = context.getPushProcessor().execute(1, getAccount(), getDomain(), push);
+    return buildResponse(pushResponse);
   }
 
   @POST
@@ -80,8 +88,8 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/email")
   public Response sendEmail(SmtpEmailPush push) {
-    PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);
-    return Response.ok(response, MediaType.APPLICATION_JSON).build();
+    PushResponse pushResponse = context.getPushProcessor().execute(1, getAccount(), getDomain(), push);
+    return buildResponse(pushResponse);
   }
 
   @POST
@@ -95,7 +103,31 @@ public class ApiResourceV1 {
         smsPush.getCallbackUrl(),
         smsPush.getTraits());
 
-    PushResponse response = context.getPushProcessor().execute(getAccount(), getApiClient(), push);
-    return Response.ok(response, MediaType.APPLICATION_JSON).build();
+    PushResponse pushResponse = context.getPushProcessor().execute(1, getAccount(), getDomain(), push);
+    return buildResponse(pushResponse);
+  }
+
+  private Response buildResponse(PushResponse pushResponse) {
+    PushResponseV1 responseV1 = new PushResponseV1(pushResponse);
+    return Response.ok(responseV1, MediaType.APPLICATION_JSON).build();
+  }
+
+  public static class PushResponseV1 implements Serializable {
+    private final String accountId;
+    private final String apiRequestId;
+    private final LocalDateTime createdAt;
+    private final RequestStatus requestStatus;
+    private final List<String> notes = new ArrayList<>();
+    public PushResponseV1(PushResponse pushResponse) {
+      this.accountId = pushResponse.getAccountId();
+      this.apiRequestId = pushResponse.getApiRequestId();
+      this.createdAt = pushResponse.getCreatedAt();
+      this.requestStatus = pushResponse.getRequestStatus();
+    }
+    public String getAccountId() { return accountId; }
+    public String getApiRequestId() { return apiRequestId; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public RequestStatus getRequestStatus() { return requestStatus; }
+    public List<String> getNotes() { return notes; }
   }
 }

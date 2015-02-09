@@ -6,14 +6,14 @@
 
 package com.cosmicpush.app.resources.manage.client.notifications;
 
-import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
-import com.cosmicpush.app.resources.manage.client.ApiClientRequestsModel;
+import com.cosmicpush.app.resources.manage.client.DomainRequestsModel;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.pub.push.NotificationPush;
 
@@ -30,12 +30,12 @@ import java.util.List;
 public class ManageNotificationsResource {
 
   private final Account account;
-  private final ApiClient apiClient;
+  private final Domain domain;
   private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  public ManageNotificationsResource(Account account, ApiClient apiClient) {
+  public ManageNotificationsResource(Account account, Domain domain) {
     this.account = account;
-    this.apiClient = apiClient;
+    this.domain = domain;
   }
 
   @GET
@@ -43,12 +43,12 @@ public class ManageNotificationsResource {
   public Thymeleaf viewNotifications() throws Exception {
 
     List<ApiRequest> requests = new ArrayList<>();
-    requests.addAll(context.getApiRequestStore().getByClientAndType(apiClient, NotificationPush.PUSH_TYPE));
+    requests.addAll(context.getApiRequestStore().getByClientAndType(domain, NotificationPush.PUSH_TYPE));
 
     Collections.sort(requests);
     Collections.reverse(requests);
 
-    ApiClientRequestsModel model = new ApiClientRequestsModel(account, apiClient, requests);
+    DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
   }
 
@@ -60,7 +60,7 @@ public class ManageNotificationsResource {
     ApiRequest request = context.getApiRequestStore().getByApiRequestId(apiRequestId);
     NotificationPush notification = request.getNotificationPush();
 
-    ApiClientNotificationModel model = new ApiClientNotificationModel(account, apiClient, request, notification);
+    DomainNotificationModel model = new DomainNotificationModel(account, domain, request, notification);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
   }
 }

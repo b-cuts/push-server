@@ -1,6 +1,7 @@
 package com.cosmicpush.common.plugins;
 
 import com.cosmicpush.common.accounts.AccountStore;
+import com.cosmicpush.common.accounts.DomainStore;
 import com.cosmicpush.common.requests.ApiRequestStore;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
@@ -12,6 +13,7 @@ public interface PluginContext {
 
   AccountStore getAccountStore();
   ApiRequestStore getApiRequestStore();
+  DomainStore getDomainStore();
 
   CpObjectMapper getObjectMapper();
 
@@ -22,4 +24,6 @@ public interface PluginContext {
   URI getBaseURI();
 
   AppContext getAppContext();
+
+  void setLastMessage(String message);
 }

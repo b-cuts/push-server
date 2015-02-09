@@ -6,18 +6,17 @@
 
 package com.cosmicpush.common.clients.actions;
 
-import com.cosmicpush.TestFactory;
-import com.cosmicpush.pub.push.NotificationPush;
-import com.cosmicpush.pub.push.UserEventPush;
-import com.cosmicpush.common.actions.CreateClientAction;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.accounts.Account;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.requests.ApiRequestStore;
+import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.UserAgent;
 import com.cosmicpush.pub.internal.CpRemoteClient;
 import com.cosmicpush.pub.push.*;
+import com.cosmicpush.test.TestFactory;
 import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.ComparisonResults;
 import org.crazyyak.dev.common.DateUtils;
@@ -27,12 +26,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.net.InetAddress;
-import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 
 @Test
 public class ApiRequestTest {
+
+  private TestFactory testFactory;
 
   private String callbackUrl = "http://www.example.com/callback";
 
@@ -42,41 +42,45 @@ public class ApiRequestTest {
   private YakJacksonTranslator translator = new YakJacksonTranslator(objectMapper);
 
   private ApiRequestStore apiRequestStore;
-  private ApiClient apiClient = new ApiClient().create(new CreateClientAction("api-client", "some-password"));
 
   @BeforeClass
   public void beforeClass() throws Exception {
-    this.apiRequestStore = TestFactory.get().getApiRequestStore();
+    testFactory = TestFactory.get();
+    this.apiRequestStore = testFactory.getApiRequestStore();
   }
 
   public void testCreate() throws Exception {
 
-    CreateClientAction createAction = new CreateClientAction("test", "password");
-    ApiClient apiClient = new ApiClient().create(createAction);
+    Account account = testFactory.createAccount();
+    Domain domain = testFactory.createDomain(account);
 
     SmtpEmailPush smtpEmailPush = SmtpEmailPush.newPush(
         "from", "to", "subject", "the HTML content",
         callbackUrl, BeanUtils.toMap("unit-test:true"));
-    ApiRequest request = new ApiRequest(apiClient, smtpEmailPush);
+    ApiRequest request = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, smtpEmailPush);
     apiRequestStore.create(request);
 
     SesEmailPush sesEmailPush = SesEmailPush.newPush(
         "from", "to", "subject", "the HTML content",
         callbackUrl, BeanUtils.toMap("unit-test:true"));
-    request = new ApiRequest(apiClient, sesEmailPush);
+    request = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, sesEmailPush);
     apiRequestStore.create(request);
 
     GoogleTalkPush imPush = GoogleTalkPush.newPush("recipient", "some message", callbackUrl, "color:red");
-    request = new ApiRequest(apiClient, imPush);
+    request = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, imPush);
     apiRequestStore.create(request);
 
     NotificationPush notificationPush = NotificationPush.newPush("message", callbackUrl, BeanUtils.toMap("test:true"));
-    request = new ApiRequest(apiClient, notificationPush);
+    request = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, notificationPush);
     apiRequestStore.create(request);
 
   }
 
   public void testTranslateSmtpEmailPush() throws Exception {
+
+    Account account = testFactory.createAccount();
+    Domain domain = testFactory.createDomain(account);
+
     Push push = SmtpEmailPush.newPush(
         "mickey.mouse@disney.com",
         "donald.duck@disney.com",
@@ -85,12 +89,12 @@ public class ApiRequestTest {
         callbackUrl, "test:true", "type:email");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
+    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
-        "  \"apiClientId\" : \"%s\",\n" +
-        "  \"apiClientName\" : \"api-client\",\n" +
+        "  \"domainId\" : \"%s\",\n" +
+        "  \"apiDomainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -114,7 +118,7 @@ public class ApiRequestTest {
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldApiRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         oldApiRequest.getApiRequestId());
@@ -127,6 +131,10 @@ public class ApiRequestTest {
   }
 
   public void testTranslateEmailPush() throws Exception {
+
+    Account account = testFactory.createAccount();
+    Domain domain = testFactory.createDomain(account);
+
     Push push = SesEmailPush.newPush(
         "mickey.mouse@disney.com",
         "donald.duck@disney.com",
@@ -135,12 +143,12 @@ public class ApiRequestTest {
         callbackUrl, "test:true", "type:email");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
+    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
-        "  \"apiClientId\" : \"%s\",\n" +
-        "  \"apiClientName\" : \"api-client\",\n" +
+        "  \"domainId\" : \"%s\",\n" +
+        "  \"apiDomainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -164,7 +172,7 @@ public class ApiRequestTest {
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldApiRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         oldApiRequest.getApiRequestId());
@@ -177,18 +185,22 @@ public class ApiRequestTest {
   }
 
   public void testTranslateImPush() throws Exception {
+
+    Account account = testFactory.createAccount();
+    Domain domain = testFactory.createDomain(account);
+
     Push push = GoogleTalkPush.newPush(
         "mickey.mouse@disney.com",
         "Just calling to say hello",
         callbackUrl, BeanUtils.toMap("color:green"));
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
+    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
-        "  \"apiClientId\" : \"%s\",\n" +
-        "  \"apiClientName\" : \"api-client\",\n" +
+        "  \"domainId\" : \"%s\",\n" +
+        "  \"apiDomainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -209,7 +221,7 @@ public class ApiRequestTest {
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldApiRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         oldApiRequest.getApiRequestId());
@@ -222,17 +234,21 @@ public class ApiRequestTest {
   }
 
   public void testNotificationPush() throws Exception {
+
+    Account account = testFactory.createAccount();
+    Domain domain = testFactory.createDomain(account);
+
     Push push = NotificationPush.newPush(
         "Hey, you need to check this out.",
         callbackUrl, "test:true", "type:warning");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
+    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
-        "  \"apiClientId\" : \"%s\",\n" +
-        "  \"apiClientName\" : \"api-client\",\n" +
+        "  \"domainId\" : \"%s\",\n" +
+        "  \"apiDomainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -253,7 +269,7 @@ public class ApiRequestTest {
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldApiRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         oldApiRequest.getApiRequestId());
@@ -266,12 +282,10 @@ public class ApiRequestTest {
   }
 
   public void testUserEventPush() throws Exception {
-    Map<String,String> map = BeanUtils.toMap("user:mickeym");
-    UserAgent userAgent = new UserAgent(
-        "agent-type", "agent-name", "agent-version", "agent-language", "agent-lang-tag",
-        "os-type", "os-name", "os=produceer", "osproducer-url", "os-version-name", "os-version-number",
-        "linux-distro"
-    );
+
+    Account account = testFactory.createAccount();
+    Domain domain = testFactory.createDomain(account);
+    UserAgent userAgent = testFactory.createUserAgent();
 
     CpRemoteClient remoteClient = new CpRemoteClient() {
       @Override public String getUserName() { return "mickey"; }
@@ -287,12 +301,12 @@ public class ApiRequestTest {
         userAgent, callbackUrl, "color:green");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
-    ApiRequest oldApiRequest = new ApiRequest(apiClient, push);
+    ApiRequest oldApiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
     String json = translator.toJson(oldApiRequest);
 
     String expected = String.format("{\n" +
-        "  \"apiClientId\" : \"%s\",\n" +
-        "  \"apiClientName\" : \"api-client\",\n" +
+        "  \"domainId\" : \"%s\",\n" +
+        "  \"apiDomainKey\" : \"some-key\",\n" +
         "  \"createdAt\" : \"%s\",\n" +
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
@@ -332,7 +346,7 @@ public class ApiRequestTest {
         "  \"apiRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        apiClient.getApiClientId(), oldApiRequest.getCreatedAt(),
+        domain.getDomainId(), oldApiRequest.getCreatedAt(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         oldApiRequest.getApiRequestId());

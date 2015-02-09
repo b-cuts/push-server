@@ -6,7 +6,7 @@
 
 package com.cosmicpush.common.requests;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushTraits;
 import com.cosmicpush.pub.common.PushType;
@@ -38,8 +38,10 @@ public class ApiRequest implements Comparable<ApiRequest> {
   private final String apiRequestId;
   private final String revision;
 
-  private final String apiClientId;
-  private final String apiClientName;
+  private final int apiVersion;
+
+  private final String domainId;
+  private final String apiDomainKey;
 
   private final LocalDateTime createdAt;
   private RequestStatus requestStatus;
@@ -58,8 +60,9 @@ public class ApiRequest implements Comparable<ApiRequest> {
       @JacksonInject("apiRequestId") String apiRequestId,
       @JacksonInject("revision") String revision,
 
-      @JsonProperty("apiClientId") String apiClientId,
-      @JsonProperty("apiClientName") String apiClientName,
+      @JsonProperty("apiVersion") int apiVersion,
+      @JsonProperty("domainId") String domainId,
+      @JsonProperty("apiDomainKey") String apiDomainKey,
 
       @JsonProperty("createdAt") LocalDateTime createdAt,
       @JsonProperty("requestStatus") RequestStatus requestStatus,
@@ -74,8 +77,9 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.apiRequestId = apiRequestId;
     this.revision = revision;
 
-    this.apiClientId = apiClientId;
-    this.apiClientName = apiClientName;
+    this.apiVersion= apiVersion;
+    this.domainId = domainId;
+    this.apiDomainKey = apiDomainKey;
 
     this.createdAt = createdAt;
     this.requestStatus = requestStatus;
@@ -90,11 +94,13 @@ public class ApiRequest implements Comparable<ApiRequest> {
     this.push = push;
   }
 
-  public ApiRequest(ApiClient apiClient, Push push) {
+  public ApiRequest(int apiVersion, Domain domain, Push push) {
     this.apiRequestId = CpIdGenerator.newId();
     this.revision = null;
-    this.apiClientId = apiClient.getApiClientId();
-    this.apiClientName = apiClient.getClientName();
+
+    this.apiVersion = apiVersion;
+    this.domainId = domain.getDomainId();
+    this.apiDomainKey = domain.getDomainKey();
 
     this.createdAt = DateUtils.currentLocalDateTime();
     this.requestStatus = RequestStatus.pending;
@@ -117,12 +123,16 @@ public class ApiRequest implements Comparable<ApiRequest> {
     return revision;
   }
 
-  public String getApiClientId() {
-    return apiClientId;
+  public String getDomainId() {
+    return domainId;
   }
 
-  public String getApiClientName() {
-    return apiClientName;
+  public int getApiVersion() {
+    return apiVersion;
+  }
+
+  public String getApiDomainKey() {
+    return apiDomainKey;
   }
 
   public String getRemoteHost() {
@@ -264,6 +274,6 @@ public class ApiRequest implements Comparable<ApiRequest> {
 
   @JsonIgnore
   public PushTraits getPushTraits() {
-    return new PushTraits(apiRequestId, apiClientName, push.getTraits());
+    return new PushTraits(apiRequestId, apiDomainKey, push.getTraits());
   }
 }

@@ -9,7 +9,7 @@
       <div>One API - Infinite Destinations</div>
     </div>
 
-    <h1 th:text="${it.apiClient.clientName}+': User Events'"></h1>
+    <h1 th:text="${it.domain.domainKey}+': User Events'"></h1>
     <div th:include="fragments::client_sub_menu"></div>
 
     <table class="requests-table" style="width: 100%; margin-top: 1em">
@@ -51,7 +51,7 @@
               </td>
 
               <td style="padding-right: 5px; border-left:0">
-                <a th:href="|${contextRoot}/manage/api-client/${it.apiClient.clientName}/user-events/${userEventGroup.deviceId}|" style="color: inherit">&gt;&gt;&gt;</a>
+                <a th:href="|${contextRoot}/manage/domain/${it.domain.domainKey}/user-events/${userEventGroup.deviceId}|" style="color: inherit">&gt;&gt;&gt;</a>
               </td>
             </tr>
             <tr th:if="${statusA.last}">

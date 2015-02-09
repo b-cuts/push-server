@@ -1,7 +1,7 @@
 package com.cosmicpush.app.system;
 
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.requests.QueryResult;
 import com.cosmicpush.common.system.AppContext;
@@ -82,11 +82,12 @@ public class CpJobs {
       return;
     }
 
-    List<ApiClient> apiClients = account.getApiClients();
-    for (ApiClient apiClient : apiClients) {
+    List<Domain> domains = appContext.getDomainStore().getDomains(account);
+
+    for (Domain domain : domains) {
 
       int count = 0;
-      QueryResult<ApiRequest> queryResult = appContext.getApiRequestStore().getByClient(apiClient, 100);
+      QueryResult<ApiRequest> queryResult = appContext.getApiRequestStore().getByClient(domain, 100);
 
       do {
         List<EntityDocument<ApiRequest>> list = queryResult.getDocumentList();

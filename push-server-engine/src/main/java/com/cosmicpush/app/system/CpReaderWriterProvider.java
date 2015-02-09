@@ -5,6 +5,7 @@
  */
 package com.cosmicpush.app.system;
 
+import com.cosmicpush.app.resources.api.ApiResourceV1;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushResponse;
@@ -27,5 +28,6 @@ public class CpReaderWriterProvider extends JacksonReaderWriterProvider {
     super.supportedTypes.add(Push.class);
     super.supportedTypes.add(UserAgent.class);
     super.supportedTypes.add(PushResponse.class);
+    super.supportedTypes.add(ApiResourceV1.PushResponseV1.class);
   }
 }

@@ -12,7 +12,7 @@ import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
 import com.amazonaws.services.simpleemail.model.*;
 import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.AppContext;
@@ -24,18 +24,18 @@ import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 public class SesEmailDelegate extends AbstractDelegate {
 
   private final Account account;
-  private final ApiClient apiClient;
+  private final Domain domain;
 
   private final SesEmailPush push;
   private final SesEmailConfig config;
   private final AppContext appContext;
 
-  public SesEmailDelegate(PluginContext context, Account account, ApiClient apiClient, ApiRequest apiRequest, SesEmailPush push, SesEmailConfig config) {
+  public SesEmailDelegate(PluginContext context, Account account, Domain domain, ApiRequest apiRequest, SesEmailPush push, SesEmailConfig config) {
     super(context.getObjectMapper(), apiRequest, context.getApiRequestStore());
     this.push = ExceptionUtils.assertNotNull(push, "push");
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.account = ExceptionUtils.assertNotNull(account, "account");
-    this.apiClient = ExceptionUtils.assertNotNull(apiClient, "apiClient");
+    this.domain = ExceptionUtils.assertNotNull(domain, "domain");
     this.appContext = context.getAppContext();
   }
 

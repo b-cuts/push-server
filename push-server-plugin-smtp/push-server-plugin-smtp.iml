@@ -20,5 +20,6 @@
     <orderEntry type="module" module-name="push-server-common" exported="" />
     <orderEntry type="library" exported="" name="Gradle: javax.mail:mail:1.5.0-b01" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.21" level="project" />
+    <orderEntry type="module" module-name="push-server-test" scope="TEST" />
   </component>
 </module>

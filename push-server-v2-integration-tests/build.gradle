@@ -14,6 +14,7 @@ project(":push-server-v2-integration-tests") {
   dependencies {
   	compile project((":push-server-gateway"))
 
+    testCompile project(":push-server-test")
     testCompile("org.glassfish.jersey.core:jersey-client:2.15")
     testCompile ("org.testng:testng:$testNgVersion")
   }

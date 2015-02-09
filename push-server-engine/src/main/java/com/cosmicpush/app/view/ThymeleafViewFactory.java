@@ -9,7 +9,7 @@ public class ThymeleafViewFactory {
   public static final String WELCOME = validate("welcome");
 
   public static final String MANAGE_ACCOUNT =           validate("manage/account");
-  public static final String MANAGE_API_CLIENT =        validate("manage/api-client");
+  public static final String MANAGE_API_CLIENT =        validate("manage/domain");
 
   public static final String MANAGE_API_REQUESTS =      validate("manage/api-requests");
 

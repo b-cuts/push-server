@@ -10,12 +10,6 @@
        },
        "byEmailAddress": {
            "map": "\nfunction(doc) {\n  if (doc.entityType == 'account' && doc.entity.emailAddress) {\n    emit(doc.entity.emailAddress, null);\n  }\n}"
-       },
-       "byClientName": {
-           "map": "\nfunction(doc) {\n  if (doc.entityType == 'account' && doc.entity.apiClients) { for (var i=0, count = doc.entity.apiClients.length; i<count; i++) { emit(doc.entity.apiClients[i].clientName, null); } }\n}"
-       },
-       "byClientId": {
-           "map": "\nfunction(doc) {\n  if (doc.entityType == 'account' && doc.entity.apiClients) { for (var i=0, count = doc.entity.apiClients.length; i<count; i++) { emit(doc.entity.apiClients[i].apiClientId, null); } }\n}"
        }
    }
 }

@@ -20,12 +20,14 @@ import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.UserAgent;
 import com.cosmicpush.pub.internal.CpRemoteClient;
 import com.cosmicpush.pub.push.UserEventPush;
+import com.cosmicpush.test.TestFactory;
 import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.ComparisonResults;
 import org.crazyyak.dev.common.EqualsUtils;
 import org.crazyyak.dev.common.json.JsonTranslator;
 import org.crazyyak.dev.jackson.YakJacksonTranslator;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.net.InetAddress;
@@ -35,16 +37,18 @@ import java.util.Map;
 @Test
 public class UserEventPushTranslationTest {
 
+  private TestFactory testFactory;
   private JsonTranslator translator = new YakJacksonTranslator();
+
+  @BeforeClass
+  public void beforeClass() throws Exception {
+    testFactory = TestFactory.get();
+  }
 
   public void translateUserEventPush() throws Exception {
 
     Map<String,String> map = BeanUtils.toMap("user:mickeym");
-    UserAgent userAgent = new UserAgent(
-        "agent-type", "agent-name", "agent-version", "agent-language", "agent-lang-tag",
-        "os-type", "os-name", "os=produceer", "osproducer-url", "os-version-name", "os-version-number",
-        "linux-distro"
-    );
+    UserAgent userAgent = testFactory.createUserAgent();
 
     CpRemoteClient remoteClient = new CpRemoteClient() {
       @Override public String getUserName() { return "mickey"; }

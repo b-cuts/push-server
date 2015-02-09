@@ -1,0 +1,12 @@
+{
+   "_id": "_design/domain",
+   "language": "javascript",
+   "views": {
+       "byAccountId": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'domain' && doc.entity.accountId) {\n    emit(doc.entity.accountId, null);\n  }\n}"
+       },
+       "byDomainKey": {
+           "map": "\nfunction(doc) {\n  if (doc.entityType == 'domain' && doc.entity.domainKey) {\n    emit(doc.entity.domainKey, null);\n  }\n}"
+       }
+   }
+}

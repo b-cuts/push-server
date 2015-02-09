@@ -60,5 +60,6 @@
     <orderEntry type="module" module-name="push-server-plugin-twilio" exported="" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.testng:testng:6.8.21" level="project" />
+    <orderEntry type="module" module-name="push-server-test" scope="TEST" />
   </component>
 </module>

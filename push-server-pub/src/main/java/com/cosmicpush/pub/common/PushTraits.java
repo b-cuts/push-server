@@ -4,18 +4,18 @@ import java.util.Map;
 
 public class PushTraits {
 
-  private final String clientName;
+  private final String domainKey;
   private final String apiRequestId;
   private final Map<String, String> traits;
 
-  public PushTraits(String apiRequestId, String clientName, Map<String, String> traits) {
+  public PushTraits(String apiRequestId, String domainKey, Map<String, String> traits) {
     this.traits = traits;
-    this.clientName = clientName;
+    this.domainKey = domainKey;
     this.apiRequestId = apiRequestId;
   }
 
-  public String getClientName() {
-    return clientName;
+  public String getDomainKey() {
+    return domainKey;
   }
 
   public String getApiRequestId() {

@@ -18,7 +18,7 @@
            "accountNonLocked": true,
            "accountNonExpired": true
        },
-       "apiClients": [
+       "domains": [
        ],
        "testConfig": {
            "emailTestNotification": null,

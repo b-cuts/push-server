@@ -7,20 +7,20 @@
 package com.cosmicpush.app.resources.manage.client.userevents;
 
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import java.util.List;
 
 public class UserEventSessionsModel {
 
   private final String deviceId;
   private final Account account;
-  private final ApiClient apiClient;
+  private final Domain domain;
   private final List<UserEventSession> sessions;
 
-  public UserEventSessionsModel(Account account, ApiClient apiClient, String deviceId, List<UserEventSession> sessions) {
+  public UserEventSessionsModel(Account account, Domain domain, String deviceId, List<UserEventSession> sessions) {
     this.deviceId = deviceId;
     this.account = account;
-    this.apiClient = apiClient;
+    this.domain = domain;
     this.sessions = sessions;
   }
 
@@ -32,8 +32,8 @@ public class UserEventSessionsModel {
     return account;
   }
 
-  public ApiClient getApiClient() {
-    return apiClient;
+  public Domain getDomain() {
+    return domain;
   }
 
   public List<UserEventSession> getSessions() {

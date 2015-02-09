@@ -7,6 +7,7 @@ public class Session {
   private final String username;
   private final String sessionId;
   private final long sessionDuration;
+  private String lastMessage;
 
   private long expiresAt;
 
@@ -52,6 +53,14 @@ public class Session {
 
   public boolean isNonExpired() {
     return System.currentTimeMillis() < expiresAt;
+  }
+
+  public String getLastMessage() {
+    return lastMessage;
+  }
+
+  public void setLastMessage(String lastMessage) {
+    this.lastMessage = lastMessage;
   }
 
   public int getSecondsToExpire() {

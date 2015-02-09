@@ -5,7 +5,7 @@
  */
 package com.cosmicpush.common.requests;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.PushType;
 import com.couchace.core.api.query.CouchViewQuery;
@@ -24,26 +24,26 @@ public class ApiRequestStore extends DefaultCouchStore<ApiRequest> {
     return super.getByDocumentId(apiRequestId);
   }
 
-  public QueryResult<ApiRequest> getByClient(ApiClient apiClient, int limit) {
+  public QueryResult<ApiRequest> getByClient(Domain domain, int limit) {
 
     CouchViewQuery viewQuery = CouchViewQuery.builder(getDesignName(), "byClient")
         .limit(limit)
-        .key(apiClient.getApiClientId())
+        .key(domain.getDomainId())
         .build();
 
     return new QueryResult<>(ApiRequest.class, database, viewQuery);
   }
 
-  public List<ApiRequest> getByClientAndType(ApiClient apiClient, PushType type) {
-    return super.getEntities("byClientAndType", apiClient.getApiClientId(), type.getCode());
+  public List<ApiRequest> getByClientAndType(Domain domain, PushType type) {
+    return super.getEntities("byClientAndType", domain.getDomainId(), type.getCode());
   }
 
-  public List<ApiRequest> getByClientAndSession(ApiClient apiClient, String sessionId) {
-    return super.getEntities("byClientAndSession", apiClient.getApiClientId(), sessionId);
+  public List<ApiRequest> getByClientAndSession(Domain domain, String sessionId) {
+    return super.getEntities("byClientAndSession", domain.getDomainId(), sessionId);
   }
 
-  public List<ApiRequest> getByClientAndDevice(ApiClient apiClient, String deviceId) {
-    return super.getEntities("byClientAndDevice", apiClient.getApiClientId(), deviceId);
+  public List<ApiRequest> getByClientAndDevice(Domain domain, String deviceId) {
+    return super.getEntities("byClientAndDevice", domain.getDomainId(), deviceId);
   }
 
   @Override

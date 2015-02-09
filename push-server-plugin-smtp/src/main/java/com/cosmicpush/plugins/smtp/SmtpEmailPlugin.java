@@ -1,10 +1,11 @@
 package com.cosmicpush.plugins.smtp;
 
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
+import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
@@ -35,8 +36,8 @@ public class SmtpEmailPlugin implements Plugin {
   }
 
   @Override
-  public SmtpEmailConfig getConfig(CpCouchServer couchServer, ApiClient apiClient) {
-    String docId = SmtpEmailConfigStore.toDocumentId(apiClient);
+  public SmtpEmailConfig getConfig(CpCouchServer couchServer, Domain domain) {
+    String docId = SmtpEmailConfigStore.toDocumentId(domain);
     return getConfigStore(couchServer).getByDocumentId(docId);
   }
 
@@ -46,52 +47,52 @@ public class SmtpEmailPlugin implements Plugin {
   }
 
   @Override
-  public SmtpEmailDelegate newDelegate(PluginContext context, Account account, ApiClient apiClient, ApiRequest apiRequest, Push push) {
-    SmtpEmailConfig config = getConfig(context.getCouchServer(), apiClient);
-    return new SmtpEmailDelegate(context, account, apiClient, apiRequest, (SmtpEmailPush)push, config);
+  public SmtpEmailDelegate newDelegate(PluginContext pluginContext, Account account, Domain domain, ApiRequest apiRequest, Push push) {
+    SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
+    return new SmtpEmailDelegate(pluginContext, account, domain, apiRequest, (SmtpEmailPush)push, config);
   }
 
   @Override
-  public void updateConfig(PluginContext context, Account account, ApiClient apiClient, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext pluginContext, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
 
-    UpdateSmtpEmailConfigAction action = new UpdateSmtpEmailConfigAction(apiClient, formParams);
+    UpdateSmtpEmailConfigAction action = new UpdateSmtpEmailConfigAction(domain, formParams);
 
-    SmtpEmailConfig smtpEmailConfig = getConfig(context.getCouchServer(), apiClient);
+    SmtpEmailConfig smtpEmailConfig = getConfig(pluginContext.getCouchServer(), domain);
     if (smtpEmailConfig == null) {
       smtpEmailConfig = new SmtpEmailConfig();
     }
 
     smtpEmailConfig.apply(action);
-    getConfigStore(context.getCouchServer()).update(smtpEmailConfig);
+    getConfigStore(pluginContext.getCouchServer()).update(smtpEmailConfig);
 
-    apiClient.setLastMessage("SES Email configuration updated.");
-    context.getAccountStore().update(account);
+    pluginContext.setLastMessage("SES Email configuration updated.");
+    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void deleteConfig(PluginContext context, Account account, ApiClient apiClient) {
+  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
 
-    SmtpEmailConfig config = getConfig(context.getCouchServer(), apiClient);
+    SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config != null) {
-      getConfigStore(context.getCouchServer()).delete(config);
-      apiClient.setLastMessage("SES email configuration deleted.");
+      getConfigStore(pluginContext.getCouchServer()).delete(config);
+      pluginContext.setLastMessage("SES email configuration deleted.");
     } else {
-      apiClient.setLastMessage("SES email configuration doesn't exist.");
+      pluginContext.setLastMessage("SES email configuration doesn't exist.");
     }
 
-    context.getAccountStore().update(account);
+    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void test(PluginContext context, Account account, ApiClient apiClient) throws Exception {
+  public void test(PluginContext pluginContext, Account account, Domain domain) throws Exception {
 
-    SmtpEmailConfig config = getConfig(context.getCouchServer(), apiClient);
+    SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config == null) {
       String msg = "The SMTP email config has not been specified.";
-      apiClient.setLastMessage(msg);
-      context.getAccountStore().update(account);
+      pluginContext.setLastMessage(msg);
+      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -100,15 +101,15 @@ public class SmtpEmailPlugin implements Plugin {
 
     if (StringUtils.isBlank((toAddress))) {
       String msg = "A test message cannot be sent with out specifying the config's test-to-address.";
-      apiClient.setLastMessage(msg);
-      context.getAccountStore().update(account);
+      pluginContext.setLastMessage(msg);
+      pluginContext.getAccountStore().update(account);
       return;
     }
 
     if (StringUtils.isBlank((fromAddress))) {
       String msg = "A test message cannot be sent with out specifying the config's test-from-address.";
-      apiClient.setLastMessage(msg);
-      context.getAccountStore().update(account);
+      pluginContext.setLastMessage(msg);
+      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -125,14 +126,14 @@ public class SmtpEmailPlugin implements Plugin {
         subject, msg,
         null, BeanUtils.toMap("smtp-test:true"));
 
-    ApiRequest apiRequest = new ApiRequest(apiClient, push);
-    context.getApiRequestStore().create(apiRequest);
+    ApiRequest apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    pluginContext.getApiRequestStore().create(apiRequest);
 
-    new SmtpEmailDelegate(context, account, apiClient, apiRequest, push, config).run();
+    new SmtpEmailDelegate(pluginContext, account, domain, apiRequest, push, config).run();
 
     msg = String.format("Test message sent from %s to %s", fromAddress, toAddress);
-    apiClient.setLastMessage(msg);
-    context.getAccountStore().update(account);
+    pluginContext.setLastMessage(msg);
+    pluginContext.getAccountStore().update(account);
   }
 
   @Override
@@ -142,15 +143,15 @@ public class SmtpEmailPlugin implements Plugin {
   }
 
   @Override
-  public String getAdminUi(PluginContext context, Account account, ApiClient apiClient) throws IOException {
+  public String getAdminUi(PluginContext pluginContext, Account account, Domain domain) throws IOException {
 
-    SmtpEmailConfig config = getConfig(context.getCouchServer(), apiClient);
+    SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/smtp/admin.html");
     String content = IoUtils.toString(stream);
 
-    content = content.replace("${api-client-name}",           nullToString(apiClient.getClientName()));
-    content = content.replace("${push-server-base}",          nullToString(context.getBaseURI()));
+    content = content.replace("${domain-name}",               nullToString(domain.getDomainKey()));
+    content = content.replace("${push-server-base}",          nullToString(pluginContext.getBaseURI()));
     content = content.replace("${config-user-name}",          nullToString(config == null ? null : config.getUserName()));
     content = content.replace("${config-password}",           nullToString(config == null ? null : config.getPassword()));
     content = content.replace("${config-auth-type}",          nullToString(config == null ? null : config.getAuthType()));

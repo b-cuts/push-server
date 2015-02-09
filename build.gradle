@@ -35,6 +35,7 @@ subprojects {
     pushServerApp     = "4.0.0"
     pushServerCommon  = "4.0.0"
     pushServerJackson = "4.0.0"
+    pushServerTest    = "SNAPSHOT"
 
     pushServerEngineServlet   = "1.0.0";
 

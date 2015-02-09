@@ -6,9 +6,11 @@
 
 package com.cosmicpush.plugins.smtp;
 
-import com.cosmicpush.common.actions.*;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.accounts.Account;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.config.SmtpAuthType;
+import com.cosmicpush.test.TestFactory;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -16,22 +18,29 @@ import static org.testng.Assert.assertEquals;
 @Test
 public class UpdateSmtpEmailConfigActionTest {
 
+  private TestFactory testFactory;
+
+  @BeforeClass
+  public void beforeClass() throws Exception {
+    testFactory = TestFactory.get();
+  }
+
   public void testUpdate() throws Exception {
 
-    CreateClientAction clientAction = new CreateClientAction("mickey.mouse", "some.password");
-    ApiClient apiClient = new ApiClient().create(clientAction);
+    Account account = testFactory.createAccount();
+    Domain domain = testFactory.createDomain(account);
 
-    UpdateSmtpEmailConfigAction action = new UpdateSmtpEmailConfigAction(
-      apiClient,
+    UpdateSmtpEmailConfigAction updateAction = new UpdateSmtpEmailConfigAction(
+      domain,
       "mickey.mouse", "IamMickey",
       SmtpAuthType.ssl, "google.com", "99",
       "to@example.com", "from@example.com", "override@example.com");
 
 
     SmtpEmailConfig config = new SmtpEmailConfig();
-    config.apply(action);
+    config.apply(updateAction);
 
-    assertEquals(config.getApiClientId(), apiClient.getApiClientId());
+    assertEquals(config.getDomainId(), domain.getDomainId());
 
     assertEquals(config.getUserName(), "mickey.mouse");
     assertEquals(config.getPassword(), "IamMickey");

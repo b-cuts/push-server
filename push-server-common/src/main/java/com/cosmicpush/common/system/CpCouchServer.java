@@ -18,8 +18,8 @@ public class CpCouchServer extends DefaultCouchServer {
   private final String databaseName;
   private final CouchDatabase database;
 
-  private static final List<String> designNames = Arrays.asList("account", "api-request");
-  private static final String prefix = "/push-server-app/design-docs/";
+  private static final List<String> designNames = Arrays.asList("account", "api-request", "domain");
+  private static final String prefix = "/push-server-common/design-docs/";
   private static final String suffix = "-design.json";
 
   public CpCouchServer(String databaseName) throws IOException {
@@ -42,7 +42,7 @@ public class CpCouchServer extends DefaultCouchServer {
   }
 
   public void validateDatabases() throws IOException {
-    CouchUtils.createDatabase(database, new TimeUuidIdGenerator(), "/push-server-app/json/account.json");
+    CouchUtils.createDatabase(database, new TimeUuidIdGenerator(), "/push-server-common/json/account.json");
     CouchUtils.validateDesign(database, designNames, prefix, suffix);
 
     compactAndCleanAll();

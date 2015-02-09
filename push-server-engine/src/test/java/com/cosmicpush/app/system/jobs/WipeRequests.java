@@ -71,10 +71,10 @@ public class WipeRequests {
 /*
   private void deleteForAccount(accountStore accountStore, ApiRequestStore apiRequestStore, Account account) {
 
-    for (ApiClient apiClient : account.getApiClients()) {
+    for (Domain domain : account.getDomains()) {
 
       int count = 0;
-      QueryResult<ApiRequest> queryResult = apiRequestStore.getByClient(apiClient, 100);
+      QueryResult<ApiRequest> queryResult = apiRequestStore.getByClient(domain, 100);
 
       do {
         for (ApiRequest request : queryResult.getEntityList()) {

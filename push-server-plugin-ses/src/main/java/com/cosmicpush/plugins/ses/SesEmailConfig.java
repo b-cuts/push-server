@@ -8,19 +8,23 @@ package com.cosmicpush.plugins.ses;
 
 import com.cosmicpush.common.plugins.PluginConfig;
 import com.cosmicpush.pub.internal.RequestErrors;
-import com.couchace.annotations.*;
-import com.fasterxml.jackson.annotation.*;
-import java.io.Serializable;
+import com.couchace.annotations.CouchEntity;
+import com.couchace.annotations.CouchId;
+import com.couchace.annotations.CouchRevision;
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.crazyyak.dev.common.EqualsUtils;
 
-@JsonIgnoreProperties("testAddress")
+import java.io.Serializable;
+
 @CouchEntity(SesEmailConfigStore.SES_EMAIL_CONFIG_DESIGN_NAME)
 public class SesEmailConfig implements PluginConfig, Serializable {
 
   private String configId;
   private String revision;
 
-  private String apiClientId;
+  private String domainId;
 
   private String accessKeyId;
   private String secretKey;
@@ -34,7 +38,7 @@ public class SesEmailConfig implements PluginConfig, Serializable {
   @JsonCreator
   public SesEmailConfig(@JacksonInject("configId") String configId,
                         @JacksonInject("revision") String revision,
-                        @JsonProperty("apiClientId") String apiClientId,
+                        @JsonProperty("domainId") String domainId,
                         @JsonProperty("accessKeyId") String accessKeyId,
                         @JsonProperty("secretKey") String secretKey,
                         @JsonProperty("recipientOverride") String recipientOverride,
@@ -44,7 +48,7 @@ public class SesEmailConfig implements PluginConfig, Serializable {
     this.configId = configId;
     this.revision = revision;
 
-    this.apiClientId = apiClientId;
+    this.domainId = domainId;
 
     this.accessKeyId = accessKeyId;
     this.secretKey = secretKey;
@@ -57,13 +61,13 @@ public class SesEmailConfig implements PluginConfig, Serializable {
   public SesEmailConfig apply(UpdateSesEmailConfigAction push) {
     push.validate(new RequestErrors()).assertNoErrors();
 
-    if (apiClientId != null && EqualsUtils.objectsNotEqual(apiClientId, push.getApiClient().getApiClientId())) {
-      String msg = "The specified push and this class are not for the same API Client ID.";
+    if (domainId != null && EqualsUtils.objectsNotEqual(domainId, push.getDomain().getDomainId())) {
+      String msg = "The specified push and this class are not for the same domain.";
       throw new IllegalArgumentException(msg);
     }
 
-    this.apiClientId = push.getApiClient().getApiClientId();
-    this.configId = SesEmailConfigStore.toDocumentId(push.getApiClient());
+    this.domainId = push.getDomain().getDomainId();
+    this.configId = SesEmailConfigStore.toDocumentId(push.getDomain());
 
     this.accessKeyId = push.getAccessKeyId();
     this.secretKey = push.getSecretKey();
@@ -84,8 +88,8 @@ public class SesEmailConfig implements PluginConfig, Serializable {
     return revision;
   }
 
-  public String getApiClientId() {
-    return apiClientId;
+  public String getDomainId() {
+    return domainId;
   }
 
   public String getAccessKeyId() {

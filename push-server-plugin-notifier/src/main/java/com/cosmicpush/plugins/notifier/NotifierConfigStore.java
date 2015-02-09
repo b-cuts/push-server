@@ -1,6 +1,6 @@
 package com.cosmicpush.plugins.notifier;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.system.CpCouchServer;
 import org.crazyyak.lib.couchace.DefaultCouchStore;
 
@@ -17,7 +17,7 @@ public class NotifierConfigStore extends DefaultCouchStore<NotifierConfig> {
     return NOTIFIER_CONFIG_DESIGN_NAME;
   }
 
-  public static String toDocumentId(ApiClient apiClient) {
-    return String.format("%s:notifier-config", apiClient.getApiClientId());
+  public static String toDocumentId(Domain domain) {
+    return String.format("%s:notifier-config", domain.getDomainId());
   }
 }

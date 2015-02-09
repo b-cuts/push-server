@@ -4,13 +4,14 @@
  * This software may not be used without permission.
  */
 
-package com.cosmicpush;
+package com.cosmicpush.test;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.accounts.AccountStore;
+import com.cosmicpush.common.accounts.DomainStore;
 import com.cosmicpush.common.accounts.actions.CreateAccountAction;
-import com.cosmicpush.common.actions.CreateClientAction;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.actions.CreateDomainAction;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.plugins.PushProcessor;
 import com.cosmicpush.common.requests.ApiRequest;
@@ -47,6 +48,7 @@ public class TestFactory {
   private final CpCouchServer couchServer;
   private final CpObjectMapper objectMapper;
   private final AccountStore accountStore;
+  private final DomainStore domainStore;
   private final ApiRequestStore apiRequestStore;
 
   public static TestFactory get() throws Exception {
@@ -72,6 +74,7 @@ public class TestFactory {
     couchServer.validateDatabases();
 
     accountStore = new AccountStore(couchServer);
+    domainStore = new DomainStore(couchServer);
     apiRequestStore = new ApiRequestStore(couchServer);
   }
 
@@ -91,9 +94,21 @@ public class TestFactory {
     return apiRequestStore;
   }
 
+  public DomainStore getDomainStore() {
+    return domainStore;
+  }
+
+  public UserAgent createUserAgent() {
+    return new UserAgent(
+        "agent-type", "agent-name", "agent-version", "agent-language", "agent-lang-tag",
+        "os-type", "os-name", "os=produceer", "osproducer-url", "os-version-name", "os-version-number",
+        "linux-distro"
+    );
+  }
+
   public Account createAccount() {
     CreateAccountAction createAccount = new CreateAccountAction(
-        false, TestFactory.westCoastTimeZone,
+        TestFactory.westCoastTimeZone,
         "test", "Test Parr <test@jacobparr.com>",
         "Unit", "Test",
         "testing123", "testing123"
@@ -102,39 +117,39 @@ public class TestFactory {
     return new Account(createAccount);
   }
 
-  public ApiClient createApiClient(Account account) {
-    CreateClientAction createClient = new CreateClientAction("some.client", "some.password");
-    return account.add(createClient);
+  public Domain createDomain(Account account) {
+    CreateDomainAction createClient = new CreateDomainAction(account, "some-key", "some-password");
+    Domain domain = account.add(createClient);
+    domainStore.create(domain);
+    return domain;
   }
 
-  public List<ApiRequest> createApiRequests_Notifications(ApiClient apiClient) throws Exception {
+  public List<ApiRequest> createApiRequests_Notifications(Domain domain) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
     Push push = NotificationPush.newPush("Something bad happened", null, "test:true", "boy:girl", "color:red");
-    requests.add(new ApiRequest(apiClient, push));
+    ApiRequest apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    apiRequestStore.create(apiRequest);
+    requests.add(apiRequest);
 
     return requests;
   }
 
-  public List<ApiRequest> createApiRequests_Emails(ApiClient apiClient) throws Exception {
+  public List<ApiRequest> createApiRequests_Emails(Domain domain) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
     Push push = SmtpEmailPush.newPush("to@example.com", "from@example.com", "This is the subject", "<html><body><h1>Hello World</h1></body></html>", null);
-    requests.add(new ApiRequest(apiClient, push));
+    ApiRequest apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    apiRequestStore.create(apiRequest);
+    requests.add(apiRequest);
 
     return requests;
   }
 
-  public List<ApiRequest> createApiRequests_UserEvents(ApiClient apiClient) throws Exception {
+  public List<ApiRequest> createApiRequests_UserEvents(Domain domain) throws Exception {
     List<ApiRequest> requests = new ArrayList<>();
 
-    Push push;
-
-    UserAgent userAgent = new UserAgent(
-        "agent-type", "agent-name", "agent-version", "agent-language", "agent-lang-tag",
-        "os-type", "os-name", "os=produceer", "osproducer-url", "os-version-name", "os-version-number",
-        "linux-distro"
-    );
+    UserAgent userAgent = createUserAgent();
 
     CpRemoteClient remoteClient = new CpRemoteClient() {
       @Override public String getUserName() { return "mickey"; }
@@ -145,27 +160,35 @@ public class TestFactory {
 
     String callBackUrl = "http://www.example.com/callback";
 
-    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I did this", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
-    requests.add(new ApiRequest(apiClient, push));
+    Push push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I did this", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
+    ApiRequest apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    apiRequestStore.create(apiRequest);
+    requests.add(apiRequest);
 
     push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "Then I did that", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
-    requests.add(new ApiRequest(apiClient, push));
+    apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    apiRequestStore.create(apiRequest);
+    requests.add(apiRequest);
 
     push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I eventually got tired", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
-    requests.add(new ApiRequest(apiClient, push));
+    apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    apiRequestStore.create(apiRequest);
+    requests.add(apiRequest);
 
     push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "So I took a nap", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
-    requests.add(new ApiRequest(apiClient, push));
+    apiRequest = new ApiRequest(AppContext.CURRENT_API_VERSION, domain, push);
+    apiRequestStore.create(apiRequest);
+    requests.add(apiRequest);
 
     return requests;
   }
 
-  public List<ApiRequest> createApiRequests(ApiClient apiClient) throws Exception {
+  public List<ApiRequest> createApiRequests(Domain domain) throws Exception {
     Set<ApiRequest> requests = new TreeSet<>();
 
-    requests.addAll(createApiRequests_Emails(apiClient));
-    requests.addAll(createApiRequests_Notifications(apiClient));
-    requests.addAll(createApiRequests_UserEvents(apiClient));
+    requests.addAll(createApiRequests_Emails(domain));
+    requests.addAll(createApiRequests_Notifications(domain));
+    requests.addAll(createApiRequests_UserEvents(domain));
 
     return new ArrayList<>(requests);
   }
@@ -178,6 +201,7 @@ public class TestFactory {
       @Override public ApiRequestStore getApiRequestStore() {
         return testFactory.getApiRequestStore();
       }
+      @Override public DomainStore getDomainStore() { return testFactory.getDomainStore(); }
       @Override public CpObjectMapper getObjectMapper() {
         return testFactory.getObjectMapper();
       }
@@ -191,6 +215,7 @@ public class TestFactory {
         return null;
       }
       @Override public AppContext getAppContext() { return null; }
+      @Override public void setLastMessage(String message) {}
     };
   }
 }

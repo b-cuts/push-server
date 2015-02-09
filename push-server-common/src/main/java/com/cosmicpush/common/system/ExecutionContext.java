@@ -1,15 +1,12 @@
-package com.cosmicpush.app.jaxrs;
+package com.cosmicpush.common.system;
 
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.accounts.AccountStore;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.accounts.DomainStore;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.plugins.PushProcessor;
 import com.cosmicpush.common.requests.ApiRequestStore;
-import com.cosmicpush.common.system.AppContext;
-import com.cosmicpush.common.system.CpCouchServer;
-import com.cosmicpush.common.system.Session;
-import com.cosmicpush.common.system.SessionStore;
 import com.cosmicpush.jackson.CpObjectMapper;
 import org.crazyyak.dev.common.StringUtils;
 
@@ -25,7 +22,7 @@ public class ExecutionContext implements PluginContext {
   private URI baseURI;
   private Session session;
   private Account account;
-  private ApiClient apiClient;
+  private Domain domain;
 
   private UriInfo uriInfo;
   private HttpHeaders headers;
@@ -41,7 +38,7 @@ public class ExecutionContext implements PluginContext {
   }
 
   public Session getSession() {
-    return session;
+    return (session != null) ? session : new Session(-1, "dummy-session");
   }
 
   public void setAccount(Account account) {
@@ -52,12 +49,12 @@ public class ExecutionContext implements PluginContext {
     return account;
   }
 
-  public void setApiClient(ApiClient apiClient) {
-    this.apiClient = apiClient;
+  public void setDomain(Domain domain) {
+    this.domain = domain;
   }
 
-  public ApiClient getApiClient() {
-    return apiClient;
+  public Domain getDomain() {
+    return domain;
   }
 
   public UriInfo getUriInfo() {
@@ -89,10 +86,6 @@ public class ExecutionContext implements PluginContext {
     return AppContext.from(getApplication());
   }
 
-  public SessionStore getSessionStore() {
-    return getAppContext().getSessionStore();
-  }
-
   public HttpHeaders getHeaders() {
     return headers;
   }
@@ -111,6 +104,15 @@ public class ExecutionContext implements PluginContext {
     return getAppContext().getObjectMapper();
   }
 
+  public SessionStore getSessionStore() {
+    return getAppContext().getSessionStore();
+  }
+
+  @Override
+  public DomainStore getDomainStore() {
+    return getAppContext().getDomainStore();
+  }
+
   @Override
   public AccountStore getAccountStore() {
     return getAppContext().getAccountStore();
@@ -124,5 +126,12 @@ public class ExecutionContext implements PluginContext {
   @Override
   public CpCouchServer getCouchServer() {
     return getAppContext().getCouchServer();
+  }
+
+  @Override
+  public void setLastMessage(String message) {
+    if (session != null) {
+      session.setLastMessage(message);
+    }
   }
 }

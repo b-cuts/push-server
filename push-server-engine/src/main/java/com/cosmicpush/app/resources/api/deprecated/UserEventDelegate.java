@@ -10,7 +10,7 @@ import com.cosmicpush.app.resources.manage.client.userevents.UserEventGroup;
 import com.cosmicpush.app.resources.manage.client.userevents.UserEventSession;
 import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.common.system.PluginManager;
@@ -30,17 +30,17 @@ import java.util.List;
 public class UserEventDelegate extends AbstractDelegate {
 
   private final Account account;
-  private final ApiClient apiClient;
+  private final Domain domain;
 
   private final PluginContext context;
   private final UserEventPush userEvent;
 
-  public UserEventDelegate(PluginContext context, Account account, ApiClient apiClient, ApiRequest apiRequest, UserEventPush userEvent) {
+  public UserEventDelegate(PluginContext context, Account account, Domain domain, ApiRequest apiRequest, UserEventPush userEvent) {
     super(context.getObjectMapper(), apiRequest, context.getApiRequestStore());
     this.context = context;
     this.userEvent = ExceptionUtils.assertNotNull(userEvent, "userEvent");
     this.account = ExceptionUtils.assertNotNull(account, "account");
-    this.apiClient = ExceptionUtils.assertNotNull(apiClient, "apiClient");
+    this.domain = ExceptionUtils.assertNotNull(domain, "domain");
   }
 
   @Override
@@ -61,7 +61,7 @@ public class UserEventDelegate extends AbstractDelegate {
 
   private RequestStatus sendEmail() {
     String sessionId = userEvent.getSessionId();
-    List<ApiRequest> requests = apiRequestStore.getByClientAndSession(apiClient, sessionId);
+    List<ApiRequest> requests = apiRequestStore.getByClientAndSession(domain, sessionId);
 
     String deviceId = null;
     for (ApiRequest request : requests) {
@@ -76,7 +76,7 @@ public class UserEventDelegate extends AbstractDelegate {
       return apiRequest.processed();
     }
 
-    requests = apiRequestStore.getByClientAndDevice(apiClient, deviceId);
+    requests = apiRequestStore.getByClientAndDevice(domain, deviceId);
     UserEventGroup group = new UserEventGroup(requests);
 
     if (group.getBotName() != null || requests.size() == 1) {
@@ -121,7 +121,7 @@ public class UserEventDelegate extends AbstractDelegate {
     }
     story += "</table></fieldset>";
 
-    story += String.format("<p><a href='%s/manage/api-client/%s/user-events/%s'>More Information...</a></p>", context.getBaseURI(), apiClient.getClientName(), deviceId);
+    story += String.format("<p><a href='%s/manage/domain/%s/user-events/%s'>More Information...</a></p>", context.getBaseURI(), domain.getDomainKey(), deviceId);
 
     story = String.format("<html>\n<body>\n%s</body>\n</html>\n", story);
 
@@ -140,10 +140,10 @@ public class UserEventDelegate extends AbstractDelegate {
 
   private void sendEmail(String userName, String htmlContent) {
 
-    if (PluginManager.getConfig(context, apiClient, SmtpEmailPush.PUSH_TYPE) != null) {
+    if (PluginManager.getConfig(context, domain, SmtpEmailPush.PUSH_TYPE) != null) {
       sendSmtpEmail(userName, htmlContent);
 
-    } else if (PluginManager.getConfig(context, apiClient, SesEmailPush.PUSH_TYPE) != null) {
+    } else if (PluginManager.getConfig(context, domain, SesEmailPush.PUSH_TYPE) != null) {
       sendSesEmail(userName, htmlContent);
 
     } else {
@@ -158,7 +158,7 @@ public class UserEventDelegate extends AbstractDelegate {
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
           "New Story for " + userName, htmlContent, null);
 
-      context.getPushProcessor().execute(account, apiClient, push);
+      context.getPushProcessor().execute(apiRequest.getApiVersion(), account, domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -171,7 +171,7 @@ public class UserEventDelegate extends AbstractDelegate {
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
           "New Story for " + userName, htmlContent, null);
 
-      context.getPushProcessor().execute(account, apiClient, push);
+      context.getPushProcessor().execute(apiRequest.getApiVersion(), account, domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -184,7 +184,7 @@ public class UserEventDelegate extends AbstractDelegate {
       String message = userEvent.getMessage() + " >> https://www.cosmicpush.com/q/" + id;
       GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
 
-      context.getPushProcessor().execute(account, apiClient, push);
+      context.getPushProcessor().execute(apiRequest.getApiVersion(), account, domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();

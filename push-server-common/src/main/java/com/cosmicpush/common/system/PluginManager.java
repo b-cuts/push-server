@@ -1,6 +1,6 @@
 package com.cosmicpush.common.system;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.*;
 import com.cosmicpush.pub.common.PushType;
 import java.util.*;
@@ -52,8 +52,8 @@ public class PluginManager {
     throw new IllegalArgumentException(msg);
   }
 
-  public static PluginConfig getConfig(PluginContext context, ApiClient apiClient, PushType pushType) {
+  public static PluginConfig getConfig(PluginContext context, Domain domain, PushType pushType) {
     Plugin plugin = getPlugin(pushType);
-    return plugin.getConfig(context.getCouchServer(), apiClient);
+    return plugin.getConfig(context.getCouchServer(), domain);
   }
 }

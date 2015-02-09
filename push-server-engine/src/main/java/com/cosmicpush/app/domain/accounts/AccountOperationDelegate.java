@@ -6,11 +6,13 @@
 
 package com.cosmicpush.app.domain.accounts;
 
-import com.cosmicpush.common.accounts.*;
+import com.cosmicpush.common.accounts.Account;
+import com.cosmicpush.common.accounts.AccountStore;
 import com.cosmicpush.common.accounts.actions.*;
-import java.net.URL;
-import org.crazyyak.dev.common.*;
+import org.crazyyak.dev.common.IoUtils;
 import org.crazyyak.dev.common.exceptions.ApiException;
+
+import java.net.URL;
 
 public class AccountOperationDelegate {
 
@@ -23,13 +25,7 @@ public class AccountOperationDelegate {
   public Account executeOperation(Account account, ChangePasswordAction operation) {
     account.changePassword(operation);
     store.update(account);
-
-    // We just changed the account's password so we can use it to authenticate the user.
-    if (operation.isAuthenticate() == false) {
-      return account;
-    } else {
-      return authenticateUser(account, account.getPassword());
-    }
+    return account;
   }
 
   public Account executeOperation(Account account) {
@@ -42,9 +38,6 @@ public class AccountOperationDelegate {
     if (account == null) {
       throw ApiException.badRequest(Account.INVALID_USER_NAME_OR_PASSWORD);
     }
-
-    authenticateUser(account, operation.getPassword());
-    // notificationService.signedIn(account);
 
     if (account.hasTempPassword()) {
       account.clearTempPassword();
@@ -62,15 +55,6 @@ public class AccountOperationDelegate {
 
     account = new Account(operation);
     store.create(account);
-
-    if (operation.isAuthenticate()) {
-      // We only authenticate when the account was created
-      // by the user themselves... tell me about it if you don't mind...
-      // notificationService.createdAccount(account);
-
-      // We just created the account so we can authenticate with it's own password.
-      return authenticateUser(account, operation.getPassword());
-    }
 
     return account;
   }
@@ -124,32 +108,5 @@ public class AccountOperationDelegate {
     account.apply(operation);
     store.update(account);
     return account;
-  }
-
-  private Account authenticateUser(Account account, String password) {
-    return null;
-/*
-
-    // We can only ever authenticate the current user. This may not be necessary in cases like
-    // a password change, but it's easier to always update the request context when authenticating.
-    // RequestContext.get().setAccount(account);
-    String userName = account.getUserName();
-
-    if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
-      // RequestContext.get().setAccount(null); // clear the context
-      throw ApiException.badRequest(Account.INVALID_USER_NAME_OR_PASSWORD);
-    }
-
-    try {
-      UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
-      Authentication authenticatedUser = authenticationManager.authenticate(token);
-      SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
-      return account;
-
-    } catch (AuthenticationException e) {
-      // RequestContext.get().setAccount(null); // clear the context
-      throw ApiException.badRequest(Account.INVALID_USER_NAME_OR_PASSWORD);
-    }
-*/
   }
 }

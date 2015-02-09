@@ -1,6 +1,6 @@
 package com.cosmicpush.plugins.smtp;
 
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.system.CpCouchServer;
 import org.crazyyak.lib.couchace.DefaultCouchStore;
 
@@ -18,7 +18,7 @@ public class SmtpEmailConfigStore extends DefaultCouchStore<SmtpEmailConfig> {
     return SMTP_EMAIL_CONFIG_DESIGN_NAME;
   }
 
-  public static String toDocumentId(ApiClient apiClient) {
-    return String.format("%s:smtp-email-config", apiClient.getApiClientId());
+  public static String toDocumentId(Domain domain) {
+    return String.format("%s:smtp-email-config", domain.getDomainId());
   }
 }

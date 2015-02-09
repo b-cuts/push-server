@@ -7,7 +7,7 @@
 package com.cosmicpush.app.system;
 
 import com.cosmicpush.app.deprecated.EmailToSmsPush;
-import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.ApiAuthenticationFilter;
 import com.cosmicpush.app.jaxrs.security.MngtAuthenticationFilter;
 import com.cosmicpush.app.jaxrs.security.SessionFilter;

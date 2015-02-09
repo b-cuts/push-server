@@ -17,7 +17,7 @@ public class NotifierConfig implements PluginConfig, Serializable {
   private String configId;
   private String revision;
 
-  private String apiClientId;
+  private String domainId;
 
   private String userName;
   private String password;
@@ -30,7 +30,7 @@ public class NotifierConfig implements PluginConfig, Serializable {
   @JsonCreator
   public NotifierConfig(@JacksonInject("configId") String configId,
                         @JacksonInject("revision") String revision,
-                        @JsonProperty("apiClientId") String apiClientId,
+                        @JsonProperty("domainId") String domainId,
                         @JsonProperty("userName") String userName,
                         @JsonProperty("password") String password,
                         @JsonProperty("recipientOverride") String recipientOverride,
@@ -39,7 +39,7 @@ public class NotifierConfig implements PluginConfig, Serializable {
     this.configId = configId;
     this.revision = revision;
 
-    this.apiClientId = apiClientId;
+    this.domainId = domainId;
 
     this.userName = userName;
     this.password = password;
@@ -57,8 +57,8 @@ public class NotifierConfig implements PluginConfig, Serializable {
     return revision;
   }
 
-  public String getApiClientId() {
-    return apiClientId;
+  public String getDomainId() {
+    return domainId;
   }
 
   public String getUserName() {

@@ -5,13 +5,13 @@
  */
 package com.cosmicpush.app.resources.manage.client.userevents;
 
-import com.cosmicpush.app.jaxrs.ExecutionContext;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
-import com.cosmicpush.common.clients.ApiClient;
+import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.ApiRequest;
 import com.cosmicpush.pub.push.UserEventPush;
 
@@ -26,12 +26,12 @@ import java.util.*;
 public class ManageUserEventsResource {
 
   private final Account account;
-  private final ApiClient apiClient;
+  private final Domain domain;
   private final ExecutionContext context = CpApplication.getExecutionContext();
 
-  public ManageUserEventsResource(Account account, ApiClient apiClient) {
+  public ManageUserEventsResource(Account account, Domain domain) {
     this.account = account;
-    this.apiClient = apiClient;
+    this.domain = domain;
   }
 
   @GET
@@ -40,7 +40,7 @@ public class ManageUserEventsResource {
 
     List<ApiRequest> requests = new ArrayList<>();
 
-    List<ApiRequest> apiRequests = context.getApiRequestStore().getByClientAndType(apiClient, UserEventPush.PUSH_TYPE);
+    List<ApiRequest> apiRequests = context.getApiRequestStore().getByClientAndType(domain, UserEventPush.PUSH_TYPE);
     for (ApiRequest request : apiRequests) {
       if (request.getUserEventPush().isSendStory() == false) {
         requests.add(request);
@@ -49,7 +49,7 @@ public class ManageUserEventsResource {
 
     List<UserEventGroup> groups = toGroups(requests);
 
-    UserEventGroupsModel model = new UserEventGroupsModel(account, apiClient, groups);
+    UserEventGroupsModel model = new UserEventGroupsModel(account, domain, groups);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EVENTS, model);
   }
 
@@ -58,11 +58,11 @@ public class ManageUserEventsResource {
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf viewSession(@PathParam("deviceId") String deviceId) throws Exception {
 
-    List<ApiRequest> requests = context.getApiRequestStore().getByClientAndDevice(apiClient, deviceId);
+    List<ApiRequest> requests = context.getApiRequestStore().getByClientAndDevice(domain, deviceId);
     List<UserEventGroup> groups = toGroups(requests);
     List<UserEventSession> sessions = groups.get(0).getSessions();
 
-    UserEventSessionsModel model = new UserEventSessionsModel(account, apiClient, deviceId, sessions);
+    UserEventSessionsModel model = new UserEventSessionsModel(account, domain, deviceId, sessions);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EVENT, model);
   }
 
