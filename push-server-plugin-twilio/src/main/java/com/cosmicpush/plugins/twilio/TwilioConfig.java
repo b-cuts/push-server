@@ -7,12 +7,14 @@
 package com.cosmicpush.plugins.twilio;
 
 import com.cosmicpush.common.plugins.PluginConfig;
+import com.cosmicpush.pub.internal.RequestErrors;
 import com.couchace.annotations.CouchEntity;
 import com.couchace.annotations.CouchId;
 import com.couchace.annotations.CouchRevision;
 import com.fasterxml.jackson.annotation.JacksonInject;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.crazyyak.dev.common.EqualsUtils;
 
 import java.io.Serializable;
 
@@ -24,10 +26,11 @@ public class TwilioConfig implements PluginConfig, Serializable {
 
   private String domainId;
 
-  private String userName;
-  private String password;
-  private String recipientOverride;
-  private String testAddress;
+  private String accountSid;
+  private String authToken;
+  private String fromPhoneNumber;
+  private String recipient;
+  private String message;
 
   public TwilioConfig() {}
 
@@ -35,19 +38,41 @@ public class TwilioConfig implements PluginConfig, Serializable {
   public TwilioConfig(@JacksonInject("configId") String configId,
                       @JacksonInject("revision") String revision,
                       @JsonProperty("domainId") String domainId,
-                      @JsonProperty("userName") String userName,
-                      @JsonProperty("password") String password,
-                      @JsonProperty("recipientOverride") String recipientOverride,
-                      @JsonProperty("testAddress") String testAddress) {
+                      @JsonProperty("accountSid") String accountSid,
+                      @JsonProperty("authToken") String authToken,
+                      @JsonProperty("fromPhoneNumber") String fromPhoneNumber,
+                      @JsonProperty("recipient") String recipient,
+                      @JsonProperty("message") String message) {
     this.configId = configId;
     this.revision = revision;
 
     this.domainId = domainId;
 
-    this.userName = userName;
-    this.password = password;
-    this.recipientOverride = recipientOverride;
-    this.testAddress = testAddress;
+    this.accountSid = accountSid;
+    this.authToken = authToken;
+    this.fromPhoneNumber = fromPhoneNumber;
+    this.recipient = recipient;
+    this.message = message;
+  }
+
+  public TwilioConfig apply(UpdateTwilioConfigAction configAction) {
+    configAction.validate(new RequestErrors()).assertNoErrors();
+
+    if (domainId != null && EqualsUtils.objectsNotEqual(domainId, configAction.getDomain().getDomainId())) {
+      String msg = "The specified Update Config Action domain type and this class are not for the same domain.";
+      throw new IllegalArgumentException(msg);
+    }
+
+    this.domainId = configAction.getDomain().getDomainId();
+    this.configId = TwilioConfigStore.toDocumentId(configAction.getDomain());
+
+    this.accountSid = configAction.getAccountSid();
+    this.authToken = configAction.getAuthToken();
+    this.fromPhoneNumber = configAction.getFromPhoneNumber();
+    this.recipient = configAction.getRecipient();
+    this.message = configAction.getMessage();
+
+    return this;
   }
 
   @CouchId
@@ -64,19 +89,23 @@ public class TwilioConfig implements PluginConfig, Serializable {
     return domainId;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getAccountSid() {
+    return accountSid;
   }
 
-  public String getPassword() {
-    return password;
+  public String getAuthToken() {
+    return authToken;
   }
 
-  public String getRecipientOverride() {
-    return recipientOverride;
+  public String getFromPhoneNumber() {
+    return fromPhoneNumber;
   }
 
-  public String getTestAddress() {
-    return testAddress;
+  public String getRecipient() {
+    return recipient;
+  }
+
+  public String getMessage() {
+    return message;
   }
 }

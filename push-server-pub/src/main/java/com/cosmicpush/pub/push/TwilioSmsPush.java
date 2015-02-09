@@ -19,10 +19,11 @@ import java.net.InetAddress;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class TwilioPush implements Push, Serializable {
+public class TwilioSmsPush implements Push, Serializable {
 
-  public static final PushType PUSH_TYPE = new PushType(TwilioPush.class, "twilio", "Twilio");
+  public static final PushType PUSH_TYPE = new PushType(TwilioSmsPush.class, "twilio", "Twilio");
 
+  private final String from;
   private final String recipient;
   private final String message;
 
@@ -33,12 +34,14 @@ public class TwilioPush implements Push, Serializable {
 
   private final String callbackUrl;
 
-  private TwilioPush(@JsonProperty("recipient") String recipient,
-                     @JsonProperty("message") String message,
-                     @JsonProperty("callbackUrl") String callbackUrl,
-                     @JsonProperty("remoteHost") String remoteHost,
-                     @JsonProperty("remoteAddress") String remoteAddress,
-                     @JsonProperty("traits") Map<String,String> traits) {
+  private TwilioSmsPush(@JsonProperty("recipient") String from,
+                        @JsonProperty("recipient") String recipient,
+                        @JsonProperty("message") String message,
+                        @JsonProperty("callbackUrl") String callbackUrl,
+                        @JsonProperty("remoteHost") String remoteHost,
+                        @JsonProperty("remoteAddress") String remoteAddress,
+                        @JsonProperty("traits") Map<String, String> traits) {
+    this.from = from;
     this.recipient = recipient;
     this.message = message;
     this.callbackUrl = callbackUrl;
@@ -63,6 +66,7 @@ public class TwilioPush implements Push, Serializable {
 
   @Override
   public RequestErrors validate(RequestErrors errors) {
+    ValidationUtils.requireValue(errors, recipient, "The from field must be specified.");
     ValidationUtils.requireValue(errors, recipient, "The recipient must be specified.");
     ValidationUtils.requireValue(errors, message, "The message must be specified.");
     return errors;
@@ -83,13 +87,25 @@ public class TwilioPush implements Push, Serializable {
     return remoteAddress;
   }
 
-  public static TwilioPush newPush(String recipient,String message, String callbackUrl, String...traits) {
-    InetAddress remoteAddress = PushUtils.getLocalHost();
-    return new TwilioPush(recipient, message, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), BeanUtils.toMap(traits));
+  public String getFrom() {
+    return from;
   }
 
-  public static TwilioPush newPush(String recipient,String message, String callbackUrl, Map<String,String> traits) {
+  public String getRecipient() {
+    return recipient;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public static TwilioSmsPush newPush(String from, String recipient,String message, String callbackUrl, String...traits) {
     InetAddress remoteAddress = PushUtils.getLocalHost();
-    return new TwilioPush(recipient, message, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), traits);
+    return new TwilioSmsPush(from, recipient, message, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), BeanUtils.toMap(traits));
+  }
+
+  public static TwilioSmsPush newPush(String from, String recipient,String message, String callbackUrl, Map<String,String> traits) {
+    InetAddress remoteAddress = PushUtils.getLocalHost();
+    return new TwilioSmsPush(from, recipient, message, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), traits);
   }
 }
