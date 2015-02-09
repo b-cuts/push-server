@@ -28,13 +28,13 @@ public class NotificationDelegateV1 extends AbstractDelegate {
 
   private final AppContext appContext;
 
-  public NotificationDelegateV1(PluginContext context, Account account, Domain domain, PushRequest pushRequest, NotificationPushV1 push) {
-    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
+  public NotificationDelegateV1(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, NotificationPushV1 push) {
+    super(pluginContext, pushRequest);
     this.push = ExceptionUtils.assertNotNull(push, "push");
-    this.pluginContext = ExceptionUtils.assertNotNull(context, "context");
+    this.pluginContext = ExceptionUtils.assertNotNull(pluginContext, "context");
     this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
-    this.appContext = context.getAppContext();
+    this.appContext = pluginContext.getAppContext();
   }
 
   @Override

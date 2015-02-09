@@ -27,13 +27,13 @@ public class SmtpEmailDelegate extends AbstractDelegate {
   private final SmtpEmailConfig config;
   private final AppContext appContext;
 
-  public SmtpEmailDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, SmtpEmailPush push, SmtpEmailConfig config) {
-    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
+  public SmtpEmailDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, SmtpEmailPush push, SmtpEmailConfig config) {
+    super(pluginContext, pushRequest);
     this.push = ExceptionUtils.assertNotNull(push, "push");
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
-    this.appContext = context.getAppContext();
+    this.appContext = pluginContext.getAppContext();
   }
 
   @Override

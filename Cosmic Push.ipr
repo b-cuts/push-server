@@ -149,6 +149,10 @@
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.6.2" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-notifier-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-notifier" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-notifier/build/resources/main" />
+            </element>
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.15" />
           </element>
@@ -306,6 +310,10 @@
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.6.2" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-notifier-4.0.0.jar">
+              <element id="module-output" name="push-server-plugin-notifier" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-notifier/build/resources/main" />
+            </element>
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.15" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.15" />
           </element>

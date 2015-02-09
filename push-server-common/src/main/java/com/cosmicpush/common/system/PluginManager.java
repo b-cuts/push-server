@@ -1,8 +1,11 @@
 package com.cosmicpush.common.system;
 
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.plugins.*;
+import com.cosmicpush.common.plugins.Plugin;
+import com.cosmicpush.common.plugins.PluginConfig;
+import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.pub.common.PushType;
+
 import java.util.*;
 
 public class PluginManager {
@@ -18,11 +21,15 @@ public class PluginManager {
 
     for (Plugin plugin : loader) {
       PushType pushType = plugin.getPushType();
+      if (map.containsKey(pushType)) {
+        String msg = String.format("The push type \"%s\" has already been registered.", pushType);
+        throw new IllegalArgumentException(msg);
+      }
       map.put(pushType, plugin);
       PushType.register(pushType);
     }
 
-    int expectedCount = 3;
+    int expectedCount = 4;
     if (map.size() < expectedCount) {
       String msg = String.format("Expected at least %s plugins but only found %s %s", expectedCount, map.size(), map.keySet());
       throw new IllegalStateException(msg);

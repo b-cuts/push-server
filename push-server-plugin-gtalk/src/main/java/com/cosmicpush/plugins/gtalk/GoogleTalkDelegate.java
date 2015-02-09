@@ -27,13 +27,13 @@ public class GoogleTalkDelegate extends AbstractDelegate {
   private final GoogleTalkConfig config;
   private final AppContext appContext;
 
-  public GoogleTalkDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, GoogleTalkPush push, GoogleTalkConfig config) {
-    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
+  public GoogleTalkDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, GoogleTalkPush push, GoogleTalkConfig config) {
+    super(pluginContext, pushRequest);
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.push = ExceptionUtils.assertNotNull(push, "push");
     this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
-    this.appContext = context.getAppContext();
+    this.appContext = pluginContext.getAppContext();
   }
 
   @Override

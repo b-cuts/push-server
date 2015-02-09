@@ -7,7 +7,6 @@ package com.cosmicpush.app.resources.api;
 
 import com.cosmicpush.app.deprecated.NotificationPushV1;
 import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
-import com.cosmicpush.app.resources.api.deprecated.LqNotificationDelegate;
 import com.cosmicpush.app.resources.api.deprecated.NotificationDelegateV1;
 import com.cosmicpush.app.resources.api.deprecated.UserEventDelegate;
 import com.cosmicpush.app.system.CpApplication;
@@ -18,7 +17,6 @@ import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushResponse;
-import com.cosmicpush.pub.push.LqNotificationPush;
 import com.cosmicpush.pub.push.UserEventPush;
 
 import javax.ws.rs.Consumes;
@@ -74,14 +72,6 @@ public class ApiResourceV2 {
       context.getPushRequestStore().create(pushRequest);
 
       new NotificationDelegateV1(context, account, domain, pushRequest, notificationPushV1).start();
-      return buildResponse(pushRequest, account, domain);
-
-    } else if (push instanceof LqNotificationPush) {
-      LqNotificationPush lqNotificationPush = (LqNotificationPush)push;
-      PushRequest pushRequest = new PushRequest(apiVersion, domain, push);
-      context.getPushRequestStore().create(pushRequest);
-
-      new LqNotificationDelegate(context, account, domain, pushRequest, lqNotificationPush).start();
       return buildResponse(pushRequest, account, domain);
     }
 

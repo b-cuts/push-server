@@ -19,6 +19,7 @@ project(":push-server-engine") {
     compile project(":push-server-plugin-ses")
     compile project(":push-server-plugin-smtp")
     compile project(":push-server-plugin-gtalk")
+    compile project(":push-server-plugin-notifier")
     // compile project(":push-server-plugin-ocs-message")
     compile project(":push-server-plugin-twilio")
 

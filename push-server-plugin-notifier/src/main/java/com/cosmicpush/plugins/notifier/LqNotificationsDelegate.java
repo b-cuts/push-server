@@ -4,7 +4,7 @@
  * This software may not be used without permission.
  */
 
-package com.cosmicpush.app.resources.api.deprecated;
+package com.cosmicpush.plugins.notifier;
 
 import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.accounts.Account;
@@ -18,23 +18,22 @@ import com.cosmicpush.pub.push.LqNotificationPush;
 import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 
-public class LqNotificationDelegate extends AbstractDelegate {
+public class LqNotificationsDelegate extends AbstractDelegate {
 
   private final Account account;
   private final Domain domain;
 
-  private final PluginContext pluginContext;
   private final LqNotificationPush push;
+  private final LqNotificationsConfig config;
+  private AppContext appContext;
 
-  private final AppContext appContext;
-
-  public LqNotificationDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, LqNotificationPush push) {
-    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
+  public LqNotificationsDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, LqNotificationPush push, LqNotificationsConfig config) {
+    super(pluginContext, pushRequest);
+    this.appContext = pluginContext.getAppContext();
+    this.config = ExceptionUtils.assertNotNull(config, "config");
     this.push = ExceptionUtils.assertNotNull(push, "push");
-    this.pluginContext = ExceptionUtils.assertNotNull(context, "context");
     this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
-    this.appContext = context.getAppContext();
   }
 
   @Override
@@ -50,7 +49,8 @@ public class LqNotificationDelegate extends AbstractDelegate {
     url = appContext.getBitlyApi().shortenUnencodedUrl(url);
 
     String message = push.getSummary() + " >> " + url;
-    GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
+    String recipient = config.getUserName();
+    GoogleTalkPush push = GoogleTalkPush.newPush(recipient, message, null);
 
     pluginContext.getPushProcessor().execute(pushRequest.getApiVersion(), account, domain, push);
     return pushRequest.processed();

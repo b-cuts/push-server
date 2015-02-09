@@ -30,13 +30,13 @@ public class SesEmailDelegate extends AbstractDelegate {
   private final SesEmailConfig config;
   private final AppContext appContext;
 
-  public SesEmailDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, SesEmailPush push, SesEmailConfig config) {
-    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
+  public SesEmailDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, SesEmailPush push, SesEmailConfig config) {
+    super(pluginContext, pushRequest);
     this.push = ExceptionUtils.assertNotNull(push, "push");
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
-    this.appContext = context.getAppContext();
+    this.appContext = pluginContext.getAppContext();
   }
 
   @Override

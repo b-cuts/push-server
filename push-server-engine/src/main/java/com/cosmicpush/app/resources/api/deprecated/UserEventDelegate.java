@@ -35,9 +35,9 @@ public class UserEventDelegate extends AbstractDelegate {
   private final PluginContext context;
   private final UserEventPush userEvent;
 
-  public UserEventDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, UserEventPush userEvent) {
-    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
-    this.context = context;
+  public UserEventDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, UserEventPush userEvent) {
+    super(pluginContext, pushRequest);
+    this.context = pluginContext;
     this.userEvent = ExceptionUtils.assertNotNull(userEvent, "userEvent");
     this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");

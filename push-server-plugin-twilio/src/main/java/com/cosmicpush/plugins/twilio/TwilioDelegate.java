@@ -24,8 +24,8 @@ public class TwilioDelegate extends AbstractDelegate {
   private final TwilioPush push;
   private final TwilioConfig config;
 
-  public TwilioDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, TwilioPush push, TwilioConfig config) {
-    super(context.getObjectMapper(), pushRequest, context.getPushRequestStore());
+  public TwilioDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, TwilioPush push, TwilioConfig config) {
+    super(pluginContext, pushRequest);
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.push = ExceptionUtils.assertNotNull(push, "push");
     this.account = ExceptionUtils.assertNotNull(account, "account");

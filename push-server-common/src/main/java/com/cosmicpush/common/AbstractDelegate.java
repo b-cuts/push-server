@@ -6,6 +6,7 @@
 
 package com.cosmicpush.common;
 
+import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.jackson.CpObjectMapper;
@@ -27,14 +28,17 @@ public abstract class AbstractDelegate implements Runnable {
 
   protected abstract RequestStatus processRequest() throws Exception;
 
+  protected final PluginContext pluginContext;
   protected final CpObjectMapper objectMapper;
   protected final PushRequest pushRequest;
   protected final PushRequestStore pushRequestStore;
 
-  protected AbstractDelegate(CpObjectMapper objectMapper, PushRequest pushRequest, PushRequestStore pushRequestStore) {
-    this.objectMapper = ExceptionUtils.assertNotNull(objectMapper, "objectMapper");
+  protected AbstractDelegate(PluginContext pluginContext,  PushRequest pushRequest) {
     this.pushRequest = ExceptionUtils.assertNotNull(pushRequest, "pushRequest");
-    this.pushRequestStore = ExceptionUtils.assertNotNull(pushRequestStore, "pushRequestStore");
+
+    this.pluginContext = ExceptionUtils.assertNotNull(pluginContext, "pluginContext");
+    this.objectMapper = ExceptionUtils.assertNotNull(pluginContext.getObjectMapper(), "objectMapper");
+    this.pushRequestStore = ExceptionUtils.assertNotNull(pluginContext.getPushRequestStore(), "pushRequestStore");
   }
 
   @Override

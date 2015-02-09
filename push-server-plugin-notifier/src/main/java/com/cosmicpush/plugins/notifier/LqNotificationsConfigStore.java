@@ -4,12 +4,12 @@ import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.system.CpCouchServer;
 import org.crazyyak.lib.couchace.DefaultCouchStore;
 
-public class NotifierConfigStore extends DefaultCouchStore<NotifierConfig> {
+public class LqNotificationsConfigStore extends DefaultCouchStore<LqNotificationsConfig> {
 
   public static final String NOTIFIER_CONFIG_DESIGN_NAME = "notifier-config";
 
-  public NotifierConfigStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), NotifierConfig.class);
+  public LqNotificationsConfigStore(CpCouchServer couchServer) {
+    super(couchServer, couchServer.getDatabaseName(), LqNotificationsConfig.class);
   }
 
   @Override
