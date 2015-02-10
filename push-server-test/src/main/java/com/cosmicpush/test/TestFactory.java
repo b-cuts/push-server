@@ -195,9 +195,6 @@ public class TestFactory {
 
   public PluginContext pluginContext(TestFactory testFactory) {
     return new PluginContext() {
-      @Override public AccountStore getAccountStore() {
-        return testFactory.getAccountStore();
-      }
       @Override public PushRequestStore getPushRequestStore() {
         return testFactory.getPushRequestStore();
       }

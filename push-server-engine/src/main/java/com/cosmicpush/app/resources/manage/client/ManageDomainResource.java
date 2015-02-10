@@ -162,6 +162,6 @@ public class ManageDomainResource {
 
   @Path("/{pushType}")
   public ManagePluginApi getManagePluginApi(@PathParam("pushType") PushType pushType) throws Exception {
-    return new ManagePluginApi(getAccount(), getDomain(), pushType);
+    return new ManagePluginApi(getDomain(), pushType);
   }
 }

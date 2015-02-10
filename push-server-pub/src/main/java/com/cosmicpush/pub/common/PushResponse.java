@@ -23,7 +23,6 @@ import java.util.*;
 
 public class PushResponse implements Serializable {
 
-  private final String accountId;
   private final String domainId;
   private final String pushRequestId;
 
@@ -33,14 +32,12 @@ public class PushResponse implements Serializable {
   private final List<String> notes = new ArrayList<>();
 
   @JsonCreator
-  public PushResponse(@JsonProperty("accountId") String accountId,
-                      @JsonProperty("domainId") String domainId,
+  public PushResponse(@JsonProperty("domainId") String domainId,
                       @JsonProperty("pushRequestId") String pushRequestId,
                       @JsonProperty("createdAt") LocalDateTime createdAt,
                       @JsonProperty("requestStatus") RequestStatus requestStatus,
                       @JsonProperty("notes") Collection<String> notes) {
 
-    this.accountId = accountId;
     this.domainId = domainId;
     this.pushRequestId = pushRequestId;
 
@@ -48,10 +45,6 @@ public class PushResponse implements Serializable {
     this.requestStatus = requestStatus;
 
     this.notes.addAll(notes);
-  }
-
-  public String getAccountId() {
-    return accountId;
   }
 
   public String getDomainId() {

@@ -47,13 +47,13 @@ public class SmtpEmailPlugin implements Plugin {
   }
 
   @Override
-  public SmtpEmailDelegate newDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, Push push) {
+  public SmtpEmailDelegate newDelegate(PluginContext pluginContext, Domain domain, PushRequest pushRequest, Push push) {
     SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
-    return new SmtpEmailDelegate(pluginContext, account, domain, pushRequest, (SmtpEmailPush)push, config);
+    return new SmtpEmailDelegate(pluginContext, domain, pushRequest, (SmtpEmailPush)push, config);
   }
 
   @Override
-  public void updateConfig(PluginContext pluginContext, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext pluginContext, Domain domain, MultivaluedMap<String, String> formParams) {
 
     UpdateSmtpEmailConfigAction action = new UpdateSmtpEmailConfigAction(domain, formParams);
 
@@ -66,11 +66,10 @@ public class SmtpEmailPlugin implements Plugin {
     getConfigStore(pluginContext.getCouchServer()).update(smtpEmailConfig);
 
     pluginContext.setLastMessage("SES Email configuration updated.");
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
+  public void deleteConfig(PluginContext pluginContext, Domain domain) {
 
     SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
@@ -80,19 +79,16 @@ public class SmtpEmailPlugin implements Plugin {
     } else {
       pluginContext.setLastMessage("SES email configuration doesn't exist.");
     }
-
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void test(PluginContext pluginContext, Account account, Domain domain) throws Exception {
+  public void test(PluginContext pluginContext, Domain domain) throws Exception {
 
     SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config == null) {
       String msg = "The SMTP email config has not been specified.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -102,14 +98,12 @@ public class SmtpEmailPlugin implements Plugin {
     if (StringUtils.isBlank((toAddress))) {
       String msg = "A test message cannot be sent with out specifying the config's test-to-address.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
     if (StringUtils.isBlank((fromAddress))) {
       String msg = "A test message cannot be sent with out specifying the config's test-from-address.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -129,11 +123,10 @@ public class SmtpEmailPlugin implements Plugin {
     PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
     pluginContext.getPushRequestStore().create(pushRequest);
 
-    new SmtpEmailDelegate(pluginContext, account, domain, pushRequest, push, config).run();
+    new SmtpEmailDelegate(pluginContext, domain, pushRequest, push, config).run();
 
     msg = String.format("Test message sent from %s to %s", fromAddress, toAddress);
     pluginContext.setLastMessage(msg);
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
@@ -143,7 +136,7 @@ public class SmtpEmailPlugin implements Plugin {
   }
 
   @Override
-  public String getAdminUi(PluginContext pluginContext, Account account, Domain domain) throws IOException {
+  public String getAdminUi(PluginContext pluginContext, Domain domain) throws IOException {
 
     SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 

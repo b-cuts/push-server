@@ -20,28 +20,22 @@ import org.jivesoftware.smack.XMPPException;
 
 public class GoogleTalkDelegate extends AbstractDelegate {
 
-  private final Account account;
   private final Domain domain;
 
   private final GoogleTalkPush push;
   private final GoogleTalkConfig config;
   private final AppContext appContext;
 
-  public GoogleTalkDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, GoogleTalkPush push, GoogleTalkConfig config) {
+  public GoogleTalkDelegate(PluginContext pluginContext, Domain domain, PushRequest pushRequest, GoogleTalkPush push, GoogleTalkConfig config) {
     super(pluginContext, pushRequest);
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.push = ExceptionUtils.assertNotNull(push, "push");
-    this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
     this.appContext = pluginContext.getAppContext();
   }
 
   @Override
   public synchronized RequestStatus processRequest() throws Exception {
-    String reasonNotPermitted = account.getReasonNotPermitted(push);
-    if (StringUtils.isNotBlank(reasonNotPermitted)) {
-      return pushRequest.denyRequest(reasonNotPermitted);
-    }
 
     String apiMessage = sendMessage();
 

@@ -141,11 +141,6 @@ public class RootResource extends RootResourceSupport {
         throw ApiException.notFound("Domain not found for " + request.getDomainId());
       }
 
-      Account account = context.getAccountStore().getByDocumentId(domain.getAccountId());
-      if (account == null) {
-        throw ApiException.notFound("Account not found given client id " + request.getDomainId());
-      }
-
       if (LqNotificationPush.PUSH_TYPE.equals(request.getPushType())) {
         String path = String.format("manage/domain/%s/notifications/%s", domain.getDomainKey(), pushRequestId);
         return Response.seeOther(new URI(path)).build();

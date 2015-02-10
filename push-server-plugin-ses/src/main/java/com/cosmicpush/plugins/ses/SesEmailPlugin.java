@@ -1,6 +1,5 @@
 package com.cosmicpush.plugins.ses;
 
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
@@ -47,13 +46,13 @@ public class SesEmailPlugin implements Plugin {
   }
 
   @Override
-  public SesEmailDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
+  public SesEmailDelegate newDelegate(PluginContext context, Domain domain, PushRequest pushRequest, Push push) {
     SesEmailConfig config = getConfig(context.getCouchServer(), domain);
-    return new SesEmailDelegate(context, account, domain, pushRequest, (SesEmailPush)push, config);
+    return new SesEmailDelegate(context, domain, pushRequest, (SesEmailPush)push, config);
   }
 
   @Override
-  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
+  public void deleteConfig(PluginContext pluginContext, Domain domain) {
 
     SesEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
@@ -63,12 +62,10 @@ public class SesEmailPlugin implements Plugin {
     } else {
       pluginContext.setLastMessage("SES email configuration doesn't exist.");
     }
-
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void updateConfig(PluginContext pluginContext, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext pluginContext, Domain domain, MultivaluedMap<String, String> formParams) {
 
     UpdateSesEmailConfigAction action = new UpdateSesEmailConfigAction(domain, formParams);
 
@@ -81,18 +78,16 @@ public class SesEmailPlugin implements Plugin {
     getConfigStore(pluginContext.getCouchServer()).update(sesEmailConfig);
 
     pluginContext.setLastMessage("SES Email configuration updated.");
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void test(PluginContext pluginContext, Account account, Domain domain) throws Exception {
+  public void test(PluginContext pluginContext, Domain domain) throws Exception {
 
     SesEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config == null) {
       String msg = "The SES Email config has not been specified.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -102,14 +97,12 @@ public class SesEmailPlugin implements Plugin {
     if (StringUtils.isBlank((toAddress))) {
       String msg = "A test message cannot be sent with out specifying the config's test-to-address.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
     if (StringUtils.isBlank((fromAddress))) {
       String msg = "A test message cannot be sent with out specifying the config's test-from-address.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -126,11 +119,10 @@ public class SesEmailPlugin implements Plugin {
     PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
     pluginContext.getPushRequestStore().create(pushRequest);
 
-    new SesEmailDelegate(pluginContext, account, domain, pushRequest, push, config).run();
+    new SesEmailDelegate(pluginContext, domain, pushRequest, push, config).run();
 
     msg = String.format("Test message sent from %s to %s", fromAddress, toAddress);
     pluginContext.setLastMessage(msg);
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
@@ -140,7 +132,7 @@ public class SesEmailPlugin implements Plugin {
   }
 
   @Override
-  public String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException {
+  public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
     SesEmailConfig config = getConfig(context.getCouchServer(), domain);
 

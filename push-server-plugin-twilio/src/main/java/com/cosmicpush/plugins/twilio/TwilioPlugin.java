@@ -55,13 +55,13 @@ public class TwilioPlugin implements Plugin {
     }
 
     @Override
-    public TwilioDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
+    public TwilioDelegate newDelegate(PluginContext context, Domain domain, PushRequest pushRequest, Push push) {
         TwilioConfig config = getConfig(context.getCouchServer(), domain);
-        return new TwilioDelegate(context, account, domain, pushRequest, (TwilioSmsPush)push, config);
+        return new TwilioDelegate(context, domain, pushRequest, (TwilioSmsPush)push, config);
     }
 
     @Override
-    public void deleteConfig(PluginContext context, Account account, Domain domain) {
+    public void deleteConfig(PluginContext context, Domain domain) {
 
         TwilioConfig config = getConfig(context.getCouchServer(), domain);
 
@@ -71,12 +71,10 @@ public class TwilioPlugin implements Plugin {
         } else {
             context.setLastMessage("Twilio SMS configuration doesn't exist.");
         }
-
-        context.getAccountStore().update(account);
     }
 
     @Override
-    public void updateConfig(PluginContext context, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+    public void updateConfig(PluginContext context, Domain domain, MultivaluedMap<String, String> formParams) {
         UpdateTwilioConfigAction action = new UpdateTwilioConfigAction(domain, formParams);
 
         TwilioConfig twilioConfig = getConfig(context.getCouchServer(), domain);
@@ -88,18 +86,16 @@ public class TwilioPlugin implements Plugin {
         getConfigStore(context.getCouchServer()).update(twilioConfig);
 
         context.setLastMessage("Twilio configuration updated.");
-        context.getAccountStore().update(account);
     }
 
     @Override
-    public void test(PluginContext context, Account account, Domain domain) throws Exception {
+    public void test(PluginContext context, Domain domain) throws Exception {
 
         TwilioConfig config = getConfig(context.getCouchServer(), domain);
 
         if (config == null) {
             String msg = "The Twilio config has not been specified.";
             context.setLastMessage(msg);
-            context.getAccountStore().update(account);
             return;
         }
 
@@ -124,7 +120,7 @@ public class TwilioPlugin implements Plugin {
     }
 
     @Override
-    public String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException {
+    public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
         TwilioConfig config = getConfig(context.getCouchServer(), domain);
 

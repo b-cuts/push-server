@@ -63,11 +63,6 @@ public class ApiAuthenticationFilter implements ContainerRequestFilter {
       throw new NotAuthorizedException("API");
     }
 
-    Account account = appContext.getAccountStore().getByDocumentId(domain.getAccountId());
-    if (account == null) {
-      throw new NotAuthorizedException("API");
-    }
-
     if (EqualsUtils.objectsNotEqual(password, domain.getDomainPassword())) {
       throw new NotAuthorizedException("API");
     }
@@ -75,7 +70,6 @@ public class ApiAuthenticationFilter implements ContainerRequestFilter {
     final SecurityContext securityContext = requestContext.getSecurityContext();
     requestContext.setSecurityContext(new ApiSecurityContext(securityContext, domain));
 
-    CpApplication.getExecutionContext().setAccount(account);
     CpApplication.getExecutionContext().setDomain(domain);
   }
 

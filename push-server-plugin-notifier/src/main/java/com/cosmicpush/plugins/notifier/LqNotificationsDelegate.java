@@ -20,28 +20,22 @@ import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 
 public class LqNotificationsDelegate extends AbstractDelegate {
 
-  private final Account account;
   private final Domain domain;
 
   private final LqNotificationPush push;
   private final LqNotificationsConfig config;
   private AppContext appContext;
 
-  public LqNotificationsDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, LqNotificationPush push, LqNotificationsConfig config) {
+  public LqNotificationsDelegate(PluginContext pluginContext, Domain domain, PushRequest pushRequest, LqNotificationPush push, LqNotificationsConfig config) {
     super(pluginContext, pushRequest);
     this.appContext = pluginContext.getAppContext();
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.push = ExceptionUtils.assertNotNull(push, "push");
-    this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
   }
 
   @Override
   public synchronized RequestStatus processRequest() throws Exception {
-    String reasonNotPermitted = account.getReasonNotPermitted(push);
-    if (StringUtils.isNotBlank(reasonNotPermitted)) {
-      return pushRequest.denyRequest(reasonNotPermitted);
-    }
 
     String id = pushRequest.getPushRequestId();
 
@@ -52,7 +46,7 @@ public class LqNotificationsDelegate extends AbstractDelegate {
     String recipient = config.getUserName();
     GoogleTalkPush push = GoogleTalkPush.newPush(recipient, message, null);
 
-    pluginContext.getPushProcessor().execute(pushRequest.getApiVersion(), account, domain, push);
+    pluginContext.getPushProcessor().execute(pushRequest.getApiVersion(), domain, push);
     return pushRequest.processed();
   }
 }

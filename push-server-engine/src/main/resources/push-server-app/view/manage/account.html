@@ -17,7 +17,7 @@
       <div th:each="domain : ${it.domains}">
         <span style="color: #FFD700; font-size:22px;" th:text="${domain.domainKey}"></span>
 
-        <span th:each="pushType : ${it.pushType}">
+        <span th:each="pushType : ${domain.pushTypes}">
           <img th:src="${contextRoot}+'/manage/'+${pushType}+'/icon'" class="icon" style="margin-left: 5px"/>
         </span>
 

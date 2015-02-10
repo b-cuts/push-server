@@ -79,7 +79,7 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/im")
   public Response sendIm(GoogleTalkPush push) {
-    PushResponse pushResponse = context.getPushProcessor().execute(1, getAccount(), getDomain(), push);
+    PushResponse pushResponse = context.getPushProcessor().execute(1, getDomain(), push);
     return buildResponse(pushResponse);
   }
 
@@ -88,7 +88,7 @@ public class ApiResourceV1 {
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/email")
   public Response sendEmail(SmtpEmailPush push) {
-    PushResponse pushResponse = context.getPushProcessor().execute(1, getAccount(), getDomain(), push);
+    PushResponse pushResponse = context.getPushProcessor().execute(1, getDomain(), push);
     return buildResponse(pushResponse);
   }
 
@@ -103,7 +103,7 @@ public class ApiResourceV1 {
         smsPush.getCallbackUrl(),
         smsPush.getTraits());
 
-    PushResponse pushResponse = context.getPushProcessor().execute(1, getAccount(), getDomain(), push);
+    PushResponse pushResponse = context.getPushProcessor().execute(1, getDomain(), push);
     return buildResponse(pushResponse);
   }
 
@@ -119,7 +119,7 @@ public class ApiResourceV1 {
     private final RequestStatus requestStatus;
     private final List<String> notes = new ArrayList<>();
     public PushResponseV1(PushResponse pushResponse) {
-      this.accountId = pushResponse.getAccountId();
+      this.accountId = "deprecated";
       this.apiRequestId = pushResponse.getPushRequestId();
       this.createdAt = pushResponse.getCreatedAt();
       this.requestStatus = pushResponse.getRequestStatus();

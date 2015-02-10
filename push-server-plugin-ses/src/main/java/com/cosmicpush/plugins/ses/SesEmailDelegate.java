@@ -23,28 +23,22 @@ import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 
 public class SesEmailDelegate extends AbstractDelegate {
 
-  private final Account account;
   private final Domain domain;
 
   private final SesEmailPush push;
   private final SesEmailConfig config;
   private final AppContext appContext;
 
-  public SesEmailDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, SesEmailPush push, SesEmailConfig config) {
+  public SesEmailDelegate(PluginContext pluginContext, Domain domain, PushRequest pushRequest, SesEmailPush push, SesEmailConfig config) {
     super(pluginContext, pushRequest);
     this.push = ExceptionUtils.assertNotNull(push, "push");
     this.config = ExceptionUtils.assertNotNull(config, "config");
-    this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
     this.appContext = pluginContext.getAppContext();
   }
 
   @Override
   public synchronized RequestStatus processRequest() throws Exception {
-    String reasonNotPermitted = account.getReasonNotPermitted(push);
-    if (StringUtils.isNotBlank(reasonNotPermitted)) {
-      return pushRequest.denyRequest(reasonNotPermitted);
-    }
 
     String apiMessage = sendEmail();
 

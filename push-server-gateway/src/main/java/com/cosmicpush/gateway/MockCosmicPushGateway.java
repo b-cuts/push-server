@@ -33,7 +33,6 @@ public class MockCosmicPushGateway implements CosmicPushGateway {
     return new PushResponse(
         "mock:"+TimeUuid.randomUUID().toString(),
         "mock:"+TimeUuid.randomUUID().toString(),
-        "mock:"+TimeUuid.randomUUID().toString(),
         DateUtils.currentDateTime(),
         RequestStatus.pending,
         Collections.<String>emptyList()

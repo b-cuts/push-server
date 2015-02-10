@@ -9,7 +9,6 @@ package com.cosmicpush.app.resources.api.deprecated;
 import com.cosmicpush.app.resources.manage.client.userevents.UserEventGroup;
 import com.cosmicpush.app.resources.manage.client.userevents.UserEventSession;
 import com.cosmicpush.common.AbstractDelegate;
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.PushRequest;
@@ -29,27 +28,22 @@ import java.util.List;
 
 public class UserEventDelegate extends AbstractDelegate {
 
-  private final Account account;
   private final Domain domain;
 
   private final PluginContext context;
   private final UserEventPush userEvent;
 
-  public UserEventDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, UserEventPush userEvent) {
+  public UserEventDelegate(PluginContext pluginContext, Domain domain, PushRequest pushRequest, UserEventPush userEvent) {
     super(pluginContext, pushRequest);
     this.context = pluginContext;
     this.userEvent = ExceptionUtils.assertNotNull(userEvent, "userEvent");
-    this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
   }
 
   @Override
   public synchronized RequestStatus processRequest() throws Exception {
-    String reasonNotPermitted = account.getReasonNotPermitted(userEvent);
-    if (StringUtils.isNotBlank(reasonNotPermitted)) {
-      return pushRequest.denyRequest(reasonNotPermitted);
 
-    } else if (userEvent.isSendStory()) {
+    if (userEvent.isSendStory()) {
       return sendEmail(); // This is the "last" event so we can send the email.
 
     } if (userEvent.containsTrait("priority", "urgent")) {
@@ -158,7 +152,7 @@ public class UserEventDelegate extends AbstractDelegate {
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
           "New Story for " + userName, htmlContent, null);
 
-      context.getPushProcessor().execute(pushRequest.getApiVersion(), account, domain, push);
+      context.getPushProcessor().execute(pushRequest.getApiVersion(), domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -171,7 +165,7 @@ public class UserEventDelegate extends AbstractDelegate {
           "Test Parr <test@jacobparr.com>", "Bot Parr <bot@jacobparr.com>",
           "New Story for " + userName, htmlContent, null);
 
-      context.getPushProcessor().execute(pushRequest.getApiVersion(), account, domain, push);
+      context.getPushProcessor().execute(pushRequest.getApiVersion(), domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -184,7 +178,7 @@ public class UserEventDelegate extends AbstractDelegate {
       String message = userEvent.getMessage() + " >> https://www.cosmicpush.com/q/" + id;
       GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
 
-      context.getPushProcessor().execute(pushRequest.getApiVersion(), account, domain, push);
+      context.getPushProcessor().execute(pushRequest.getApiVersion(), domain, push);
 
     } catch (Exception ex) {
       ex.printStackTrace();

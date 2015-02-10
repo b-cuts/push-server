@@ -1,6 +1,5 @@
 package com.cosmicpush.plugins.gtalk;
 
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
@@ -45,13 +44,13 @@ public class GoogleTalkPlugin implements Plugin {
   }
 
   @Override
-  public GoogleTalkDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
+  public GoogleTalkDelegate newDelegate(PluginContext context, Domain domain, PushRequest pushRequest, Push push) {
     GoogleTalkConfig config = getConfig(context.getCouchServer(), domain);
-    return new GoogleTalkDelegate(context, account, domain, pushRequest, (GoogleTalkPush)push, config);
+    return new GoogleTalkDelegate(context, domain, pushRequest, (GoogleTalkPush)push, config);
   }
 
   @Override
-  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
+  public void deleteConfig(PluginContext pluginContext, Domain domain) {
 
     GoogleTalkConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
@@ -61,12 +60,10 @@ public class GoogleTalkPlugin implements Plugin {
     } else {
       pluginContext.setLastMessage("Google Talk email configuration doesn't exist.");
     }
-
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void updateConfig(PluginContext pluginContext, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext pluginContext, Domain domain, MultivaluedMap<String, String> formParams) {
 
     UpdateGoogleTalkConfigAction action = new UpdateGoogleTalkConfigAction(domain, formParams);
 
@@ -79,18 +76,16 @@ public class GoogleTalkPlugin implements Plugin {
     getConfigStore(pluginContext.getCouchServer()).update(googleTalkConfig);
 
     pluginContext.setLastMessage("Google Talk configuration updated.");
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void test(PluginContext pluginContext, Account account, Domain domain) throws Exception {
+  public void test(PluginContext pluginContext, Domain domain) throws Exception {
 
     GoogleTalkConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config == null) {
       String msg = "The Google Talk config has not been specified.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -99,7 +94,6 @@ public class GoogleTalkPlugin implements Plugin {
     if (isBlank((recipient))) {
       String msg = "Test message cannot be sent with out specifying the test address.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -115,11 +109,10 @@ public class GoogleTalkPlugin implements Plugin {
     PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
     pluginContext.getPushRequestStore().create(pushRequest);
 
-    new GoogleTalkDelegate(pluginContext, account, domain, pushRequest, push, config).run();
+    new GoogleTalkDelegate(pluginContext, domain, pushRequest, push, config).run();
 
     msg = String.format("Test message sent to %s:\n%s", recipient, msg);
     pluginContext.setLastMessage(msg);
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
@@ -129,7 +122,7 @@ public class GoogleTalkPlugin implements Plugin {
   }
 
   @Override
-  public String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException {
+  public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
     GoogleTalkConfig config = getConfig(context.getCouchServer(), domain);
 

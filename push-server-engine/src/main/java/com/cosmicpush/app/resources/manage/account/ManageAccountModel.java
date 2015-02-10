@@ -8,23 +8,35 @@ package com.cosmicpush.app.resources.manage.account;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
+import com.cosmicpush.common.plugins.PluginConfig;
+import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.PushType;
+
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ManageAccountModel {
 
   private final Account account;
-  private final List<Domain> domains = new ArrayList<>();
-  private final Set<PushType> pushTypes = new TreeSet<>();
+  private final List<DomainModel> domains = new ArrayList<>();
 
-  public ManageAccountModel(Account account, List<Domain> domains) throws IOException {
+  public ManageAccountModel(PluginContext pluginContext, Account account, List<Domain> domains) throws IOException {
     this.account = account;
-    this.domains.addAll(domains);
 
-    for (Plugin plugin : PluginManager.getPlugins()) {
-      pushTypes.add(plugin.getPushType());
+    for (Domain domain : domains) {
+      DomainModel domainModel = new DomainModel(domain.getDomainKey());
+      this.domains.add(domainModel);
+
+      for (Plugin plugin : PluginManager.getPlugins()) {
+        PluginConfig config = plugin.getConfig(pluginContext.getCouchServer(), domain);
+        if (config != null) {
+          domainModel.pushTypes.add(plugin.getPushType());
+        }
+      }
     }
   }
 
@@ -32,11 +44,21 @@ public class ManageAccountModel {
     return account;
   }
 
-  public List<Domain> getDomains() {
+  public List<DomainModel> getDomains() {
     return domains;
   }
 
-  public Set<PushType> getPushType() {
-    return pushTypes;
+  public static class DomainModel {
+    private final String domainKey;
+    private final Set<PushType> pushTypes = new TreeSet<>();
+    public DomainModel(String domainKey) {
+      this.domainKey = domainKey;
+    }
+    public String getDomainKey() {
+      return domainKey;
+    }
+    public Set<PushType> getPushTypes() {
+      return pushTypes;
+    }
   }
 }

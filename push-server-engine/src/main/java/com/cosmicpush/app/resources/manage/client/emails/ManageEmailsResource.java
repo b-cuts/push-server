@@ -72,11 +72,11 @@ public class ManageEmailsResource {
 
     if (SesEmailPush.PUSH_TYPE.equals(push.getPushType())) {
       Plugin plugin = PluginManager.getPlugin(push.getPushType());
-      plugin.newDelegate(context, account, domain, pushRequest, push).retry();
+      plugin.newDelegate(context, domain, pushRequest, push).retry();
 
     } else if (SmtpEmailPush.PUSH_TYPE.equals(push.getPushType())) {
       Plugin plugin = PluginManager.getPlugin(push.getPushType());
-      plugin.newDelegate(context, account, domain, pushRequest, push).retry();
+      plugin.newDelegate(context, domain, pushRequest, push).retry();
 
     } else {
       String msg = String.format("The retry operation is not supported for the push type \"%s\".", push.getPushType().getCode());

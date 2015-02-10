@@ -1,6 +1,5 @@
 package com.cosmicpush.plugins.notifier;
 
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
@@ -8,7 +7,6 @@ import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
-import com.cosmicpush.pub.push.GoogleTalkPush;
 import com.cosmicpush.pub.push.LqNotificationPush;
 import org.crazyyak.dev.common.IoUtils;
 
@@ -45,13 +43,13 @@ public class LqNotificationsPlugin implements Plugin {
   }
 
   @Override
-  public LqNotificationsDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
+  public LqNotificationsDelegate newDelegate(PluginContext context, Domain domain, PushRequest pushRequest, Push push) {
     LqNotificationsConfig config = getConfig(context.getCouchServer(), domain);
-    return new LqNotificationsDelegate(context, account, domain, pushRequest, (LqNotificationPush)push, config);
+    return new LqNotificationsDelegate(context, domain, pushRequest, (LqNotificationPush)push, config);
   }
 
   @Override
-  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
+  public void deleteConfig(PluginContext pluginContext, Domain domain) {
 
     LqNotificationsConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
@@ -61,12 +59,10 @@ public class LqNotificationsPlugin implements Plugin {
     } else {
       pluginContext.setLastMessage("Google Talk email configuration doesn't exist.");
     }
-
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void updateConfig(PluginContext pluginContext, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext pluginContext, Domain domain, MultivaluedMap<String, String> formParams) {
 
     UpdateLqNotificationsConfigAction action = new UpdateLqNotificationsConfigAction(domain, formParams);
 
@@ -79,11 +75,10 @@ public class LqNotificationsPlugin implements Plugin {
     getConfigStore(pluginContext.getCouchServer()).update(config);
 
     pluginContext.setLastMessage("Google Talk configuration updated.");
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void test(PluginContext context, Account account, Domain domain) throws Exception {
+  public void test(PluginContext context, Domain domain) throws Exception {
   }
 
   @Override
@@ -93,7 +88,7 @@ public class LqNotificationsPlugin implements Plugin {
   }
 
   @Override
-  public String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException {
+  public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
     LqNotificationsConfig config = getConfig(context.getCouchServer(), domain);
 

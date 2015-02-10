@@ -46,13 +46,13 @@ public class OcsMessagePlugin implements Plugin {
   }
 
   @Override
-  public OcsMessageDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
+  public OcsMessageDelegate newDelegate(PluginContext context, Domain domain, PushRequest pushRequest, Push push) {
     OcsMessageConfig config = getConfig(context.getCouchServer(), domain);
     return new OcsMessageDelegate(context, account, domain, pushRequest, (OcsPush)push, config);
   }
 
   @Override
-  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
+  public void deleteConfig(PluginContext pluginContext, Domain domain) {
 
     OcsMessageConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
@@ -67,12 +67,12 @@ public class OcsMessagePlugin implements Plugin {
   }
 
   @Override
-  public void updateConfig(PluginContext context, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext context, Domain domain, MultivaluedMap<String, String> formParams) {
     // do nothing...
   }
 
   @Override
-  public void test(PluginContext pluginContext, Account account, Domain domain) throws Exception {
+  public void test(PluginContext pluginContext, Domain domain) throws Exception {
 
     OcsMessageConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
@@ -118,7 +118,7 @@ public class OcsMessagePlugin implements Plugin {
   }
 
   @Override
-  public String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException {
+  public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
     OcsMessageConfig config = getConfig(context.getCouchServer(), domain);
 

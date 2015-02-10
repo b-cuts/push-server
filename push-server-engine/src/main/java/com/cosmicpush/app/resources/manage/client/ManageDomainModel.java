@@ -20,12 +20,12 @@ public class ManageDomainModel {
 
   private final Set<PluginModel> plugins = new TreeSet<>();
 
-  public ManageDomainModel(PluginContext context, Account account, Domain domain, String message) throws IOException {
+  public ManageDomainModel(PluginContext pluginContext, Account account, Domain domain, String message) throws IOException {
     this.message = message;
     this.domain = domain;
 
     for (Plugin plugin : PluginManager.getPlugins()) {
-      plugins.add(new PluginModel(context, plugin, account, domain));
+      plugins.add(new PluginModel(pluginContext, plugin, account, domain));
     }
   }
 

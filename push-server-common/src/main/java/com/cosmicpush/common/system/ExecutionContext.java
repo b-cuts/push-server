@@ -113,7 +113,6 @@ public class ExecutionContext implements PluginContext {
     return getAppContext().getDomainStore();
   }
 
-  @Override
   public AccountStore getAccountStore() {
     return getAppContext().getAccountStore();
   }

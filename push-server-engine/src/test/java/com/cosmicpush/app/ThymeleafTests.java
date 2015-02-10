@@ -86,7 +86,8 @@ public class ThymeleafTests {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    ManageAccountModel model = new ManageAccountModel(account, Arrays.asList(domain));
+    PluginContext pluginContext = testFactory.pluginContext(testFactory);
+    ManageAccountModel model = new ManageAccountModel(pluginContext, account, Arrays.asList(domain));
 
     Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_ACCOUNT, model);
     msgBodyWriter.writeTo(leaf, writer);

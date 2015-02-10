@@ -315,10 +315,6 @@ public class Account {
     this.emailConfirmationCode = null;
   }
 
-  public String getReasonNotPermitted(Push action) {
-    return null; // We will support this later.
-  }
-
   public String toString() {
     return emailAddress;
   }

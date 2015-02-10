@@ -40,7 +40,7 @@ public class ManageAccountResource {
     Account account = execContext.getAccount();
     List<Domain> domains = execContext.getDomainStore().getDomains(account);
 
-    ManageAccountModel model = new ManageAccountModel(account, domains);
+    ManageAccountModel model = new ManageAccountModel(execContext, account, domains);
     return new Thymeleaf(ThymeleafViewFactory.MANAGE_ACCOUNT, model);
   }
 
