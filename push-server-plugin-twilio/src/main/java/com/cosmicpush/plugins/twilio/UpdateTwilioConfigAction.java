@@ -10,7 +10,6 @@ import javax.ws.rs.core.MultivaluedMap;
 public class UpdateTwilioConfigAction implements ValidatableAction {
 
     private final Domain domain;
-
     private final String accountSid;
     private final String authToken;
     private final String fromPhoneNumber;

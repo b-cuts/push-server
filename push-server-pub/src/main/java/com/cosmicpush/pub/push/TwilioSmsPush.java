@@ -34,7 +34,7 @@ public class TwilioSmsPush implements Push, Serializable {
 
   private final String callbackUrl;
 
-  private TwilioSmsPush(@JsonProperty("recipient") String from,
+  private TwilioSmsPush(@JsonProperty("from") String from,
                         @JsonProperty("recipient") String recipient,
                         @JsonProperty("message") String message,
                         @JsonProperty("callbackUrl") String callbackUrl,
