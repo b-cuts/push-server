@@ -14,6 +14,8 @@ import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.accounts.actions.UpdateAccountAction;
 import com.cosmicpush.common.clients.Domain;
+import org.crazyyak.dev.common.EqualsUtils;
+import org.crazyyak.dev.common.exceptions.ApiException;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -28,7 +30,7 @@ public class ManageAccountResource {
 
   private final Account account;
 
-  private final ExecutionContext context = CpApplication.getExecutionContext();
+  private final ExecutionContext execContext = CpApplication.getExecutionContext();
 
   public ManageAccountResource(Account account) {
     this.account = account;
@@ -45,11 +47,25 @@ public class ManageAccountResource {
   }
 
   @POST
-  public Response updateAccount(@FormParam("firstName") String firstName, @FormParam("lastName") String lastName, @FormParam("emailAddress") String emailAddress) throws Exception {
+  public Response updateAccount(@FormParam("firstName") String firstName, @FormParam("lastName") String lastName, @FormParam("emailAddress") String newEmailAddress) throws Exception {
 
-    UpdateAccountAction action = new UpdateAccountAction(firstName, lastName, emailAddress);
+    String oldEmailAddress = account.getEmailAddress();
+    if (EqualsUtils.objectsNotEqual(oldEmailAddress, newEmailAddress)) {
+      // They are changing the emails address.
+      if (execContext.getAccountStore().getByEmail(newEmailAddress) != null) {
+        String msg = String.format("The email address %s is already in use.", newEmailAddress);
+        throw ApiException.conflict(msg);
+      }
+    }
+
+    UpdateAccountAction action = new UpdateAccountAction(firstName, lastName, newEmailAddress);
     account.apply(action);
-    context.getAccountStore().update(account);
+    execContext.getAccountStore().update(account);
+
+    if (EqualsUtils.objectsNotEqual(oldEmailAddress, newEmailAddress)) {
+      // The email address has changed - we will need to update the session
+      execContext.getSessionStore().newSession(newEmailAddress);
+    }
 
     return Response.seeOther(new URI("manage/account")).build();
   }

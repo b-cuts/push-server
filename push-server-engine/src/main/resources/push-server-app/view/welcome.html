@@ -13,6 +13,8 @@
     <div th:if="${it.account != null}">
       <div style="float: left">
         <a th:href="${contextRoot}+'/manage/account'">My Account</a>
+        <br/><br/>
+        <a th:href="${contextRoot}+'/sign-out'">Sign Out</a>
       </div>
     </div>
     <div th:if="${it.account == null}">
