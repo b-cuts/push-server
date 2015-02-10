@@ -8,13 +8,14 @@
     <div style="float: right">
       <h1>Cosmic Push</h1>
       <div>One API - Infinite Destinations</div>
+      <div style="font-size: smaller; text-align: right; color: #828282">
+        <span th:text="${emailAddress}"></span> (<a style="color: #828282" th:href="${contextRoot}+'/sign-out'">sign out</a>)
+      </div>
     </div>
 
     <div th:if="${it.account != null}">
       <div style="float: left">
         <a th:href="${contextRoot}+'/manage/account'">My Account</a>
-        <br/><br/>
-        <a th:href="${contextRoot}+'/sign-out'">Sign Out</a>
       </div>
     </div>
     <div th:if="${it.account == null}">
@@ -22,8 +23,8 @@
 
         <table>
           <tr>
-            <td><label for="user-name">User Name:</label></td>
-            <td><input id="user-name" type='text' name='username' th:value='${it.username}'/></td>
+            <td><label for="username">E-Mail Address:</label></td>
+            <td><input id="username" type='text' name='username' th:value='${it.emailAddress}'/></td>
           </tr>
           <tr>
             <td><label for="password">Password:</label></td>

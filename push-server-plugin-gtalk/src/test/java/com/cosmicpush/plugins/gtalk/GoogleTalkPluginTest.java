@@ -17,7 +17,10 @@ public class GoogleTalkPluginTest {
 
     @Test
     public void iconUrlTest() {
-        URL url = getClass().getResource("/com/cosmicpush/plugins/gtalk/icon.png");
-        Assert.assertNotNull(url);
+      URL url = getClass().getResource("/com/cosmicpush/plugins/gtalk/icon-enabled.png");
+      Assert.assertNotNull(url);
+
+      url = getClass().getResource("/com/cosmicpush/plugins/gtalk/icon-disabled.png");
+      Assert.assertNotNull(url);
     }
 }

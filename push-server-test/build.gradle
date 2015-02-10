@@ -8,6 +8,8 @@ project(":push-server-test") {
 
   version = pushServerTest
 
+  apply from: "../build-config-deployer.gradle"
+
   dependencies {
     compile project(":push-server-common")
     testCompile ("org.testng:testng:$testNgVersion")
