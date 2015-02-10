@@ -3,6 +3,8 @@ package com.cosmicpush.plugins.twilio;
 import com.cosmicpush.common.clients.Domain;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
@@ -43,7 +45,7 @@ public class TwilioConfigTest {
         String recipient = "+12225551111";
         String message = "test message";
 
-        Domain domain = new Domain(domainId, revision, "89989998", "clientKey", "clientPass");
+        Domain domain = new Domain(domainId, revision, "domainKey", "domainPass", 3, new ArrayList<String>());
         UpdateTwilioConfigAction updateTwilioConfigAction = new UpdateTwilioConfigAction(domain, accountSid, authToken, fromPhoneNumber, recipient, message);
         TwilioConfig configClone = new TwilioConfig().apply(updateTwilioConfigAction);
 

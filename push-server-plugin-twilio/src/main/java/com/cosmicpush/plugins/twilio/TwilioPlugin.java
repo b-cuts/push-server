@@ -6,14 +6,12 @@
 
 package com.cosmicpush.plugins.twilio;
 
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
+import com.cosmicpush.common.plugins.PluginSupport;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.TwilioSmsPush;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.resource.factory.MessageFactory;
@@ -29,11 +27,12 @@ import java.util.List;
 
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
-public class TwilioPlugin implements Plugin {
+public class TwilioPlugin extends PluginSupport {
 
     private TwilioConfigStore _configStore;
 
     public TwilioPlugin() {
+        super(TwilioSmsPush.PUSH_TYPE);
     }
 
     public TwilioConfigStore getConfigStore(CpCouchServer couchServer) {
@@ -50,18 +49,13 @@ public class TwilioPlugin implements Plugin {
     }
 
     @Override
-    public PushType getPushType() {
-        return TwilioSmsPush.PUSH_TYPE;
-    }
-
-    @Override
-    public TwilioDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
+    public TwilioDelegate newDelegate(PluginContext context, Domain domain, PushRequest pushRequest, Push push) {
         TwilioConfig config = getConfig(context.getCouchServer(), domain);
-        return new TwilioDelegate(context, account, domain, pushRequest, (TwilioSmsPush)push, config);
+        return new TwilioDelegate(context, domain, pushRequest, (TwilioSmsPush)push, config);
     }
 
     @Override
-    public void deleteConfig(PluginContext context, Account account, Domain domain) {
+    public void deleteConfig(PluginContext context, Domain domain) {
 
         TwilioConfig config = getConfig(context.getCouchServer(), domain);
 
@@ -71,12 +65,10 @@ public class TwilioPlugin implements Plugin {
         } else {
             context.setLastMessage("Twilio SMS configuration doesn't exist.");
         }
-
-        context.getAccountStore().update(account);
     }
 
     @Override
-    public void updateConfig(PluginContext context, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+    public void updateConfig(PluginContext context, Domain domain, MultivaluedMap<String, String> formParams) {
         UpdateTwilioConfigAction action = new UpdateTwilioConfigAction(domain, formParams);
 
         TwilioConfig twilioConfig = getConfig(context.getCouchServer(), domain);
@@ -88,18 +80,16 @@ public class TwilioPlugin implements Plugin {
         getConfigStore(context.getCouchServer()).update(twilioConfig);
 
         context.setLastMessage("Twilio configuration updated.");
-        context.getAccountStore().update(account);
     }
 
     @Override
-    public void test(PluginContext context, Account account, Domain domain) throws Exception {
+    public void test(PluginContext context, Domain domain) throws Exception {
 
         TwilioConfig config = getConfig(context.getCouchServer(), domain);
 
         if (config == null) {
             String msg = "The Twilio config has not been specified.";
             context.setLastMessage(msg);
-            context.getAccountStore().update(account);
             return;
         }
 
@@ -118,20 +108,16 @@ public class TwilioPlugin implements Plugin {
     }
 
     @Override
-    public byte[] getIcon() throws IOException {
-        InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/twilio/icon.png");
-        return IoUtils.toBytes(stream);
-    }
-
-    @Override
-    public String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException {
+    public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
         TwilioConfig config = getConfig(context.getCouchServer(), domain);
 
         InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/twilio/admin.html");
         String content = IoUtils.toString(stream);
 
-        content = content.replace("${domain-name}",   nullToString(domain.getDomainKey()));
+        content = content.replace("${legend-class}",              nullToString(config == null ? "no-config" : ""));
+        content = content.replace("${push-type}",                 nullToString(getPushType().getCode()));
+        content = content.replace("${domain-key}",   nullToString(domain.getDomainKey()));
         content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
 
         content = content.replace("${config-account-sid}",  nullToString(config == null ? null : config.getAccountSid()));
