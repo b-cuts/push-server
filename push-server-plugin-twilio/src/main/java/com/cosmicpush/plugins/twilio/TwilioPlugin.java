@@ -119,7 +119,7 @@ public class TwilioPlugin implements Plugin {
 
     @Override
     public byte[] getIcon() throws IOException {
-        InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/gtalk/icon.png");
+        InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/twilio/icon.png");
         return IoUtils.toBytes(stream);
     }
 
