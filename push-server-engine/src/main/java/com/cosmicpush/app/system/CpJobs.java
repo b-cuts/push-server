@@ -47,8 +47,9 @@ public class CpJobs {
         LocalDateTime now = DateUtils.currentLocalDateTime();
         List<Account> accounts = appContext.getAccountStore().getAll();
 
-        for (Account account : accounts) {
-          pruneEvents(now, account);
+        List<Domain> domains = appContext.getDomainStore().getAll();
+        for (Domain domain : domains) {
+          pruneEvents(now, domain);
         }
       }
     } catch (Exception ex) {
@@ -58,34 +59,28 @@ public class CpJobs {
     }
   }
 
-  private void pruneEvents(LocalDateTime now, Account account) {
-
-    if (account.getRetentionDays() <= 0) {
+  private void pruneEvents(LocalDateTime now, Domain domain) {
+    if (domain.getRetentionDays() <= 0) {
       return;
     }
 
-    List<Domain> domains = appContext.getDomainStore().getDomains(account);
+    int count = 0;
+    QueryResult<PushRequest> queryResult = appContext.getPushRequestStore().getByClient(domain, 100);
 
-    for (Domain domain : domains) {
+    do {
+      List<EntityDocument<PushRequest>> list = queryResult.getDocumentList();
+      for (EntityDocument<PushRequest> document : list) {
+        pruneEvents(now, domain, document);
+      }
 
-      int count = 0;
-      QueryResult<PushRequest> queryResult = appContext.getPushRequestStore().getByClient(domain, 100);
+      count += queryResult.getSize();
+      log.info(format("Deleted %s records\n", count));
 
-      do {
-        List<EntityDocument<PushRequest>> list = queryResult.getDocumentList();
-        for (EntityDocument<PushRequest> document : list) {
-          pruneEvents(now, account, document);
-        }
-
-        count += queryResult.getSize();
-        log.info(format("Deleted %s records\n", count));
-
-      } while (queryResult.nextPage());
-    }
+    } while (queryResult.nextPage());
   }
 
-  private void pruneEvents(LocalDateTime now, Account account, EntityDocument<PushRequest> document) {
-    int days = account.getRetentionDays();
+  private void pruneEvents(LocalDateTime now, Domain domain, EntityDocument<PushRequest> document) {
+    int days = domain.getRetentionDays();
     PushRequest pushRequest = document.getEntity();
     LocalDateTime later = pushRequest.getCreatedAt().plusWeeks(days);
     if (now.isAfter(later)) {

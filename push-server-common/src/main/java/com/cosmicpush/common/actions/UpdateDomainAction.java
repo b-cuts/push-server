@@ -11,10 +11,12 @@ public class UpdateDomainAction implements ValidatableAction {
 
   private final String domainKey;
   private final String domainPassword;
+  private final int retentionDays;
 
-  public UpdateDomainAction(String domainKey, String domainPassword) {
+  public UpdateDomainAction(String domainKey, String domainPassword, int retentionDays) {
     this.domainKey = domainKey;
     this.domainPassword = domainPassword;
+    this.retentionDays = (retentionDays < 0) ? 0 : retentionDays;
   }
 
   public String getDomainKey() {
@@ -23,6 +25,10 @@ public class UpdateDomainAction implements ValidatableAction {
 
   public String getDomainPassword() {
     return domainPassword;
+  }
+
+  public int getRetentionDays() {
+    return retentionDays;
   }
 
   @Override

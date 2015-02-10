@@ -25,18 +25,22 @@
           </colgroup>
           <tbody>
             <tr>
-              <td><label for="cp-client-name">Name:</label></td>
-              <td><input type="text" id="cp-client-name" name="domainKey" th:value="${it.domain.domainKey}" style="width:200px;"/></td>
+              <td><label for="cp-domain-name">Name:</label></td>
+              <td><input type="text" id="cp-domain-name" name="domainKey" th:value="${it.domain.domainKey}" style="width:200px;"/></td>
               <td rowspan="3">&nbsp;</td>
             </tr>
             <tr>
-              <td><label for="cp-client-password">Password:</label></td>
-              <td><input type="text" id="cp-client-password" name="domainPassword" th:value="${it.domain.domainPassword}" style="width:200px;"/></td>
+              <td><label for="cp-domain-password">Password:</label></td>
+              <td><input type="text" id="cp-domain-password" name="domainPassword" th:value="${it.domain.domainPassword}" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td><label for="cp-domain-retention">Retention:</label></td>
+              <td><input type="text" id="cp-domain-retention" name="retentionDays" th:value="${it.domain.retentionDays}" style="width:50px;"/>&nbsp;days</td>
             </tr>
             <tr>
               <td colspan="2" style="text-align: right">
-                <button type="submit" th:formaction="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}+'/client'" style="float:right">Update</button>
-                <button type="submit" th:formaction="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}+'/client/delete'" style="float:left">Delete</button>
+                <button type="submit" th:formaction="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}" style="float:right">Update</button>
+                <button type="submit" th:formaction="${contextRoot}+'/manage/domain/'+${it.domain.domainKey}+'/delete'" style="float:left">Delete</button>
               </td>
             </tr>
           </tbody>

@@ -48,8 +48,6 @@ public class Account {
   private boolean emailConfirmed;
   private String emailConfirmationCode;
 
-  private int retentionDays;
-
   @JsonCreator
   private Account(
       @JacksonInject("accountId") String accountId,
@@ -199,13 +197,6 @@ public class Account {
 
   public LocalDateTime getCreatedAt() {
     return createdAt;
-  }
-
-  public int getRetentionDays() {
-    return retentionDays;
-  }
-  public void setRetentionDays(int retentionDays) {
-    this.retentionDays = retentionDays;
   }
 
   public boolean equals(Object object) {

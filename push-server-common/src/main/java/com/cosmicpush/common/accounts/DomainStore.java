@@ -29,4 +29,8 @@ public class DomainStore extends DefaultCouchStore<Domain> {
     List<Domain> response = super.getEntities("byDomainKey", domainKey);
     return (response.isEmpty()) ? null : response.get(0);
   }
+
+  public List<Domain> getAll() {
+    return super.getEntities("byDomainKey");
+  }
 }

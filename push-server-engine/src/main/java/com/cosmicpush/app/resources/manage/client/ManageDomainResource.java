@@ -141,8 +141,7 @@ public class ManageDomainResource {
   }
 
   @POST
-  @Path("/client")
-  public Response updateClient(@FormParam("domainKey") String domainKey, @FormParam("domainPassword") String domainPassword) throws Exception {
+  public Response updateClient(@FormParam("domainKey") String domainKey, @FormParam("domainPassword") String domainPassword, @FormParam("retentionDays") int retentionDays) throws Exception {
 
     Domain domain = getDomain();
     DomainStore domainStore = execContext.getDomainStore();
@@ -153,7 +152,7 @@ public class ManageDomainResource {
       throw ApiException.badRequest(msg);
     }
 
-    UpdateDomainAction action = new UpdateDomainAction(domainKey, domainPassword);
+    UpdateDomainAction action = new UpdateDomainAction(domainKey, domainPassword, retentionDays);
     execContext.setLastMessage("Domain configuration changed.");
 
     domain.apply(action);
@@ -164,7 +163,7 @@ public class ManageDomainResource {
   }
 
   @POST
-  @Path("/client/delete")
+  @Path("/delete")
   public Response deleteClient() throws Exception {
 
     Domain domain = getDomain();

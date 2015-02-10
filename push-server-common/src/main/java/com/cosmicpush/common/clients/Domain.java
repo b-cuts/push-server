@@ -30,14 +30,17 @@ public class Domain {
   private String domainKey;
   private String domainPassword;
 
+  private int retentionDays;
+
   private final List<String> accountIds = new ArrayList<>();
 
   @JsonCreator
   public Domain(@JacksonInject("domainId") String domainId,
                 @JacksonInject("revision") String revision,
-                @JsonProperty("accountIds") List<String> accountIds,
                 @JsonProperty("domainKey") String domainKey,
-                @JsonProperty("domainPassword") String domainPassword) {
+                @JsonProperty("domainPassword") String domainPassword,
+                @JsonProperty("retentionDays") int retentionDays,
+                @JsonProperty("accountIds") List<String> accountIds) {
 
     this.domainId = domainId;
     this.revision = revision;
@@ -45,12 +48,17 @@ public class Domain {
     this.domainKey = domainKey;
     this.domainPassword = domainPassword;
 
-    this.accountIds.addAll(accountIds);
+    this.retentionDays = retentionDays;
+
+    if (accountIds != null) {
+      this.accountIds.addAll(accountIds);
+    }
   }
 
   public Domain (CreateDomainAction action) {
     action.validate(new RequestErrors()).assertNoErrors();
 
+    this.retentionDays = 7;
     this.domainId = CpIdGenerator.newId();
     this.accountIds.add(action.getAccountId());
     this.domainKey = action.getDomainKey();
@@ -65,6 +73,10 @@ public class Domain {
   @CouchRevision
   public String getRevision() {
     return revision;
+  }
+
+  public int getRetentionDays() {
+    return retentionDays;
   }
 
   public List<String> getAccountIds() {
@@ -84,6 +96,7 @@ public class Domain {
 
     this.domainKey = action.getDomainKey();
     this.domainPassword = action.getDomainPassword();
+    this.retentionDays = action.getRetentionDays();
   }
 
   public boolean equals(Object object) {
