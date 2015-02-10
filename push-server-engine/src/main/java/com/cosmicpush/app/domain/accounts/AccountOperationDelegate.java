@@ -23,7 +23,7 @@ public class AccountOperationDelegate {
   }
 
   public Account executeOperation(Account account, ChangePasswordAction operation) {
-    account.changePassword(operation);
+    account.apply(operation);
     store.update(account);
     return account;
   }

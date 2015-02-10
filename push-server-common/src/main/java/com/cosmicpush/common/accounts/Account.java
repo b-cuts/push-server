@@ -123,6 +123,12 @@ public class Account {
     this.emailAddress = action.getEmailAddress();
   }
 
+  public void apply(ChangePasswordAction action) {
+    validatePassword(action.getCurrent());
+    validatePasswords(action.getPassword(), action.getConfirmed());
+    this.password = action.getPassword();
+  }
+
   public boolean hasTempPassword() {
     return StringUtils.isNotBlank(tempPassword);
   }
@@ -151,12 +157,6 @@ public class Account {
     if (StringUtils.isBlank(password) || password.equals(confirmed) == false) {
       throw ApiException.badRequest("The two passwords do not match.");
     }
-  }
-
-  public void changePassword(ChangePasswordAction action) {
-    validatePassword(action.getCurrent());
-    validatePasswords(action.getPassword(), action.getConfirmed());
-    this.password = action.getPassword();
   }
 
   public String getFirstName() {

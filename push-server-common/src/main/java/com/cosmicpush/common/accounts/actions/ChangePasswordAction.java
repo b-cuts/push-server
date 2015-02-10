@@ -15,7 +15,7 @@ public class ChangePasswordAction extends AccountAction {
   private final String password;
   private final String confirmed;
 
-  public ChangePasswordAction(boolean authenticate, String current, String password, String confirmed) {
+  public ChangePasswordAction(String current, String password, String confirmed) {
     this.current = current;
     this.password = password;
     this.confirmed = confirmed;
