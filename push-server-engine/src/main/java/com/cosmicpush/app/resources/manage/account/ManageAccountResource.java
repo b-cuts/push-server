@@ -43,7 +43,7 @@ public class ManageAccountResource {
     List<Domain> domains = execContext.getDomainStore().getDomains(account);
 
     ManageAccountModel model = new ManageAccountModel(execContext, account, domains);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_ACCOUNT, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_ACCOUNT, model);
   }
 
   @POST

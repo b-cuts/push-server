@@ -75,7 +75,7 @@ public class ManageDomainResource {
     execContext.getAccountStore().update(getAccount());
 
     ManageDomainModel model = new ManageDomainModel(execContext, getAccount(), domain, lastMessage);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_CLIENT, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_API_CLIENT, model);
   }
 
   @GET
@@ -102,7 +102,7 @@ public class ManageDomainResource {
     Collections.reverse(requests);
 
     DomainRequestsModel model = new DomainRequestsModel(getAccount(), domain, requests);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
   }
 
   @POST

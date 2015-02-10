@@ -4,10 +4,11 @@
   <head th:include="fragments::html_header" th:with="pageTitle=': All Requests'"></head>
 
   <body>
-    <div style="position: absolute; top: 0; right: 10px;" th:include="fragments::page_title"></div>
+    <div style="float: right" th:include="fragments::page_title"></div>
 
     <h1 th:text="${it.domain.domainKey}+': Requests'"></h1>
     <div th:include="fragments::client_sub_menu"></div>
+    <div style="clear:both"></div>
 
     <table class="requests-table" style="width: 100%; margin-top: 1em">
       <colgroup>

@@ -43,7 +43,7 @@ public class RootResource extends RootResourceSupport {
 
   private static final Log log = LogFactory.getLog(RootResource.class);
 
-  private final ExecutionContext context = CpApplication.getExecutionContext();
+  private final ExecutionContext execContext = CpApplication.getExecutionContext();
 
   public RootResource() {
     log.info("Created ");
@@ -54,7 +54,7 @@ public class RootResource extends RootResourceSupport {
 
   @Override
   public UriInfo getUriInfo() {
-    return context.getUriInfo();
+    return execContext.getUriInfo();
   }
 
   @GET
@@ -69,7 +69,7 @@ public class RootResource extends RootResourceSupport {
     } else if (REASON_SIGNED_OUT == reasonCode) {
       message = "You have successfully signed out";
     }
-    return new Thymeleaf(ThymeleafViewFactory.WELCOME, new WelcomeModel(context.getAccount(), message, username, password));
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.WELCOME, new WelcomeModel(execContext.getAccount(), message, username, password));
   }
 
   public static class WelcomeModel {
@@ -94,17 +94,17 @@ public class RootResource extends RootResourceSupport {
   @Produces(MediaType.TEXT_HTML)
   public Response signIn(@FormParam("username") String username, @FormParam("password") String password, @CookieParam(SessionStore.SESSION_COOKIE_NAME) String sessionId) throws Exception {
 
-    Account account = context.getAccountStore().getByEmail(username);
+    Account account = execContext.getAccountStore().getByEmail(username);
 
     if (account == null || EqualsUtils.objectsNotEqual(account.getPassword(), password)) {
-      context.getSessionStore().remove(sessionId);
+      execContext.getSessionStore().remove(sessionId);
 
       NewCookie sessionCookie = SessionStore.toCookie(getUriInfo(), null);
       URI other = getUriInfo().getBaseUriBuilder().queryParam("r", REASON_CODE_INVALID_USERNAME_OR_PASSWORD).build();
       return Response.seeOther(other).cookie(sessionCookie).build();
     }
 
-    Session session = context.getSessionStore().newSession(username);
+    Session session = execContext.getSessionStore().newSession(username);
 
     NewCookie sessionCookie = SessionStore.toCookie(getUriInfo(), session);
     URI other = getUriInfo().getBaseUriBuilder().path("manage").build();
@@ -116,7 +116,7 @@ public class RootResource extends RootResourceSupport {
   @Produces(MediaType.TEXT_HTML)
   public Response signOut(@CookieParam(SessionStore.SESSION_COOKIE_NAME) String sessionId) throws Exception {
     if (sessionId != null) {
-      context.getSessionStore().remove(sessionId);
+      execContext.getSessionStore().remove(sessionId);
     }
     NewCookie sessionCookie = SessionStore.toCookie(getUriInfo(), null);
     URI other = getUriInfo().getBaseUriBuilder().queryParam("r", REASON_SIGNED_OUT).build();
@@ -141,12 +141,12 @@ public class RootResource extends RootResourceSupport {
   @GET @Path("/q/{pushRequestId}")
   public Response resolveCallback(@PathParam("pushRequestId") String pushRequestId) throws URISyntaxException {
 
-    PushRequest request = context.getPushRequestStore().getByPushRequestId(pushRequestId);
+    PushRequest request = execContext.getPushRequestStore().getByPushRequestId(pushRequestId);
     if (request == null) {
       throw ApiException.notFound("API request not found for " + pushRequestId);
     }
 
-    Domain domain = context.getDomainStore().getByDocumentId(request.getDomainId());
+    Domain domain = execContext.getDomainStore().getByDocumentId(request.getDomainId());
     if (domain == null) {
       throw ApiException.notFound("Domain not found for " + request.getDomainId());
     }
@@ -161,7 +161,7 @@ public class RootResource extends RootResourceSupport {
       return Response.seeOther(new URI(path)).build();
     }
 
-    return Response.seeOther(new URI("")).build();
+    return Response.seeOther(getUriInfo().getBaseUriBuilder().build()).build();
   }
 
   @GET @Path("/health-check")
@@ -173,27 +173,31 @@ public class RootResource extends RootResourceSupport {
   @GET @Path("/privacy-policy")
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf privacyPolicy() {
-    return new Thymeleaf("/mun-mon/general/privacy-policy.jsp");
+    throw new UnsupportedOperationException();
+    // return new Thymeleaf("/mun-mon/general/privacy-policy.jsp");
   }
 
   @GET @Path("/terms-of-service")
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf termsOfService() {
-    return new Thymeleaf("/mun-mon/general/terms-of-service.jsp");
+    throw new UnsupportedOperationException();
+    // return new Thymeleaf("/mun-mon/general/terms-of-service.jsp");
   }
 
   @GET // TODO - implement the faq.jsp page.
   @Path("{resource: (faq\\.).* }")
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf getFaq() {
-    return new Thymeleaf("/mun-mon/faq.jsp");
+    throw new UnsupportedOperationException();
+    // return new Thymeleaf("/mun-mon/faq.jsp");
   }
 
   @GET // TODO - implement the contact.jsp page.
   @Path("{resource: (contact\\.).* }")
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf getContact() {
-    return new Thymeleaf("/mun-mon/contact.jsp");
+    throw new UnsupportedOperationException();
+    // return new Thymeleaf("/mun-mon/contact.jsp");
   }
 }
 

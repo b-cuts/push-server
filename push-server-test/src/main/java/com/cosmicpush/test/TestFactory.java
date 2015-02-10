@@ -18,6 +18,7 @@ import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
+import com.cosmicpush.common.system.Session;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.UserAgent;
@@ -214,5 +215,9 @@ public class TestFactory {
       @Override public AppContext getAppContext() { return null; }
       @Override public void setLastMessage(String message) {}
     };
+  }
+
+  public Session createSession() {
+    return new Session(0, "test@example.com");
   }
 }

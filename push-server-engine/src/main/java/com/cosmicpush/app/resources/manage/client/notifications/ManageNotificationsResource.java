@@ -31,7 +31,7 @@ public class ManageNotificationsResource {
 
   private final Account account;
   private final Domain domain;
-  private final ExecutionContext context = CpApplication.getExecutionContext();
+  private final ExecutionContext execContext = CpApplication.getExecutionContext();
 
   public ManageNotificationsResource(Account account, Domain domain) {
     this.account = account;
@@ -43,13 +43,13 @@ public class ManageNotificationsResource {
   public Thymeleaf viewNotifications() throws Exception {
 
     List<PushRequest> requests = new ArrayList<>();
-    requests.addAll(context.getPushRequestStore().getByClientAndType(domain, LqNotificationPush.PUSH_TYPE));
+    requests.addAll(execContext.getPushRequestStore().getByClientAndType(domain, LqNotificationPush.PUSH_TYPE));
 
     Collections.sort(requests);
     Collections.reverse(requests);
 
     DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
   }
 
   @GET
@@ -57,10 +57,10 @@ public class ManageNotificationsResource {
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf viewNotifications(@PathParam("pushRequestId") String pushRequestId) throws Exception {
 
-    PushRequest request = context.getPushRequestStore().getByPushRequestId(pushRequestId);
+    PushRequest request = execContext.getPushRequestStore().getByPushRequestId(pushRequestId);
     LqNotificationPush notification = request.getNotificationPush();
 
     DomainNotificationModel model = new DomainNotificationModel(account, domain, request, notification);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
   }
 }

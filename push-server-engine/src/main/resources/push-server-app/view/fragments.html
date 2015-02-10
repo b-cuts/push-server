@@ -19,9 +19,11 @@
     </html_header>
 
     <page_title>
-      <h1>Cosmic Push</h1>
-      <div>One API - Infinite Destinations</div>
-      <div style="text-align: right"><a th:href="${contextRoot}+'/sign-out'">Sign Out</a></div>
+      <h1 style="text-align: right">Cosmic Push</h1>
+      <div style="text-align: right">One API - Infinite Destinations</div>
+      <div style="font-size: smaller; text-align: right; color: #828282">
+        <span th:text="${emailAddress}"></span> (<a style="color: #828282" th:href="${contextRoot}+'/sign-out'">sign out</a>)
+      </div>
     </page_title>
 
     <req_icon>
@@ -33,7 +35,7 @@
     </req_icon>
 
     <client_sub_menu>
-      <a style="margin-left: 10px" th:href="|${contextRoot}/manage/account|">My Account</a>
+      <a th:href="|${contextRoot}/manage/account|">My Account</a>
       <!--@thymesVar id="it" type="com.cosmicpush.app.resources.manage.client.DomainRequestsModel"-->
       <a style="margin-left: 10px" th:href="|${contextRoot}/manage/domain/${it.domain.domainKey}|">Manage</a>
       <a style="margin-left: 10px" th:href="|${contextRoot}/manage/domain/${it.domain.domainKey}/requests|">All Requests</a>

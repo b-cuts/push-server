@@ -33,7 +33,7 @@ public class ManageEmailsResource {
 
   private final Account account;
   private final Domain domain;
-  private final ExecutionContext context = CpApplication.getExecutionContext();
+  private final ExecutionContext execContext = CpApplication.getExecutionContext();
 
   public ManageEmailsResource(Account account, Domain domain) {
     this.account = account;
@@ -44,11 +44,11 @@ public class ManageEmailsResource {
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf viewEmailEvents() throws Exception {
     List<PushRequest> requests = new ArrayList<>();
-    requests.addAll(context.getPushRequestStore().getByClientAndType(domain, SesEmailPush.PUSH_TYPE));
-    requests.addAll(context.getPushRequestStore().getByClientAndType(domain, SmtpEmailPush.PUSH_TYPE));
+    requests.addAll(execContext.getPushRequestStore().getByClientAndType(domain, SesEmailPush.PUSH_TYPE));
+    requests.addAll(execContext.getPushRequestStore().getByClientAndType(domain, SmtpEmailPush.PUSH_TYPE));
 
     EmailsModel model = new EmailsModel(account, domain, requests);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAILS, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_API_EMAILS, model);
   }
 
   @GET
@@ -56,27 +56,27 @@ public class ManageEmailsResource {
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf viewEmailEvent(@PathParam("pushRequestId") String pushRequestId) throws Exception {
 
-    PushRequest pushRequest = context.getPushRequestStore().getByPushRequestId(pushRequestId);
+    PushRequest pushRequest = execContext.getPushRequestStore().getByPushRequestId(pushRequestId);
     EmailPush email = pushRequest.getEmailPush();
 
     EmailModel model = new EmailModel(account, domain, pushRequest, email);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAIL, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_API_EMAIL, model);
   }
 
   @POST
   @Path("/{pushRequestId}/retry")
   public Response retryEmailMessage(@Context ServletContext servletContext, @PathParam("pushRequestId") String pushRequestId) throws Exception {
 
-    PushRequest pushRequest = context.getPushRequestStore().getByPushRequestId(pushRequestId);
+    PushRequest pushRequest = execContext.getPushRequestStore().getByPushRequestId(pushRequestId);
     EmailPush push = (EmailPush)pushRequest.getPush();
 
     if (SesEmailPush.PUSH_TYPE.equals(push.getPushType())) {
       Plugin plugin = PluginManager.getPlugin(push.getPushType());
-      plugin.newDelegate(context, domain, pushRequest, push).retry();
+      plugin.newDelegate(execContext, domain, pushRequest, push).retry();
 
     } else if (SmtpEmailPush.PUSH_TYPE.equals(push.getPushType())) {
       Plugin plugin = PluginManager.getPlugin(push.getPushType());
-      plugin.newDelegate(context, domain, pushRequest, push).retry();
+      plugin.newDelegate(execContext, domain, pushRequest, push).retry();
 
     } else {
       String msg = String.format("The retry operation is not supported for the push type \"%s\".", push.getPushType().getCode());
