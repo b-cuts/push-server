@@ -25,26 +25,20 @@ import java.util.List;
 
 public class TwilioDelegate extends AbstractDelegate {
 
-  private final Account account;
   private final Domain domain;
 
   private final TwilioSmsPush push;
   private final TwilioConfig config;
 
-  public TwilioDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, TwilioSmsPush push, TwilioConfig config) {
+  public TwilioDelegate(PluginContext pluginContext, Domain domain, PushRequest pushRequest, TwilioSmsPush push, TwilioConfig config) {
     super(pluginContext, pushRequest);
     this.config = ExceptionUtils.assertNotNull(config, "config");
     this.push = ExceptionUtils.assertNotNull(push, "push");
-    this.account = ExceptionUtils.assertNotNull(account, "account");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
   }
 
   @Override
   public synchronized RequestStatus processRequest() throws Exception {
-    String reasonNotPermitted = account.getReasonNotPermitted(push);
-    if (StringUtils.isNotBlank(reasonNotPermitted)) {
-      return pushRequest.denyRequest(reasonNotPermitted);
-    }
 
     TwilioRestClient client = new TwilioRestClient(config.getAccountSid(), config.getAuthToken());
 

@@ -13,7 +13,7 @@ public class PluginModel implements Comparable<PluginModel>{
 
   public PluginModel(PluginContext context, Plugin plugin, Account account, Domain domain) throws IOException {
     this.pushType = plugin.getPushType();
-    this.htmlContent = plugin.getAdminUi(context, account, domain);
+    this.htmlContent = plugin.getAdminUi(context, domain);
   }
 
   public PushType getPushType() {

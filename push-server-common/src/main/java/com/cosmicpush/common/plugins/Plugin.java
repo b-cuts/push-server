@@ -1,7 +1,6 @@
 package com.cosmicpush.common.plugins;
 
 import com.cosmicpush.common.AbstractDelegate;
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.CpCouchServer;
@@ -16,11 +15,15 @@ public interface Plugin {
   PushType getPushType();
   PluginConfig getConfig(CpCouchServer couchServer, Domain domain);
 
-  byte[] getIcon() throws IOException;
-  String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException;
+  byte[] getIcon(PluginContext context, Domain domain) throws IOException;
+  byte[] getEnabledIcon() throws IOException;
+  byte[] getDisabledIcon() throws IOException;
 
-  AbstractDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push);
-  void test(PluginContext context, Account account, Domain domain) throws Exception;
-  void updateConfig(PluginContext context, Account account, Domain domain, MultivaluedMap<String, String> formParams);
-  void deleteConfig(PluginContext context, Account account, Domain domain);
+  String getAdminUi(PluginContext context, Domain domain) throws IOException;
+
+  AbstractDelegate newDelegate(PluginContext context, Domain domain, PushRequest pushRequest, Push push);
+  void test(PluginContext context, Domain domain) throws Exception;
+  void updateConfig(PluginContext context, Domain domain, MultivaluedMap<String, String> formParams);
+  void deleteConfig(PluginContext context, Domain domain);
+
 }

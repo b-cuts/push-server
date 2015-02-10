@@ -1,8 +1,8 @@
 <form style="margin-top: 1em" method="post">
   <fieldset style="margin-top: 1em">
-    <legend>
-      <img src="${push-server-base}/manage/ses-email/icon" class="icon" style=""/>
-      <span>AWS SES</span>
+    <legend class="${legend-class}">
+      <img src="${push-server-base}/manage/domain/${domain-key}/icon/${push-type}" class="icon"/>
+      <span>Amazon SES</span>
     </legend>
 
     <table style="width: 100%; float: left">
@@ -41,9 +41,9 @@
         </tr>
         <tr>
           <td colspan="2" style="text-align: right">
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/ses-email" style="float:right">Update</button>
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/ses-email/test" style="float:right">Test</button>
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/ses-email/delete" style="float:left">Delete</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/ses-email" style="float:right">Update</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/ses-email/test" style="float:right; margin-right:5px">Test</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/ses-email/delete" style="float:left">Delete</button>
           </td>
         </tr>
       </tbody>

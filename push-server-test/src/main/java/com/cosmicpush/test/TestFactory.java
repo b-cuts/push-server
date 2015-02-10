@@ -18,6 +18,7 @@ import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
+import com.cosmicpush.common.system.Session;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.UserAgent;
@@ -109,7 +110,7 @@ public class TestFactory {
   public Account createAccount() {
     CreateAccountAction createAccount = new CreateAccountAction(
         TestFactory.westCoastTimeZone,
-        "test", "Test Parr <test@jacobparr.com>",
+        "test@jacobparr.com",
         "Unit", "Test",
         "testing123", "testing123"
     );
@@ -195,9 +196,6 @@ public class TestFactory {
 
   public PluginContext pluginContext(TestFactory testFactory) {
     return new PluginContext() {
-      @Override public AccountStore getAccountStore() {
-        return testFactory.getAccountStore();
-      }
       @Override public PushRequestStore getPushRequestStore() {
         return testFactory.getPushRequestStore();
       }
@@ -217,5 +215,9 @@ public class TestFactory {
       @Override public AppContext getAppContext() { return null; }
       @Override public void setLastMessage(String message) {}
     };
+  }
+
+  public Session createSession() {
+    return new Session(0, "test@example.com");
   }
 }

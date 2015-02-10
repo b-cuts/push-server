@@ -11,7 +11,6 @@ import java.net.URI;
 
 public interface PluginContext {
 
-  AccountStore getAccountStore();
   PushRequestStore getPushRequestStore();
   DomainStore getDomainStore();
 

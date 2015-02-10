@@ -64,14 +64,6 @@ public class AccountServiceCouch implements AccountService {
     } else if (accountOperation instanceof UpdateAccountAction) {
       UpdateAccountAction operation = (UpdateAccountAction)accountOperation;
       return accountDelegate.executeOperation(account, operation);
-
-    } else if (accountOperation instanceof UpdateAccountStatusAction) {
-      UpdateAccountStatusAction operation = (UpdateAccountStatusAction)accountOperation;
-      return accountDelegate.executeOperation(account, operation);
-
-    } else if (accountOperation instanceof UpdatePermissionsAction) {
-      UpdatePermissionsAction operation = (UpdatePermissionsAction)accountOperation;
-      return accountDelegate.executeOperation(account, operation);
     }
 
     String msg = String.format("The operation %s is not supported.", accountOperation.getClass().getName());

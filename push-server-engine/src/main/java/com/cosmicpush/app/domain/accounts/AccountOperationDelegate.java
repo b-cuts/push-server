@@ -23,7 +23,7 @@ public class AccountOperationDelegate {
   }
 
   public Account executeOperation(Account account, ChangePasswordAction operation) {
-    account.changePassword(operation);
+    account.apply(operation);
     store.update(account);
     return account;
   }
@@ -49,7 +49,7 @@ public class AccountOperationDelegate {
 
   public Account executeOperation(Account account, CreateAccountAction operation) {
     if (account != null) {
-      String msg = String.format("The user name \"%s\" already exists.", operation.getUserName());
+      String msg = String.format("The email address \"%s\" already exists.", operation.getEmailAddress());
       throw ApiException.badRequest(msg);
     }
 
@@ -67,7 +67,7 @@ public class AccountOperationDelegate {
     String tempPassword = account.createTempPassword();
     store.update(account);
 
-    String message = String.format("<h1 style='margin-top:0'>Password Reset</h1><p>Your temporary password for %s is %s.</p>", account.getUserName(), tempPassword);
+    String message = String.format("<h1 style='margin-top:0'>Password Reset</h1><p>Your temporary password for %s is %s.</p>", account.getEmailAddress(), tempPassword);
     sendEmail(operation.getTemplateUrl(), account.getEmailAddress(), "Password Reset", message);
 
     return account;
@@ -93,18 +93,6 @@ public class AccountOperationDelegate {
 
   public Account executeOperation(Account account, UpdateAccountAction operation) {
     // version check
-    account.apply(operation);
-    store.update(account);
-    return account;
-  }
-
-  public Account executeOperation(Account account, UpdatePermissionsAction operation) {
-    account.apply(operation);
-    store.update(account);
-    return account;
-  }
-
-  public Account executeOperation(Account account, UpdateAccountStatusAction operation) {
     account.apply(operation);
     store.update(account);
     return account;

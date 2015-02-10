@@ -8,17 +8,15 @@ package com.cosmicpush.common.accounts.actions;
 
 import com.cosmicpush.pub.internal.RequestErrors;
 import com.cosmicpush.pub.internal.ValidationUtils;
-import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.ApiException;
 
 import java.time.ZoneId;
-import java.util.List;
+import java.util.Arrays;
 
 public class CreateAccountAction extends AccountAction {
 
   private final ZoneId timeZone;
 
-  private final String userName;
   private final String emailAddress;
 
   private final String firstName;
@@ -29,13 +27,12 @@ public class CreateAccountAction extends AccountAction {
 
   public CreateAccountAction(
       ZoneId timeZone,
-      String userName, String emailAddress,
+      String emailAddress,
       String firstName, String lastName,
       String password, String passwordConfirmed) {
 
     this.timeZone = timeZone;
 
-    this.userName = userName;
     this.emailAddress = emailAddress;
 
     this.firstName = firstName;
@@ -47,10 +44,6 @@ public class CreateAccountAction extends AccountAction {
 
   public ZoneId getTimeZone() {
     return timeZone;
-  }
-
-  public String getUserName() {
-    return userName;
   }
 
   public String getEmailAddress() {
@@ -77,27 +70,19 @@ public class CreateAccountAction extends AccountAction {
   public RequestErrors validate(RequestErrors errors) throws ApiException {
 
     ValidationUtils.requireValue(errors, timeZone, "The time zone must be specified.");
-    validateUserName(errors, userName);
 
     ValidationUtils.requireValue(errors, firstName, "Your first name must be specified.");
     ValidationUtils.requireValue(errors, lastName, "Your last name must be specified.");
     ValidationUtils.requireValue(errors, emailAddress, "Your email address must be specified.");
 
+    for (String chr : Arrays.asList("<", ">")) {
+      if (emailAddress != null && emailAddress.contains("<")) {
+        String msg = String.format("Your email address must not contain the \"%s\" character.", chr);
+        errors.add(msg);
+      }
+    }
+
     return errors;
   }
 
-  public static void validateUserName(List<String> errors, String userName) {
-    if (StringUtils.isBlank(userName)) {
-      errors.add("Your user name must be specified.");
-    } else if (Character.isLetter(userName.charAt(0)) == false) {
-      errors.add("Your user name must start with a letter.");
-    } else {
-      for (char chr : userName.toCharArray()) {
-        if (Character.isLetter(chr) == false && Character.isDigit(chr) == false) {
-          errors.add("Your user name can contain only letters and numbers.");
-          break;
-        }
-      }
-    }
-  }
 }

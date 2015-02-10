@@ -50,7 +50,7 @@ public class ThymeleafTests {
 
   public void testWelcome() throws Exception {
     RootResource.WelcomeModel model = new RootResource.WelcomeModel(null, "This is a test", "some-username", "some-password");
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.WELCOME, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.WELCOME, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -63,7 +63,7 @@ public class ThymeleafTests {
     List<PushRequest> requests = testFactory.createPushRequests(domain);
     DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -76,7 +76,7 @@ public class ThymeleafTests {
     PluginContext pluginContext = testFactory.pluginContext(testFactory);
     ManageDomainModel model = new ManageDomainModel(pluginContext, account, domain, "This was the last message.");
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_CLIENT, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_CLIENT, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -86,9 +86,10 @@ public class ThymeleafTests {
 
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
-    ManageAccountModel model = new ManageAccountModel(account, Arrays.asList(domain));
+    PluginContext pluginContext = testFactory.pluginContext(testFactory);
+    ManageAccountModel model = new ManageAccountModel(pluginContext, account, Arrays.asList(domain));
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_ACCOUNT, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_ACCOUNT, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -101,7 +102,7 @@ public class ThymeleafTests {
     List<PushRequest> requests = testFactory.createPushRequests_Emails(domain);
     EmailsModel model = new EmailsModel(account, domain, requests);
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAILS, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_EMAILS, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -115,7 +116,7 @@ public class ThymeleafTests {
     EmailPush email = request.getEmailPush();
     EmailModel model = new EmailModel(account, domain, request, email);
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EMAIL, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_EMAIL, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -129,7 +130,7 @@ public class ThymeleafTests {
     LqNotificationPush notification = request.getNotificationPush();
     DomainNotificationModel model = new DomainNotificationModel(account, domain, request, notification);
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_NOTIFICATION, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -142,7 +143,7 @@ public class ThymeleafTests {
     List<PushRequest> requests = testFactory.createPushRequests_Notifications(domain);
     DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -158,7 +159,7 @@ public class ThymeleafTests {
 
     UserEventSessionsModel model = new UserEventSessionsModel(account, domain, "whatever", sessions);
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EVENT, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_EVENT, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);
@@ -173,7 +174,7 @@ public class ThymeleafTests {
 
     UserEventGroupsModel model = new UserEventGroupsModel(account, domain, groups);
 
-    Thymeleaf leaf = new Thymeleaf(ThymeleafViewFactory.MANAGE_API_EVENTS, model);
+    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_EVENTS, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);

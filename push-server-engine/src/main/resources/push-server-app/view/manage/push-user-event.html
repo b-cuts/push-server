@@ -24,13 +24,11 @@
     </style>
   </head>
   <body>
-    <div style="position: absolute; top: 0; right: 10px;">
-      <h1>Cosmic Push</h1>
-      <div>One API - Infinite Destinations</div>
-    </div>
+    <div style="float: right" th:include="fragments::page_title"></div>
 
     <h1 th:text="|${it.domain.domainKey}: User Events|"></h1>
     <div th:include="fragments::client_sub_menu"></div>
+    <div style="clear:both"></div>
 
     <table class="requests-table" style="width: 100%; margin-top: 1em">
       <thead>

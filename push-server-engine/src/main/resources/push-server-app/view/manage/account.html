@@ -4,21 +4,24 @@
   <head th:include="fragments::html_header" th:with="pageTitle=': My Account'"></head>
 
   <body>
-    <div style="position: absolute; top: 0; right: 10px;">
-      <h1>Cosmic Push</h1>
-      <div>One API - Infinite Destinations</div>
-    </div>
+    <div style="float: right" th:include="fragments::page_title"></div>
 
     <h1>My Account</h1>
     <a th:href="${contextRoot}">Home Page</a>
+    <div style="clear:both"></div>
+
 
     <fieldset style="margin-top: 1em">
       <legend>Domain</legend>
       <div th:each="domain : ${it.domains}">
         <span style="color: #FFD700; font-size:22px;" th:text="${domain.domainKey}"></span>
 
-        <span th:each="pushType : ${it.pushType}">
-          <img th:src="${contextRoot}+'/manage/'+${pushType}+'/icon'" class="icon" style="margin-left: 5px"/>
+        <span th:each="pushType : ${domain.enabledTypes}">
+          <img th:src="${contextRoot}+'/manage/'+${pushType}+'/icon-enabled'" class="icon" style="margin-left: 5px"/>
+        </span>
+
+        <span th:each="pushType : ${domain.disabledTypes}">
+          <img th:src="${contextRoot}+'/manage/'+${pushType}+'/icon-disabled'" class="icon" style="margin-left: 5px"/>
         </span>
 
         <div style="float: right">
@@ -60,17 +63,13 @@
 
     <fieldset style="margin-top: 1em">
       <legend>User Details</legend>
-      <form method="post">
+      <form method="post" style="float: left; margin-right: 100px">
         <table>
           <colgroup>
             <col style="width: 1em"/>
             <col/>
           </colgroup>
           <tbody>
-            <tr>
-              <td><label>User Name:</label></td>
-              <td class="data" th:text="${it.account.userName}"></td>
-            </tr>
             <tr>
               <td><label for="first-name">First Name:</label></td>
               <td><input type="text" id="first-name" name="firstName" th:value="${it.account.firstName}" style="width:200px;"/></td>
@@ -85,13 +84,43 @@
             </tr>
             <tr>
               <td colspan="2">
-                <button style="float: right" type="submit" th:formaction="${contextRoot}+'/manage/account'">Update</button>
+                <button style="float: right" type="submit" th:formaction="${contextRoot}+'/manage/account/update'">Update</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+
+      <form method="post" style="float: left">
+        <table>
+          <colgroup>
+            <col style="width: 1em"/>
+            <col/>
+          </colgroup>
+          <tbody>
+            <tr>
+              <td><label for="oldPassword">Old Password:</label></td>
+              <td><input type="password" id="oldPassword" name="oldPassword" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td><label for="newPassword">New Password:</label></td>
+              <td><input type="password" id="newPassword" name="newPassword" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td><label for="confirmed">Confirmed:</label></td>
+              <td><input type="password" id="confirmed" name="confirmed" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button style="float: right" type="submit" th:formaction="${contextRoot}+'/manage/account/password'">Change Password</button>
               </td>
             </tr>
           </tbody>
         </table>
       </form>
     </fieldset>
+
+    <div style="clear:both"></div>
 
   </body>
 </html>

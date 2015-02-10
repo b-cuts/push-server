@@ -1,14 +1,12 @@
 package com.cosmicpush.plugins.smtp;
 
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
+import com.cosmicpush.common.plugins.PluginSupport;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.SmtpEmailPush;
 import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.Formats;
@@ -21,11 +19,12 @@ import java.io.InputStream;
 
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
-public class SmtpEmailPlugin implements Plugin {
+public class SmtpEmailPlugin extends PluginSupport {
 
   private SmtpEmailConfigStore _configStore;
 
   public SmtpEmailPlugin() {
+    super(SmtpEmailPush.PUSH_TYPE);
   }
 
   public SmtpEmailConfigStore getConfigStore(CpCouchServer couchServer) {
@@ -42,18 +41,13 @@ public class SmtpEmailPlugin implements Plugin {
   }
 
   @Override
-  public PushType getPushType() {
-    return SmtpEmailPush.PUSH_TYPE;
-  }
-
-  @Override
-  public SmtpEmailDelegate newDelegate(PluginContext pluginContext, Account account, Domain domain, PushRequest pushRequest, Push push) {
+  public SmtpEmailDelegate newDelegate(PluginContext pluginContext, Domain domain, PushRequest pushRequest, Push push) {
     SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
-    return new SmtpEmailDelegate(pluginContext, account, domain, pushRequest, (SmtpEmailPush)push, config);
+    return new SmtpEmailDelegate(pluginContext, domain, pushRequest, (SmtpEmailPush)push, config);
   }
 
   @Override
-  public void updateConfig(PluginContext pluginContext, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext pluginContext, Domain domain, MultivaluedMap<String, String> formParams) {
 
     UpdateSmtpEmailConfigAction action = new UpdateSmtpEmailConfigAction(domain, formParams);
 
@@ -66,11 +60,10 @@ public class SmtpEmailPlugin implements Plugin {
     getConfigStore(pluginContext.getCouchServer()).update(smtpEmailConfig);
 
     pluginContext.setLastMessage("SES Email configuration updated.");
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
+  public void deleteConfig(PluginContext pluginContext, Domain domain) {
 
     SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
@@ -80,19 +73,16 @@ public class SmtpEmailPlugin implements Plugin {
     } else {
       pluginContext.setLastMessage("SES email configuration doesn't exist.");
     }
-
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void test(PluginContext pluginContext, Account account, Domain domain) throws Exception {
+  public void test(PluginContext pluginContext, Domain domain) throws Exception {
 
     SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config == null) {
       String msg = "The SMTP email config has not been specified.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -102,14 +92,12 @@ public class SmtpEmailPlugin implements Plugin {
     if (StringUtils.isBlank((toAddress))) {
       String msg = "A test message cannot be sent with out specifying the config's test-to-address.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
     if (StringUtils.isBlank((fromAddress))) {
       String msg = "A test message cannot be sent with out specifying the config's test-from-address.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -129,28 +117,24 @@ public class SmtpEmailPlugin implements Plugin {
     PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
     pluginContext.getPushRequestStore().create(pushRequest);
 
-    new SmtpEmailDelegate(pluginContext, account, domain, pushRequest, push, config).run();
+    new SmtpEmailDelegate(pluginContext, domain, pushRequest, push, config).run();
 
     msg = String.format("Test message sent from %s to %s", fromAddress, toAddress);
     pluginContext.setLastMessage(msg);
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public byte[] getIcon() throws IOException {
-    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/smtp/icon.png");
-    return IoUtils.toBytes(stream);
-  }
-
-  @Override
-  public String getAdminUi(PluginContext pluginContext, Account account, Domain domain) throws IOException {
+  public String getAdminUi(PluginContext pluginContext, Domain domain) throws IOException {
 
     SmtpEmailConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/smtp/admin.html");
     String content = IoUtils.toString(stream);
 
-    content = content.replace("${domain-name}",               nullToString(domain.getDomainKey()));
+    content = content.replace("${legend-class}",              nullToString(config == null ? "no-config" : ""));
+    content = content.replace("${push-type}",                 nullToString(getPushType().getCode()));
+    content = content.replace("${plugin-name}",               nullToString(getPluginName()));
+    content = content.replace("${domain-key}",                nullToString(domain.getDomainKey()));
     content = content.replace("${push-server-base}",          nullToString(pluginContext.getBaseURI()));
     content = content.replace("${config-user-name}",          nullToString(config == null ? null : config.getUserName()));
     content = content.replace("${config-password}",           nullToString(config == null ? null : config.getPassword()));
@@ -162,7 +146,7 @@ public class SmtpEmailPlugin implements Plugin {
     content = content.replace("${config-recipient-override}", nullToString(config == null ? null : config.getRecipientOverride()));
 
     if (content.contains("${")) {
-      String msg = String.format("The SES admin UI still contains un-parsed elements.");
+      String msg = String.format("The SMTP admin UI still contains un-parsed elements.");
       throw new IllegalStateException(msg);
     }
 

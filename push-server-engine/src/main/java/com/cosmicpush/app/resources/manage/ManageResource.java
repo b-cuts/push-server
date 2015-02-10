@@ -26,7 +26,7 @@ import java.net.URI;
 @MngtAuthentication
 public class ManageResource {
 
-  private final ExecutionContext context = CpApplication.getExecutionContext();
+  private final ExecutionContext execContext = CpApplication.getExecutionContext();
 
   public ManageResource() {
   }
@@ -38,18 +38,29 @@ public class ManageResource {
 
   @GET
   @Produces(InetMediaType.IMAGE_PNG_VALUE)
-  @Path("/{pushType}/icon")
-  public Response getIcon(@PathParam("pushType") PushType pushType) throws Exception {
+  @Path("/{pushType}/icon-enabled")
+  public Response getEnabledIcon(@PathParam("pushType") PushType pushType) throws Exception {
 
     Plugin plugin = PluginManager.getPlugin(pushType);
-    byte[] bytes = plugin.getIcon();
+    byte[] bytes = plugin.getEnabledIcon();
+
+    return Response.ok(bytes, InetMediaType.IMAGE_PNG_VALUE).build();
+  }
+
+  @GET
+  @Produces(InetMediaType.IMAGE_PNG_VALUE)
+  @Path("/{pushType}/icon-disabled")
+  public Response getDisabledIcon(@PathParam("pushType") PushType pushType) throws Exception {
+
+    Plugin plugin = PluginManager.getPlugin(pushType);
+    byte[] bytes = plugin.getDisabledIcon();
 
     return Response.ok(bytes, InetMediaType.IMAGE_PNG_VALUE).build();
   }
 
   @Path("/account")
   public ManageAccountResource getManageAccountResource() {
-    return new ManageAccountResource(context.getAccount());
+    return new ManageAccountResource(execContext.getAccount());
   }
 
   @Path("/domain/{domainKey}")
@@ -59,17 +70,17 @@ public class ManageResource {
 
   @POST
   @Path("/domain")
-  public Response newDomain(@FormParam("domainKey") String domainKey, @FormParam("domainPassword") String domainPassword) throws Exception {
+  public Response createDomain(@FormParam("domainKey") String domainKey, @FormParam("domainPassword") String domainPassword) throws Exception {
 
-    if (context.getDomainStore().getByDomainKey(domainKey) != null) {
-      throw ApiException.badRequest(String.format("The domain key %s already exists.", domainKey));
+    if (execContext.getDomainStore().getByDomainKey(domainKey) != null) {
+      throw ApiException.badRequest(String.format("The domain \"%s\" already exists.", domainKey));
     }
 
-    CreateDomainAction action = new CreateDomainAction(context.getAccount(), domainKey, domainPassword);
+    CreateDomainAction action = new CreateDomainAction(execContext.getAccount(), domainKey, domainPassword);
 
-    Domain domain = context.getAccount().add(action);
-    context.getDomainStore().create(domain);
-    context.getAccountStore().update(context.getAccount());
+    Domain domain = execContext.getAccount().add(action);
+    execContext.getDomainStore().create(domain);
+    execContext.getAccountStore().update(execContext.getAccount());
 
     return Response.seeOther(new URI("manage/domain/"+domain.getDomainKey())).build();
   }

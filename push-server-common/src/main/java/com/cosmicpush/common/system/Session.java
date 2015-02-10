@@ -4,7 +4,7 @@ import org.crazyyak.dev.common.id.uuid.TimeUuid;
 
 public class Session {
 
-  private final String username;
+  private final String emailAddress;
   private final String sessionId;
   private final long sessionDuration;
   private String lastMessage;
@@ -14,10 +14,10 @@ public class Session {
   /**
    * Creates a new session
    * @param sessionDuration the life of the session in milliseconds
-   * @param username the username for the current session
+   * @param emailAddress the username for the current session
    */
-  public Session(long sessionDuration, String username) {
-    this.username = username;
+  public Session(long sessionDuration, String emailAddress) {
+    this.emailAddress = emailAddress;
     this.sessionDuration = sessionDuration;
     this.sessionId = TimeUuid.randomUUID().toString();
 
@@ -28,8 +28,8 @@ public class Session {
     return sessionId;
   }
 
-  public String getUsername() {
-    return username;
+  public String getEmailAddress() {
+    return emailAddress;
   }
 
   public long getSessionDuration() {

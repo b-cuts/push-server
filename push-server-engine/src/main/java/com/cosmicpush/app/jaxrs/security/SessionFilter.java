@@ -50,7 +50,7 @@ public class SessionFilter implements ContainerRequestFilter, ContainerResponseF
     AccountStore accountStore = execContext.getAccountStore();
 
     if (session != null) {
-      Account account = accountStore.getByUsername(session.getUsername());
+      Account account = accountStore.getByEmail(session.getEmailAddress());
       execContext.setAccount(account);
     }
   }

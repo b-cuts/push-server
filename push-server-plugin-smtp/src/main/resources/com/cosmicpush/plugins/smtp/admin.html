@@ -1,8 +1,8 @@
 <form style="margin-top: 1em" method="post">
   <fieldset>
-    <legend>
-      <img src="${push-server-base}/manage/smtp-email/icon" class="icon"/>
-      <span>SMTP (eMail)</span>
+    <legend class="${legend-class}">
+      <img src="${push-server-base}/manage/domain/${domain-key}/icon/${push-type}" class="icon"/>
+      <span>SMTP</span>
     </legend>
 
     <table style="width: 100%; float: left">
@@ -60,9 +60,9 @@
         </tr>
         <tr>
           <td colspan="2" style="text-align: right">
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/smtp-email" style="float:right">Update</button>
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/smtp-email/test" style="float:right">Test</button>
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/smtp-email/delete" style="float:left">Delete</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/smtp-email" style="float:right">Update</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/smtp-email/test" style="float:right; margin-right:5px">Test</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/smtp-email/delete" style="float:left">Delete</button>
           </td>
         </tr>
       </tbody>

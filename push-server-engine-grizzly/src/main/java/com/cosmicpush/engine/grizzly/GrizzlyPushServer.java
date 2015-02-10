@@ -1,6 +1,7 @@
 package com.cosmicpush.engine.grizzly;
 
 import com.cosmicpush.app.system.CpApplication;
+import org.crazyyak.dev.common.StringUtils;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 
@@ -212,7 +213,8 @@ public class GrizzlyPushServer {
       System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl", pushServer.getBaseUri()));
 
       if (pushServer.openBrowser) {
-        URI uri = URI.create(pushServer.getBaseUri().toString()+"?username=test&password=test");
+        String path = String.format("%s?username=%s&password=%s", pushServer.getBaseUri(), StringUtils.encodeUrl("test@example.com"), "test");
+        URI uri = URI.create(path);
         java.awt.Desktop.getDesktop().browse(uri);
       }
 

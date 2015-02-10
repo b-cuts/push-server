@@ -1,14 +1,12 @@
 package com.cosmicpush.plugins.gtalk;
 
-import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
+import com.cosmicpush.common.plugins.PluginSupport;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.GoogleTalkPush;
 import org.crazyyak.dev.common.Formats;
 import org.crazyyak.dev.common.IoUtils;
@@ -19,11 +17,12 @@ import java.io.InputStream;
 
 import static org.crazyyak.dev.common.StringUtils.*;
 
-public class GoogleTalkPlugin implements Plugin {
+public class GoogleTalkPlugin extends PluginSupport {
 
   private GoogleTalkConfigStore _configStore;
 
   public GoogleTalkPlugin() {
+    super(GoogleTalkPush.PUSH_TYPE);
   }
 
   public GoogleTalkConfigStore getConfigStore(CpCouchServer couchServer) {
@@ -40,18 +39,13 @@ public class GoogleTalkPlugin implements Plugin {
   }
 
   @Override
-  public PushType getPushType() {
-    return GoogleTalkPush.PUSH_TYPE;
-  }
-
-  @Override
-  public GoogleTalkDelegate newDelegate(PluginContext context, Account account, Domain domain, PushRequest pushRequest, Push push) {
+  public GoogleTalkDelegate newDelegate(PluginContext context, Domain domain, PushRequest pushRequest, Push push) {
     GoogleTalkConfig config = getConfig(context.getCouchServer(), domain);
-    return new GoogleTalkDelegate(context, account, domain, pushRequest, (GoogleTalkPush)push, config);
+    return new GoogleTalkDelegate(context, domain, pushRequest, (GoogleTalkPush)push, config);
   }
 
   @Override
-  public void deleteConfig(PluginContext pluginContext, Account account, Domain domain) {
+  public void deleteConfig(PluginContext pluginContext, Domain domain) {
 
     GoogleTalkConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
@@ -61,12 +55,10 @@ public class GoogleTalkPlugin implements Plugin {
     } else {
       pluginContext.setLastMessage("Google Talk email configuration doesn't exist.");
     }
-
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void updateConfig(PluginContext pluginContext, Account account, Domain domain, MultivaluedMap<String, String> formParams) {
+  public void updateConfig(PluginContext pluginContext, Domain domain, MultivaluedMap<String, String> formParams) {
 
     UpdateGoogleTalkConfigAction action = new UpdateGoogleTalkConfigAction(domain, formParams);
 
@@ -79,18 +71,16 @@ public class GoogleTalkPlugin implements Plugin {
     getConfigStore(pluginContext.getCouchServer()).update(googleTalkConfig);
 
     pluginContext.setLastMessage("Google Talk configuration updated.");
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public void test(PluginContext pluginContext, Account account, Domain domain) throws Exception {
+  public void test(PluginContext pluginContext, Domain domain) throws Exception {
 
     GoogleTalkConfig config = getConfig(pluginContext.getCouchServer(), domain);
 
     if (config == null) {
       String msg = "The Google Talk config has not been specified.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -99,7 +89,6 @@ public class GoogleTalkPlugin implements Plugin {
     if (isBlank((recipient))) {
       String msg = "Test message cannot be sent with out specifying the test address.";
       pluginContext.setLastMessage(msg);
-      pluginContext.getAccountStore().update(account);
       return;
     }
 
@@ -115,32 +104,28 @@ public class GoogleTalkPlugin implements Plugin {
     PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
     pluginContext.getPushRequestStore().create(pushRequest);
 
-    new GoogleTalkDelegate(pluginContext, account, domain, pushRequest, push, config).run();
+    new GoogleTalkDelegate(pluginContext, domain, pushRequest, push, config).run();
 
     msg = String.format("Test message sent to %s:\n%s", recipient, msg);
     pluginContext.setLastMessage(msg);
-    pluginContext.getAccountStore().update(account);
   }
 
   @Override
-  public byte[] getIcon() throws IOException {
-    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/gtalk/icon.png");
-    return IoUtils.toBytes(stream);
-  }
-
-  @Override
-  public String getAdminUi(PluginContext context, Account account, Domain domain) throws IOException {
+  public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
     GoogleTalkConfig config = getConfig(context.getCouchServer(), domain);
 
     InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/gtalk/admin.html");
     String content = IoUtils.toString(stream);
 
-    content = content.replace("${domain-name}",   nullToString(domain.getDomainKey()));
-    content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
+    content = content.replace("${legend-class}",              nullToString(config == null ? "no-config" : ""));
+    content = content.replace("${push-type}",                 nullToString(getPushType().getCode()));
+    content = content.replace("${plugin-name}",               nullToString(getPluginName()));
+    content = content.replace("${domain-key}",                nullToString(domain.getDomainKey()));
+    content = content.replace("${push-server-base}",          nullToString(context.getBaseURI()));
 
-    content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));
-    content = content.replace("${config-password}",   nullToString(config == null ? null : config.getPassword()));
+    content = content.replace("${config-user-name}",          nullToString(config == null ? null : config.getUserName()));
+    content = content.replace("${config-password}",           nullToString(config == null ? null : config.getPassword()));
 
     content = content.replace("${config-test-address}",       nullToString(config == null ? null : config.getTestAddress()));
     content = content.replace("${config-recipient-override}", nullToString(config == null ? null : config.getRecipientOverride()));

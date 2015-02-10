@@ -2,7 +2,6 @@
    "entityType": "account",
    "entity": {
        "createdAt": "2014-09-05T19:26:26.207",
-       "userName": "test",
        "password": "test",
        "tempPassword": null,
        "firstName": "Test",
@@ -28,6 +27,6 @@
            "roleTypes": [
            ]
        },
-       "retentionDays": 0
+       "retentionDays": 7
    }
 }

@@ -38,8 +38,8 @@ public class MngtAuthenticationFilter implements ContainerRequestFilter {
         throw ApiException.unauthorized();
       }
 
-      String username = session.getUsername();
-      Account account = appContext.getAccountStore().getByUsername(username);
+      String emailAddress = session.getEmailAddress();
+      Account account = appContext.getAccountStore().getByEmail(emailAddress);
 
       if (account == null) {
         throw ApiException.unauthorized();
@@ -73,7 +73,7 @@ public class MngtAuthenticationFilter implements ContainerRequestFilter {
       return "FORM_AUTH";
     }
     @Override public Principal getUserPrincipal() {
-      return account::getUserName;
+      return account::getEmailAddress;
     }
   }
 

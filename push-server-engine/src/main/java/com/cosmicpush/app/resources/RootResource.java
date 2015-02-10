@@ -5,7 +5,6 @@
  */
 package com.cosmicpush.app.resources;
 
-import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.resources.api.ApiResourceV1;
 import com.cosmicpush.app.resources.api.ApiResourceV2;
 import com.cosmicpush.app.resources.manage.ManageResource;
@@ -15,6 +14,7 @@ import com.cosmicpush.app.view.ThymeleafViewFactory;
 import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.common.system.Session;
 import com.cosmicpush.common.system.SessionStore;
@@ -39,10 +39,11 @@ public class RootResource extends RootResourceSupport {
 
   public static final int REASON_CODE_INVALID_USERNAME_OR_PASSWORD = -1;
   public static final int REASON_CODE_UNAUTHORIZED = -2;
+  public static final int REASON_SIGNED_OUT = -3;
 
   private static final Log log = LogFactory.getLog(RootResource.class);
 
-  private final ExecutionContext context = CpApplication.getExecutionContext();
+  private final ExecutionContext execContext = CpApplication.getExecutionContext();
 
   public RootResource() {
     log.info("Created ");
@@ -53,7 +54,7 @@ public class RootResource extends RootResourceSupport {
 
   @Override
   public UriInfo getUriInfo() {
-    return context.getUriInfo();
+    return execContext.getUriInfo();
   }
 
   @GET
@@ -62,11 +63,13 @@ public class RootResource extends RootResourceSupport {
 
     String message = "";
     if (REASON_CODE_INVALID_USERNAME_OR_PASSWORD == reasonCode) {
-      message = "Invalid username or password.";
+      message = "Invalid username or password";
     } else if (REASON_CODE_UNAUTHORIZED == reasonCode) {
-      message = "Your session has expired.";
+      message = "Your session has expired";
+    } else if (REASON_SIGNED_OUT == reasonCode) {
+      message = "You have successfully signed out";
     }
-    return new Thymeleaf(ThymeleafViewFactory.WELCOME, new WelcomeModel(context.getAccount(), message, username, password));
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.WELCOME, new WelcomeModel(execContext.getAccount(), message, username, password));
   }
 
   public static class WelcomeModel {
@@ -91,20 +94,32 @@ public class RootResource extends RootResourceSupport {
   @Produces(MediaType.TEXT_HTML)
   public Response signIn(@FormParam("username") String username, @FormParam("password") String password, @CookieParam(SessionStore.SESSION_COOKIE_NAME) String sessionId) throws Exception {
 
-    Account account = context.getAccountStore().getByUsername(username);
+    Account account = execContext.getAccountStore().getByEmail(username);
 
     if (account == null || EqualsUtils.objectsNotEqual(account.getPassword(), password)) {
-      context.getSessionStore().remove(sessionId);
+      execContext.getSessionStore().remove(sessionId);
 
       NewCookie sessionCookie = SessionStore.toCookie(getUriInfo(), null);
-      URI other = getUriInfo().getBaseUriBuilder().queryParam("r", -1).build();
+      URI other = getUriInfo().getBaseUriBuilder().queryParam("r", REASON_CODE_INVALID_USERNAME_OR_PASSWORD).build();
       return Response.seeOther(other).cookie(sessionCookie).build();
     }
 
-    Session session = context.getSessionStore().newSession(username);
+    Session session = execContext.getSessionStore().newSession(username);
 
     NewCookie sessionCookie = SessionStore.toCookie(getUriInfo(), session);
     URI other = getUriInfo().getBaseUriBuilder().path("manage").build();
+    return Response.seeOther(other).cookie(sessionCookie).build();
+  }
+
+  @GET
+  @Path("/sign-out")
+  @Produces(MediaType.TEXT_HTML)
+  public Response signOut(@CookieParam(SessionStore.SESSION_COOKIE_NAME) String sessionId) throws Exception {
+    if (sessionId != null) {
+      execContext.getSessionStore().remove(sessionId);
+    }
+    NewCookie sessionCookie = SessionStore.toCookie(getUriInfo(), null);
+    URI other = getUriInfo().getBaseUriBuilder().queryParam("r", REASON_SIGNED_OUT).build();
     return Response.seeOther(other).cookie(sessionCookie).build();
   }
 
@@ -126,39 +141,27 @@ public class RootResource extends RootResourceSupport {
   @GET @Path("/q/{pushRequestId}")
   public Response resolveCallback(@PathParam("pushRequestId") String pushRequestId) throws URISyntaxException {
 
-    if (pushRequestId.startsWith("push-request:")) {
-      pushRequestId = pushRequestId.substring(12);
-      return resolveCallback(pushRequestId);
-
-    } else if (pushRequestId.contains(":") == false) {
-      PushRequest request = context.getPushRequestStore().getByPushRequestId(pushRequestId);
-      if (request == null) {
-        throw ApiException.notFound("API request not found for " + pushRequestId);
-      }
-
-      Domain domain = context.getDomainStore().getByDocumentId(request.getDomainId());
-      if (domain == null) {
-        throw ApiException.notFound("Domain not found for " + request.getDomainId());
-      }
-
-      Account account = context.getAccountStore().getByDocumentId(domain.getAccountId());
-      if (account == null) {
-        throw ApiException.notFound("Account not found given client id " + request.getDomainId());
-      }
-
-      if (LqNotificationPush.PUSH_TYPE.equals(request.getPushType())) {
-        String path = String.format("manage/domain/%s/notifications/%s", domain.getDomainKey(), pushRequestId);
-        return Response.seeOther(new URI(path)).build();
-
-      } else if (UserEventPush.PUSH_TYPE.equals(request.getPushType())) {
-        String deviceId = request.getUserEventPush().getDeviceId();
-        String path = String.format("manage/domain/%s/user-events/%s", domain.getDomainKey(), deviceId);
-        return Response.seeOther(new URI(path)).build();
-      }
-
+    PushRequest request = execContext.getPushRequestStore().getByPushRequestId(pushRequestId);
+    if (request == null) {
+      throw ApiException.notFound("API request not found for " + pushRequestId);
     }
 
-    return Response.seeOther(new URI("")).build();
+    Domain domain = execContext.getDomainStore().getByDocumentId(request.getDomainId());
+    if (domain == null) {
+      throw ApiException.notFound("Domain not found for " + request.getDomainId());
+    }
+
+    if (LqNotificationPush.PUSH_TYPE.equals(request.getPushType())) {
+      String path = String.format("manage/domain/%s/notifications/%s", domain.getDomainKey(), pushRequestId);
+      return Response.seeOther(new URI(path)).build();
+
+    } else if (UserEventPush.PUSH_TYPE.equals(request.getPushType())) {
+      String deviceId = request.getUserEventPush().getDeviceId();
+      String path = String.format("manage/domain/%s/user-events/%s", domain.getDomainKey(), deviceId);
+      return Response.seeOther(new URI(path)).build();
+    }
+
+    return Response.seeOther(getUriInfo().getBaseUriBuilder().build()).build();
   }
 
   @GET @Path("/health-check")
@@ -170,27 +173,31 @@ public class RootResource extends RootResourceSupport {
   @GET @Path("/privacy-policy")
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf privacyPolicy() {
-    return new Thymeleaf("/mun-mon/general/privacy-policy.jsp");
+    throw new UnsupportedOperationException();
+    // return new Thymeleaf("/mun-mon/general/privacy-policy.jsp");
   }
 
   @GET @Path("/terms-of-service")
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf termsOfService() {
-    return new Thymeleaf("/mun-mon/general/terms-of-service.jsp");
+    throw new UnsupportedOperationException();
+    // return new Thymeleaf("/mun-mon/general/terms-of-service.jsp");
   }
 
   @GET // TODO - implement the faq.jsp page.
   @Path("{resource: (faq\\.).* }")
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf getFaq() {
-    return new Thymeleaf("/mun-mon/faq.jsp");
+    throw new UnsupportedOperationException();
+    // return new Thymeleaf("/mun-mon/faq.jsp");
   }
 
   @GET // TODO - implement the contact.jsp page.
   @Path("{resource: (contact\\.).* }")
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf getContact() {
-    return new Thymeleaf("/mun-mon/contact.jsp");
+    throw new UnsupportedOperationException();
+    // return new Thymeleaf("/mun-mon/contact.jsp");
   }
 }
 

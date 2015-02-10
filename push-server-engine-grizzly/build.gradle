@@ -6,7 +6,7 @@
 project(":push-server-engine-grizzly") {
   description = "Cosmic Push Engine - Grizzly Bundling"
 
-  version = pushServerEngineServlet
+  version = pushServerEngineGrizzly
 
   apply (from: "../build-config-deployer.gradle")
 

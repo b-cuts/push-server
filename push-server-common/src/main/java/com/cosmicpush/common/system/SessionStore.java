@@ -97,6 +97,9 @@ public class SessionStore {
       pos = path.indexOf("/", pos+3);
       path = StringUtils.substring(path, pos, -1);
     }
+    if (StringUtils.isBlank(path)) {
+      path = "/";
+    }
 
     return new NewCookie("session-id", sessionId, path, null, null, maxAge, false, true);
   }

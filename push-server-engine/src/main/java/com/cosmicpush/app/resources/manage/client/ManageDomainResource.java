@@ -5,6 +5,7 @@
  */
 package com.cosmicpush.app.resources.manage.client;
 
+import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.resources.manage.client.emails.ManageEmailsResource;
@@ -20,8 +21,10 @@ import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.common.requests.QueryResult;
+import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.PushType;
 import org.crazyyak.dev.common.exceptions.ApiException;
+import org.crazyyak.dev.common.net.InetMediaType;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -36,6 +39,7 @@ public class ManageDomainResource {
 
   private final ExecutionContext execContext = CpApplication.getExecutionContext();
   private final String domainKey;
+  private Domain _domain;
 
   public ManageDomainResource(String domainKey) {
     this.domainKey = domainKey;
@@ -46,16 +50,19 @@ public class ManageDomainResource {
   }
 
   private Domain getDomain() {
+    if (_domain != null) {
+      return _domain;
+    }
+
     DomainStore domainStore = execContext.getDomainStore();
-    Domain domain = domainStore.getByDomainKey(domainKey);
+    _domain = domainStore.getByDomainKey(domainKey);
+    execContext.setDomain(_domain);
     Account account = getAccount();
 
-    if (domain == null) {
+    if (_domain == null) {
       throw ApiException.notFound(domainKey);
-    } else if (account.isNotOwner(domain)) {
-      throw ApiException.forbidden();
     }
-    return domain;
+    return _domain;
   }
 
   @GET
@@ -64,11 +71,22 @@ public class ManageDomainResource {
     Domain domain = getDomain();
 
     String lastMessage = execContext.getSession().getLastMessage();
-    execContext.getSession().setLastMessage(null);
+    execContext.setLastMessage(null);
     execContext.getAccountStore().update(getAccount());
 
     ManageDomainModel model = new ManageDomainModel(execContext, getAccount(), domain, lastMessage);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_CLIENT, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_API_CLIENT, model);
+  }
+
+  @GET
+  @Path("/icon/{pushType}")
+  @Produces(InetMediaType.IMAGE_PNG_VALUE)
+  public Response getEnabledIcon(@PathParam("pushType") PushType pushType) throws Exception {
+
+    Plugin plugin = PluginManager.getPlugin(pushType);
+    byte[] bytes = plugin.getIcon(execContext, getDomain());
+
+    return Response.ok(bytes, InetMediaType.IMAGE_PNG_VALUE).build();
   }
 
   @GET
@@ -84,7 +102,7 @@ public class ManageDomainResource {
     Collections.reverse(requests);
 
     DomainRequestsModel model = new DomainRequestsModel(getAccount(), domain, requests);
-    return new Thymeleaf(ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
+    return new Thymeleaf(execContext.getSession(), ThymeleafViewFactory.MANAGE_API_REQUESTS, model);
   }
 
   @POST
@@ -100,13 +118,12 @@ public class ManageDomainResource {
       requestStore.delete(request);
     }
 
-    execContext.getSession().setLastMessage("All API Requests deleted");
+    execContext.setLastMessage("All API Requests deleted");
     execContext.getDomainStore().update(domain);
 
     URI uri = execContext.getUriInfo().getBaseUriBuilder().path("manage").path("domain").path(domain.getDomainKey()).path("requests").build();
     return Response.seeOther(uri).build();
   }
-
 
   @Path("/emails")
   public ManageEmailsResource getManageEmailsResource() throws Exception {
@@ -124,8 +141,7 @@ public class ManageDomainResource {
   }
 
   @POST
-  @Path("/client")
-  public Response updateClient(@FormParam("domainKey") String domainKey, @FormParam("domainPassword") String domainPassword) throws Exception {
+  public Response updateClient(@FormParam("domainKey") String domainKey, @FormParam("domainPassword") String domainPassword, @FormParam("retentionDays") int retentionDays) throws Exception {
 
     Domain domain = getDomain();
     DomainStore domainStore = execContext.getDomainStore();
@@ -136,8 +152,8 @@ public class ManageDomainResource {
       throw ApiException.badRequest(msg);
     }
 
-    UpdateDomainAction action = new UpdateDomainAction(domainKey, domainPassword);
-    execContext.getSession().setLastMessage("Domain configuration changed.");
+    UpdateDomainAction action = new UpdateDomainAction(domainKey, domainPassword, retentionDays);
+    execContext.setLastMessage("Domain configuration changed.");
 
     domain.apply(action);
     domainStore.update(domain);
@@ -147,21 +163,16 @@ public class ManageDomainResource {
   }
 
   @POST
-  @Path("/client/delete")
+  @Path("/delete")
   public Response deleteClient() throws Exception {
 
     Domain domain = getDomain();
-    Account account = getAccount();
-
-    getAccount().remove(domain);
     execContext.getDomainStore().delete(domain);
-    execContext.getAccountStore().update(account);
-
     return Response.seeOther(new URI("manage/account")).build();
   }
 
   @Path("/{pushType}")
   public ManagePluginApi getManagePluginApi(@PathParam("pushType") PushType pushType) throws Exception {
-    return new ManagePluginApi(getAccount(), getDomain(), pushType);
+    return new ManagePluginApi(getDomain(), pushType);
   }
 }
