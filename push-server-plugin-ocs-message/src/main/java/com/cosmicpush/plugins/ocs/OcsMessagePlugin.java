@@ -21,7 +21,7 @@ import static org.crazyyak.dev.common.StringUtils.isBlank;
 import static org.crazyyak.dev.common.StringUtils.isNotBlank;
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
-public class OcsMessagePlugin implements Plugin {
+public class OcsMessagePlugin extends PluginSupport {
 
   private OcsMessageConfigStore _configStore;
 
@@ -125,7 +125,7 @@ public class OcsMessagePlugin implements Plugin {
     InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/ocs/message/admin.html");
     String content = IoUtils.toString(stream);
 
-    content = content.replace("${domain-name}",   nullToString(domain.getDomainKey()));
+    content = content.replace("${domain-key}",   nullToString(domain.getDomainKey()));
     content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
 
     content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));

@@ -36,12 +36,9 @@ public class NotificationDelegateV1 extends AbstractDelegate {
   @Override
   public synchronized RequestStatus processRequest() throws Exception {
 
-    String id = pushRequest.getPushRequestId();
+    String message = push.getMessage();
+    message = appContext.getBitlyApi().parseAndShorten(message);
 
-    String url = String.format("%s/q/%s", pluginContext.getBaseURI(), id);
-    url = appContext.getBitlyApi().shortenUnencodedUrl(url);
-
-    String message = push.getMessage() + " >> " + url;
     GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
 
     pluginContext.getPushProcessor().execute(pushRequest.getApiVersion(), domain, push);

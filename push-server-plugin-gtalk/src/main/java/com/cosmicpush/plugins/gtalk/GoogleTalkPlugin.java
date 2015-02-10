@@ -1,13 +1,12 @@
 package com.cosmicpush.plugins.gtalk;
 
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
+import com.cosmicpush.common.plugins.PluginSupport;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.GoogleTalkPush;
 import org.crazyyak.dev.common.Formats;
 import org.crazyyak.dev.common.IoUtils;
@@ -18,11 +17,12 @@ import java.io.InputStream;
 
 import static org.crazyyak.dev.common.StringUtils.*;
 
-public class GoogleTalkPlugin implements Plugin {
+public class GoogleTalkPlugin extends PluginSupport {
 
   private GoogleTalkConfigStore _configStore;
 
   public GoogleTalkPlugin() {
+    super(GoogleTalkPush.PUSH_TYPE);
   }
 
   public GoogleTalkConfigStore getConfigStore(CpCouchServer couchServer) {
@@ -36,11 +36,6 @@ public class GoogleTalkPlugin implements Plugin {
   public GoogleTalkConfig getConfig(CpCouchServer couchServer, Domain domain) {
     String docId = GoogleTalkConfigStore.toDocumentId(domain);
     return getConfigStore(couchServer).getByDocumentId(docId);
-  }
-
-  @Override
-  public PushType getPushType() {
-    return GoogleTalkPush.PUSH_TYPE;
   }
 
   @Override
@@ -116,12 +111,6 @@ public class GoogleTalkPlugin implements Plugin {
   }
 
   @Override
-  public byte[] getIcon() throws IOException {
-    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/gtalk/icon.png");
-    return IoUtils.toBytes(stream);
-  }
-
-  @Override
   public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
     GoogleTalkConfig config = getConfig(context.getCouchServer(), domain);
@@ -129,11 +118,14 @@ public class GoogleTalkPlugin implements Plugin {
     InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/gtalk/admin.html");
     String content = IoUtils.toString(stream);
 
-    content = content.replace("${domain-name}",   nullToString(domain.getDomainKey()));
-    content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
+    content = content.replace("${legend-class}",              nullToString(config == null ? "no-config" : ""));
+    content = content.replace("${push-type}",                 nullToString(getPushType().getCode()));
+    content = content.replace("${plugin-name}",               nullToString(getPluginName()));
+    content = content.replace("${domain-key}",                nullToString(domain.getDomainKey()));
+    content = content.replace("${push-server-base}",          nullToString(context.getBaseURI()));
 
-    content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));
-    content = content.replace("${config-password}",   nullToString(config == null ? null : config.getPassword()));
+    content = content.replace("${config-user-name}",          nullToString(config == null ? null : config.getUserName()));
+    content = content.replace("${config-password}",           nullToString(config == null ? null : config.getPassword()));
 
     content = content.replace("${config-test-address}",       nullToString(config == null ? null : config.getTestAddress()));
     content = content.replace("${config-recipient-override}", nullToString(config == null ? null : config.getRecipientOverride()));

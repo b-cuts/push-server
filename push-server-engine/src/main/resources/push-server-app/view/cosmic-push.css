@@ -88,6 +88,10 @@ legend {
   color: #FFD700;
 }
 
+legend.no-config {
+  color: white;
+}
+
 td.help {
   white-space: normal;
   vertical-align: top;

@@ -1,7 +1,7 @@
 <form style="margin-top: 1em" method="post">
   <fieldset>
-    <legend>
-      <img src="${push-server-base}/manage/ocs/icon" class="icon"/>
+    <legend class="${legend-class}">
+      <img src="${push-server-base}/manage/domain/${domain-key}/icon/${push-type}" class="icon"/>
       <span>Office Communicator</span>
     </legend>
 
@@ -36,9 +36,9 @@
         </tr>
         <tr>
           <td colspan="2" style="text-align: right">
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/google-talk" style="float:right">Update</button>
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/google-talk/test" style="float:right">Test</button>
-            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-name}/google-talk/delete" style="float:left">Delete</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/google-talk" style="float:right">Update</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/google-talk/test" style="float:right">Test</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/google-talk/delete" style="float:left">Delete</button>
           </td>
         </tr>
       </tbody>

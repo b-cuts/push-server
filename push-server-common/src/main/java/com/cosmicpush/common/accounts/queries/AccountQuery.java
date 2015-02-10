@@ -19,10 +19,6 @@ public abstract class AccountQuery<T> implements ValidatableAction {
     return new AccountEntityQuery(account);
   }
 
-  public static AccountUserNameQuery byUserName(String userName) {
-    return new AccountUserNameQuery(userName);
-  }
-
   public static AccountEmailQuery byEmail(String emailAddress) {
     return new AccountEmailQuery(emailAddress);
   }

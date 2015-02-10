@@ -12,6 +12,7 @@ import com.cosmicpush.common.AbstractDelegate;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.PushRequest;
+import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.common.UserAgent;
@@ -32,12 +33,14 @@ public class UserEventDelegate extends AbstractDelegate {
 
   private final PluginContext context;
   private final UserEventPush userEvent;
+  private AppContext appContext;
 
   public UserEventDelegate(PluginContext pluginContext, Domain domain, PushRequest pushRequest, UserEventPush userEvent) {
     super(pluginContext, pushRequest);
     this.context = pluginContext;
     this.userEvent = ExceptionUtils.assertNotNull(userEvent, "userEvent");
     this.domain = ExceptionUtils.assertNotNull(domain, "domain");
+    this.appContext = pluginContext.getAppContext();
   }
 
   @Override
@@ -175,7 +178,11 @@ public class UserEventDelegate extends AbstractDelegate {
   private void sendGoogleTalkIm() {
     try {
       String id = pushRequest.getPushRequestId();
-      String message = userEvent.getMessage() + " >> https://www.cosmicpush.com/q/" + id;
+      String url = String.format("%s/q/%s", pluginContext.getBaseURI(), id);
+
+      String message = userEvent.getMessage() + " " + url;
+      message = appContext.getBitlyApi().parseAndShorten(message);
+
       GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
 
       context.getPushProcessor().execute(pushRequest.getApiVersion(), domain, push);

@@ -38,11 +38,22 @@ public class ManageResource {
 
   @GET
   @Produces(InetMediaType.IMAGE_PNG_VALUE)
-  @Path("/{pushType}/icon")
-  public Response getIcon(@PathParam("pushType") PushType pushType) throws Exception {
+  @Path("/{pushType}/icon-enabled")
+  public Response getEnabledIcon(@PathParam("pushType") PushType pushType) throws Exception {
 
     Plugin plugin = PluginManager.getPlugin(pushType);
-    byte[] bytes = plugin.getIcon();
+    byte[] bytes = plugin.getEnabledIcon();
+
+    return Response.ok(bytes, InetMediaType.IMAGE_PNG_VALUE).build();
+  }
+
+  @GET
+  @Produces(InetMediaType.IMAGE_PNG_VALUE)
+  @Path("/{pushType}/icon-disabled")
+  public Response getDisabledIcon(@PathParam("pushType") PushType pushType) throws Exception {
+
+    Plugin plugin = PluginManager.getPlugin(pushType);
+    byte[] bytes = plugin.getDisabledIcon();
 
     return Response.ok(bytes, InetMediaType.IMAGE_PNG_VALUE).build();
   }

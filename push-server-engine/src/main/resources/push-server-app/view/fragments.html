@@ -18,6 +18,12 @@
       <script th:src= "${contextRoot}+'/cosmic-push.js'"></script>
     </html_header>
 
+    <page_title>
+      <h1>Cosmic Push</h1>
+      <div>One API - Infinite Destinations</div>
+      <div style="text-align: right"><a th:href="${contextRoot}+'/sign-out'">Sign Out</a></div>
+    </page_title>
+
     <req_icon>
       <img th:case="'pending'" src="/" th:src="${contextRoot}+'/static/status-pending.png'"   title="Processing is pending"/>
       <img th:case="'failed'"  src="/" th:src="${contextRoot}+'/static/status-failed.png'"    title="Processing failed"/>

@@ -109,7 +109,7 @@ public class TestFactory {
   public Account createAccount() {
     CreateAccountAction createAccount = new CreateAccountAction(
         TestFactory.westCoastTimeZone,
-        "test", "Test Parr <test@jacobparr.com>",
+        "test@jacobparr.com",
         "Unit", "Test",
         "testing123", "testing123"
     );

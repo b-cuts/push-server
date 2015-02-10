@@ -41,10 +41,6 @@ public class AccountStore extends DefaultCouchStore<Account> {
       AccountEntityQuery query = (AccountEntityQuery)accountQuery;
       return query.getAccount();
 
-    } else if (accountQuery instanceof AccountUserNameQuery) {
-      AccountUserNameQuery query = (AccountUserNameQuery)accountQuery;
-      return getByUsername(query.getUserName());
-
     } else if (accountQuery instanceof AccountEmailQuery) {
       AccountEmailQuery query = (AccountEmailQuery)accountQuery;
       return getByEmail(query.getEmailAddress());
@@ -59,16 +55,10 @@ public class AccountStore extends DefaultCouchStore<Account> {
   }
 
   public List<Account> getAll() {
-    return super.getEntities("byUserName");
+    return super.getEntities("byEmailAddress");
   }
 
-  public Account getByUsername(String userName) {
-    if (userName == null) return null;
-    List<Account> response = super.getEntities("byUserName", userName);
-    return response.isEmpty() ? null : response.get(0);
-  }
-
-  private Account getByEmail(String emailAddress) {
+  public Account getByEmail(String emailAddress) {
     if (emailAddress == null) return null;
     List<Account> response = super.getEntities("byEmailAddress", emailAddress);
     return response.isEmpty() ? null : response.get(0);

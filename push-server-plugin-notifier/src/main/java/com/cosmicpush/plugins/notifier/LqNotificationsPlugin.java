@@ -1,12 +1,11 @@
 package com.cosmicpush.plugins.notifier;
 
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
+import com.cosmicpush.common.plugins.PluginSupport;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.LqNotificationPush;
 import org.crazyyak.dev.common.IoUtils;
 
@@ -16,12 +15,12 @@ import java.io.InputStream;
 
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
-public class LqNotificationsPlugin implements Plugin {
+public class LqNotificationsPlugin extends PluginSupport {
 
   private LqNotificationsConfigStore _configStore;
 
   public LqNotificationsPlugin() {
-    System.out.print("");
+    super(LqNotificationPush.PUSH_TYPE);
   }
 
   public LqNotificationsConfigStore getConfigStore(CpCouchServer couchServer) {
@@ -35,11 +34,6 @@ public class LqNotificationsPlugin implements Plugin {
   public LqNotificationsConfig getConfig(CpCouchServer couchServer, Domain domain) {
     String docId = LqNotificationsConfigStore.toDocumentId(domain);
     return getConfigStore(couchServer).getByDocumentId(docId);
-  }
-
-  @Override
-  public PushType getPushType() {
-    return LqNotificationPush.PUSH_TYPE;
   }
 
   @Override
@@ -82,12 +76,6 @@ public class LqNotificationsPlugin implements Plugin {
   }
 
   @Override
-  public byte[] getIcon() throws IOException {
-    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/notifier/icon.png");
-    return IoUtils.toBytes(stream);
-  }
-
-  @Override
   public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
     LqNotificationsConfig config = getConfig(context.getCouchServer(), domain);
@@ -95,9 +83,11 @@ public class LqNotificationsPlugin implements Plugin {
     InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/notifier/admin.html");
     String content = IoUtils.toString(stream);
 
-    content = content.replace("${domain-name}",   nullToString(domain.getDomainKey()));
+    content = content.replace("${legend-class}",      nullToString(config == null ? "no-config" : ""));
+    content = content.replace("${push-type}",         nullToString(getPushType().getCode()));
+    content = content.replace("${plugin-name}",       nullToString(getPluginName()));
+    content = content.replace("${domain-key}",        nullToString(domain.getDomainKey()));
     content = content.replace("${push-server-base}",  nullToString(context.getBaseURI()));
-
     content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));
 
     if (content.contains("${")) {

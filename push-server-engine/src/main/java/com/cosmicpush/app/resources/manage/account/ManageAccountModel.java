@@ -34,7 +34,9 @@ public class ManageAccountModel {
       for (Plugin plugin : PluginManager.getPlugins()) {
         PluginConfig config = plugin.getConfig(pluginContext.getCouchServer(), domain);
         if (config != null) {
-          domainModel.pushTypes.add(plugin.getPushType());
+          domainModel.enabledTypes.add(plugin.getPushType());
+        } else {
+          domainModel.disabledTypes.add(plugin.getPushType());
         }
       }
     }
@@ -50,15 +52,13 @@ public class ManageAccountModel {
 
   public static class DomainModel {
     private final String domainKey;
-    private final Set<PushType> pushTypes = new TreeSet<>();
+    private final Set<PushType> enabledTypes = new TreeSet<>();
+    private final Set<PushType> disabledTypes = new TreeSet<>();
     public DomainModel(String domainKey) {
       this.domainKey = domainKey;
     }
-    public String getDomainKey() {
-      return domainKey;
-    }
-    public Set<PushType> getPushTypes() {
-      return pushTypes;
-    }
+    public String getDomainKey() { return domainKey; }
+    public Set<PushType> getEnabledTypes() { return enabledTypes; }
+    public Set<PushType> getDisabledTypes() { return disabledTypes; }
   }
 }

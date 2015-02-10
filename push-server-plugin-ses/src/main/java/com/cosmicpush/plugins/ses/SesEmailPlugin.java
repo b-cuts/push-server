@@ -1,13 +1,12 @@
 package com.cosmicpush.plugins.ses;
 
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.common.plugins.Plugin;
 import com.cosmicpush.common.plugins.PluginContext;
+import com.cosmicpush.common.plugins.PluginSupport;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.CpCouchServer;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.SesEmailPush;
 import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.Formats;
@@ -20,11 +19,12 @@ import java.io.InputStream;
 
 import static org.crazyyak.dev.common.StringUtils.nullToString;
 
-public class SesEmailPlugin implements Plugin {
+public class SesEmailPlugin extends PluginSupport {
 
   private SesEmailConfigStore _configStore;
 
   public SesEmailPlugin() {
+    super(SesEmailPush.PUSH_TYPE);
   }
 
   public SesEmailConfigStore getConfigStore(CpCouchServer couchServer) {
@@ -38,11 +38,6 @@ public class SesEmailPlugin implements Plugin {
   public SesEmailConfig getConfig(CpCouchServer couchServer, Domain domain) {
     String docId = SesEmailConfigStore.toDocumentId(domain);
     return getConfigStore(couchServer).getByDocumentId(docId);
-  }
-
-  @Override
-  public PushType getPushType() {
-    return SesEmailPush.PUSH_TYPE;
   }
 
   @Override
@@ -126,12 +121,6 @@ public class SesEmailPlugin implements Plugin {
   }
 
   @Override
-  public byte[] getIcon() throws IOException {
-    InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/ses/icon.png");
-    return IoUtils.toBytes(stream);
-  }
-
-  @Override
   public String getAdminUi(PluginContext context, Domain domain) throws IOException {
 
     SesEmailConfig config = getConfig(context.getCouchServer(), domain);
@@ -139,7 +128,10 @@ public class SesEmailPlugin implements Plugin {
     InputStream stream = getClass().getResourceAsStream("/com/cosmicpush/plugins/ses/admin.html");
     String content = IoUtils.toString(stream);
 
-    content = content.replace("${domain-name}",           nullToString(domain.getDomainKey()));
+    content = content.replace("${legend-class}",              nullToString(config == null ? "no-config" : ""));
+    content = content.replace("${push-type}",                 nullToString(getPushType().getCode()));
+    content = content.replace("${plugin-name}",               nullToString(getPluginName()));
+    content = content.replace("${domain-key}",                nullToString(domain.getDomainKey()));
     content = content.replace("${push-server-base}",          nullToString(context.getBaseURI()));
     content = content.replace("${config-access-key-id}",      nullToString(config == null ? null : config.getAccessKeyId()));
     content = content.replace("${config-secret-key}",         nullToString(config == null ? null : config.getSecretKey()));

@@ -5,18 +5,18 @@
 
   <body>
 
-    <div style="float: left">
+    <div style="float: right">
       <h1>Cosmic Push</h1>
       <div>One API - Infinite Destinations</div>
     </div>
 
     <div th:if="${it.account != null}">
-      <div style="float: right">
+      <div style="float: left">
         <a th:href="${contextRoot}+'/manage/account'">My Account</a>
       </div>
     </div>
     <div th:if="${it.account == null}">
-      <form name='f' th:action="${contextRoot}+'/sign-in'" method='POST' style="float: right" enctype="application/x-www-form-urlencoded">
+      <form name='f' th:action="${contextRoot}+'/sign-in'" method='POST' style="float: left" enctype="application/x-www-form-urlencoded">
 
         <table>
           <tr>
@@ -28,7 +28,8 @@
             <td><input id="password" type='password' name='password' th:value="${it.password}"/></td>
           </tr>
           <tr>
-            <td colspan='2'><button type="submit" style="width:100%">Sign In</button></td>
+            <td></td>
+            <td><button type="submit" style="width:100%">Sign In</button></td>
           </tr>
           <tr>
             <td colspan="2" th:text="${it.message}" style="font-weight: bold; color: red; padding-top: 1em"></td>

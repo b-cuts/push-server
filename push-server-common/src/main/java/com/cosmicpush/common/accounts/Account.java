@@ -6,10 +6,12 @@
 
 package com.cosmicpush.common.accounts;
 
-import com.cosmicpush.common.accounts.actions.*;
+import com.cosmicpush.common.accounts.actions.ChangePasswordAction;
+import com.cosmicpush.common.accounts.actions.ConfirmEmailAction;
+import com.cosmicpush.common.accounts.actions.CreateAccountAction;
+import com.cosmicpush.common.accounts.actions.UpdateAccountAction;
 import com.cosmicpush.common.actions.CreateDomainAction;
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.internal.CpIdGenerator;
 import com.cosmicpush.pub.internal.RequestErrors;
 import com.couchace.annotations.CouchEntity;
@@ -23,12 +25,8 @@ import org.crazyyak.dev.common.DateUtils;
 import org.crazyyak.dev.common.EqualsUtils;
 import org.crazyyak.dev.common.StringUtils;
 import org.crazyyak.dev.common.exceptions.ApiException;
-import org.crazyyak.dev.domain.account.AccountStatus;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @CouchEntity(AccountStore.ACCOUNT_DESIGN_NAME)
 public class Account {
@@ -40,7 +38,6 @@ public class Account {
 
   private LocalDateTime createdAt;
 
-  private String userName;
   private String password;
   private String tempPassword;
 
@@ -51,12 +48,7 @@ public class Account {
   private boolean emailConfirmed;
   private String emailConfirmationCode;
 
-  /*package*/ Permissions permissions;
-  /*package*/ AccountStatus accountStatus;
-
   private int retentionDays;
-
-  private List<String> domainIds = new ArrayList<>();
 
   @JsonCreator
   private Account(
@@ -65,7 +57,6 @@ public class Account {
 
       @JsonProperty("createdAt") LocalDateTime createdAt,
 
-      @JsonProperty("userName") String userName,
       @JsonProperty("password") String password,
       @JsonProperty("tempPassword") String tempPassword,
 
@@ -74,12 +65,7 @@ public class Account {
 
       @JsonProperty("emailAddress") String emailAddress,
       @JsonProperty("emailConfirmed") boolean emailConfirmed,
-      @JsonProperty("emailConfirmationCode") String emailConfirmationCode,
-
-      @JsonProperty("roleTypes") Set<String> roleTypes,
-      @JsonProperty("accountStatus") AccountStatus accountStatus,
-
-      @JsonProperty("domainIds") List<String> domainIds) {
+      @JsonProperty("emailConfirmationCode") String emailConfirmationCode) {
 
     this.accountId = accountId;
 
@@ -87,7 +73,6 @@ public class Account {
 
     this.createdAt = createdAt;
 
-    this.userName = userName;
     this.password = password;
     this.tempPassword = tempPassword;
 
@@ -97,23 +82,12 @@ public class Account {
     this.emailAddress = emailAddress;
     this.emailConfirmed = emailConfirmed;
     this.emailConfirmationCode = emailConfirmationCode;
-
-    this.permissions = new Permissions(roleTypes);
-    this.accountStatus = accountStatus;
-
-    if (domainIds != null) {
-      this.domainIds.addAll(domainIds);
-    }
   }
 
   public Account(CreateAccountAction action) {
 
     this.accountId = CpIdGenerator.newId();
     this.createdAt = DateUtils.currentLocalDateTime();
-
-    this.permissions = new Permissions();
-
-    this.userName = action.getUserName();
 
     validatePasswords(action.getPassword(), action.getPasswordConfirmed());
     this.password = action.getPassword();
@@ -125,8 +99,6 @@ public class Account {
     this.emailConfirmed = false;
     this.emailConfirmationCode = String.valueOf(System.currentTimeMillis());
     this.emailConfirmationCode = emailConfirmationCode.substring(emailConfirmationCode.length()-5);
-
-    this.accountStatus = new AccountStatus(true, true, true, true);
   }
 
   @CouchId
@@ -139,53 +111,9 @@ public class Account {
     return revision;
   }
 
-  public List<String> getDomainIds() {
-    return domainIds;
-  }
-
-  //  public List<Domain> getDomains() {
-//    return domains;
-//  }
   public Domain add(CreateDomainAction action) {
     action.validate(new RequestErrors()).assertNoErrors();
-    Domain domain = new Domain(action);
-    domainIds.add(domain.getDomainId());
-    return domain;
-  }
-
-  public void remove(Domain domain) {
-    if (domain == null) {
-      throw ApiException.badRequest("The domain must be specified.");
-    }
-    domainIds.remove(domain.getDomainId());
-  }
-
-//  public Domain getDomainById(String domainId) {
-//    for (Domain domain : domains) {
-//      if (BeanUtils.objectsEqual(domain.getDomainId(), domainId)) {
-//        return domain;
-//      }
-//    }
-//    return null;
-//  }
-//  public Domain getDomainByName(String domainKey) {
-//    for (Domain domain : domains) {
-//      if (BeanUtils.objectsEqual(domain.getDomainKey(), domainKey)) {
-//        return domain;
-//      }
-//    }
-//    return null;
-//  }
-
-  public void apply(UpdateAccountStatusAction action) {
-    accountStatus.setAccountNonExpired(action.isAccountNonExpired());
-    accountStatus.setAccountNonLocked(action.isAccountNonLocked());
-    accountStatus.setCredentialsNonExpired(action.isCredentialsNonExpired());
-    accountStatus.setEnabled(action.isEnabled());
-  }
-
-  public void apply(UpdatePermissionsAction action) {
-    this.permissions.setRoleTypes(action.getRoleTypes());
+    return new Domain(action);
   }
 
   public void apply(UpdateAccountAction action) {
@@ -195,17 +123,6 @@ public class Account {
     this.lastName = action.getLastName();
 
     this.emailAddress = action.getEmailAddress();
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
-
-  public Set<String> getRoleTypes() {
-    return permissions.getRoleTypes();
   }
 
   public boolean hasTempPassword() {
@@ -225,14 +142,6 @@ public class Account {
 
   public String getTempPassword() {
     return tempPassword;
-  }
-
-  public Permissions getPermissions() {
-    return permissions;
-  }
-
-  public AccountStatus getAccountStatus() {
-    return accountStatus;
   }
 
   public void validatePassword(String password) {
@@ -317,13 +226,5 @@ public class Account {
 
   public String toString() {
     return emailAddress;
-  }
-
-  public boolean isOwner(Domain domain) {
-    return domainIds.contains(domain.getDomainId());
-  }
-
-  public boolean isNotOwner(Domain domain) {
-    return !isOwner(domain);
   }
 }

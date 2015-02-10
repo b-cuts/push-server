@@ -130,6 +130,9 @@ public class ExecutionContext implements PluginContext {
   @Override
   public void setLastMessage(String message) {
     if (session != null) {
+      if (getDomain() != null && message != null) {
+        message = domain.getDomainKey()+": "+message;
+      }
       session.setLastMessage(message);
     }
   }
