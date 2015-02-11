@@ -10,7 +10,10 @@ import static org.testng.Assert.assertNotNull;
 public class LqNotificationPluginTest {
 
   public void testResources() throws Exception {
-    URL url = getClass().getResource("/com/cosmicpush/plugins/notifier/icon.png");
+    URL url = getClass().getResource("/com/cosmicpush/plugins/notifier/icon-enabled.png");
+    assertNotNull(url);
+
+    url = getClass().getResource("/com/cosmicpush/plugins/notifier/icon-disabled.png");
     assertNotNull(url);
 
     url = getClass().getResource("/com/cosmicpush/plugins/notifier/admin.html");

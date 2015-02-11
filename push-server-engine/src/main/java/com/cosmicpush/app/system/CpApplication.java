@@ -14,10 +14,7 @@ import com.cosmicpush.app.jaxrs.security.SessionFilter;
 import com.cosmicpush.app.resources.RootResource;
 import com.cosmicpush.app.view.LocalResourceMessageBodyWriter;
 import com.cosmicpush.app.view.ThymeleafMessageBodyWriter;
-import com.cosmicpush.common.system.AppContext;
-import com.cosmicpush.common.system.CpCouchServer;
-import com.cosmicpush.common.system.ExecutionContext;
-import com.cosmicpush.common.system.SessionStore;
+import com.cosmicpush.common.system.*;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.push.GoogleTalkPush;
@@ -101,8 +98,10 @@ public class CpApplication extends Application {
 
     checkForDuplicates();
 
-    CpJobs jobs = new CpJobs(appContext);
+    // Force initialization.
+    PluginManager.getPlugins();
 
+    CpJobs jobs = new CpJobs(appContext);
     ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     scheduler.scheduleAtFixedRate(jobs::pruneEvents, 0, 1, TimeUnit.HOURS);
     scheduler.scheduleAtFixedRate(jobs::cleanAndCompactDatabase, 0, 4, TimeUnit.HOURS);

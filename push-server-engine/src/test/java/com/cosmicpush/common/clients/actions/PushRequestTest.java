@@ -241,8 +241,8 @@ public class PushRequestTest {
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
 
-    Push push = LqNotificationPush.newPush(
-      "Hey, you need to check this out.",
+    LqNotificationPush push = LqNotificationPush.newPush(
+      "unit-test", "Hey, you need to check this out.", "some-tracking-id",
       callbackUrl, "test:true", "type:warning");
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
@@ -257,18 +257,23 @@ public class PushRequestTest {
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
         "  \"remoteAddress\" : \"%s\",\n" +
-        "  \"pushType\" : \"notification\",\n" +
+        "  \"pushType\" : \"liquid-notification\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
-        "    \"pushType\" : \"notification\",\n" +
-        "    \"message\" : \"Hey, you need to check this out.\",\n" +
+        "    \"pushType\" : \"liquid-notification\",\n" +
+        "    \"topic\" : \"unit-test\",\n" +
+        "    \"summary\" : \"Hey, you need to check this out.\",\n" +
+        "    \"trackingId\" : \"some-tracking-id\",\n" +
+        "    \"createdAt\" : \""+push.getCreatedAt()+"\",\n" +
+        "    \"exceptionInfo\" : null,\n" +
         "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
         "    \"remoteHost\" : \"%s\",\n" +
         "    \"remoteAddress\" : \"%s\",\n" +
         "    \"traits\" : {\n" +
         "      \"test\" : \"true\",\n" +
         "      \"type\" : \"warning\"\n" +
-        "    }\n" +
+        "    },\n" +
+        "    \"attachments\" : [ ]\n" +
         "  },\n" +
         "  \"pushRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +

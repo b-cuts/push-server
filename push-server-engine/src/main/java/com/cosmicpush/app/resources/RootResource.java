@@ -47,9 +47,6 @@ public class RootResource extends RootResourceSupport {
 
   public RootResource() {
     log.info("Created ");
-
-    // Force initialization.
-    PluginManager.getPlugins();
   }
 
   @Override
@@ -75,17 +72,17 @@ public class RootResource extends RootResourceSupport {
   public static class WelcomeModel {
     private final Account account;
     private final String message;
-    private final String username;
+    private final String emailAddress;
     private final String password;
-    public WelcomeModel(Account account, String message, String username, String password) {
+    public WelcomeModel(Account account, String message, String emailAddress, String password) {
       this.account = account;
       this.message = message;
-      this.username = username;
+      this.emailAddress = emailAddress;
       this.password = password;
     }
     public Account getAccount() { return account; }
     public String getMessage() { return message; }
-    public String getUsername() { return username; }
+    public String getEmailAddress() { return emailAddress; }
     public String getPassword() { return password; }
   }
 

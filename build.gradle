@@ -31,14 +31,14 @@ subprojects {
 
   ext {
     pushServerEngineServlet   = "1.0.0";
-    pushServerEngineGrizzly   = "1.0.2";
+    pushServerEngineGrizzly   = "1.0.5";
 
     pushServerPub     = "2.0.0"
     pushServerGateway = "2.0.0"
     pushServerApp     = "4.0.0"
     pushServerCommon  = "4.0.0"
     pushServerJackson = "4.0.0"
-    pushServerTest    = "SNAPSHOT"
+    pushServerTest    = "1.0.0"
 
     pushServerPluginSes       = "4.0.0"
     pushServerPluginSmtp      = "4.0.0"
