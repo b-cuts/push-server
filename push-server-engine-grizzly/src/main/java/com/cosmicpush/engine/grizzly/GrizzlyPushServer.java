@@ -17,6 +17,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class GrizzlyPushServer {
 
   public String serverName = "www.localhost";
+  private boolean shutDown = false;
   private int port = 8080;
   private int shutdownPort = 8005;
   private String context = "push-server";
@@ -57,12 +58,19 @@ public class GrizzlyPushServer {
         context = value;
       } else if ("open".equals(key)) {
         openBrowser = Boolean.valueOf(value);
+      } else if ("action".equals(key) && "stop".equals(value)) {
+        shutDown = true;
       }
     }
 
     this.baseUri = URI.create("http://"+serverName+":"+ port+"/"+context+"/");
 
     shutdownExisting();
+
+    if (shutDown) {
+      System.exit(0);
+      return null;
+    }
 
     CpApplication application = new CpApplication();
     CpResourceConfig rc = new CpResourceConfig(application);
@@ -132,22 +140,6 @@ public class GrizzlyPushServer {
     handlerLock.unlock();
   }
 
-  public String getServerName() {
-    return serverName;
-  }
-
-  public int getPort() {
-    return port;
-  }
-
-  public int getShutdownPort() {
-    return shutdownPort;
-  }
-
-  public String getContext() {
-    return context;
-  }
-
   public URI getBaseUri() {
     return baseUri;
   }
@@ -208,17 +200,22 @@ public class GrizzlyPushServer {
   public static void main(String[] args) {
     try {
       GrizzlyPushServer pushServer = new GrizzlyPushServer();
-      pushServer.startServer(args);
+      HttpServer server = pushServer.startServer(args);
 
-      System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl", pushServer.getBaseUri()));
+      if (server == null) {
+        System.out.println("Application stopped.");
 
-      if (pushServer.openBrowser) {
-        String path = String.format("%s?username=%s&password=%s", pushServer.getBaseUri(), StringUtils.encodeUrl("test@example.com"), "test");
-        URI uri = URI.create(path);
-        java.awt.Desktop.getDesktop().browse(uri);
+      } else {
+        System.out.printf("Application started with WADL available at %sapplication.wadl%n", pushServer.getBaseUri());
+
+        if (pushServer.openBrowser) {
+          String path = String.format("%s?username=%s&password=%s", pushServer.getBaseUri(), StringUtils.encodeUrl("test@example.com"), "test");
+          URI uri = URI.create(path);
+          java.awt.Desktop.getDesktop().browse(uri);
+        }
+
+        Thread.currentThread().join();
       }
-
-      Thread.currentThread().join();
 
     } catch (Throwable e) {
       e.printStackTrace();

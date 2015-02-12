@@ -49,17 +49,15 @@ public class CpApplication extends Application {
   }
 
   private final Set<Class<?>> classes;
-  private final Set<Object> singletons;
   private final Map<String, Object> properties;
-  private final LogUtils logUtils = new LogUtils();
 
   public CpApplication() throws Exception {
     // Make sure our logging is working before ANYTHING else.
+    LogUtils logUtils = new LogUtils();
     logUtils.initConsoleAppender(Level.WARN, LogUtils.DEFAULT_PATTERN);
 
     Map<String, Object> properties = new HashMap<>();
     Set<Class<?>> classes = new HashSet<>();
-    Set<Object> singletons = new HashSet<>();
 
     String databaseName = "cosmic-push";
     String bitlyAccessToken = "9f5ed9c08c695b4a017bfb432eea58876a5d40cb";
@@ -78,6 +76,7 @@ public class CpApplication extends Application {
     classes.add(SessionFilter.class);
     classes.add(ApiAuthenticationFilter.class);
     classes.add(MngtAuthenticationFilter.class);
+
     classes.add(ThymeleafMessageBodyWriter.class);
     classes.add(LocalResourceMessageBodyWriter.class);
     classes.add(RootResource.class);
@@ -93,7 +92,6 @@ public class CpApplication extends Application {
     new PushType(SmtpEmailPush.class, "email", "eMail");
 
     this.classes = Collections.unmodifiableSet(classes);
-    this.singletons = Collections.unmodifiableSet(singletons);
     this.properties = Collections.unmodifiableMap(properties);
 
     checkForDuplicates();
@@ -109,18 +107,6 @@ public class CpApplication extends Application {
 
   private void checkForDuplicates() {
     Set<Class> existing = new HashSet<>();
-
-    for (Object object : singletons) {
-      if (object == null) continue;
-      if (object instanceof Class) {
-        String msg = String.format("The class %s was registered as a singleton.", Class.class.getName());
-        throw new IllegalArgumentException(msg);
-
-      } else if (existing.contains(object.getClass())) {
-        String msg = String.format("The singleton %s has already been registered.", object.getClass().getName());
-        throw new IllegalArgumentException(msg);
-      }
-    }
 
     for (Class type : classes) {
       if (type == null) continue;
@@ -141,9 +127,4 @@ public class CpApplication extends Application {
   public Set<Class<?>> getClasses() {
     return classes;
   }
-  @Override
-  public Set<Object> getSingletons() {
-    return singletons;
-  }
-
 }
