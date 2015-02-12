@@ -59,6 +59,12 @@ public class IntegrationTestVersion2 {
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
   }
 
+  public void testTwilioSmsPush() throws Exception {
+    TwilioSmsPush push = TwilioSmsPush.newPush("+15551112222", "+12221115555", "test message", "http://example.com/callback");
+    PushResponse response = gateway.push(push);
+    assertEquals(response.getRequestStatus(), RequestStatus.pending);
+  }
+
   public void testSesEmailPush() throws Exception {
     SesEmailPush action = SesEmailPush.newPush(
         "Test Parr <test@jacobparr.com>",
