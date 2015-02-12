@@ -16,16 +16,15 @@
 
 package com.cosmicpush.jackson;
 
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushType;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.DatabindContext;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.jsontype.TypeIdResolver;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import java.util.*;
 
 public class PushJacksonResolver implements TypeIdResolver {
-
-  private final Map<String,PushType> pushTypeMap = new HashMap<>();
 
   @Override
   public void init(JavaType baseType) {
