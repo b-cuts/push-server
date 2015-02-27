@@ -35,11 +35,11 @@
 
     <fieldset style="margin-top:1em">
       <legend>Email</legend>
-      <div>To: <strong th:text="${it.request.emailPush.toAddress}"></strong></div>
-      <div>Fr: <strong th:text="${it.request.emailPush.fromAddress}"></strong></div>
+      <div>To: <strong th:text="${it.request.commonEmail.toAddress}"></strong></div>
+      <div>Fr: <strong th:text="${it.request.commonEmail.fromAddress}"></strong></div>
       <div>&nbsp;</div>
-      <div><strong th:text="${it.request.emailPush.emailSubject}"></strong></div>
-      <div style="border: 2px solid black; padding: 0" th:utext="${it.request.emailPush.htmlContent}"></div>
+      <div><strong th:text="${it.request.commonEmail.emailSubject}"></strong></div>
+      <div style="border: 2px solid black; padding: 0" th:utext="${it.request.commonEmail.htmlContent}"></div>
     </fieldset>
 
     <fieldset style="margin-top:1em">

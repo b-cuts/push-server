@@ -31,6 +31,7 @@ public class UpdateXmppConfigActionTest {
 
     UpdateXmppConfigAction updateAction = new UpdateXmppConfigAction(domain,
         "mickey.mouse", "IamMickey",
+        "talk.google.com", "5222", "gmail.com",
         "test@example.com", "override@example.com");
 
     XmppConfig config = new XmppConfig();

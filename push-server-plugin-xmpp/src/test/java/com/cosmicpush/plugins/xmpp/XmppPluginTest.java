@@ -17,10 +17,10 @@ public class XmppPluginTest {
 
     @Test
     public void iconUrlTest() {
-      URL url = getClass().getResource("/com/cosmicpush/plugins/gtalk/icon-enabled.png");
+      URL url = getClass().getResource("/com/cosmicpush/plugins/xmpp/icon-enabled.png");
       Assert.assertNotNull(url);
 
-      url = getClass().getResource("/com/cosmicpush/plugins/gtalk/icon-disabled.png");
+      url = getClass().getResource("/com/cosmicpush/plugins/xmpp/icon-disabled.png");
       Assert.assertNotNull(url);
     }
 }

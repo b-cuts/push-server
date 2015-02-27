@@ -208,10 +208,10 @@ public class PushRequestTest {
         "  \"requestStatus\" : \"pending\",\n" +
         "  \"remoteHost\" : \"%s\",\n" +
         "  \"remoteAddress\" : \"%s\",\n" +
-        "  \"pushType\" : \"google-talk\",\n" +
+        "  \"pushType\" : \"xmpp\",\n" +
         "  \"notes\" : [ ],\n" +
         "  \"push\" : {\n" +
-        "    \"pushType\" : \"google-talk\",\n" +
+        "    \"pushType\" : \"xmpp\",\n" +
         "    \"recipient\" : \"mickey.mouse@disney.com\",\n" +
         "    \"message\" : \"Just calling to say hello\",\n" +
         "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +

@@ -44,6 +44,7 @@ public class ManageEmailsResource {
   @Produces(MediaType.TEXT_HTML)
   public Thymeleaf viewEmailEvents() throws Exception {
     List<PushRequest> requests = new ArrayList<>();
+    requests.addAll(execContext.getPushRequestStore().getByClientAndType(domain, EmailPush.PUSH_TYPE));
     requests.addAll(execContext.getPushRequestStore().getByClientAndType(domain, SesEmailPush.PUSH_TYPE));
     requests.addAll(execContext.getPushRequestStore().getByClientAndType(domain, SmtpEmailPush.PUSH_TYPE));
 

@@ -35,9 +35,9 @@
             <div th:text="'from '+${pushRequest.remoteHost}"></div>
           </td>
           <td style="border-right: 0">
-            <div>To: <strong th:text="${pushRequest.emailPush.toAddress}"></strong></div>
-            <div>Fr: <strong th:text="${pushRequest.emailPush.fromAddress}"></strong></div>
-            <div><strong th:text="${pushRequest.emailPush.emailSubject}"></strong></div>
+            <div>To: <strong th:text="${pushRequest.commonEmail.toAddress}"></strong></div>
+            <div>Fr: <strong th:text="${pushRequest.commonEmail.fromAddress}"></strong></div>
+            <div><strong th:text="${pushRequest.commonEmail.emailSubject}"></strong></div>
           </td>
 
           <td style="padding-right: 5px; border-left:0">

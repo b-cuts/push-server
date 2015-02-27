@@ -21,9 +21,8 @@ public class TwilioConfigTest {
         String authToken = "2341234dkfasdfdasdfasd";
         String fromPhoneNumber = "+15552221111";
         String recipient = "+12225551111";
-        String message = "test message";
 
-        TwilioConfig twilioConfig = new TwilioConfig(configId, revision, domainId, accountSid, authToken, fromPhoneNumber, recipient, message);
+        TwilioConfig twilioConfig = new TwilioConfig(configId, revision, domainId, accountSid, authToken, fromPhoneNumber, recipient);
 
         assertEquals(twilioConfig.getConfigId(), configId);
         assertEquals(twilioConfig.getRevision(), revision);
@@ -32,7 +31,6 @@ public class TwilioConfigTest {
         assertEquals(twilioConfig.getAuthToken(), authToken);
         assertEquals(twilioConfig.getFromPhoneNumber(), fromPhoneNumber);
         assertEquals(twilioConfig.getRecipient(), recipient);
-        assertEquals(twilioConfig.getMessage(), message);
     }
 
     @Test
@@ -43,10 +41,9 @@ public class TwilioConfigTest {
         String authToken = "2341234dkfasdfdasdfasd";
         String fromPhoneNumber = "+15552221111";
         String recipient = "+12225551111";
-        String message = "test message";
 
         Domain domain = new Domain(domainId, revision, "domainKey", "domainPass", 3, new ArrayList<String>());
-        UpdateTwilioConfigAction updateTwilioConfigAction = new UpdateTwilioConfigAction(domain, accountSid, authToken, fromPhoneNumber, recipient, message);
+        UpdateTwilioConfigAction updateTwilioConfigAction = new UpdateTwilioConfigAction(domain, accountSid, authToken, fromPhoneNumber, recipient);
         TwilioConfig configClone = new TwilioConfig().apply(updateTwilioConfigAction);
 
         assertNull(configClone.getRevision());
@@ -55,7 +52,5 @@ public class TwilioConfigTest {
         assertEquals(configClone.getAuthToken(), authToken);
         assertEquals(configClone.getFromPhoneNumber(), fromPhoneNumber);
         assertEquals(configClone.getRecipient(), recipient);
-        assertEquals(configClone.getMessage(), message);
     }
-
 }

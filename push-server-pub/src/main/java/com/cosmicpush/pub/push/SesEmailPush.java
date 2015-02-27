@@ -1,5 +1,6 @@
 package com.cosmicpush.pub.push;
 
+import com.cosmicpush.pub.common.CommonEmail;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushType;
 import com.cosmicpush.pub.internal.PushUtils;
@@ -15,7 +16,7 @@ import java.net.InetAddress;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class SesEmailPush implements Push, Serializable {
+public class SesEmailPush implements CommonEmail, Push, Serializable {
 
   public static final PushType PUSH_TYPE = new PushType(SesEmailPush.class, "ses-email", "ASES E-Mail");
 

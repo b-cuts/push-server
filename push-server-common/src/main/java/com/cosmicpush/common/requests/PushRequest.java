@@ -7,13 +7,12 @@
 package com.cosmicpush.common.requests;
 
 import com.cosmicpush.common.clients.Domain;
-import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.common.PushTraits;
-import com.cosmicpush.pub.common.PushType;
-import com.cosmicpush.pub.common.RequestStatus;
+import com.cosmicpush.pub.common.*;
 import com.cosmicpush.pub.internal.CpIdGenerator;
 import com.cosmicpush.pub.push.EmailPush;
 import com.cosmicpush.pub.push.LqNotificationPush;
+import com.cosmicpush.pub.push.SesEmailPush;
+import com.cosmicpush.pub.push.SmtpEmailPush;
 import com.couchace.annotations.CouchEntity;
 import com.couchace.annotations.CouchId;
 import com.couchace.annotations.CouchRevision;
@@ -242,6 +241,21 @@ public class PushRequest implements Comparable<PushRequest> {
   @JsonIgnore
   public EmailPush getEmailPush() {
     return (push instanceof EmailPush) ? (EmailPush)push : null;
+  }
+
+  @JsonIgnore
+  public SesEmailPush getSesEmailPush() {
+    return (push instanceof SesEmailPush) ? (SesEmailPush)push : null;
+  }
+
+  @JsonIgnore
+  public SmtpEmailPush getSmtpEmailPush() {
+    return (push instanceof SmtpEmailPush) ? (SmtpEmailPush)push : null;
+  }
+
+  @JsonIgnore
+  public CommonEmail getCommonEmail() {
+    return (push instanceof CommonEmail) ? (CommonEmail)push : null;
   }
 
   @JsonIgnore

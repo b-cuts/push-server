@@ -30,7 +30,6 @@ public class TwilioConfig implements PluginConfig, Serializable {
   private String authToken;
   private String fromPhoneNumber;
   private String recipient;
-  private String message;
 
   public TwilioConfig() {}
 
@@ -41,8 +40,7 @@ public class TwilioConfig implements PluginConfig, Serializable {
                       @JsonProperty("accountSid") String accountSid,
                       @JsonProperty("authToken") String authToken,
                       @JsonProperty("fromPhoneNumber") String fromPhoneNumber,
-                      @JsonProperty("recipient") String recipient,
-                      @JsonProperty("message") String message) {
+                      @JsonProperty("recipient") String recipient) {
     this.configId = configId;
     this.revision = revision;
 
@@ -52,7 +50,6 @@ public class TwilioConfig implements PluginConfig, Serializable {
     this.authToken = authToken;
     this.fromPhoneNumber = fromPhoneNumber;
     this.recipient = recipient;
-    this.message = message;
   }
 
   public TwilioConfig apply(UpdateTwilioConfigAction configAction) {
@@ -70,7 +67,6 @@ public class TwilioConfig implements PluginConfig, Serializable {
     this.authToken = configAction.getAuthToken();
     this.fromPhoneNumber = configAction.getFromPhoneNumber();
     this.recipient = configAction.getRecipient();
-    this.message = configAction.getMessage();
 
     return this;
   }
@@ -103,9 +99,5 @@ public class TwilioConfig implements PluginConfig, Serializable {
 
   public String getRecipient() {
     return recipient;
-  }
-
-  public String getMessage() {
-    return message;
   }
 }

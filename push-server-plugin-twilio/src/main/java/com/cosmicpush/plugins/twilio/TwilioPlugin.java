@@ -100,7 +100,7 @@ public class TwilioPlugin extends PluginSupport {
 
         // Build a filter for the MessageList
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("Body", config.getMessage()));
+        params.add(new BasicNameValuePair("Body", "Twilio test message from Cosmic Push"));
         params.add(new BasicNameValuePair("To", config.getRecipient()));
         params.add(new BasicNameValuePair("From", config.getFromPhoneNumber()));
         MessageFactory messageFactory = client.getAccount().getMessageFactory();
@@ -124,7 +124,6 @@ public class TwilioPlugin extends PluginSupport {
         content = content.replace("${config-auth-token}",  nullToString(config == null ? null : config.getAuthToken()));
         content = content.replace("${config-from-number}",  nullToString(config == null ? null : config.getFromPhoneNumber()));
         content = content.replace("${config-recipient}",  nullToString(config == null ? null : config.getRecipient()));
-        content = content.replace("${config-message}",  nullToString(config == null ? null : config.getMessage()));
 
         if (content.contains("${")) {
             String msg = String.format("The Twilio admin UI still contains un-parsed elements.");

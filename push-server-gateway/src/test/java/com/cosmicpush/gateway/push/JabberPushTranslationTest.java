@@ -46,7 +46,7 @@ public class JabberPushTranslationTest {
   }
 
   private static final String EXPECTED_JSON = "{\n" +
-      "  \"pushType\" : \"google-talk\",\n" +
+      "  \"pushType\" : \"xmpp\",\n" +
       "  \"recipient\" : \"mickey.mouse@disney.com\",\n" +
       "  \"message\" : \"Just calling to say hello\",\n" +
       "  \"callbackUrl\" : \"http://example.com/callback\",\n" +

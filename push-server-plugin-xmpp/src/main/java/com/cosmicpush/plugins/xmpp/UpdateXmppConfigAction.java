@@ -37,12 +37,16 @@ public class UpdateXmppConfigAction implements ValidatableAction {
     this.recipientOverride = formParams.getFirst("recipientOverride");
   }
 
-  public UpdateXmppConfigAction(Domain domain, String username, String password, String testAddress, String recipientOverride) {
+  public UpdateXmppConfigAction(Domain domain, String username, String password, String host, String port, String serviceName, String testAddress, String recipientOverride) {
 
     this.domain = domain;
 
     this.username = username;
     this.password = password;
+
+    this.host = host;
+    this.port = port;
+    this.serviceName = serviceName;
 
     this.testAddress = testAddress;
     this.recipientOverride = recipientOverride;

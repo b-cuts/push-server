@@ -33,10 +33,6 @@
                 <td><input type="text" id="twilio-test-recipient" name="recipient" value="${config-recipient}" style="width:200px;"></td>
             </tr>
             <tr>
-                <td><label for="twilio-test-message">Test Message:</label></td>
-                <td><input type="text" id="twilio-test-message" name="message" value="${config-message}" style="width:200px;"></td>
-            </tr>
-            <tr>
                 <td colspan="2" style="text-align: right">
                     <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/twilio" style="float:right">Update</button>
                     <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/twilio/test" style="float:right; margin-right:5px">Test</button>
