@@ -42,7 +42,7 @@ subprojects {
 
     pushServerPluginSes       = "4.0.1"
     pushServerPluginSmtp      = "4.0.1"
-    pushServerPluginGtalk     = "4.0.1"
+    pushServerPluginXmpp      = "4.0.1"
     pushServerPluginNotifier  = "4.0.1"
     pushServerPluginOcs       = "1.0.1"
     pushServerPluginTwilio    = "1.0.1"

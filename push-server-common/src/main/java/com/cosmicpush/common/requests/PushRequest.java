@@ -14,7 +14,6 @@ import com.cosmicpush.pub.common.RequestStatus;
 import com.cosmicpush.pub.internal.CpIdGenerator;
 import com.cosmicpush.pub.push.EmailPush;
 import com.cosmicpush.pub.push.LqNotificationPush;
-import com.cosmicpush.pub.push.UserEventPush;
 import com.couchace.annotations.CouchEntity;
 import com.couchace.annotations.CouchId;
 import com.couchace.annotations.CouchRevision;
@@ -248,11 +247,6 @@ public class PushRequest implements Comparable<PushRequest> {
   @JsonIgnore
   public LqNotificationPush getNotificationPush() {
     return (push instanceof LqNotificationPush) ? (LqNotificationPush)push : null;
-  }
-
-  @JsonIgnore
-  public UserEventPush getUserEventPush() {
-    return (push instanceof UserEventPush) ? (UserEventPush)push : null;
   }
 
   public boolean equals(Object object) {

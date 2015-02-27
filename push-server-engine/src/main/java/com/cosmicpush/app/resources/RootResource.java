@@ -15,11 +15,9 @@ import com.cosmicpush.common.accounts.Account;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.ExecutionContext;
-import com.cosmicpush.common.system.PluginManager;
 import com.cosmicpush.common.system.Session;
 import com.cosmicpush.common.system.SessionStore;
 import com.cosmicpush.pub.push.LqNotificationPush;
-import com.cosmicpush.pub.push.UserEventPush;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.crazyyak.dev.common.EqualsUtils;
@@ -150,11 +148,6 @@ public class RootResource extends RootResourceSupport {
 
     if (LqNotificationPush.PUSH_TYPE.equals(request.getPushType())) {
       String path = String.format("manage/domain/%s/notifications/%s", domain.getDomainKey(), pushRequestId);
-      return Response.seeOther(new URI(path)).build();
-
-    } else if (UserEventPush.PUSH_TYPE.equals(request.getPushType())) {
-      String deviceId = request.getUserEventPush().getDeviceId();
-      String path = String.format("manage/domain/%s/user-events/%s", domain.getDomainKey(), deviceId);
       return Response.seeOther(new URI(path)).build();
     }
 

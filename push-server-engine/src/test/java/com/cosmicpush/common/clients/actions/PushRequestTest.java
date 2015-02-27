@@ -13,13 +13,13 @@ import com.cosmicpush.common.requests.PushRequestStore;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
-import com.cosmicpush.pub.common.UserAgent;
-import com.cosmicpush.pub.internal.CpRemoteClient;
-import com.cosmicpush.pub.push.*;
+import com.cosmicpush.pub.push.XmppPush;
+import com.cosmicpush.pub.push.LqNotificationPush;
+import com.cosmicpush.pub.push.SesEmailPush;
+import com.cosmicpush.pub.push.SmtpEmailPush;
 import com.cosmicpush.test.TestFactory;
 import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.ComparisonResults;
-import org.crazyyak.dev.common.DateUtils;
 import org.crazyyak.dev.common.EqualsUtils;
 import org.crazyyak.dev.jackson.YakJacksonTranslator;
 import org.testng.annotations.BeforeClass;
@@ -66,7 +66,7 @@ public class PushRequestTest {
     request = new PushRequest(AppContext.CURRENT_API_VERSION, domain, sesEmailPush);
     pushRequestStore.create(request);
 
-    GoogleTalkPush imPush = GoogleTalkPush.newPush("recipient", "some message", callbackUrl, "color:red");
+    XmppPush imPush = XmppPush.newPush("recipient", "some message", callbackUrl, "color:red");
     request = new PushRequest(AppContext.CURRENT_API_VERSION, domain, imPush);
     pushRequestStore.create(request);
 
@@ -191,10 +191,10 @@ public class PushRequestTest {
     Account account = testFactory.createAccount();
     Domain domain = testFactory.createDomain(account);
 
-    Push push = GoogleTalkPush.newPush(
-        "mickey.mouse@disney.com",
-        "Just calling to say hello",
-        callbackUrl, BeanUtils.toMap("color:green"));
+    Push push = XmppPush.newPush(
+      "mickey.mouse@disney.com",
+      "Just calling to say hello",
+      callbackUrl, BeanUtils.toMap("color:green"));
 
     InetAddress remoteAddress = InetAddress.getLocalHost();
     PushRequest oldPushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
@@ -282,85 +282,6 @@ public class PushRequestTest {
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
         oldPushRequest.getPushRequestId());
-
-    assertEquals(json, expected);
-
-    PushRequest newPushRequest = translator.fromJson(PushRequest.class, json);
-    ComparisonResults results = EqualsUtils.compare(newPushRequest, oldPushRequest);
-    results.assertValidationComplete();
-  }
-
-  public void testUserEventPush() throws Exception {
-
-    Account account = testFactory.createAccount();
-    Domain domain = testFactory.createDomain(account);
-    UserAgent userAgent = testFactory.createUserAgent();
-
-    CpRemoteClient remoteClient = new CpRemoteClient() {
-      @Override public String getUserName() { return "mickey"; }
-      @Override public String getIpAddress() { return "192.168.1.36"; }
-      @Override public String getSessionId() { return "some-sessionId"; }
-      @Override public String getDeviceId() { return "some-deviceId"; }
-    };
-
-    UserEventPush push = UserEventPush.newPush(
-        remoteClient,
-        DateUtils.toLocalDateTime("2014-05-06T09:34"),
-        "You logged in.",
-        userAgent, callbackUrl, "color:green");
-
-    InetAddress remoteAddress = InetAddress.getLocalHost();
-    PushRequest oldPushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    String json = translator.toJson(oldPushRequest);
-
-    String expected = String.format("{\n" +
-        "  \"apiVersion\" : 2,\n" +
-        "  \"domainId\" : \"%s\",\n" +
-        "  \"domainKey\" : \"some-key\",\n" +
-        "  \"createdAt\" : \"%s\",\n" +
-        "  \"requestStatus\" : \"pending\",\n" +
-        "  \"remoteHost\" : \"%s\",\n" +
-        "  \"remoteAddress\" : \"%s\",\n" +
-        "  \"pushType\" : \"userEvent\",\n" +
-        "  \"notes\" : [ ],\n" +
-        "  \"push\" : {\n" +
-        "    \"pushType\" : \"userEvent\",\n" +
-        "    \"sendStory\" : false,\n" +
-        "    \"deviceId\" : \"some-deviceId\",\n" +
-        "    \"sessionId\" : \"some-sessionId\",\n" +
-        "    \"userName\" : \"mickey\",\n" +
-        "    \"ipAddress\" : \"192.168.1.36\",\n" +
-        "    \"createdAt\" : \"2014-05-06T09:34\",\n" +
-        "    \"message\" : \"You logged in.\",\n" +
-        "    \"userAgent\" : {\n" +
-        "      \"agentType\" : \"agent-type\",\n" +
-        "      \"agentName\" : \"agent-name\",\n" +
-        "      \"agentVersion\" : \"agent-version\",\n" +
-        "      \"agentLanguage\" : \"agent-language\",\n" +
-        "      \"agentLanguageTag\" : \"agent-lang-tag\",\n" +
-        "      \"osType\" : \"os-type\",\n" +
-        "      \"osName\" : \"os-name\",\n" +
-        "      \"osProducer\" : \"os=produceer\",\n" +
-        "      \"osProducerUrl\" : \"osproducer-url\",\n" +
-        "      \"osVersionName\" : \"os-version-name\",\n" +
-        "      \"osVersionNumber\" : \"os-version-number\",\n" +
-        "      \"linuxDistribution\" : \"linux-distro\"\n" +
-        "    },\n" +
-        "    \"callbackUrl\" : \"http://www.example.com/callback\",\n" +
-        "    \"remoteHost\" : \"%s\",\n" +
-        "    \"remoteAddress\" : \"%s\",\n" +
-        "    \"traits\" : {\n" +
-        "      \"color\" : \"green\"\n" +
-        "    }\n" +
-        "  },\n" +
-        "  \"pushRequestId\" : \"%s\",\n" +
-        "  \"revision\" : null\n" +
-        "}",
-
-    domain.getDomainId(), oldPushRequest.getCreatedAt(),
-    remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-    remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-    oldPushRequest.getPushRequestId());
 
     assertEquals(json, expected);
 

@@ -8,7 +8,6 @@ package com.cosmicpush.app.resources.api;
 import com.cosmicpush.app.deprecated.NotificationPushV1;
 import com.cosmicpush.app.jaxrs.security.ApiAuthentication;
 import com.cosmicpush.app.resources.api.deprecated.NotificationDelegateV1;
-import com.cosmicpush.app.resources.api.deprecated.UserEventDelegate;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.PushRequest;
@@ -16,7 +15,6 @@ import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.PushResponse;
-import com.cosmicpush.pub.push.UserEventPush;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -56,15 +54,7 @@ public class ApiResourceV2 {
   private Response postPush(Push push, int apiVersion) throws Exception {
     Domain domain = context.getDomain();
 
-    if (push instanceof UserEventPush) {
-      UserEventPush userEventPush = (UserEventPush)push;
-      PushRequest pushRequest = new PushRequest(apiVersion, domain, push);
-      context.getPushRequestStore().create(pushRequest);
-
-      new UserEventDelegate(context, domain, pushRequest, userEventPush).start();
-      return buildResponse(pushRequest, domain);
-
-    } else if (push instanceof NotificationPushV1) {
+    if (push instanceof NotificationPushV1) {
       NotificationPushV1 notificationPushV1 = (NotificationPushV1)push;
       PushRequest pushRequest = new PushRequest(apiVersion, domain, push);
       context.getPushRequestStore().create(pushRequest);

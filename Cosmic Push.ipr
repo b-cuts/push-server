@@ -116,9 +116,9 @@
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudhsm:1.9.22" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ssm:1.9.22" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.9.22" />
-            <element id="archive" name="com.cosmicpush-push-server-plugin-gtalk-4.0.1.jar">
-              <element id="module-output" name="push-server-plugin-gtalk" />
-              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-gtalk/build/resources/main" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-xmpp-4.0.1.jar">
+              <element id="module-output" name="push-server-plugin-xmpp" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-xmpp/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: jivesoftware:smackx:3.1.0" />
             <element id="library" level="project" name="Gradle: jivesoftware:smack:3.1.0" />
@@ -279,9 +279,9 @@
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudhsm:1.9.22" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ssm:1.9.22" />
             <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.9.22" />
-            <element id="archive" name="com.cosmicpush-push-server-plugin-gtalk-4.0.1.jar">
-              <element id="module-output" name="push-server-plugin-gtalk" />
-              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-gtalk/build/resources/main" />
+            <element id="archive" name="com.cosmicpush-push-server-plugin-xmpp-4.0.1.jar">
+              <element id="module-output" name="push-server-plugin-xmpp" />
+              <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-xmpp/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: jivesoftware:smackx:3.1.0" />
             <element id="library" level="project" name="Gradle: jivesoftware:smack:3.1.0" />
@@ -373,11 +373,11 @@
             <option value="$PROJECT_DIR$/push-server-engine-servlet" />
             <option value="$PROJECT_DIR$/push-server-gateway" />
             <option value="$PROJECT_DIR$/push-server-jackson" />
-            <option value="$PROJECT_DIR$/push-server-plugin-gtalk" />
             <option value="$PROJECT_DIR$/push-server-plugin-notifier" />
             <option value="$PROJECT_DIR$/push-server-plugin-ses" />
             <option value="$PROJECT_DIR$/push-server-plugin-smtp" />
             <option value="$PROJECT_DIR$/push-server-plugin-twilio" />
+            <option value="$PROJECT_DIR$/push-server-plugin-xmpp" />
             <option value="$PROJECT_DIR$/push-server-pub" />
             <option value="$PROJECT_DIR$/push-server-test" />
             <option value="$PROJECT_DIR$/push-server-v1-integration-tests" />
@@ -546,11 +546,11 @@
       <module fileurl="file://$PROJECT_DIR$/push-server-engine-servlet/push-server-engine-servlet.iml" filepath="$PROJECT_DIR$/push-server-engine-servlet/push-server-engine-servlet.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-gateway/push-server-gateway.iml" filepath="$PROJECT_DIR$/push-server-gateway/push-server-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" filepath="$PROJECT_DIR$/push-server-jackson/push-server-jackson.iml" />
-      <module fileurl="file://$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" filepath="$PROJECT_DIR$/push-server-plugin-gtalk/push-server-plugin-gtalk.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" filepath="$PROJECT_DIR$/push-server-plugin-notifier/push-server-plugin-notifier.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" filepath="$PROJECT_DIR$/push-server-plugin-ses/push-server-plugin-ses.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" filepath="$PROJECT_DIR$/push-server-plugin-smtp/push-server-plugin-smtp.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-plugin-twilio/push-server-plugin-twilio.iml" filepath="$PROJECT_DIR$/push-server-plugin-twilio/push-server-plugin-twilio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/push-server-plugin-xmpp/push-server-plugin-xmpp.iml" filepath="$PROJECT_DIR$/push-server-plugin-xmpp/push-server-plugin-xmpp.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-pub/push-server-pub.iml" filepath="$PROJECT_DIR$/push-server-pub/push-server-pub.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-test/push-server-test.iml" filepath="$PROJECT_DIR$/push-server-test/push-server-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/push-server-v1-integration-tests/push-server-v1-integration-tests.iml" filepath="$PROJECT_DIR$/push-server-v1-integration-tests/push-server-v1-integration-tests.iml" />
@@ -628,86 +628,6 @@
       <ConfigurationWrapper RunnerId="Debug" />
       <method />
     </configuration>
-    <configuration default="false" name="IntegrationTestVersion1" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cosmicpush.v1.integration.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="push-server-v1-integration-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="SUITE_NAME" value="" />
-      <option name="PACKAGE_NAME" value="com.cosmicpush.v1.integration.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v1.integration.tests.IntegrationTestVersion1" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" value="" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" value="" />
-      <envs />
-      <properties />
-      <listeners />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="63039" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
-      <method />
-    </configuration>
-    <configuration default="false" name="IntegrationTestVersion2" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cosmicpush.v2.integration.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="push-server-v2-integration-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="SUITE_NAME" value="" />
-      <option name="PACKAGE_NAME" value="com.cosmicpush.v2.integration.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v2.integration.tests.IntegrationTestVersion2" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" value="" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" value="" />
-      <envs />
-      <properties />
-      <listeners />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="54924" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="push-server-gateway" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="push-server-gateway" />
@@ -774,6 +694,88 @@
         <option name="LOCAL" value="true" />
       </RunnerSettings>
       <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="IntegrationTestVersion2" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cosmicpush.v2.integration.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="push-server-v2-integration-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="" />
+      <option name="PACKAGE_NAME" value="com.cosmicpush.v2.integration.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v2.integration.tests.IntegrationTestVersion2" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54924" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="IntegrationTestVersion1" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cosmicpush.v1.integration.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="push-server-v1-integration-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="" />
+      <option name="PACKAGE_NAME" value="com.cosmicpush.v1.integration.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.v1.integration.tests.IntegrationTestVersion1" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="63039" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <configuration default="false" name="Cosmic Push Servlet" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
@@ -1682,10 +1684,12 @@
     <library name="Gradle: org.crazyyak.app:yak-app-common:1.0.3">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/1.0.3/yak-app-common-1.0.3.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.3/9e9cd36b749fb13319a9ab256d98266ff7a0993c/yak-app-common-1.0.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/1.0.3/yak-app-common-1.0.3-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.3/72c3d077fdb8fcd1066f6c346e04c40bab68de33/yak-app-common-1.0.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-common:2.4.19">
@@ -1738,10 +1742,12 @@
     <library name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.4">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.1.4/yak-dev-jackson-4.1.4.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.4/5fd336e4b5b8af3fb9de87051bf096c1bbb6622/yak-dev-jackson-4.1.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.1.4/yak-dev-jackson-4.1.4-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.4/4902ba62cb0519d6a1ad989d054777759fb57826/yak-dev-jackson-4.1.4-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-jersey-client:2.4.19">
@@ -1776,19 +1782,23 @@
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/5.0.2/yak-lib-jaxrs-jackson-5.0.2.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.2/37c2d818d964f68cecbca6bce8a06683a74efd28/yak-lib-jaxrs-jackson-5.0.2.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/5.0.2/yak-lib-jaxrs-jackson-5.0.2-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.2/c2e8fd1fe77826cd1bade3fd0f00bd74c922c0ef/yak-lib-jaxrs-jackson-5.0.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.3">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs/4.1.3/yak-lib-jaxrs-4.1.3.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.3/42dba204c02b6c55f4039191ffd971171a7070ea/yak-lib-jaxrs-4.1.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs/4.1.3/yak-lib-jaxrs-4.1.3-sources.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs/4.1.3/97329ad2deacca8203fc14a7414adafb95b2d2/yak-lib-jaxrs-4.1.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.3">

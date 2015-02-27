@@ -19,10 +19,6 @@
        },
        "domains": [
        ],
-       "testConfig": {
-           "emailTestNotification": null,
-           "googleTalkTestNotification": null
-       },
        "permissions": {
            "roleTypes": [
            ]

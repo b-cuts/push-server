@@ -14,9 +14,9 @@ import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.pub.common.PushResponse;
 import com.cosmicpush.pub.common.RequestStatus;
-import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.EmailPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
-import com.cosmicpush.pub.push.UserEventPush;
+import com.cosmicpush.pub.push.XmppPush;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -28,6 +28,7 @@ import java.io.Serializable;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @ApiAuthentication
@@ -68,17 +69,22 @@ public class ApiResourceV1 {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/user-event")
-  public Response sendUserEvent(UserEventPush push) throws Exception {
-    Response response = new ApiResourceV2().postPushV1(push);
-    PushResponse pushResponse = (PushResponse)response.getEntity();
-    return buildResponse(pushResponse);
+  public Response sendUserEvent(String jsonIgnored) throws Exception {
+    PushResponse response = new PushResponse(
+      context.getDomain().getDomainId(),
+      "0",
+      LocalDateTime.now(),
+      RequestStatus.processed,
+      Collections.emptyList()
+    );
+    return buildResponse(response);
   }
 
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/im")
-  public Response sendIm(GoogleTalkPush push) {
+  public Response sendIm(XmppPush push) {
     PushResponse pushResponse = context.getPushProcessor().execute(1, getDomain(), push);
     return buildResponse(pushResponse);
   }
@@ -87,7 +93,7 @@ public class ApiResourceV1 {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/pushes/email")
-  public Response sendEmail(SmtpEmailPush push) {
+  public Response sendEmail(EmailPush push) {
     PushResponse pushResponse = context.getPushProcessor().execute(1, getDomain(), push);
     return buildResponse(pushResponse);
   }

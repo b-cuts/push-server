@@ -17,16 +17,23 @@
 package com.cosmicpush.pub.push;
 
 import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushType;
+import com.cosmicpush.pub.internal.PushUtils;
 import com.cosmicpush.pub.internal.RequestErrors;
 import com.cosmicpush.pub.internal.ValidationUtils;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.ReflectUtils;
 import org.crazyyak.dev.common.StringUtils;
 
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class EmailPush implements Push, Serializable {
+public class EmailPush implements Push, Serializable {
+
+  public static final PushType PUSH_TYPE = new PushType(EmailPush.class, "email", "E-Mail");
 
   private final String fromAddress;
   private final String toAddress;
@@ -41,14 +48,14 @@ public abstract class EmailPush implements Push, Serializable {
 
   private final String callbackUrl;
 
-  protected EmailPush(String toAddress,
-                   String fromAddress,
-                   String emailSubject,
-                   String htmlContent,
-                   String callbackUrl,
-                   String remoteHost,
-                   String remoteAddress,
-                   Map<String, String> traits) {
+  protected EmailPush(@JsonProperty("toAddress") String toAddress,
+                      @JsonProperty("fromAddress") String fromAddress,
+                      @JsonProperty("emailSubject") String emailSubject,
+                      @JsonProperty("htmlContent") String htmlContent,
+                      @JsonProperty("callbackUrl") String callbackUrl,
+                      @JsonProperty("remoteHost") String remoteHost,
+                      @JsonProperty("remoteAddress") String remoteAddress,
+                      @JsonProperty("traits") Map<String, String> traits) {
 
     this.toAddress =   toAddress;
     this.fromAddress = fromAddress;
@@ -75,6 +82,11 @@ public abstract class EmailPush implements Push, Serializable {
         this.traits.remove(key);
       }
     }
+  }
+
+  @Override
+  public PushType getPushType() {
+    return PUSH_TYPE;
   }
 
   @Override
@@ -123,5 +135,21 @@ public abstract class EmailPush implements Push, Serializable {
     }
 
     return errors;
+  }
+
+  public static EmailPush newPush(String toAddress, String fromAddress,
+                                      String emailSubject, String htmlContent,
+                                      String callbackUrl, String... traits) {
+
+    InetAddress remoteAddress = PushUtils.getLocalHost();
+    return new EmailPush(toAddress, fromAddress, emailSubject, htmlContent, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), BeanUtils.toMap(traits));
+  }
+
+  public static EmailPush newPush(String toAddress, String fromAddress,
+                                      String emailSubject, String htmlContent,
+                                      String callbackUrl, Map<String, String> traits) {
+
+    InetAddress remoteAddress = PushUtils.getLocalHost();
+    return new EmailPush(toAddress, fromAddress, emailSubject, htmlContent, callbackUrl, remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(), traits);
   }
 }

@@ -16,7 +16,9 @@
 package com.cosmicpush.gateway;
 
 import com.cosmicpush.jackson.CpObjectMapper;
-import com.cosmicpush.pub.common.*;
+import com.cosmicpush.pub.common.PingPush;
+import com.cosmicpush.pub.common.Push;
+import com.cosmicpush.pub.common.PushResponse;
 import com.cosmicpush.pub.internal.RequestErrors;
 import org.crazyyak.dev.jackson.YakJacksonTranslator;
 import org.crazyyak.lib.jaxrs.jackson.SimpleRestClient;
@@ -46,8 +48,20 @@ public class LiveCosmicPushGateway implements CosmicPushGateway {
   }
 
   @Override
-  public PushResponse push(Push push) {
+  public long ping() {
+    long start = System.currentTimeMillis();
+    send(PingPush.newPush());
+    return System.currentTimeMillis() - start;
+  }
+
+  @Override
+  public PushResponse send(Push push) {
     push.validate(new RequestErrors()).assertNoErrors();
     return getClient().post(PushResponse.class, "/pushes", push);
+  }
+
+  @Override
+  public PushResponse push(Push push) {
+    return send(push);
   }
 }

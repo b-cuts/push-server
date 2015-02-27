@@ -34,7 +34,7 @@
     <orderEntry type="module" module-name="push-server-common" exported="" />
     <orderEntry type="module" module-name="push-server-jackson" exported="" />
     <orderEntry type="module" module-name="push-server-plugin-ses" exported="" />
-    <orderEntry type="module" module-name="push-server-plugin-gtalk" exported="" />
+    <orderEntry type="module" module-name="push-server-plugin-xmpp" exported="" />
     <orderEntry type="library" exported="" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.0" level="project" />

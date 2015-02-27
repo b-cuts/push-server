@@ -31,14 +31,11 @@ public class PushType implements Comparable<PushType>{
     return map.get(code);
   }
 
-  public static void register(PushType pushType) {
-    map.put(pushType.getCode(), pushType);
-  }
-
   private final String code;
   private final String label;
   private final Class<? extends Push> type;
 
+  // required for instantiation as a resource parameter.
   public PushType(String code) {
     PushType copy = PushType.find(code);
     this.code = copy.getCode();
@@ -50,7 +47,7 @@ public class PushType implements Comparable<PushType>{
     this.code = code;
     this.label = label;
     this.type = type;
-    register(this);
+    map.put(code, this);
   }
 
   public String getCode() {

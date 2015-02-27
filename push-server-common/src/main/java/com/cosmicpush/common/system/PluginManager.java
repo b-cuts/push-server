@@ -26,7 +26,6 @@ public class PluginManager {
         throw new IllegalArgumentException(msg);
       }
       map.put(pushType, plugin);
-      PushType.register(pushType);
     }
 
     int expectedCount = 4;

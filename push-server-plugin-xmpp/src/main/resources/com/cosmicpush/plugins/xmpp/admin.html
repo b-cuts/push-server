@@ -1,0 +1,66 @@
+<form style="margin-top: 1em" method="post">
+  <fieldset>
+    <legend class="${legend-class}">
+      <img src="${push-server-base}/manage/domain/${domain-key}/icon/${push-type}" class="icon"/>
+      <span>XMPP (Google-Talk &amp; Jabber)</span>
+    </legend>
+
+    <table style="width: 100%; float: left">
+      <colgroup>
+        <col style="width: 1em"/>
+        <col style="width: 1em"/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <td><label for="xmpp-user-name">User Name:</label></td>
+          <td><input type="text" id="xmpp-user-name" name="username" value="${config-user-name}" style="width:200px;"></td>
+          <td rowspan="7" class="help">
+            Use this push to send &quot;chat&quot; messages with Google's messaging service or to other XMPP servers such as Jabber.<br/><br/>
+
+            For Google-Talk (aka Hangouts)<br/>
+            Host: <span style="font-weight: bold; color: white">talk.google.com</span><br/>
+            Port: <span style="font-weight: bold; color: white">5222</span><br/>
+            Service Name: <span style="font-weight: bold; color: white">gmail.com</span><br/><br/>
+
+            For Jabber<br/>
+            Host: <span style="font-weight: bold; color: white">conference.jabber.org</span><br/>
+            Port: <span style="font-weight: bold; color: white">5222</span><br/>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="xmpp-password">Password:</label></td>
+          <td><input type="text" id="xmpp-password" name="password" value="${config-password}" style="width:200px;"></td>
+        </tr>
+        <tr>
+          <td><label for="xmpp-host">Host:</label></td>
+          <td><input type="text" id="xmpp-host" name="host" value="${config-host}" style="width:200px;"></td>
+        </tr>
+        <tr>
+          <td><label for="xmpp-port">Port:</label></td>
+          <td><input type="text" id="xmpp-port" name="port" value="${config-port}" style="width:50px;"></td>
+        </tr>
+        <tr>
+          <td><label for="xmpp-service">Service Name:</label></td>
+          <td><input type="text" id="xmpp-service" name="serviceName" value="${config-service-name}" style="width:200px;"></td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+          <td><label for="xmpp-test">Test Address:</label></td>
+          <td><input type="text" id="xmpp-test" name="testAddress" value="${config-test-address}" style="width:200px;"></td>
+        </tr>
+        <tr>
+          <td><label for="xmpp-override">Recipient Override:</label></td>
+          <td><input type="text" id="xmpp-override" name="recipientOverride" value="${config-recipient-override}" style="width:200px;"></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: right">
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/${push-type}" style="float:right">Update</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/${push-type}/test" style="float:right; margin-right:5px">Test</button>
+            <button type="submit" formaction="${push-server-base}/manage/domain/${domain-key}/${push-type}/delete" style="float:left">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</form>

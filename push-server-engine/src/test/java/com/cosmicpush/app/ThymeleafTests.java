@@ -7,7 +7,6 @@ import com.cosmicpush.app.resources.manage.client.ManageDomainModel;
 import com.cosmicpush.app.resources.manage.client.emails.EmailModel;
 import com.cosmicpush.app.resources.manage.client.emails.EmailsModel;
 import com.cosmicpush.app.resources.manage.client.notifications.DomainNotificationModel;
-import com.cosmicpush.app.resources.manage.client.userevents.*;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafMessageBodyWriter;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
@@ -144,37 +143,6 @@ public class ThymeleafTests {
     DomainRequestsModel model = new DomainRequestsModel(account, domain, requests);
 
     Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_NOTIFICATIONS, model);
-    msgBodyWriter.writeTo(leaf, writer);
-    String content = writer.toString();
-    assertNotNull(content);
-  }
-
-  public void testManageUserEvent() throws Exception {
-
-    Account account = testFactory.createAccount();
-    Domain domain = testFactory.createDomain(account);
-    List<PushRequest> requests = testFactory.createPushRequests_UserEvents(domain);
-    List<UserEventGroup> groups = ManageUserEventsResource.toGroups(requests);
-    List<UserEventSession> sessions = groups.get(0).getSessions();
-
-    UserEventSessionsModel model = new UserEventSessionsModel(account, domain, "whatever", sessions);
-
-    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_EVENT, model);
-    msgBodyWriter.writeTo(leaf, writer);
-    String content = writer.toString();
-    assertNotNull(content);
-  }
-
-  public void testManageUserEvents() throws Exception {
-
-    Account account = testFactory.createAccount();
-    Domain domain = testFactory.createDomain(account);
-    List<PushRequest> requests = testFactory.createPushRequests_UserEvents(domain);
-    List<UserEventGroup> groups = ManageUserEventsResource.toGroups(requests);
-
-    UserEventGroupsModel model = new UserEventGroupsModel(account, domain, groups);
-
-    Thymeleaf leaf = new Thymeleaf(testFactory.createSession(), ThymeleafViewFactory.MANAGE_API_EVENTS, model);
     msgBodyWriter.writeTo(leaf, writer);
     String content = writer.toString();
     assertNotNull(content);

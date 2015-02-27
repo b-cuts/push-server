@@ -1,0 +1,27 @@
+/*
+ * Copyright (c) 2014 Jacob D. Parr
+ *
+ * This software may not be used without permission.
+ */
+
+project(":push-server-plugin-xmpp") {
+  description = "Cosmic Push XMPP Plugin"
+
+  version = pushServerPluginXmpp
+
+  apply from: "../build-config-deployer.gradle"
+
+  dependencies {
+    compile(project(":push-server-common"))
+    compile("jivesoftware:smackx:3.1.0")
+
+    testCompile(project(":push-server-test"))
+    testCompile("org.testng:testng:$testNgVersion")
+  }
+
+  configurations.all({
+    resolutionStrategy({
+      force()
+    })
+  })
+}

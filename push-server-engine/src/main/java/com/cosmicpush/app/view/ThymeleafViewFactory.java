@@ -19,9 +19,6 @@ public class ThymeleafViewFactory {
   public static final String MANAGE_API_NOTIFICATION =  validate("manage/push-notification");
   public static final String MANAGE_API_NOTIFICATIONS = validate("manage/push-notifications");
 
-  public static final String MANAGE_API_EVENT =         validate("manage/push-user-event");
-  public static final String MANAGE_API_EVENTS =        validate("manage/push-user-events");
-
   private static String validate(String view) {
     String resource = ROOT+view+TAIL;
     URL url = ThymeleafViewFactory.class.getResource(resource);

@@ -13,7 +13,7 @@ import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.pub.common.RequestStatus;
-import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.XmppPush;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 
 public class NotificationDelegateV1 extends AbstractDelegate {
@@ -39,7 +39,7 @@ public class NotificationDelegateV1 extends AbstractDelegate {
     String message = push.getMessage();
     message = appContext.getBitlyApi().parseAndShorten(message);
 
-    GoogleTalkPush push = GoogleTalkPush.newPush("jacob.parr@gmail.com", message, null);
+    XmppPush push = XmppPush.newPush("jacob.parr@gmail.com", message, null);
 
     pluginContext.getPushProcessor().execute(pushRequest.getApiVersion(), domain, push);
     return pushRequest.processed();

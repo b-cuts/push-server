@@ -16,11 +16,10 @@ import com.cosmicpush.app.view.LocalResourceMessageBodyWriter;
 import com.cosmicpush.app.view.ThymeleafMessageBodyWriter;
 import com.cosmicpush.common.system.*;
 import com.cosmicpush.jackson.CpObjectMapper;
+import com.cosmicpush.pub.common.PingPush;
 import com.cosmicpush.pub.common.PushType;
-import com.cosmicpush.pub.push.GoogleTalkPush;
 import com.cosmicpush.pub.push.LqNotificationPush;
-import com.cosmicpush.pub.push.SmtpEmailPush;
-import com.cosmicpush.pub.push.UserEventPush;
+import com.cosmicpush.pub.push.XmppPush;
 import org.apache.log4j.Level;
 import org.crazyyak.apis.bitly.BitlyApis;
 import org.crazyyak.app.logging.LogUtils;
@@ -84,12 +83,11 @@ public class CpApplication extends Application {
     classes.add(CpJaxRsExceptionMapper.class);
 
     // TODO - remove these once these are properly referenced by their plugins
-    UserEventPush.PUSH_TYPE.getCode();
+    PingPush.PUSH_TYPE.getCode();
     NotificationPushV1.PUSH_TYPE.getCode();
     LqNotificationPush.PUSH_TYPE.getCode();
     EmailToSmsPushV1.PUSH_TYPE.getCode();
-    new PushType(GoogleTalkPush.class, "im", "IM");
-    new PushType(SmtpEmailPush.class, "email", "eMail");
+    new PushType(XmppPush.class, "im", "IM");
 
     this.classes = Collections.unmodifiableSet(classes);
     this.properties = Collections.unmodifiableMap(properties);

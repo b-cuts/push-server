@@ -10,7 +10,6 @@ import com.cosmicpush.common.system.ExecutionContext;
 import com.cosmicpush.app.jaxrs.security.MngtAuthentication;
 import com.cosmicpush.app.resources.manage.client.emails.ManageEmailsResource;
 import com.cosmicpush.app.resources.manage.client.notifications.ManageNotificationsResource;
-import com.cosmicpush.app.resources.manage.client.userevents.ManageUserEventsResource;
 import com.cosmicpush.app.system.CpApplication;
 import com.cosmicpush.app.view.Thymeleaf;
 import com.cosmicpush.app.view.ThymeleafViewFactory;
@@ -128,11 +127,6 @@ public class ManageDomainResource {
   @Path("/emails")
   public ManageEmailsResource getManageEmailsResource() throws Exception {
     return new ManageEmailsResource(getAccount(), getDomain());
-  }
-
-  @Path("/user-events")
-  public ManageUserEventsResource getManageUserEventsResource() throws Exception {
-    return new ManageUserEventsResource(getAccount(), getDomain());
   }
 
   @Path("/notifications")

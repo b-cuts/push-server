@@ -12,7 +12,7 @@ import com.cosmicpush.common.plugins.PluginContext;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.system.AppContext;
 import com.cosmicpush.pub.common.RequestStatus;
-import com.cosmicpush.pub.push.GoogleTalkPush;
+import com.cosmicpush.pub.push.XmppPush;
 import com.cosmicpush.pub.push.LqNotificationPush;
 import org.crazyyak.dev.common.exceptions.ExceptionUtils;
 
@@ -42,7 +42,7 @@ public class LqNotificationsDelegate extends AbstractDelegate {
     message = appContext.getBitlyApi().parseAndShorten(message);
 
     String recipient = config.getUserName();
-    GoogleTalkPush push = GoogleTalkPush.newPush(recipient, message, null);
+    XmppPush push = XmppPush.newPush(recipient, message, null);
 
     pluginContext.getPushProcessor().execute(pushRequest.getApiVersion(), domain, push);
     return pushRequest.processed();

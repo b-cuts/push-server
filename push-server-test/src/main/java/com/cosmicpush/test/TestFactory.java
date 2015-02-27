@@ -22,15 +22,12 @@ import com.cosmicpush.common.system.Session;
 import com.cosmicpush.jackson.CpObjectMapper;
 import com.cosmicpush.pub.common.Push;
 import com.cosmicpush.pub.common.UserAgent;
-import com.cosmicpush.pub.internal.CpRemoteClient;
 import com.cosmicpush.pub.push.LqNotificationPush;
 import com.cosmicpush.pub.push.SmtpEmailPush;
-import com.cosmicpush.pub.push.UserEventPush;
 import com.couchace.core.api.CouchDatabase;
 import com.couchace.core.api.CouchServer;
 import com.couchace.core.api.request.CouchFeature;
 import com.couchace.core.api.request.CouchFeatureSet;
-import org.crazyyak.dev.common.BeanUtils;
 import org.crazyyak.dev.common.DateUtils;
 import org.crazyyak.lib.couchace.DefaultCouchServer;
 
@@ -147,49 +144,11 @@ public class TestFactory {
     return requests;
   }
 
-  public List<PushRequest> createPushRequests_UserEvents(Domain domain) throws Exception {
-    List<PushRequest> requests = new ArrayList<>();
-
-    UserAgent userAgent = createUserAgent();
-
-    CpRemoteClient remoteClient = new CpRemoteClient() {
-      @Override public String getUserName() { return "mickey"; }
-      @Override public String getIpAddress() { return "192.168.1.36"; }
-      @Override public String getSessionId() { return "some-sessionId"; }
-      @Override public String getDeviceId() { return "some-deviceId"; }
-    };
-
-    String callBackUrl = "http://www.example.com/callback";
-
-    Push push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I did this", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
-    PushRequest pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    pushRequestStore.create(pushRequest);
-    requests.add(pushRequest);
-
-    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "Then I did that", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
-    pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    pushRequestStore.create(pushRequest);
-    requests.add(pushRequest);
-
-    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "I eventually got tired", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
-    pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    pushRequestStore.create(pushRequest);
-    requests.add(pushRequest);
-
-    push = UserEventPush.newPush(remoteClient, DateUtils.currentLocalDateTime(), "So I took a nap", userAgent, callBackUrl, BeanUtils.toMap("color:red", "sex:boy"));
-    pushRequest = new PushRequest(AppContext.CURRENT_API_VERSION, domain, push);
-    pushRequestStore.create(pushRequest);
-    requests.add(pushRequest);
-
-    return requests;
-  }
-
   public List<PushRequest> createPushRequests(Domain domain) throws Exception {
     Set<PushRequest> requests = new TreeSet<>();
 
     requests.addAll(createPushRequests_Emails(domain));
     requests.addAll(createPushRequests_Notifications(domain));
-    requests.addAll(createPushRequests_UserEvents(domain));
 
     return new ArrayList<>(requests);
   }

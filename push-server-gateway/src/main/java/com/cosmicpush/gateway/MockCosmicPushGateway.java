@@ -29,7 +29,12 @@ public class MockCosmicPushGateway implements CosmicPushGateway {
   }
 
   @Override
-  public PushResponse push(Push push) {
+  public long ping() {
+    return 0;
+  }
+
+  @Override
+  public PushResponse send(Push push) {
     return new PushResponse(
         "mock:"+TimeUuid.randomUUID().toString(),
         "mock:"+TimeUuid.randomUUID().toString(),
@@ -37,5 +42,10 @@ public class MockCosmicPushGateway implements CosmicPushGateway {
         RequestStatus.pending,
         Collections.<String>emptyList()
     );
+  }
+
+  @Override
+  public PushResponse push(Push push) {
+    return send(push);
   }
 }

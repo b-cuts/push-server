@@ -20,6 +20,26 @@ import com.cosmicpush.pub.common.PushResponse;
 
 public interface CosmicPushGateway {
 
-  public PushResponse push(Push push);
+  /**
+   * Sends a "PingPush" server which does not
+   * result in any type of notification but
+   * simply asserts that the service is alive.
+   * @return the number of milliseconds elapsed.
+   */
+  public long ping();
 
+  /**
+   * Sends the Push to the server for processing.
+   * @param push One of many types of Pushes.
+   * @return the response from the push server.
+   */
+  public PushResponse send(Push push);
+
+  /**
+   * @see #send(com.cosmicpush.pub.common.Push)
+   * @param push One of many types of Pushes.
+   * @return the response from the push server.
+   */
+  @Deprecated
+  public PushResponse push(Push push);
 }

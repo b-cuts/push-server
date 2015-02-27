@@ -49,9 +49,9 @@ public class LqNotificationsPlugin extends PluginSupport {
 
     if (config != null) {
       getConfigStore(pluginContext.getCouchServer()).delete(config);
-      pluginContext.setLastMessage("Google Talk email configuration deleted.");
+      pluginContext.setLastMessage("Notification configuration deleted.");
     } else {
-      pluginContext.setLastMessage("Google Talk email configuration doesn't exist.");
+      pluginContext.setLastMessage("Notification configuration doesn't exist.");
     }
   }
 
@@ -68,7 +68,7 @@ public class LqNotificationsPlugin extends PluginSupport {
     config.apply(action);
     getConfigStore(pluginContext.getCouchServer()).update(config);
 
-    pluginContext.setLastMessage("Google Talk configuration updated.");
+    pluginContext.setLastMessage("Notification configuration updated.");
   }
 
   @Override
@@ -91,7 +91,7 @@ public class LqNotificationsPlugin extends PluginSupport {
     content = content.replace("${config-user-name}",  nullToString(config == null ? null : config.getUserName()));
 
     if (content.contains("${")) {
-      String msg = String.format("The Google Talk admin UI still contains un-parsed elements.");
+      String msg = String.format("The Notification admin UI still contains un-parsed elements.");
       throw new IllegalStateException(msg);
     }
 
