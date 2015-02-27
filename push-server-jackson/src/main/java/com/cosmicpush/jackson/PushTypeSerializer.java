@@ -28,8 +28,7 @@ import java.io.IOException;
  * Time: 10:36 PM
  */
 
-public final class PushTypeSerializer extends StdScalarSerializer<PushType>
-{
+public final class PushTypeSerializer extends StdScalarSerializer<PushType> {
 
     public PushTypeSerializer() {
         super(PushType.class);

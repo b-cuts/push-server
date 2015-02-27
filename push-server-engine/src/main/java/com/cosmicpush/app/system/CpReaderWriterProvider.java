@@ -25,9 +25,9 @@ public class CpReaderWriterProvider extends JacksonReaderWriterProvider {
 
   public CpReaderWriterProvider(@Context Application application) {
     super(AppContext.from(application).getObjectMapper(), Arrays.asList(MediaType.APPLICATION_JSON_TYPE));
-    super.supportedTypes.add(Push.class);
-    super.supportedTypes.add(UserAgent.class);
-    super.supportedTypes.add(PushResponse.class);
-    super.supportedTypes.add(ApiResourceV1.PushResponseV1.class);
+    addSupportedType(Push.class);
+    addSupportedType(UserAgent.class);
+    addSupportedType(PushResponse.class);
+    addSupportedType(ApiResourceV1.PushResponseV1.class);
   }
 }

@@ -13,7 +13,7 @@ project(":push-server-plugin-ses") {
 
   dependencies {
     compile project(":push-server-common")
-    compile("com.amazonaws:aws-java-sdk:1.9.17")
+    compile("com.amazonaws:aws-java-sdk:1.9.22")
 
     testCompile(project(":push-server-test"))
     testCompile ("org.testng:testng:$testNgVersion")

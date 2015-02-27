@@ -32,7 +32,10 @@ public class IntegrationTestVersion2 {
   @BeforeClass
   public void beforeClass() throws Exception {
     testFactory = TestFactory.get();
-    String url = "http://www.localhost:9010/push-server/api/v2";
+
+//    String url = "http://www.localhost:9010/push-server/api/v2";
+    String url = "http://www.cosmicpush.com/api/v2";
+
     String username = EnvUtils.requireProperty("PUSH_TEST_USERNAME");
     String password = EnvUtils.requireProperty("PUSH_TEST_PASSWORD");
     gateway = new LiveCosmicPushGateway(url, username, password);
@@ -60,7 +63,7 @@ public class IntegrationTestVersion2 {
   }
 
   public void testTwilioSmsPush() throws Exception {
-    TwilioSmsPush push = TwilioSmsPush.newPush("+15551112222", "+12221115555", "test message", "http://example.com/callback");
+    TwilioSmsPush push = TwilioSmsPush.newPush("7745677277", "5596407277", "test message", "http://example.com/callback");
     PushResponse response = gateway.push(push);
     assertEquals(response.getRequestStatus(), RequestStatus.pending);
   }

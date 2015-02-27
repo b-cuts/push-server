@@ -35,8 +35,8 @@ public final class PushTypeDeserializer extends StdScalarDeserializer<PushType> 
 
   @Override
   public PushType deserialize(JsonParser jp, DeserializationContext context) throws IOException, JsonProcessingException {
-    String code = jp.readValueAs(String.class);
-    return PushType.find(code);
+    String code = jp.getValueAsString();
+    return (code == null) ? null : PushType.find(code);
   }
 }
 

@@ -14,7 +14,7 @@ project(":push-server-plugin-twilio") {
     dependencies {
         compile project(":push-server-common")
 
-        compile("com.twilio.sdk:twilio-java-sdk:3.6.2") {
+        compile("com.twilio.sdk:twilio-java-sdk:3.7.1") {
             exclude group: 'commons-logging'
         }
 

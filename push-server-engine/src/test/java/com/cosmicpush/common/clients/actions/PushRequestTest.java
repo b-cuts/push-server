@@ -356,10 +356,11 @@ public class PushRequestTest {
         "  \"pushRequestId\" : \"%s\",\n" +
         "  \"revision\" : null\n" +
         "}",
-        domain.getDomainId(), oldPushRequest.getCreatedAt(),
-        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-        remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
-        oldPushRequest.getPushRequestId());
+
+    domain.getDomainId(), oldPushRequest.getCreatedAt(),
+    remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+    remoteAddress.getCanonicalHostName(), remoteAddress.getHostAddress(),
+    oldPushRequest.getPushRequestId());
 
     assertEquals(json, expected);
 
