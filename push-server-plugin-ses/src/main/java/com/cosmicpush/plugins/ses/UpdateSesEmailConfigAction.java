@@ -16,6 +16,7 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
 
   private String accessKeyId;
   private String secretKey;
+  private String endpoint;
   private String recipientOverride;
   private String testToAddress;
   private String testFromAddress;
@@ -26,18 +27,20 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
 
     this.accessKeyId = formParams.getFirst("accessKeyId");
     this.secretKey = formParams.getFirst("secretKey");
+    this.endpoint = formParams.getFirst("endpoint");
 
     this.testToAddress = formParams.getFirst("testToAddress");
     this.testFromAddress = formParams.getFirst("testFromAddress");
     this.recipientOverride = formParams.getFirst("recipientOverride");
   }
 
-  public UpdateSesEmailConfigAction(Domain domain, String accessKeyId, String secretKey, String testToAddress, String testFromAddress, String recipientOverride) {
+  public UpdateSesEmailConfigAction(Domain domain, String accessKeyId, String secretKey, String endpoint, String testToAddress, String testFromAddress, String recipientOverride) {
 
     this.domain = domain;
 
     this.accessKeyId = accessKeyId;
     this.secretKey = secretKey;
+    this.endpoint = endpoint;
 
     this.testToAddress = testToAddress;
     this.testFromAddress = testFromAddress;
@@ -47,8 +50,9 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
   @Override
   public RequestErrors validate(RequestErrors errors) {
 
-    ValidationUtils.requireValue(errors, accessKeyId, "The AWS Access Key ID must be specified.");
-    ValidationUtils.requireValue(errors, secretKey, "The AWS Secret Key must be specified.");
+    ValidationUtils.requireValue(errors, accessKeyId, "The AWS-SES Access Key ID must be specified.");
+    ValidationUtils.requireValue(errors, secretKey, "The AWS-SES Secret Key must be specified.");
+    ValidationUtils.requireValue(errors, endpoint, "The AWS-SES Endpoint must be specified.");
 
     return errors;
   }
@@ -75,5 +79,9 @@ public class UpdateSesEmailConfigAction implements ValidatableAction {
 
   public String getTestFromAddress() {
     return testFromAddress;
+  }
+
+  public String getEndpoint() {
+    return endpoint;
   }
 }

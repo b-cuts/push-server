@@ -31,6 +31,7 @@ public class SesEmailConfig implements PluginConfig, Serializable {
   private String recipientOverride;
   private String testToAddress;
   private String testFromAddress;
+  private String endpoint;
 
   public SesEmailConfig() {
   }
@@ -41,6 +42,7 @@ public class SesEmailConfig implements PluginConfig, Serializable {
                         @JsonProperty("domainId") String domainId,
                         @JsonProperty("accessKeyId") String accessKeyId,
                         @JsonProperty("secretKey") String secretKey,
+                        @JsonProperty("endpoint") String endpoint,
                         @JsonProperty("recipientOverride") String recipientOverride,
                         @JsonProperty("testToAddress") String testToAddress,
                         @JsonProperty("testFromAddress") String testFromAddress) {
@@ -52,28 +54,31 @@ public class SesEmailConfig implements PluginConfig, Serializable {
 
     this.accessKeyId = accessKeyId;
     this.secretKey = secretKey;
+    this.endpoint = endpoint;
 
     this.recipientOverride = recipientOverride;
     this.testToAddress = testToAddress;
     this.testFromAddress = testFromAddress;
   }
 
-  public SesEmailConfig apply(UpdateSesEmailConfigAction push) {
-    push.validate(new RequestErrors()).assertNoErrors();
+  public SesEmailConfig apply(UpdateSesEmailConfigAction action) {
+    action.validate(new RequestErrors()).assertNoErrors();
 
-    if (domainId != null && EqualsUtils.objectsNotEqual(domainId, push.getDomain().getDomainId())) {
+    if (domainId != null && EqualsUtils.objectsNotEqual(domainId, action.getDomain().getDomainId())) {
       String msg = "The specified push and this class are not for the same domain.";
       throw new IllegalArgumentException(msg);
     }
 
-    this.domainId = push.getDomain().getDomainId();
-    this.configId = SesEmailConfigStore.toDocumentId(push.getDomain());
+    this.domainId = action.getDomain().getDomainId();
+    this.configId = SesEmailConfigStore.toDocumentId(action.getDomain());
 
-    this.accessKeyId = push.getAccessKeyId();
-    this.secretKey = push.getSecretKey();
-    this.testToAddress = push.getTestToAddress();
-    this.testFromAddress = push.getTestFromAddress();
-    this.recipientOverride = push.getRecipientOverride();
+    this.accessKeyId = action.getAccessKeyId();
+    this.secretKey = action.getSecretKey();
+    this.endpoint = action.getEndpoint();
+
+    this.testToAddress = action.getTestToAddress();
+    this.testFromAddress = action.getTestFromAddress();
+    this.recipientOverride = action.getRecipientOverride();
 
     return this;
   }
@@ -110,5 +115,13 @@ public class SesEmailConfig implements PluginConfig, Serializable {
 
   public String getTestFromAddress() {
     return testFromAddress;
+  }
+
+  public String getEndpoint() {
+    return endpoint;
+  }
+
+  public void setEndpoint(String endpoint) {
+    this.endpoint = endpoint;
   }
 }

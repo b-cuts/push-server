@@ -17,11 +17,5 @@ project(":push-server-pub") {
 
     testCompile ("org.testng:testng:$testNgVersion")
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force()
-    })
-  })
 }
 

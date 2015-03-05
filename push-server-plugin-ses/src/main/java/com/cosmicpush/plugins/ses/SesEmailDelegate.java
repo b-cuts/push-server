@@ -80,7 +80,9 @@ public class SesEmailDelegate extends AbstractDelegate {
     sendEmailRequest.setMessage(new Message(subjectContent, body));
 
     AWSCredentials awsCredentials = new BasicAWSCredentials(config.getAccessKeyId(), config.getSecretKey());
-    new AmazonSimpleEmailServiceClient(awsCredentials).sendEmail(sendEmailRequest);
+    AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(awsCredentials);
+    client.setEndpoint(config.getEndpoint());
+    client.sendEmail(sendEmailRequest);
 
     return apiMessage;
   }

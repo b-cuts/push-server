@@ -16,10 +16,4 @@ project(":push-server-plugin-notifier") {
 
     testCompile ("org.testng:testng:$testNgVersion")
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force()
-    })
-  })
 }

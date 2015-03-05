@@ -135,6 +135,7 @@ public class SesEmailPlugin extends PluginSupport {
     content = content.replace("${push-server-base}",          nullToString(context.getBaseURI()));
     content = content.replace("${config-access-key-id}",      nullToString(config == null ? null : config.getAccessKeyId()));
     content = content.replace("${config-secret-key}",         nullToString(config == null ? null : config.getSecretKey()));
+    content = content.replace("${config-endpoint}",           nullToString(config == null ? null : config.getEndpoint()));
     content = content.replace("${config-test-to-address}",    nullToString(config == null ? null : config.getTestToAddress()));
     content = content.replace("${config-test-from-address}",  nullToString(config == null ? null : config.getTestFromAddress()));
     content = content.replace("${config-recipient-override}", nullToString(config == null ? null : config.getRecipientOverride()));

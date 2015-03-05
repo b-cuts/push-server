@@ -50,8 +50,7 @@ public class PluginManager {
   public static <T extends Plugin> T getPlugin(Class<T> type) {
     for (Plugin plugin : SINGLETON.map.values()) {
       if (type.equals(plugin.getClass())) {
-        // noinspection unchecked
-        return (T)plugin;
+        return type.cast(plugin);
       }
     }
     String msg = String.format("The plugin for \"%s\" was not found.", type.getName());

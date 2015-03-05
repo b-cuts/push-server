@@ -149,7 +149,7 @@ public class Account {
   }
 
   public void validatePassword(String password) {
-    if (BeanUtils.objectsNotEqual(this.password, password)) {
+    if (EqualsUtils.objectsNotEqual(this.password, password)) {
       throw ApiException.badRequest(INVALID_USER_NAME_OR_PASSWORD);
     }
   }

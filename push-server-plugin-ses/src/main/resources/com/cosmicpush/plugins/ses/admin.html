@@ -14,17 +14,46 @@
       <tbody>
         <tr>
           <td><label for="aws-access-key">Access Key ID:</label></td>
-          <td><input type="text" id="aws-access-key" name="accessKeyId" value="${config-access-key-id}" style="width:200px;"></td>
-          <td rowspan="3" class="help">
+          <td><input type="text" id="aws-access-key" name="accessKeyId" value="${config-access-key-id}" style="width:325px;"></td>
+          <td rowspan="7" class="help">
             Use this push to send email messages via Amazon's Simple Email Service (SES).<br/><br/>
             The <span style="font-weight:bold; color: white">Recipient Override</span> may be specified to force
             all messages to be sent to this specific recipient. When specified, messages will never be delivered
             to the API's requested recipient.
+            <br/><br/>
+
+            <table style="border:1px solid black">
+              <tr>
+                <th style="border:1px solid black; padding:5px;">Region name</th>
+                <th style="border:1px solid black; padding:5px;">Region</th>
+                <th style="border:1px solid black; padding:5px;">API (HTTPS) endpoint</th>
+              </tr>
+              <tr>
+                <td style="border:1px solid black; padding:5px;">US East (N. Virginia) Region</td>
+                <td style="border:1px solid black; padding:5px;">us-east-1</td>
+                <td style="border:1px solid black; padding:5px;">email.us-east-1.amazonaws.com</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid black; padding:5px;">US West (Oregon) Region</td>
+                <td style="border:1px solid black; padding:5px;">us-west-2</td>
+                <td style="border:1px solid black; padding:5px;">email.us-west-2.amazonaws.com</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid black; padding:5px;">EU (Ireland) Region</td>
+                <td style="border:1px solid black; padding:5px;">eu-west-1</td>
+                <td style="border:1px solid black; padding:5px;">email.eu-west-1.amazonaws.com</td>
+              </tr>
+            </table>
+
           </td>
         </tr>
         <tr>
           <td><label for="aws-secret-key">Secret Key:</label></td>
-          <td><input type="text" id="aws-secret-key" name="secretKey" value="${config-secret-key}" style="width:200px;"></td>
+          <td><input type="text" id="aws-secret-key" name="secretKey" value="${config-secret-key}" style="width:325px;"></td>
+        </tr>
+        <tr>
+          <td><label for="aws-endpoint">Endpoint:</label></td>
+          <td><input type="text" id="aws-endpoint" name="endpoint" value="${config-endpoint}" style="width:325px;"></td>
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>

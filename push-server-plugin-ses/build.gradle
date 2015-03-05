@@ -13,18 +13,9 @@ project(":push-server-plugin-ses") {
 
   dependencies {
     compile project(":push-server-common")
-    compile("com.amazonaws:aws-java-sdk:1.9.22")
+    compile("com.amazonaws:aws-java-sdk:1.9.23")
 
     testCompile(project(":push-server-test"))
     testCompile ("org.testng:testng:$testNgVersion")
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force(
-          "commons-logging:commons-logging:1.2",
-          "com.fasterxml.jackson.core:jackson-databind:2.5.0",
-      )
-    })
-  })
 }

@@ -22,7 +22,7 @@ uploadArchives {
     try {
       def group = project.group.replace(".", "/")
       new URL("https://repo1.maven.org/maven2/$group/$project.name/$project.version/").getText()
-      throw new IllegalStateException("The distribution $project.group:$project.name:$project.version already exists.");
+      throw new StopExecutionException("The distribution $project.group:$project.name:$project.version already exists.");
     } catch (FileNotFoundException ignored) {/* It's OK to deploy */}
   }
   repositories {

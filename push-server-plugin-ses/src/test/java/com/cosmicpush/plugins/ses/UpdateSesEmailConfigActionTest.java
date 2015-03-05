@@ -30,7 +30,7 @@ public class UpdateSesEmailConfigActionTest {
     Domain domain = testFactory.createDomain(account);
 
     UpdateSesEmailConfigAction updateAction = new UpdateSesEmailConfigAction(domain,
-      "some-access-key-id", "some-secret-key",
+      "some-access-key-id", "some-secret-key", "email.us-west-2.amazonaws.com",
       "to@example.com", "from@example.com", "override@example.com");
 
     SesEmailConfig config = new SesEmailConfig();

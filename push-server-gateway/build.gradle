@@ -20,11 +20,5 @@ project(":push-server-gateway") {
     testCompile project(":push-server-test")
     testCompile ("org.testng:testng:$testNgVersion")
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force()
-    })
-  })
 }
 

@@ -26,11 +26,4 @@ project(":push-server-plugin-ocs-message") {
 //        compile files("lib/ntlm-core-1.0-r17.jar")
 //        compile fileTree(dir: 'lib', include: ['*.jar'])
     }
-
-    configurations.all({
-        resolutionStrategy({
-            force(
-            )
-        })
-    })
 }

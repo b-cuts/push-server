@@ -59,7 +59,7 @@ public class SmtpEmailPlugin extends PluginSupport {
     smtpEmailConfig.apply(action);
     getConfigStore(pluginContext.getCouchServer()).update(smtpEmailConfig);
 
-    pluginContext.setLastMessage("SES Email configuration updated.");
+    pluginContext.setLastMessage("SMTP Email configuration updated.");
   }
 
   @Override
@@ -69,9 +69,9 @@ public class SmtpEmailPlugin extends PluginSupport {
 
     if (config != null) {
       getConfigStore(pluginContext.getCouchServer()).delete(config);
-      pluginContext.setLastMessage("SES email configuration deleted.");
+      pluginContext.setLastMessage("SMTP email configuration deleted.");
     } else {
-      pluginContext.setLastMessage("SES email configuration doesn't exist.");
+      pluginContext.setLastMessage("SMTP email configuration doesn't exist.");
     }
   }
 

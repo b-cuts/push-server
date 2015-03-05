@@ -5,28 +5,19 @@
  */
 
 project(":push-server-plugin-twilio") {
-    description = "Cosmic Push Twilio Plugin"
+  description = "Cosmic Push Twilio Plugin"
 
-    version = pushServerPluginTwilio
+  version = pushServerPluginTwilio
 
-    apply from: "../build-config-deployer.gradle"
+  apply from: "../build-config-deployer.gradle"
 
-    dependencies {
-        compile project(":push-server-common")
+  dependencies {
+    compile project(":push-server-common")
 
-        compile("com.twilio.sdk:twilio-java-sdk:3.7.1") {
-            exclude group: 'commons-logging'
-        }
+    compile("com.twilio.sdk:twilio-java-sdk:3.7.2")
 
-        compile("log4j:log4j:1.2.17")
+    compile("log4j:log4j:1.2.17")
 
-        testCompile ("org.testng:testng:$testNgVersion")
-    }
-
-    configurations.all({
-        resolutionStrategy({
-            force(
-            )
-        })
-    })
+    testCompile("org.testng:testng:$testNgVersion")
+  }
 }

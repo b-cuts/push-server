@@ -19,10 +19,4 @@ project(":push-server-plugin-smtp") {
     testCompile(project(":push-server-test"))
     testCompile ("org.testng:testng:$testNgVersion")
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force()
-    })
-  })
 }

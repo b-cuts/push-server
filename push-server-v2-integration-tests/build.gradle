@@ -18,11 +18,5 @@ project(":push-server-v2-integration-tests") {
     testCompile("org.glassfish.jersey.core:jersey-client:2.16")
     testCompile ("org.testng:testng:$testNgVersion")
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force()
-    })
-  })
 }
 

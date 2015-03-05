@@ -14,11 +14,5 @@ project(":push-server-test") {
     compile project(":push-server-common")
     testCompile ("org.testng:testng:$testNgVersion")
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force()
-    })
-  })
 }
 

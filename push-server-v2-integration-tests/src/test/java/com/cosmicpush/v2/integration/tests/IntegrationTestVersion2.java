@@ -25,8 +25,8 @@ public class IntegrationTestVersion2 {
   public void beforeClass() throws Exception {
     testFactory = TestFactory.get();
 
-    String url = "http://www.localhost:9010/push-server/api/v2";
-//    String url = "http://www.cosmicpush.com/api/v2";
+//    String url = "http://www.localhost:9010/push-server/api/v2";
+    String url = "http://www.cosmicpush.com/api/v2";
 
     String username = EnvUtils.requireProperty("PUSH_TEST_USERNAME");
     String password = EnvUtils.requireProperty("PUSH_TEST_PASSWORD");

@@ -30,40 +30,40 @@ subprojects {
   sourceCompatibility = "1.8"
 
   ext {
-    pushServerEngineServlet   = "1.0.1";
-    pushServerEngineGrizzly   = "1.0.6";
+    pushServerEngineServlet   = "1.0.2";
+    pushServerEngineGrizzly   = "1.0.7";
 
-    pushServerPub     = "2.0.1"
-    pushServerGateway = "2.0.1"
-    pushServerApp     = "4.0.1"
-    pushServerCommon  = "4.0.1"
-    pushServerJackson = "4.0.1"
-    pushServerTest    = "1.0.1"
+    pushServerPub     = "2.0.2"
+    pushServerGateway = "2.0.2"
+    pushServerApp     = "4.0.2"
+    pushServerCommon  = "4.0.2"
+    pushServerJackson = "4.0.2"
+    pushServerTest    = "1.0.2"
 
-    pushServerPluginSes       = "4.0.1"
-    pushServerPluginSmtp      = "4.0.1"
-    pushServerPluginXmpp      = "4.0.1"
-    pushServerPluginNotifier  = "4.0.1"
-    pushServerPluginOcs       = "1.0.1"
-    pushServerPluginTwilio    = "1.0.1"
+    pushServerPluginSes       = "4.0.2"
+    pushServerPluginSmtp      = "4.0.2"
+    pushServerPluginXmpp      = "4.0.2"
+    pushServerPluginNotifier  = "4.0.2"
+    pushServerPluginOcs       = "1.0.2"
+    pushServerPluginTwilio    = "1.0.2"
 
-    pushServerIntegrationTestsV1 = "1.0.1"
-    pushServerIntegrationTestsV2 = "1.0.1"
+    pushServerIntegrationTestsV1 = "1.0.2"
+    pushServerIntegrationTestsV2 = "1.0.2"
 
     yakDevCommon  = "4.1.3"
     yakDevDomain  = "4.1.1"
     yakDevJackson = "4.1.4"
 
-    yakApisGoogle = "2.2.3"
-    yakApisBitly  = "1.1.4"
+    yakApisGoogle = "2.2.4"
+    yakApisBitly  = "1.1.5"
 
     yakLibJaxrs           = "4.1.3"
     yakLibAmazon          = "4.1.0"
     yakLibServlet         = "4.1.3"
     yakLibCouchAce        = "4.1.5"
-    yakLibSpringSecurity  = "4.1.1"
+    yakLibSpringSecurity  = "4.1.2"
     yakLibSpringCouchAce  = "1.0.0"
-    yakLibJaxrsJackson    = "5.0.2"
+    yakLibJaxrsJackson    = "5.0.3"
 
     yakAppCommon          = "1.0.3"
 
@@ -80,6 +80,31 @@ subprojects {
   configurations.all({
     resolutionStrategy({
       failOnVersionConflict()
+      force(
+        // twillio
+        "commons-logging:commons-logging:1.2",
+
+        // couchace
+        "org.glassfish.jersey.core:jersey-common:2.16",
+        "org.glassfish.jersey.core:jersey-server:2.16",
+        "org.glassfish.jersey.core:jersey-client:2.16",
+
+        // couchace, again
+        "com.fasterxml.jackson.core:jackson-core:2.5.1",
+        "com.fasterxml.jackson.core:jackson-databind:2.5.1",
+        // jackson-databind uses 2.5.0
+        "com.fasterxml.jackson.core:jackson-annotations:2.5.1",
+
+        "org.slf4j:slf4j:1.7.10",
+        "org.slf4j:slf4j-api:1.7.10",
+
+        "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
+
+        "org.apache.httpcomponents:httpcore:4.3.2",
+        "org.apache.httpcomponents:httpclient:4.3.4",
+
+        "org.javassist:javassist:3.18.1-GA",
+      )
     })
   })
 }

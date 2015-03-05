@@ -29,8 +29,8 @@ public class IntegrationTestVersion1 {
   @BeforeClass
   public void beforeClass() throws Exception {
 
-    String url = "http://www.localhost:9010/push-server/api";
-//    String url = "http://www.cosmicpush.com/api";
+//    String url = "http://www.localhost:9010/push-server/api";
+    String url = "http://www.cosmicpush.com/api";
 
     String username = EnvUtils.findProperty("PUSH_TEST_USERNAME");
     ExceptionUtils.assertNotNull(username, "PUSH_TEST_USERNAME");

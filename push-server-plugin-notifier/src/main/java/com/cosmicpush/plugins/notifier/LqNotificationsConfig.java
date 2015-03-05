@@ -57,18 +57,18 @@ public class LqNotificationsConfig implements PluginConfig, Serializable {
     return userName;
   }
 
-  public LqNotificationsConfig apply(UpdateLqNotificationsConfigAction push) {
-    push.validate(new RequestErrors()).assertNoErrors();
+  public LqNotificationsConfig apply(UpdateLqNotificationsConfigAction action) {
+    action.validate(new RequestErrors()).assertNoErrors();
 
-    if (domainId != null && EqualsUtils.objectsNotEqual(domainId, push.getDomain().getDomainId())) {
+    if (domainId != null && EqualsUtils.objectsNotEqual(domainId, action.getDomain().getDomainId())) {
       String msg = "The specified push and this class are not for the same domain.";
       throw new IllegalArgumentException(msg);
     }
 
-    this.domainId = push.getDomain().getDomainId();
-    this.configId = LqNotificationsConfigStore.toDocumentId(push.getDomain());
+    this.domainId = action.getDomain().getDomainId();
+    this.configId = LqNotificationsConfigStore.toDocumentId(action.getDomain());
 
-    this.userName = push.getUserName();
+    this.userName = action.getUserName();
 
     return this;
   }

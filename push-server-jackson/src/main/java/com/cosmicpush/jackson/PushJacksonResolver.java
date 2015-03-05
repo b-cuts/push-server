@@ -48,6 +48,7 @@ public class PushJacksonResolver implements TypeIdResolver {
   }
 
   @Override
+  @Deprecated
   public JavaType typeFromId(String id) {
     return typeFromId(null, id);
   }

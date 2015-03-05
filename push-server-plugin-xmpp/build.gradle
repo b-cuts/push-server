@@ -18,10 +18,4 @@ project(":push-server-plugin-xmpp") {
     testCompile(project(":push-server-test"))
     testCompile("org.testng:testng:$testNgVersion")
   }
-
-  configurations.all({
-    resolutionStrategy({
-      force()
-    })
-  })
 }
