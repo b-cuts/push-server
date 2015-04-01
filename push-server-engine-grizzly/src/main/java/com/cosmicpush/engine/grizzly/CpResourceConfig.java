@@ -7,13 +7,9 @@ public class CpResourceConfig extends ResourceConfig {
 
   public CpResourceConfig(CpApplication application) {
 
-    for (Class type : application.getClasses()) {
-      register(type);
-    }
+    application.getClasses().forEach(this::register);
 
-    for (Object object : application.getSingletons()) {
-      register(object);
-    }
+    application.getSingletons().forEach(this::register);
 
     addProperties(application.getProperties());
   }
