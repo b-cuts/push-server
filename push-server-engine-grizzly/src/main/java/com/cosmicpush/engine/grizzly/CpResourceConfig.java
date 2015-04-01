@@ -12,7 +12,7 @@ public class CpResourceConfig extends ResourceConfig {
     }
 
     for (Object object : application.getSingletons()) {
-      register(application.getSingletons());
+      register(object);
     }
 
     addProperties(application.getProperties());
