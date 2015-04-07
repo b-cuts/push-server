@@ -47,7 +47,7 @@
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1" />
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.1" />
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.1" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-pub:2.0.2" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.5" />
             <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
             <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
             <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.10" />
@@ -62,17 +62,15 @@
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-jaxb:2.16" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b09" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b09" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-jackson:4.0.2" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.6" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:5.0.7" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.4.2" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.2" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.2" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.4.2" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.16" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5" />
             <element id="library" level="project" name="Gradle: javax.mail:mail:1.5.0-b01" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.5" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.5" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.3" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.4" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.4.1" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.1" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.1" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.4.1" />
-            <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.15" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-ses-4.0.2.jar">
               <element id="module-output" name="push-server-plugin-ses" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-ses/build/resources/main" />
@@ -80,6 +78,53 @@
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.3.4" />
             <element id="library" level="project" name="Gradle: joda-time:joda-time:2.7" />
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.3.2" />
+            <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-support:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpledb:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpleworkflow:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-storagegateway:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-route53:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-s3:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-importexport:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sts:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-rds:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-redshift:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticbeanstalk:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-glacier:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-iam:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-datapipeline:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticloadbalancing:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-emr:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticache:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elastictranscoder:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ec2:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-dynamodb:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sns:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudtrail:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatch:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-logs:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cognitoidentity:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cognitosync:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-directconnect:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudformation:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudfront:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kinesis:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-opsworks:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ses:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-autoscaling:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudsearch:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatchmetrics:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-swf-libraries:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-codedeploy:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-config:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-lambda:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ecs:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudhsm:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ssm:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.9.28.1" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-xmpp-4.0.2.jar">
               <element id="module-output" name="push-server-plugin-xmpp" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-xmpp/build/resources/main" />
@@ -99,72 +144,18 @@
             <element id="library" level="project" name="Gradle: com.googlecode.json-simple:json-simple:1.1" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" />
+            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.8.0" />
+            <element id="library" level="project" name="Gradle: org.apache.commons:commons-lang3:3.3.2" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-notifier-4.0.2.jar">
               <element id="module-output" name="push-server-plugin-notifier" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-notifier/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.3" />
-            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.7.2" />
-            <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.5" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.4" />
+            <element id="library" level="project" name="Gradle: org.slf4j:slf4j-simple:1.7.12" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.16" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.16" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.3" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.4" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-engine/4.0.2/cac3883fc9b6c123375668d14ff2f61a01f1fcf6/push-server-engine-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-ses/4.0.2/b3c996f96e361a7dc0361207fdd574e17fcf61f6/push-server-plugin-ses-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-common/4.0.2/4ddabed5f3830dc555751f35de66810c80e9ecbf/push-server-common-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-smtp/4.0.2/ef482385afe6ed57677dc3d1c6a9af674f95ac88/push-server-plugin-smtp-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.10/5b0027a74461a877acb12602ac141da9161304dd/slf4j-simple-1.7.10.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-notifier/4.0.2/cd41dd3465a2779548617d5c5cfdb9cad4c8d3b5/push-server-plugin-notifier-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-xmpp/4.0.2/2be96e3822261858566b324a9cacb9ef0e2eab8e/push-server-plugin-xmpp-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-twilio/1.0.2/1c1bf5d2129d0a04b280ff50e22e7e81766038f6/push-server-plugin-twilio-1.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.9.23/5cc19b5b4dfac477c50efb34ce128c31be392df6/aws-java-sdk-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.23/86eee48d223f981002d9a4be1308c796ecc3f998/aws-java-sdk-support-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.23/daf6ba9a70081f11b4b1ea05264bda067fbb9531/aws-java-sdk-simpledb-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.23/f1619f9e8f39a22e13c034c053cc4933b6997e5c/aws-java-sdk-simpleworkflow-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.23/ba97da0fe2e314fce3511d19e4df3043313ca5ae/aws-java-sdk-storagegateway-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.23/fe98eb52d7cbf151fd8c0f4073761cece4320113/aws-java-sdk-route53-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.23/7b101a05ccc93d46d6cfaf7fc560f38f8d27f5fc/aws-java-sdk-s3-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.23/8be9b4817674ee927769c4db9857f1fa5ec67ee3/aws-java-sdk-importexport-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.23/51b33ba1916307e30b32f91c2f9bf66d7ce7ba68/aws-java-sdk-sts-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.23/41c8311ddb655893f6d6c235f2aafd0073225d1c/aws-java-sdk-sqs-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.23/a45fc26331d9caf6fdbadb793df3a8e8ef6f1714/aws-java-sdk-rds-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.23/3eef643a4a92e16b1d15a2e3510f450563a18566/aws-java-sdk-redshift-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.23/d5178127f5fe7196e7893104f27758e40eba788f/aws-java-sdk-elasticbeanstalk-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.23/3633b12effe05738dfa0f287ddee97044dca3b0d/aws-java-sdk-glacier-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.23/5fb3e9d14542295c5fb42802420259a4471c3071/aws-java-sdk-iam-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.23/eaee14090fcae5a81de0a2ff81e233f5ded5c22f/aws-java-sdk-datapipeline-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.23/7105a56f95764990c5d72d7ef348d0550ef4eac3/aws-java-sdk-elasticloadbalancing-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.23/db6e1ef3a0c6712c84956f8c9991771f07f6ec06/aws-java-sdk-emr-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.23/d28fb772960ecf371e89e011e3de96ac7c3255c3/aws-java-sdk-elasticache-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.23/87316a2a3b106ee5f2a021d69cdb06c4154f8f4a/aws-java-sdk-elastictranscoder-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.23/488835b3607d8c6ae8133f9404e9d63aceebad63/aws-java-sdk-ec2-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.23/dc3ff86b14769cc3b6db79200740f0f945fb3e93/aws-java-sdk-dynamodb-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.23/28d55905858d688f774786558f302eaa4a500554/aws-java-sdk-sns-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.23/331d5ef46da5df56963f3bcb5f74d382fdf06e42/aws-java-sdk-cloudtrail-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.23/7a627ee0c7aaa85f7e31f964784b9027c8b29df8/aws-java-sdk-cloudwatch-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.23/d2490e426fb7326c6b2322c84178bc6fc97cc363/aws-java-sdk-logs-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.23/e26db46162684a5784b552b47c4ca774510fb424/aws-java-sdk-cognitoidentity-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.23/7197d473ce6bca714b0a4a435d891492abdc40a5/aws-java-sdk-cognitosync-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.23/a35d7a3df7684bbe021834d488990c721f75f0db/aws-java-sdk-directconnect-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.23/25e23fafd5ea9d896ada93732696f1929623282b/aws-java-sdk-cloudformation-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.23/d9ffa8fdb739ae296bd550277b0f756f643e6ce1/aws-java-sdk-cloudfront-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.23/bfc478baa575468b1d137b24573e07e1e98270d6/aws-java-sdk-kinesis-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.23/dd16a73f06d86de381ef6ca26e17bd0cfcbc1bdd/aws-java-sdk-opsworks-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.23/3e0d0c29eef1dac86abb03d05f0bba15f85bd1e2/aws-java-sdk-ses-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.23/be757102bf4cd1b7c59c7191b8ec42c9653e9c02/aws-java-sdk-autoscaling-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.23/d9043406bb6be7f4532158a60f0b783adff7e547/aws-java-sdk-cloudsearch-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.23/2c0adc3116e4709d27e2f5530a4925b98e7499e/aws-java-sdk-cloudwatchmetrics-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.23/8c0f55836551e565920b580c24bd88796638d22c/aws-java-sdk-swf-libraries-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.23/e46589d9b0756b9177588a0f44fe89b12f357ce3/aws-java-sdk-codedeploy-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.23/ea6bbc13a7947267ef2add01861a1f3e5dc07818/aws-java-sdk-kms-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.23/401a7adf09166c278afa555c456ffbd0694cbf5b/aws-java-sdk-config-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.23/42baf10771af1afecaf4a205b5868f2cd850084a/aws-java-sdk-lambda-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecs/1.9.23/94cf62c9d5ac3602d0e2b52b6049b47091e89644/aws-java-sdk-ecs-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudhsm/1.9.23/15547acd8b9f97f434a155ea7745d8786c8a198c/aws-java-sdk-cloudhsm-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.9.23/4f55e8dd5d9cacb37e91899458379c75462d02f7/aws-java-sdk-ssm-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.23/6247112519c0acbe13d01b3ce90fa82813bc899f/aws-java-sdk-core-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -218,7 +209,7 @@
             <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-domain:4.1.1" />
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.1" />
             <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.1" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-pub:2.0.2" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.5" />
             <element id="library" level="project" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" />
             <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
             <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.10" />
@@ -233,17 +224,15 @@
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-jaxb:2.16" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b09" />
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b09" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-jackson:4.0.2" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.6" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:5.0.7" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.4.2" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.2" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.2" />
+            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.4.2" />
+            <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.16" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5" />
             <element id="library" level="project" name="Gradle: javax.mail:mail:1.5.0-b01" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.5" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.5" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.3" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.4" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-annotations:1.4.1" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-core:1.4.1" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-jackson:1.4.1" />
-            <element id="library" level="project" name="Gradle: com.couchace:couchace-jersey:1.4.1" />
-            <element id="library" level="project" name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.15" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-ses-4.0.2.jar">
               <element id="module-output" name="push-server-plugin-ses" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-ses/build/resources/main" />
@@ -251,6 +240,53 @@
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.3.4" />
             <element id="library" level="project" name="Gradle: joda-time:joda-time:2.7" />
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.3.2" />
+            <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-support:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpledb:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpleworkflow:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-storagegateway:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-route53:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-s3:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-importexport:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sts:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-rds:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-redshift:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticbeanstalk:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-glacier:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-iam:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-datapipeline:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticloadbalancing:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-emr:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticache:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elastictranscoder:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ec2:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-dynamodb:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sns:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudtrail:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatch:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-logs:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cognitoidentity:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cognitosync:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-directconnect:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudformation:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudfront:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kinesis:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-opsworks:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ses:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-autoscaling:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudsearch:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatchmetrics:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-swf-libraries:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-codedeploy:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-config:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-lambda:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ecs:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudhsm:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ssm:1.9.28.1" />
+            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.9.28.1" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-xmpp-4.0.2.jar">
               <element id="module-output" name="push-server-plugin-xmpp" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-xmpp/build/resources/main" />
@@ -270,72 +306,18 @@
             <element id="library" level="project" name="Gradle: com.googlecode.json-simple:json-simple:1.1" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.3" />
             <element id="library" level="project" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.3" />
+            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.8.0" />
+            <element id="library" level="project" name="Gradle: org.apache.commons:commons-lang3:3.3.2" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-notifier-4.0.2.jar">
               <element id="module-output" name="push-server-plugin-notifier" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-notifier/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.3" />
-            <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.7.2" />
-            <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.5" />
+            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.4" />
+            <element id="library" level="project" name="Gradle: org.slf4j:slf4j-simple:1.7.12" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.16" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.16" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.3" />
-            <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.4" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-engine/4.0.2/cac3883fc9b6c123375668d14ff2f61a01f1fcf6/push-server-engine-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-ses/4.0.2/b3c996f96e361a7dc0361207fdd574e17fcf61f6/push-server-plugin-ses-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-common/4.0.2/4ddabed5f3830dc555751f35de66810c80e9ecbf/push-server-common-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-smtp/4.0.2/ef482385afe6ed57677dc3d1c6a9af674f95ac88/push-server-plugin-smtp-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.10/5b0027a74461a877acb12602ac141da9161304dd/slf4j-simple-1.7.10.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-notifier/4.0.2/cd41dd3465a2779548617d5c5cfdb9cad4c8d3b5/push-server-plugin-notifier-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-xmpp/4.0.2/2be96e3822261858566b324a9cacb9ef0e2eab8e/push-server-plugin-xmpp-4.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-twilio/1.0.2/1c1bf5d2129d0a04b280ff50e22e7e81766038f6/push-server-plugin-twilio-1.0.2.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.9.23/5cc19b5b4dfac477c50efb34ce128c31be392df6/aws-java-sdk-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.23/86eee48d223f981002d9a4be1308c796ecc3f998/aws-java-sdk-support-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.23/daf6ba9a70081f11b4b1ea05264bda067fbb9531/aws-java-sdk-simpledb-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.23/f1619f9e8f39a22e13c034c053cc4933b6997e5c/aws-java-sdk-simpleworkflow-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.23/ba97da0fe2e314fce3511d19e4df3043313ca5ae/aws-java-sdk-storagegateway-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.23/fe98eb52d7cbf151fd8c0f4073761cece4320113/aws-java-sdk-route53-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.23/7b101a05ccc93d46d6cfaf7fc560f38f8d27f5fc/aws-java-sdk-s3-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.23/8be9b4817674ee927769c4db9857f1fa5ec67ee3/aws-java-sdk-importexport-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.23/51b33ba1916307e30b32f91c2f9bf66d7ce7ba68/aws-java-sdk-sts-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.23/41c8311ddb655893f6d6c235f2aafd0073225d1c/aws-java-sdk-sqs-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.23/a45fc26331d9caf6fdbadb793df3a8e8ef6f1714/aws-java-sdk-rds-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.23/3eef643a4a92e16b1d15a2e3510f450563a18566/aws-java-sdk-redshift-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.23/d5178127f5fe7196e7893104f27758e40eba788f/aws-java-sdk-elasticbeanstalk-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.23/3633b12effe05738dfa0f287ddee97044dca3b0d/aws-java-sdk-glacier-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.23/5fb3e9d14542295c5fb42802420259a4471c3071/aws-java-sdk-iam-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.23/eaee14090fcae5a81de0a2ff81e233f5ded5c22f/aws-java-sdk-datapipeline-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.23/7105a56f95764990c5d72d7ef348d0550ef4eac3/aws-java-sdk-elasticloadbalancing-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.23/db6e1ef3a0c6712c84956f8c9991771f07f6ec06/aws-java-sdk-emr-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.23/d28fb772960ecf371e89e011e3de96ac7c3255c3/aws-java-sdk-elasticache-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.23/87316a2a3b106ee5f2a021d69cdb06c4154f8f4a/aws-java-sdk-elastictranscoder-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.23/488835b3607d8c6ae8133f9404e9d63aceebad63/aws-java-sdk-ec2-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.23/dc3ff86b14769cc3b6db79200740f0f945fb3e93/aws-java-sdk-dynamodb-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.23/28d55905858d688f774786558f302eaa4a500554/aws-java-sdk-sns-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.23/331d5ef46da5df56963f3bcb5f74d382fdf06e42/aws-java-sdk-cloudtrail-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.23/7a627ee0c7aaa85f7e31f964784b9027c8b29df8/aws-java-sdk-cloudwatch-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.23/d2490e426fb7326c6b2322c84178bc6fc97cc363/aws-java-sdk-logs-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.23/e26db46162684a5784b552b47c4ca774510fb424/aws-java-sdk-cognitoidentity-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.23/7197d473ce6bca714b0a4a435d891492abdc40a5/aws-java-sdk-cognitosync-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.23/a35d7a3df7684bbe021834d488990c721f75f0db/aws-java-sdk-directconnect-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.23/25e23fafd5ea9d896ada93732696f1929623282b/aws-java-sdk-cloudformation-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.23/d9ffa8fdb739ae296bd550277b0f756f643e6ce1/aws-java-sdk-cloudfront-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.23/bfc478baa575468b1d137b24573e07e1e98270d6/aws-java-sdk-kinesis-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.23/dd16a73f06d86de381ef6ca26e17bd0cfcbc1bdd/aws-java-sdk-opsworks-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.23/3e0d0c29eef1dac86abb03d05f0bba15f85bd1e2/aws-java-sdk-ses-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.23/be757102bf4cd1b7c59c7191b8ec42c9653e9c02/aws-java-sdk-autoscaling-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.23/d9043406bb6be7f4532158a60f0b783adff7e547/aws-java-sdk-cloudsearch-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.23/2c0adc3116e4709d27e2f5530a4925b98e7499e/aws-java-sdk-cloudwatchmetrics-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.23/8c0f55836551e565920b580c24bd88796638d22c/aws-java-sdk-swf-libraries-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.23/e46589d9b0756b9177588a0f44fe89b12f357ce3/aws-java-sdk-codedeploy-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.23/ea6bbc13a7947267ef2add01861a1f3e5dc07818/aws-java-sdk-kms-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.23/401a7adf09166c278afa555c456ffbd0694cbf5b/aws-java-sdk-config-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.23/42baf10771af1afecaf4a205b5868f2cd850084a/aws-java-sdk-lambda-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecs/1.9.23/94cf62c9d5ac3602d0e2b52b6049b47091e89644/aws-java-sdk-ecs-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudhsm/1.9.23/15547acd8b9f97f434a155ea7745d8786c8a198c/aws-java-sdk-cloudhsm-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.9.23/4f55e8dd5d9cacb37e91899458379c75462d02f7/aws-java-sdk-ssm-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.23/6247112519c0acbe13d01b3ce90fa82813bc899f/aws-java-sdk-core-1.9.23.jar" />
-            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -573,6 +555,45 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
+    <configuration default="false" name="ThymeleafTests" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.cosmicpush.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="push-server-engine" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="SUITE_NAME" value="" />
+      <option name="PACKAGE_NAME" value="com.cosmicpush.app" />
+      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.app.ThymeleafTests" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" value="" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51174" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
     <configuration default="false" name="IntegrationTestVersion1" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -653,45 +674,6 @@
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ThymeleafTests" type="TestNG" factoryName="TestNG" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.cosmicpush.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="push-server-engine" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="SUITE_NAME" value="" />
-      <option name="PACKAGE_NAME" value="com.cosmicpush.app" />
-      <option name="MAIN_CLASS_NAME" value="com.cosmicpush.app.ThymeleafTests" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" value="" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" value="" />
-      <envs />
-      <properties />
-      <listeners />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="51174" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
       <method />
     </configuration>
     <configuration default="false" name="push-server-gateway" type="TestNG" factoryName="TestNG">
@@ -845,15 +827,6 @@
     <mapping directory="" vcs="Git" />
   </component>
   <component name="libraryTable">
-    <library name="Gradle: com.amazonaws:aws-java-sdk-autoscaling:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.23/be757102bf4cd1b7c59c7191b8ec42c9653e9c02/aws-java-sdk-autoscaling-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.23/83993baaff2482d1f491183b6afeae021d00ebb3/aws-java-sdk-autoscaling-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-autoscaling:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.28.1/fb6fab4830a593847da1b8be131044ddf3ff025d/aws-java-sdk-autoscaling-1.9.28.1.jar!/" />
@@ -861,15 +834,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.28.1/5f621414f1245a9569ba73dc03019047011f9b9a/aws-java-sdk-autoscaling-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cloudformation:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.23/25e23fafd5ea9d896ada93732696f1929623282b/aws-java-sdk-cloudformation-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.23/b4aac61f8072415f688c9f068801ecb6c6d87336/aws-java-sdk-cloudformation-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cloudformation:1.9.28.1">
@@ -881,15 +845,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.28.1/b70814fcdbfe5420242334fb176777db33bf0ff3/aws-java-sdk-cloudformation-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cloudfront:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.23/d9ffa8fdb739ae296bd550277b0f756f643e6ce1/aws-java-sdk-cloudfront-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.23/756e6a6ed5b9614a81a0e8bd66c672b922f2495d/aws-java-sdk-cloudfront-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cloudfront:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.28.1/627111f4bf87e2f440ac6ba6ec68c37a4b2f6fb9/aws-java-sdk-cloudfront-1.9.28.1.jar!/" />
@@ -897,15 +852,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.28.1/4d68b3a8f451efba3c5a20cdc81f15a36402fea9/aws-java-sdk-cloudfront-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cloudhsm:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudhsm/1.9.23/15547acd8b9f97f434a155ea7745d8786c8a198c/aws-java-sdk-cloudhsm-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudhsm/1.9.23/55a5585f0bcfe07a1b63adf3d3bfc547ed6122b6/aws-java-sdk-cloudhsm-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cloudhsm:1.9.28.1">
@@ -917,15 +863,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudhsm/1.9.28.1/e05b5da95391029591a0bcecf8a58c23fe0a20e9/aws-java-sdk-cloudhsm-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cloudsearch:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.23/d9043406bb6be7f4532158a60f0b783adff7e547/aws-java-sdk-cloudsearch-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.23/acbc8c6bd12a31e5a5467de2d9238c0e7e4c42fd/aws-java-sdk-cloudsearch-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cloudsearch:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.28.1/1fb17e88d3b2d0ea0980e7b5758f98f244cf7dc0/aws-java-sdk-cloudsearch-1.9.28.1.jar!/" />
@@ -933,15 +870,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.28.1/cd294f589f55d7cc830b7ccdc1a292bfa6c6076a/aws-java-sdk-cloudsearch-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cloudtrail:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.23/331d5ef46da5df56963f3bcb5f74d382fdf06e42/aws-java-sdk-cloudtrail-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.23/64b9ab93a48fd184a1df43172952b95becc6f95a/aws-java-sdk-cloudtrail-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cloudtrail:1.9.28.1">
@@ -953,15 +881,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.28.1/b437125e71ec583bc91e51e4cde87dd1fdcd8f12/aws-java-sdk-cloudtrail-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cloudwatch:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.23/7a627ee0c7aaa85f7e31f964784b9027c8b29df8/aws-java-sdk-cloudwatch-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.23/2f463819e8b5afb2318bed6888d3f98731a830f2/aws-java-sdk-cloudwatch-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cloudwatch:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.28.1/c2c70f6acdb6d69f9496145fa09a93344c7dfd6e/aws-java-sdk-cloudwatch-1.9.28.1.jar!/" />
@@ -969,15 +888,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.28.1/b582c1b1a7fe18cc313c46031d0e9724061e6c8/aws-java-sdk-cloudwatch-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cloudwatchmetrics:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.23/2c0adc3116e4709d27e2f5530a4925b98e7499e/aws-java-sdk-cloudwatchmetrics-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.23/ea0eeaa61b592a80fb0bf7566905c6c17ece0f43/aws-java-sdk-cloudwatchmetrics-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cloudwatchmetrics:1.9.28.1">
@@ -989,15 +899,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.28.1/e4c45e5314939acbc6f6cdab711a1853eb744e27/aws-java-sdk-cloudwatchmetrics-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-codedeploy:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.23/e46589d9b0756b9177588a0f44fe89b12f357ce3/aws-java-sdk-codedeploy-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.23/8a11ec763e0de2d6c0354b273bb45a97f4ed95fd/aws-java-sdk-codedeploy-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-codedeploy:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.28.1/bfda1bf26126cd417881964a33745fd18656385/aws-java-sdk-codedeploy-1.9.28.1.jar!/" />
@@ -1005,15 +906,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.28.1/e41a6a26921f84843434d6033725f2a0e48ef206/aws-java-sdk-codedeploy-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cognitoidentity:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.23/e26db46162684a5784b552b47c4ca774510fb424/aws-java-sdk-cognitoidentity-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.23/9a232b61d91e8002d535c6b7a8c283cdb71da0d3/aws-java-sdk-cognitoidentity-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cognitoidentity:1.9.28.1">
@@ -1025,15 +917,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.28.1/83127bc56b3c30fa3beb610635da416dbc34e04a/aws-java-sdk-cognitoidentity-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-cognitosync:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.23/7197d473ce6bca714b0a4a435d891492abdc40a5/aws-java-sdk-cognitosync-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.23/99e13553b5e1df9f97e7a6453403d364e0474777/aws-java-sdk-cognitosync-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-cognitosync:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.28.1/fa6cf342e92b9f94e5bbaf8f18b92a07521ad1ee/aws-java-sdk-cognitosync-1.9.28.1.jar!/" />
@@ -1041,15 +924,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.28.1/a65f08a0b4dce33153b0e99883ad5c95994e9dda/aws-java-sdk-cognitosync-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-config:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.23/401a7adf09166c278afa555c456ffbd0694cbf5b/aws-java-sdk-config-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.23/22629b24360f438b7c4d9ac92ce5f1d61cc04a16/aws-java-sdk-config-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-config:1.9.28.1">
@@ -1061,15 +935,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.28.1/8d3e48221c09c253b11f22ee9a141efc3d93ac2c/aws-java-sdk-config-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-core:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.23/6247112519c0acbe13d01b3ce90fa82813bc899f/aws-java-sdk-core-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.23/5c76827b8821b53d5289eab09a5658528c1803a3/aws-java-sdk-core-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-core:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.28.1/541515af6714835af77ca19a1e00d79c684516b3/aws-java-sdk-core-1.9.28.1.jar!/" />
@@ -1077,15 +942,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.28.1/107c2dce7d62b754811cdf4a629518282f253781/aws-java-sdk-core-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-datapipeline:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.23/eaee14090fcae5a81de0a2ff81e233f5ded5c22f/aws-java-sdk-datapipeline-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.23/88d646176afa8b124ef0213553ac64416ed30d23/aws-java-sdk-datapipeline-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-datapipeline:1.9.28.1">
@@ -1097,15 +953,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.28.1/9d1a6d79d14f20b92dae203e7a37c9f05e2b65b1/aws-java-sdk-datapipeline-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-directconnect:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.23/a35d7a3df7684bbe021834d488990c721f75f0db/aws-java-sdk-directconnect-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.23/5bdf406ba50f3df25e5d568f187fd9393002dc55/aws-java-sdk-directconnect-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-directconnect:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.28.1/dfbe8b4a919616c8eb6e9fec2ca6e23eaa985ae9/aws-java-sdk-directconnect-1.9.28.1.jar!/" />
@@ -1113,15 +960,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.28.1/edb797a56da66325563a406c1fc7fa15e92c34cf/aws-java-sdk-directconnect-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-dynamodb:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.23/dc3ff86b14769cc3b6db79200740f0f945fb3e93/aws-java-sdk-dynamodb-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.23/50f869c52e9fa2971edcdf34a9edcaa680d4055c/aws-java-sdk-dynamodb-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-dynamodb:1.9.28.1">
@@ -1133,15 +971,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.28.1/85b1aa92c9072c8807f871729b8f907ed76ff163/aws-java-sdk-dynamodb-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-ec2:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.23/488835b3607d8c6ae8133f9404e9d63aceebad63/aws-java-sdk-ec2-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.23/c0d5d0759b99c59e38edb49d5114e94f99fe6628/aws-java-sdk-ec2-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-ec2:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.28.1/7e2caa52606318db2dd6c5ffed133ae60288cd40/aws-java-sdk-ec2-1.9.28.1.jar!/" />
@@ -1149,15 +978,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.28.1/e76c8aacd407ef8b900a428ce60d0cf44ef49138/aws-java-sdk-ec2-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-ecs:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecs/1.9.23/94cf62c9d5ac3602d0e2b52b6049b47091e89644/aws-java-sdk-ecs-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecs/1.9.23/fca392e4b45608ee6b073a3aabbf35876f493673/aws-java-sdk-ecs-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-ecs:1.9.28.1">
@@ -1169,15 +989,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecs/1.9.28.1/1a48b422ec4f8b765136422ae23dd3e8f914bae3/aws-java-sdk-ecs-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-elasticache:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.23/d28fb772960ecf371e89e011e3de96ac7c3255c3/aws-java-sdk-elasticache-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.23/378ada6a60932c273525e82743e55e8d32fadf96/aws-java-sdk-elasticache-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-elasticache:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.28.1/115d9c6f7317c5af0eaf3e22f50783b5455564ea/aws-java-sdk-elasticache-1.9.28.1.jar!/" />
@@ -1185,15 +996,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.28.1/a6d6e2b50f5cdee726727391d784fa915a85e507/aws-java-sdk-elasticache-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-elasticbeanstalk:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.23/d5178127f5fe7196e7893104f27758e40eba788f/aws-java-sdk-elasticbeanstalk-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.23/7c4f4c3fc01ba81948cef9dae09c2ac2a7fd0066/aws-java-sdk-elasticbeanstalk-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-elasticbeanstalk:1.9.28.1">
@@ -1205,15 +1007,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.28.1/eb58915872af75181e5ac5f9224040c62daa74e1/aws-java-sdk-elasticbeanstalk-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-elasticloadbalancing:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.23/7105a56f95764990c5d72d7ef348d0550ef4eac3/aws-java-sdk-elasticloadbalancing-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.23/7c06e8735dc3b8136f33b535565a0da4d2ab2c83/aws-java-sdk-elasticloadbalancing-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-elasticloadbalancing:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.28.1/d3005883600cced86456a1cb9ec37705babb66fd/aws-java-sdk-elasticloadbalancing-1.9.28.1.jar!/" />
@@ -1221,15 +1014,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.28.1/4a93c9ca7ad7cae6cbd0eeb1c6542648841d7351/aws-java-sdk-elasticloadbalancing-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-elastictranscoder:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.23/87316a2a3b106ee5f2a021d69cdb06c4154f8f4a/aws-java-sdk-elastictranscoder-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.23/646d4d2bddfde39544c9d60f11a65e1778c9c5ce/aws-java-sdk-elastictranscoder-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-elastictranscoder:1.9.28.1">
@@ -1241,15 +1025,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.28.1/325217e13de8e5db563a60739330ad2be89b7f8d/aws-java-sdk-elastictranscoder-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-emr:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.23/db6e1ef3a0c6712c84956f8c9991771f07f6ec06/aws-java-sdk-emr-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.23/d69d22b84429d70a13459795e6cb21e4e923ab14/aws-java-sdk-emr-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-emr:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.28.1/98e6e6f7f5badfe2c32358c434b10d88be70222f/aws-java-sdk-emr-1.9.28.1.jar!/" />
@@ -1257,15 +1032,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.28.1/857fb01bc14705f138550eadd7b4a439293da41c/aws-java-sdk-emr-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-glacier:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.23/3633b12effe05738dfa0f287ddee97044dca3b0d/aws-java-sdk-glacier-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.23/4254536bae706c67a9a38ba8adeb1bc99a3fb8ca/aws-java-sdk-glacier-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-glacier:1.9.28.1">
@@ -1277,15 +1043,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.28.1/ebdc06027bd391efa238e827a7d9835508d91f8d/aws-java-sdk-glacier-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-iam:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.23/5fb3e9d14542295c5fb42802420259a4471c3071/aws-java-sdk-iam-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.23/2464c430ddda1de8ccaa966833a4e845ab8ddf0b/aws-java-sdk-iam-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-iam:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.28.1/cbfbd685886181b03e566784dc123839965fde4b/aws-java-sdk-iam-1.9.28.1.jar!/" />
@@ -1293,15 +1050,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.28.1/c0480cccfc0dbb70259edb3eb234d4273fe8ecd4/aws-java-sdk-iam-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-importexport:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.23/8be9b4817674ee927769c4db9857f1fa5ec67ee3/aws-java-sdk-importexport-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.23/9f19520bb8baf5a24d20aed57ffcbaaf7f952103/aws-java-sdk-importexport-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-importexport:1.9.28.1">
@@ -1313,15 +1061,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.28.1/8c424805bf9b7df798c52a8d4840bb643284f54e/aws-java-sdk-importexport-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-kinesis:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.23/bfc478baa575468b1d137b24573e07e1e98270d6/aws-java-sdk-kinesis-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.23/30f38336ac861ed925a3a628d29216ec3273ba11/aws-java-sdk-kinesis-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-kinesis:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.28.1/23d59dc5342358bcaa04082ca2adb4194281504/aws-java-sdk-kinesis-1.9.28.1.jar!/" />
@@ -1329,15 +1068,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.28.1/dd5ec8dff9574f1aaeea03c4bf18bc0af3616b61/aws-java-sdk-kinesis-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-kms:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.23/ea6bbc13a7947267ef2add01861a1f3e5dc07818/aws-java-sdk-kms-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.23/8ccb5b2519f6206f73179a607478a870f93632ab/aws-java-sdk-kms-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-kms:1.9.28.1">
@@ -1349,15 +1079,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.28.1/a43c8c506e07e0433863b80d924165b0131ea4f1/aws-java-sdk-kms-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-lambda:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.23/42baf10771af1afecaf4a205b5868f2cd850084a/aws-java-sdk-lambda-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.23/bb9ce99ce9a410a21e07b75cf52ef211fe584856/aws-java-sdk-lambda-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-lambda:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.28.1/1dd9cbde286c57b8a5554948b9e906f50a998e97/aws-java-sdk-lambda-1.9.28.1.jar!/" />
@@ -1365,15 +1086,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.28.1/d54dc82683222cb9f412a08c0b8dc13c09d58afa/aws-java-sdk-lambda-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-logs:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.23/d2490e426fb7326c6b2322c84178bc6fc97cc363/aws-java-sdk-logs-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.23/d0482f32668872e968142bc1250207ec7f0a6a60/aws-java-sdk-logs-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-logs:1.9.28.1">
@@ -1385,15 +1097,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.28.1/3706656afcf6668e486e6b9505dbb744232f3df2/aws-java-sdk-logs-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-opsworks:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.23/dd16a73f06d86de381ef6ca26e17bd0cfcbc1bdd/aws-java-sdk-opsworks-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.23/e99b4a0b71515e21045644455ca8ce6a7a44e835/aws-java-sdk-opsworks-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-opsworks:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.28.1/c94b48e5fa7695bc6dcbd344ef3afeabf7c3e665/aws-java-sdk-opsworks-1.9.28.1.jar!/" />
@@ -1401,15 +1104,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.28.1/cb457d7ba1a3ae745ba45bdc2b1f21288524d269/aws-java-sdk-opsworks-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-rds:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.23/a45fc26331d9caf6fdbadb793df3a8e8ef6f1714/aws-java-sdk-rds-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.23/1f93b960d18c78587fdbffb900433ad65bd76f77/aws-java-sdk-rds-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-rds:1.9.28.1">
@@ -1421,15 +1115,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.28.1/ad90c935a7efe211235a7a22d6f23ac51a121326/aws-java-sdk-rds-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-redshift:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.23/3eef643a4a92e16b1d15a2e3510f450563a18566/aws-java-sdk-redshift-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.23/df5a52128af47637cfad5821301a480a2302c48c/aws-java-sdk-redshift-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-redshift:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.28.1/d7fb346f803e9f32e428267204c659578ec0291b/aws-java-sdk-redshift-1.9.28.1.jar!/" />
@@ -1437,15 +1122,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.28.1/7350663cf80e8d5902e6b46cdda8a869d9a5518f/aws-java-sdk-redshift-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-route53:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.23/fe98eb52d7cbf151fd8c0f4073761cece4320113/aws-java-sdk-route53-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.23/e0900f8596cce79493ed001a8928fc6bd8ed749a/aws-java-sdk-route53-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-route53:1.9.28.1">
@@ -1457,15 +1133,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.28.1/92344712e474e6e2b1d69ed0ec2dd148f39ad090/aws-java-sdk-route53-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-s3:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.23/7b101a05ccc93d46d6cfaf7fc560f38f8d27f5fc/aws-java-sdk-s3-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.23/e607b07e833ea602a33ea6e37553a277151af992/aws-java-sdk-s3-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-s3:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.28.1/ef73c81e6730105cfc610c4aa17381ed1ba5b2b/aws-java-sdk-s3-1.9.28.1.jar!/" />
@@ -1473,15 +1140,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.28.1/3770babd47cb38b8f15c62328c29d5dc88d887e0/aws-java-sdk-s3-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-ses:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.23/3e0d0c29eef1dac86abb03d05f0bba15f85bd1e2/aws-java-sdk-ses-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.23/1c04ef04d111714c860ebd266c98a2b26e872833/aws-java-sdk-ses-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-ses:1.9.28.1">
@@ -1493,15 +1151,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.28.1/3ae908fba7fff3ed887961a638104ba7eb73bc5f/aws-java-sdk-ses-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-simpledb:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.23/daf6ba9a70081f11b4b1ea05264bda067fbb9531/aws-java-sdk-simpledb-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.23/2cbef7a89082c715729870637ecfdfea7af1d7a5/aws-java-sdk-simpledb-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-simpledb:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.28.1/88a3df23a03b770d17bd6baf2773832fb0912e79/aws-java-sdk-simpledb-1.9.28.1.jar!/" />
@@ -1509,15 +1158,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.28.1/587ec876d43a970082af33b2fcdd44a78829925a/aws-java-sdk-simpledb-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-simpleworkflow:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.23/f1619f9e8f39a22e13c034c053cc4933b6997e5c/aws-java-sdk-simpleworkflow-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.23/54a147337583157a16df5f5cac6f1fee16414ff5/aws-java-sdk-simpleworkflow-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-simpleworkflow:1.9.28.1">
@@ -1529,15 +1169,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.28.1/de645b54a98cbc92d3acdcbba3d117b6309e1928/aws-java-sdk-simpleworkflow-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-sns:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.23/28d55905858d688f774786558f302eaa4a500554/aws-java-sdk-sns-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.23/e8416516be1ec24e070bff1f0345909692583cb5/aws-java-sdk-sns-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-sns:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.28.1/d06c70f82a5f6bb5e4e925e8c77a2eaa7f493c54/aws-java-sdk-sns-1.9.28.1.jar!/" />
@@ -1545,15 +1176,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.28.1/82e0e2f1418dabefb3c8774f7ba393735e6bdf08/aws-java-sdk-sns-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.23/41c8311ddb655893f6d6c235f2aafd0073225d1c/aws-java-sdk-sqs-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.23/5d1b228dfdda0cfcf1a0e480d061de5b6ae05009/aws-java-sdk-sqs-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.9.28.1">
@@ -1565,15 +1187,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.28.1/aaf177c00c07868d347b7cc731471b0e5a8ca2e0/aws-java-sdk-sqs-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-ssm:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.9.23/4f55e8dd5d9cacb37e91899458379c75462d02f7/aws-java-sdk-ssm-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.9.23/21d44f81709f9463b3a9bbd1dd2faa5708dd4eb1/aws-java-sdk-ssm-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-ssm:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.9.28.1/ed2d2722251fb1d70ee0bab0137233087aa313e3/aws-java-sdk-ssm-1.9.28.1.jar!/" />
@@ -1581,15 +1194,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.9.28.1/c36708e3c4b7948b954db9f063756a00d29a4759/aws-java-sdk-ssm-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-storagegateway:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.23/ba97da0fe2e314fce3511d19e4df3043313ca5ae/aws-java-sdk-storagegateway-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.23/410c59d659bfad3d3c5a416529a8484cfc15ae33/aws-java-sdk-storagegateway-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-storagegateway:1.9.28.1">
@@ -1601,15 +1205,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.28.1/4cb6c13056545056b12d8995914134658a4d3d48/aws-java-sdk-storagegateway-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-sts:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.23/51b33ba1916307e30b32f91c2f9bf66d7ce7ba68/aws-java-sdk-sts-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.23/177b772f9792f09ab43671e5245aef90d59dd758/aws-java-sdk-sts-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-sts:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.28.1/e5175a2b7a8d162d59ce932ad6b6df897b703c3d/aws-java-sdk-sts-1.9.28.1.jar!/" />
@@ -1617,15 +1212,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.28.1/6095571e8cc96ee10fa02698c544c2fe05e7bf97/aws-java-sdk-sts-1.9.28.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-support:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.23/86eee48d223f981002d9a4be1308c796ecc3f998/aws-java-sdk-support-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.23/d6ba76e83dc3a7d9f4bafe71190078b679f4509b/aws-java-sdk-support-1.9.23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-support:1.9.28.1">
@@ -1637,15 +1223,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.28.1/80a7f18ced6a206fa0a498030bcf4dc06cee8f7a/aws-java-sdk-support-1.9.28.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk-swf-libraries:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.23/8c0f55836551e565920b580c24bd88796638d22c/aws-java-sdk-swf-libraries-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.23/3400ee6d875696b732a13876aefc2d477c143630/aws-java-sdk-swf-libraries-1.9.23-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk-swf-libraries:1.9.28.1">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.28.1/2df792f6ab0f202b469816c88fb2006cd3239283/aws-java-sdk-swf-libraries-1.9.28.1.jar!/" />
@@ -1654,13 +1231,6 @@
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.28.1/8a6fe8fe6354fe10df2c65e72fbc9bd2eec75f85/aws-java-sdk-swf-libraries-1.9.28.1-sources.jar!/" />
       </SOURCES>
-    </library>
-    <library name="Gradle: com.amazonaws:aws-java-sdk:1.9.23">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.9.23/5cc19b5b4dfac477c50efb34ce128c31be392df6/aws-java-sdk-1.9.23.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
     </library>
     <library name="Gradle: com.amazonaws:aws-java-sdk:1.9.28.1">
       <CLASSES>
@@ -1678,24 +1248,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.beust/jcommander/1.27/fae697ac46477a5227a5ee14f8f3a1270a4627b0/jcommander-1.27-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.cosmicpush:push-server-common:4.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-common/4.0.2/4ddabed5f3830dc555751f35de66810c80e9ecbf/push-server-common-4.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-common/4.0.2/fc4b4583845b3487f0f7d8476ded14836860f760/push-server-common-4.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-engine:4.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-engine/4.0.2/cac3883fc9b6c123375668d14ff2f61a01f1fcf6/push-server-engine-4.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-engine/4.0.2/5dbe16492e2c600311f3375a4559b2cc85820e31/push-server-engine-4.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.cosmicpush:push-server-gateway:1.5.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-gateway/1.5.6/f3efd2421da4cf86d13c7967a63d30c6925a8e22/push-server-gateway-1.5.6.jar!/" />
@@ -1703,69 +1255,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-gateway/1.5.6/28240271d1fa25ae75741f75d3f706404af817eb/push-server-gateway-1.5.6-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-gateway:2.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-gateway/2.0.2/79273f9d0db5a64c10dbece88a306a2f22c38dbb/push-server-gateway-2.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-gateway/2.0.2/15899b9bd1bbaef40c1190ea047d246855907d64/push-server-gateway-2.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-jackson:4.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-jackson/4.0.2/a6b71a9d9e448fe5a31199e7a0fe0457e85731/push-server-jackson-4.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-jackson/4.0.2/84c0420974a0f3ffc4b37b4462c302ea4f0befba/push-server-jackson-4.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-plugin-notifier:4.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-notifier/4.0.2/cd41dd3465a2779548617d5c5cfdb9cad4c8d3b5/push-server-plugin-notifier-4.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-notifier/4.0.2/d6477a96169c75625f5b04361cd0d3811511c3cd/push-server-plugin-notifier-4.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-plugin-ses:4.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-ses/4.0.2/b3c996f96e361a7dc0361207fdd574e17fcf61f6/push-server-plugin-ses-4.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-ses/4.0.2/b36bd3b9e515955f500c07f938ee3e2c201bfc1d/push-server-plugin-ses-4.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-plugin-smtp:4.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-smtp/4.0.2/ef482385afe6ed57677dc3d1c6a9af674f95ac88/push-server-plugin-smtp-4.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-smtp/4.0.2/3eadf898f9d381d912c47b7b2807098e8bd78803/push-server-plugin-smtp-4.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-plugin-twilio:1.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-twilio/1.0.2/1c1bf5d2129d0a04b280ff50e22e7e81766038f6/push-server-plugin-twilio-1.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-twilio/1.0.2/38f7201568d0d2ff72ff9fad5a8f6df64ee0fda8/push-server-plugin-twilio-1.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-plugin-xmpp:4.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-xmpp/4.0.2/2be96e3822261858566b324a9cacb9ef0e2eab8e/push-server-plugin-xmpp-4.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-xmpp/4.0.2/c01e6f850df66e02750f18ca16363462a0eaeabf/push-server-plugin-xmpp-4.0.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.cosmicpush:push-server-pub:1.5.6">
@@ -1777,33 +1266,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-pub/1.5.6/950f937c36d400cbcc2c436bd9fd1093c101f528/push-server-pub-1.5.6-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.cosmicpush:push-server-pub:2.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-pub/2.0.2/234880899f9f0a40a0d8db3526184a809ac75dca/push-server-pub-2.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-pub/2.0.2/47ee3449a89ece446f4810532b886ff56993caa3/push-server-pub-2.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.cosmicpush:push-server-test:1.0.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-test/1.0.2/a6fd11daa97881351d0b1dc9aec406d3b34fa9ee/push-server-test-1.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-test/1.0.2/37119af93f0ba168e6bec87a1fbcaedd90e68276/push-server-test-1.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.couchace:couchace-annotations:1.4.1">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.4.1/51cfd65729cf9b62b2966efa8537cc0a037a5d54/couchace-annotations-1.4.1.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.4.1/eb4f9e438076c90d28d48f7bb7ed76b5a011b19e/couchace-annotations-1.4.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.couchace:couchace-annotations:1.4.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.4.2/3fe67196faf843b20aeadb55be11b27b0b570feb/couchace-annotations-1.4.2.jar!/" />
@@ -1811,15 +1273,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-annotations/1.4.2/71865c800a8d1eb62ecf7428a07ebf588d7a5e32/couchace-annotations-1.4.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.couchace:couchace-core:1.4.1">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.4.1/efc5a58f00ff70a38baedd88026bb51ac57036bb/couchace-core-1.4.1.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.4.1/e8095095b7c167d6014e5bd65872ea67686cc298/couchace-core-1.4.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.couchace:couchace-core:1.4.2">
@@ -1831,15 +1284,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-core/1.4.2/c9422f7af3019ade2a84a2e878da7f22b61c01a/couchace-core-1.4.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.couchace:couchace-jackson:1.4.1">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.4.1/392878cbc05aa623b08762e752d3189b868c39f8/couchace-jackson-1.4.1.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.4.1/a5b575bbfbf1bf1f7b90e1db00778e2ee05458b1/couchace-jackson-1.4.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.couchace:couchace-jackson:1.4.2">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.4.2/3fce974cc2b276298f2db3779229da892b626589/couchace-jackson-1.4.2.jar!/" />
@@ -1847,15 +1291,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jackson/1.4.2/b366f7350d67d5f8b14c78e356a154e177c1d15f/couchace-jackson-1.4.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: com.couchace:couchace-jersey:1.4.1">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.4.1/cf15d35115ded8c7a106fc506dabece13a29b5b3/couchace-jersey-1.4.1.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.couchace/couchace-jersey/1.4.1/850c01cf3932b968f60e297cf58dc63a179725c9/couchace-jersey-1.4.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.couchace:couchace-jersey:1.4.2">
@@ -1939,15 +1374,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/19c6d8dee6803c520d855ff7e8a8c3d97f1271ec/json-simple-1.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.twilio.sdk:twilio-java-sdk:3.7.2">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.7.2/8fb15c345bfa515e3ff29cab22d26146c43c1273/twilio-java-sdk-3.7.2.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.7.2/b86aea53ced7bc0291b67a8b0be98548f0ca555f/twilio-java-sdk-3.7.2-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: com.twilio.sdk:twilio-java-sdk:3.8.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.twilio.sdk/twilio-java-sdk/3.8.0/2bdc8a00782023f19da64779fdbc45faa7bf85c1/twilio-java-sdk-3.8.0.jar!/" />
@@ -1964,24 +1390,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/61e9f9d11fe3e12ec62f633006e99d75fd7f19c8/commons-codec-1.6-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: commons-lang:commons-lang:2.6">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/67313d715fbf0ea4fd0bdb69217fb77f807a8ce5/commons-lang-2.6-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: commons-logging:commons-logging:1.1.3">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f/commons-logging-1.1.3.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.1.3/28bb0405fddaf04f15058fbfbe01fe2780d7d3b6/commons-logging-1.1.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: commons-logging:commons-logging:1.2">
@@ -2133,15 +1541,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/d2a489573c0ed2c4942b3660decad5d65087b406/commons-lang3-3.3.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.apache.httpcomponents:httpclient:4.2.6">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.2.6/e4ca30a6a3a075053a61c6fc850d2432dc012ba7/httpclient-4.2.6.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.2.6/b4e00fa279b1d45af3cb6daebcc1fee3f5402392/httpclient-4.2.6-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.apache.httpcomponents:httpclient:4.3.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.4/a9a1fef2faefed639ee0d0fba5b3b8e4eb2ff2d8/httpclient-4.3.4.jar!/" />
@@ -2149,15 +1548,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.4/7a14aafed8c5e2c4e360a2c1abd1602efa768b1f/httpclient-4.3.4-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.apache.httpcomponents:httpcore:4.2.5">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.2.5/472f0f5f8dba5d1962cb9d7739feed739a31c30d/httpcore-4.2.5.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.2.5/4fd9ac94cd3c26551bc7aecd62fce8e49f076635/httpcore-4.2.5-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.apache.httpcomponents:httpcore:4.3.2">
@@ -2194,15 +1584,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.3/ff4fdbc6c12ac7ff7a727cd80cd71a059a0ec179/jackson-mapper-asl-1.9.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.5">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-bitly/1.1.5/f37b7a3c8da813886e7e7d60d2c6371258a9d809/yak-apis-bitly-1.1.5.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-bitly/1.1.5/8ca5a9c8d1d890470f20256fa7030f39b6f01084/yak-apis-bitly-1.1.5-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.6">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-bitly/1.1.6/449976084ed95d3eff6259345b1541a314d6a8ce/yak-apis-bitly-1.1.6.jar!/" />
@@ -2212,15 +1593,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-bitly/1.1.6/d1ec74a89586188ec14afb4abb4c062ce977e8b0/yak-apis-bitly-1.1.6-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.4">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.4/ec073728c120b840c2f50de7f122520cf96a375b/yak-apis-google-2.2.4.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.4/f5fd91f2f2abba805bf8e5ea641a9466b918d066/yak-apis-google-2.2.4-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.5">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.5/f577fdd7437652ed4092f520dcbbd4fb7a0fd933/yak-apis-google-2.2.5.jar!/" />
@@ -2228,15 +1600,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.apis/yak-apis-google/2.2.5/b32a27ca758993d31734f5e689d9b21226683d4d/yak-apis-google-2.2.5-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.crazyyak.app:yak-app-common:1.0.3">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.3/9e9cd36b749fb13319a9ab256d98266ff7a0993c/yak-app-common-1.0.3.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.3/72c3d077fdb8fcd1066f6c346e04c40bab68de33/yak-app-common-1.0.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.app:yak-app-common:1.0.4">
@@ -2295,17 +1658,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/2.4.19/3ce256cc2acd41284221bff4a1b5df17bedb7b0f/yak-dev-jackson-2.4.19-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.4">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.1.4/yak-dev-jackson-4.1.4.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.4/5fd336e4b5b8af3fb9de87051bf096c1bbb6622/yak-dev-jackson-4.1.4.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/dev/yak-dev-jackson/4.1.4/yak-dev-jackson-4.1.4-sources.jar!/" />
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.4/4902ba62cb0519d6a1ad989d054777759fb57826/yak-dev-jackson-4.1.4-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.crazyyak.dev:yak-dev-jackson:4.1.5">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jackson/4.1.5/d2298f1443988d8479a240b0ba89f84b71b8c618/yak-dev-jackson-4.1.5.jar!/" />
@@ -2324,15 +1676,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.dev/yak-dev-jersey-client/2.4.19/be03d648ea59154147a6042d7ea44abcd96f9d86/yak-dev-jersey-client-2.4.19-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.5">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-couchace/4.1.5/c2883746b92b473b3422cc19f6f914417b27360c/yak-lib-couchace-4.1.5.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-couchace/4.1.5/72d468108498cad01b6ebab523e4ee8469ddbce1/yak-lib-couchace-4.1.5-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-couchace:5.0.7">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-couchace/5.0.7/bfbd36356d45165d52a62580c602c40ecd9ddf0f/yak-lib-couchace-5.0.7.jar!/" />
@@ -2340,26 +1683,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-couchace/5.0.7/3c29935888bf34ccb2a005059fe608afbfc0cc7b/yak-lib-couchace-5.0.7-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.3">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.3/4de90578a49ec4ffe7fc5ddab12b53ef0333b19a/yak-lib-jaxrs-jackson-5.0.3.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.3/3786bff88d94e2a05d5c4a0f6ca57415bbc58896/yak-lib-jaxrs-jackson-5.0.3-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.4">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.4/adcbee9af95eb4edb83f808b6701189a3483d099/yak-lib-jaxrs-jackson-5.0.4.jar!/" />
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/5.0.4/yak-lib-jaxrs-jackson-5.0.4.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.4/370afe4c327e91606a8e60b7f927776ae7aadd29/yak-lib-jaxrs-jackson-5.0.4-sources.jar!/" />
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/5.0.4/yak-lib-jaxrs-jackson-5.0.4-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5">
@@ -2427,15 +1750,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.3.0-b05/7cc51ba2524afc91d28312cfff9ae5c268160873/aopalliance-repackaged-2.3.0-b05-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b06">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.4.0-b06/c202aed303326c185e27fb21d9aed29128087b7e/aopalliance-repackaged-2.4.0-b06.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.4.0-b06/a0685666395bb7f81f24e150dd2c02e1cb303d62/aopalliance-repackaged-2.4.0-b06-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b09">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.4.0-b09/da39da3a3ad3bde943970cc6664949369545cadc/aopalliance-repackaged-2.4.0-b09.jar!/" />
@@ -2452,15 +1766,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.3.0-b05/fe30ed783783db3a8510ad9780bcff2db90eabd1/javax.inject-2.3.0-b05-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.glassfish.hk2.external:javax.inject:2.4.0-b06">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.4.0-b06/bae639241d8afaf869cd60319021683b95819427/javax.inject-2.4.0-b06.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.4.0-b06/693190b7e66acfd3ac446ab561e79a176c5487e6/javax.inject-2.4.0-b06-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.glassfish.hk2.external:javax.inject:2.4.0-b09">
@@ -2481,15 +1786,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.3.0-b05/6a689d7d602d22acc226c1d055c8de961dc53a52/hk2-api-2.3.0-b05-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.glassfish.hk2:hk2-api:2.4.0-b06">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.4.0-b06/1ce898afcbd1cb37d94d30459f8b4d25c909c450/hk2-api-2.4.0-b06.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.4.0-b06/7ada91a6c2e5901752462e1d3956798467a45849/hk2-api-2.4.0-b06-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.glassfish.hk2:hk2-api:2.4.0-b09">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.4.0-b09/b69de840ba9ddf35e10355b5febfd9a191f0e183/hk2-api-2.4.0-b09.jar!/" />
@@ -2508,15 +1804,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.3.0-b05/ea5e5610c2ffe5fcd1bfe71f3329c1a5efcc878d/hk2-locator-2.3.0-b05-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.glassfish.hk2:hk2-locator:2.4.0-b06">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.4.0-b06/7d7ac29839ae720cb32efb3c69636011323e1dc7/hk2-locator-2.4.0-b06.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.4.0-b06/21203a84c599e2ef25000c0b716e03a806e72068/hk2-locator-2.4.0-b06-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.glassfish.hk2:hk2-locator:2.4.0-b09">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.4.0-b09/1508f542ca9e0e9ab355ae937566e096b32f89c0/hk2-locator-2.4.0-b09.jar!/" />
@@ -2533,15 +1820,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.3.0-b05/35236160ee9095ef88903eb4af965f8dbdd7bae3/hk2-utils-2.3.0-b05-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b06">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.4.0-b06/beeb25c0c92e8cfaa073733485a5927b60df7deb/hk2-utils-2.4.0-b06.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.4.0-b06/752e60d110052b918d70ed080039932f612fb2f0/hk2-utils-2.4.0-b06-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b09">
@@ -2569,15 +1847,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.11/e1ebf31549639dc5f944c3707dbc2ec069ddebbc/jersey-guava-2.11-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.15">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.15/15eb8e6214c413c567a4265bbc931f4e9099b99c/jersey-guava-2.15.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.15/77fa4cf2089905b0cd3bda5a70c67cbec5c21da4/jersey-guava-2.15-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.16">
@@ -2625,15 +1894,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.11/43f55ab0d704014ccfaf0369ce6912b35c96d06e/jersey-client-2.11-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.glassfish.jersey.core:jersey-client:2.15">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.15/86934111571e6b736d7ad2b6f7647e5d874e42c0/jersey-client-2.15.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.15/e1b3d8a09cdee8172a08bef5c663589ded0f716/jersey-client-2.15-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.glassfish.jersey.core:jersey-client:2.16">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.16/72ccdd4a542964b6c053b1d238d2d5ac1a6147c9/jersey-client-2.16.jar!/" />
@@ -2652,15 +1912,6 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.11/2d27898f4ebe047d505d1b729f1bede499453459/jersey-common-2.11-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: org.glassfish.jersey.core:jersey-common:2.15">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.15/eddbd0e4ca260bb4eca4f1f33071dcd75bbcd4ab/jersey-common-2.15.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.15/632e2a637882a8f571fda2f2927347b249067d/jersey-common-2.15-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Gradle: org.glassfish.jersey.core:jersey-common:2.16">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.16/28aadc6d6e9978b51c3fa898d4989d908d2f65c8/jersey-common-2.16.jar!/" />
@@ -2668,15 +1919,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.16/8b9b2b0435acb49deb907c1a411e598cb00adbab/jersey-common-2.16-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.glassfish.jersey.core:jersey-server:2.15">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.15/87c0bfe22ff9cf553a9a5a233aa54fd0db41c677/jersey-server-2.15.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.15/aaf923a93bb67c4bf1e02b1f1b48f6845ab48136/jersey-server-2.15-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.glassfish.jersey.core:jersey-server:2.16">
@@ -2695,15 +1937,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-jaxb/2.16/7aade3a905e04a1490ed3e3ef273c0f76494339f/jersey-media-jaxb-2.16-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.15">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-multipart/2.15/d1e43670ec83827d647166ba8447f6b8fe8b3642/jersey-media-multipart-2.15.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-multipart/2.15/552ed455bda28fb3aa57cf0e8a4a16223c0c7afa/jersey-media-multipart-2.15-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.glassfish.jersey.media:jersey-media-multipart:2.16">
@@ -2749,24 +1982,6 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.10/4d2725efe68b9943ba0deaf334bb27116ca6b687/slf4j-api-1.7.10-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.slf4j:slf4j-api:1.7.12">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.12/8e20852d05222dc286bf1c71d78d0531e177c317/slf4j-api-1.7.12.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.12/58697792617f38bf86d8e26bc004aac505e516a9/slf4j-api-1.7.12-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Gradle: org.slf4j:slf4j-simple:1.7.10">
-      <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.10/5b0027a74461a877acb12602ac141da9161304dd/slf4j-simple-1.7.10.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.10/4f46e6fc4bbaafe144b31c2472edcba7812c71aa/slf4j-simple-1.7.10-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.slf4j:slf4j-simple:1.7.12">

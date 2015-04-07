@@ -17,14 +17,14 @@ buildscript {
   }
 }
 
-apply from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-java.gradle?" + System.currentTimeMillis()
+apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-java.gradle?" + System.currentTimeMillis())
 
 subprojects {
 
   group = "com.cosmicpush"
 
-  apply (from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-versions.gradle")
-  apply (from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-reports.gradle")
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-versions.gradle?" + System.currentTimeMillis())
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-reports.gradle?" + System.currentTimeMillis())
 
   targetCompatibility = "1.8"
   sourceCompatibility = "1.8"
@@ -59,28 +59,9 @@ subprojects {
   })
 
   ext {
-    pomProject = {
-      name = project.name
-      description = "Push Server"
-      url = 'http://www.cosmicpush.com'
-      licenses {
-        license {
-          name = 'Apache License, Version 2.0'
-          url = 'http://www.apache.org/licenses/LICENSE-2.0'
-          distribution = 'repo'
-        }
-      }
-      scm {
-        url = 'https://github.com/cosmic-push'
-        connection = 'https://github.com/cosmic-push/push-server.git'
-      }
-      developers {
-        developer {
-          id = 'SireInsectus'
-          name = 'Jacob D. Parr'
-          email = 'jacob.parr@gmail.com'
-        }
-      }
-    }
+    pomProjectDescription = "Push Server"
+    pomUrl = 'http://www.cosmicpush.com'
+    pomScmUrl = "https://github.com/cosmic-push"
+    pomScmConnection = "https://github.com/cosmic-push/push-server.git"
   }
 }

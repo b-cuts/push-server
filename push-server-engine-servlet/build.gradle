@@ -4,12 +4,10 @@
  * This software may not be used without permission.
  */
 project(":push-server-engine-servlet") {
-  description = "Cosmic Push Engine - Servlet Bundling"
+  version = "1.0.3"
 
-  version = "1.0.2"
-
-  apply (plugin: "war")
-  apply (from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
+  apply(plugin: "war")
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis()))
 
   configurations {
     provided

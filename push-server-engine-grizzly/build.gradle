@@ -4,11 +4,9 @@
  * This software may not be used without permission.
  */
 project(":push-server-engine-grizzly") {
-  description = "Cosmic Push Engine - Grizzly Bundling"
+  version = "1.0.8"
 
-  version = "1.0.7"
-
-  apply (from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis()))
 
   dependencies {
 

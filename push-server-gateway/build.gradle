@@ -4,11 +4,9 @@
  * This software may not be used without permission.
  */
 project(":push-server-gateway") {
-  description = "Push Server Gateway"
+  version = "2.0.3"
 
-  version = "2.0.2"
-
-  apply from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis()
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
 
   dependencies {
 

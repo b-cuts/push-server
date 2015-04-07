@@ -4,11 +4,9 @@
  * This software may not be used without permission.
  */
 project(":push-server-v1-integration-tests") {
-  description = "Push Server Version #1 Integration Tests"
-
   version = "1.0.2"
 
-  apply from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis()
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
 
   dependencies {
   	compile("com.cosmicpush:push-server-gateway:1.5.6"){force=true}
