@@ -10,7 +10,12 @@ public class SmtpEmailConfigStore extends DefaultCouchStore<SmtpEmailConfig> {
 
 
   public SmtpEmailConfigStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), SmtpEmailConfig.class);
+    super(couchServer, SmtpEmailConfig.class);
+  }
+
+  @Override
+  public String getDatabaseName() {
+    return CpCouchServer.DATABASE_NAME;
   }
 
   @Override

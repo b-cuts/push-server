@@ -10,7 +10,12 @@ public class SesEmailConfigStore extends DefaultCouchStore<SesEmailConfig> {
 
 
   public SesEmailConfigStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), SesEmailConfig.class);
+    super(couchServer, SesEmailConfig.class);
+  }
+
+  @Override
+  public String getDatabaseName() {
+    return CpCouchServer.DATABASE_NAME;
   }
 
   @Override

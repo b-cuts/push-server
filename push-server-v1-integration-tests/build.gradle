@@ -3,23 +3,22 @@
  *
  * This software may not be used without permission.
  */
-
 project(":push-server-v1-integration-tests") {
   description = "Push Server Version #1 Integration Tests"
 
-  version = pushServerIntegrationTestsV1
+  version = "1.0.2"
 
   apply from: "../build-config-deployer.gradle"
 
   dependencies {
-  	compile ("com.cosmicpush:push-server-gateway:1.5.6"){force=true}
-    compile ("org.crazyyak.dev:yak-dev-common:2.4.19"){force=true}
-    compile ("org.crazyyak.dev:yak-dev-jackson:2.4.19"){force=true}
-    compile ("org.crazyyak.dev:yak-dev-jersey-client:2.4.19"){force=true}
-    compile ("com.cosmicpush:push-server-pub:1.5.6"){force=true}
-    compile ("com.fasterxml.jackson.core:jackson-annotations:2.4.1"){force=true}
+  	compile("com.cosmicpush:push-server-gateway:1.5.6"){force=true}
+    compile("org.crazyyak.dev:yak-dev-common:2.4.19"){force=true}
+    compile("org.crazyyak.dev:yak-dev-jackson:2.4.19"){force=true}
+    compile("org.crazyyak.dev:yak-dev-jersey-client:2.4.19"){force=true}
+    compile("com.cosmicpush:push-server-pub:1.5.6"){force=true}
+    compile("com.fasterxml.jackson.core:jackson-annotations:2.4.1"){force=true}
 
-    testCompile ("org.testng:testng:$testNgVersion")
+    testCompile("org.testng:testng:6.8.21")
   }
 
   configurations.all({

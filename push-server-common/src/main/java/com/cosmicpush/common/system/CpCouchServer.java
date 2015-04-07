@@ -15,40 +15,15 @@ import java.util.List;
 
 public class CpCouchServer extends DefaultCouchServer {
 
-  private final String databaseName;
-  private final CouchDatabase database;
+  public static String DATABASE_NAME = "cosmic-push";
 
-  private static final List<String> designNames = Arrays.asList("account", "push-request", "domain");
-  private static final String prefix = "/push-server-common/design-docs/";
-  private static final String suffix = "-design.json";
+  public static final List<String> designNames = Arrays.asList("account", "push-request", "domain");
+  public static final String prefix = "/push-server-common/design-docs/";
+  public static final String suffix = "-design.json";
 
-  public CpCouchServer(String databaseName) throws IOException {
+  public CpCouchServer() {
     super(new Module[]{
       new YakJacksonModule(),
       new CpJacksonModule()});
-
-    this.databaseName = ExceptionUtils.assertNotZeroLength(databaseName, "databaseName");
-    this.database = database(databaseName);
-
-    validateDatabases();
-  }
-
-  public String getDatabaseName() {
-    return databaseName;
-  }
-
-  public CouchDatabase getDatabase() {
-    return database;
-  }
-
-  public void validateDatabases() throws IOException {
-    CouchUtils.createDatabase(database, new TimeUuidIdGenerator(), "/push-server-common/json/account.json");
-    CouchUtils.validateDesign(database, designNames, prefix, suffix);
-
-    compactAndCleanAll();
-  }
-
-  public void compactAndCleanAll() {
-    CouchUtils.compactAndCleanAll(database, designNames);
   }
 }

@@ -30,6 +30,7 @@ import com.couchace.core.api.request.CouchFeature;
 import com.couchace.core.api.request.CouchFeatureSet;
 import org.crazyyak.dev.common.DateUtils;
 import org.crazyyak.lib.couchace.DefaultCouchServer;
+import org.crazyyak.lib.couchace.support.CouchUtils;
 
 import java.net.URI;
 import java.time.ZoneId;
@@ -39,6 +40,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class TestFactory {
+
+  static {
+    CpCouchServer.DATABASE_NAME = "cosmic-push-tests";
+  }
 
   private static TestFactory SINGLETON;
   public static final ZoneId westCoastTimeZone = DateUtils.PDT;
@@ -60,16 +65,19 @@ public class TestFactory {
 
     objectMapper = new CpObjectMapper();
 
-    String dbName = "cosmic-push-tests";
-
     CouchServer server = new DefaultCouchServer();
-    CouchDatabase database = server.database(dbName, CouchFeatureSet.builder().add(CouchFeature.ALLOW_DB_DELETE, true).build());
+    CouchDatabase database = server.database(CpCouchServer.DATABASE_NAME, CouchFeatureSet.builder().add(CouchFeature.ALLOW_DB_DELETE, true).build());
     if (database.exists()) {
       database.deleteDatabase();
     }
 
-    couchServer = new CpCouchServer(dbName);
-    couchServer.validateDatabases();
+    couchServer = new CpCouchServer();
+    CouchUtils.createDatabase(database);
+    CouchUtils.validateDesign(
+      database,
+      CpCouchServer.designNames,
+      CpCouchServer.prefix,
+      CpCouchServer.suffix);
 
     accountStore = new AccountStore(couchServer);
     domainStore = new DomainStore(couchServer);

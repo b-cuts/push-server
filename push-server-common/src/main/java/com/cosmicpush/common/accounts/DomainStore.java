@@ -11,12 +11,17 @@ public class DomainStore extends DefaultCouchStore<Domain> {
   public static final String DOMAIN_DESIGN_NAME = "domain";
 
   public DomainStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), Domain.class);
+    super(couchServer, Domain.class);
   }
 
   @Override
   public String getDesignName() {
     return DOMAIN_DESIGN_NAME;
+  }
+
+  @Override
+  public String getDatabaseName() {
+    return CpCouchServer.DATABASE_NAME;
   }
 
   public List<Domain> getDomains(Account account) {

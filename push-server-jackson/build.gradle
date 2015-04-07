@@ -3,19 +3,20 @@
  *
  * This software may not be used without permission.
  */
-
 project(":push-server-jackson") {
   description = "Push Server Jackson Module"
 
-  version = pushServerJackson
+  version = "4.0.2"
 
   apply from: "../build-config-deployer.gradle"
 
   dependencies {
-    compile project(":push-server-pub")
-  	compile ("org.crazyyak.dev:yak-dev-jackson:${yakDevJackson}")
+    /*compile*/ project(":push-server-pub")
+    compile("com.cosmicpush:push-server-pub:2.0.2")
 
-    testCompile ("org.testng:testng:$testNgVersion")
+  	compile("org.crazyyak.dev:yak-dev-jackson:4.1.5")
+
+    testCompile("org.testng:testng:6.8.21")
   }
 }
 

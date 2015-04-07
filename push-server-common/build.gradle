@@ -6,17 +6,17 @@
 project(":push-server-common") {
   description = "Push Server Common Module"
 
-  version = pushServerCommon
+  version = "4.0.2"
 
   apply from: "../build-config-deployer.gradle"
 
   dependencies {
-    compile project(":push-server-jackson")
+    /*compile*/ project(":push-server-jackson")
+    compile("com.cosmicpush:push-server-jackson:4.0.2")
 
-    compile("org.crazyyak.apis:yak-apis-bitly:$yakApisBitly")
-    compile("org.crazyyak.lib:yak-lib-couchace:$yakLibCouchAce")
+    compile("org.crazyyak.apis:yak-apis-bitly:1.1.6")
+    compile("org.crazyyak.lib:yak-lib-couchace:5.0.7")
 
-    testCompile ("org.testng:testng:$testNgVersion")
+    testCompile ("org.testng:testng:6.8.21")
   }
 }
-
