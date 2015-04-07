@@ -9,7 +9,12 @@ public class XmppConfigStore extends DefaultCouchStore<XmppConfig> {
   public static final String XMPP_CONFIG_DESIGN_NAME = "xmpp-config";
 
   public XmppConfigStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), XmppConfig.class);
+    super(couchServer, XmppConfig.class);
+  }
+
+  @Override
+  public String getDatabaseName() {
+    return CpCouchServer.DATABASE_NAME;
   }
 
   @Override

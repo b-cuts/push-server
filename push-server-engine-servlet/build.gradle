@@ -6,7 +6,7 @@
 project(":push-server-engine-servlet") {
   description = "Cosmic Push Engine - Servlet Bundling"
 
-  version = pushServerEngineServlet
+  version = "1.0.2"
 
   apply (plugin: "war")
   apply (from: "../build-config-deployer.gradle")
@@ -22,8 +22,10 @@ project(":push-server-engine-servlet") {
   }
 
   dependencies {
-    compile project(":push-server-engine")
-    compile("org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion")
+    /*compile*/ project(":push-server-engine")
+    compile("com.cosmicpush:push-server-engine:4.0.2")
+
+    compile("org.glassfish.jersey.containers:jersey-container-servlet:2.16")
 
     provided ("javax.servlet.jsp:jsp-api:2.2.1-b03")
     provided ("javax.servlet:javax.servlet-api:3.1.0")

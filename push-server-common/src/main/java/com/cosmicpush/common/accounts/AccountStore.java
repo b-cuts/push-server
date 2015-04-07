@@ -18,12 +18,17 @@ public class AccountStore extends DefaultCouchStore<Account> {
   public static final String ACCOUNT_DESIGN_NAME = "account";
 
   public AccountStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), Account.class);
+    super(couchServer, Account.class);
   }
 
   @Override
   public String getDesignName() {
     return ACCOUNT_DESIGN_NAME;
+  }
+
+  @Override
+  public String getDatabaseName() {
+    return CpCouchServer.DATABASE_NAME;
   }
 
   public Account get(AccountQuery accountQuery) {

@@ -9,7 +9,12 @@ public class LqNotificationsConfigStore extends DefaultCouchStore<LqNotification
   public static final String NOTIFIER_CONFIG_DESIGN_NAME = "notifier-config";
 
   public LqNotificationsConfigStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), LqNotificationsConfig.class);
+    super(couchServer, LqNotificationsConfig.class);
+  }
+
+  @Override
+  public String getDatabaseName() {
+    return CpCouchServer.DATABASE_NAME;
   }
 
   @Override

@@ -3,17 +3,18 @@
  *
  * This software may not be used without permission.
  */
-
 project(":push-server-plugin-notifier") {
   description = "Cosmic Push Notifier Plugin"
 
-  version = pushServerPluginNotifier
+  version = "4.0.2"
 
   apply from: "../build-config-deployer.gradle"
 
   dependencies {
-    compile project(":push-server-common")
 
-    testCompile ("org.testng:testng:$testNgVersion")
+    /*compile*/ project(":push-server-common")
+    compile("com.cosmicpush:push-server-common:4.0.2")
+
+    testCompile("org.testng:testng:6.8.21")
   }
 }

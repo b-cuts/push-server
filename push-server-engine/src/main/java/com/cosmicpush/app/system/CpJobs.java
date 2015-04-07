@@ -5,10 +5,13 @@ import com.cosmicpush.common.clients.Domain;
 import com.cosmicpush.common.requests.PushRequest;
 import com.cosmicpush.common.requests.QueryResult;
 import com.cosmicpush.common.system.AppContext;
+import com.cosmicpush.common.system.CpCouchServer;
+import com.couchace.core.api.CouchDatabase;
 import com.couchace.core.api.response.EntityDocument;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.crazyyak.dev.common.DateUtils;
+import org.crazyyak.lib.couchace.support.CouchUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,7 +35,8 @@ public class CpJobs {
   public void cleanAndCompactDatabase() {
     try {
       if (runningCompact.compareAndSet(false, true)) {
-        appContext.getCouchServer().compactAndCleanAll();
+        CouchDatabase database = appContext.getCouchServer().database(CpCouchServer.DATABASE_NAME);
+        CouchUtils.compactAndCleanAll(database, CpCouchServer.designNames);
       }
     } catch (Exception ex) {
       ex.printStackTrace();

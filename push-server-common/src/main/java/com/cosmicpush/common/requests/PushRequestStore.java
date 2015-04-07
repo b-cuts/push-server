@@ -18,7 +18,12 @@ public class PushRequestStore extends DefaultCouchStore<PushRequest> {
   public static final String PUSH_REQUEST_DESIGN_NAME = "push-request";
 
   public PushRequestStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), PushRequest.class);
+    super(couchServer, PushRequest.class);
+  }
+
+  @Override
+  public String getDatabaseName() {
+    return CpCouchServer.DATABASE_NAME;
   }
 
   public PushRequest getByPushRequestId(String pushRequestId) {
@@ -32,7 +37,7 @@ public class PushRequestStore extends DefaultCouchStore<PushRequest> {
         .key(domain.getDomainId())
         .build();
 
-    return new QueryResult<>(PushRequest.class, database, viewQuery);
+    return new QueryResult<>(PushRequest.class, getDatabase(), viewQuery);
   }
 
   public List<PushRequest> getByClientAndType(Domain domain, PushType type) {

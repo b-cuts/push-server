@@ -3,20 +3,23 @@
  *
  * This software may not be used without permission.
  */
-
 project(":push-server-plugin-smtp") {
   description = "Cosmic Push SMTP Plugin"
 
-  version = pushServerPluginSmtp
+  version = "4.0.2"
 
   apply from: "../build-config-deployer.gradle"
 
   dependencies {
-    compile project(":push-server-common")
+
+    /*compile*/ project(":push-server-common")
+    compile("com.cosmicpush:push-server-common:4.0.2")
 
     compile("javax.mail:mail:1.5.0-b01")
 
-    testCompile(project(":push-server-test"))
-    testCompile ("org.testng:testng:$testNgVersion")
+    /*testCompile*/ project(":push-server-test")
+    testCompile("com.cosmicpush:push-server-test:1.0.2")
+
+    testCompile("org.testng:testng:6.8.21")
   }
 }

@@ -3,19 +3,18 @@
  *
  * This software may not be used without permission.
  */
-
 project(":push-server-pub") {
   description = "Push Server Public Objects"
 
-  version = pushServerPub
+  version = "2.0.2"
 
   apply from: "../build-config-deployer.gradle"
 
   dependencies {
-  	compile ("org.crazyyak.dev:yak-dev-common:${yakDevCommon}")
+  	compile ("org.crazyyak.dev:yak-dev-common:4.1.3")
     compile ("com.fasterxml.jackson.core:jackson-annotations:2.5.1")
 
-    testCompile ("org.testng:testng:$testNgVersion")
+    testCompile ("org.testng:testng:6.8.21")
   }
 }
 

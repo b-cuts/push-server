@@ -58,7 +58,6 @@ public class CpApplication extends Application {
     Map<String, Object> properties = new HashMap<>();
     Set<Class<?>> classes = new HashSet<>();
 
-    String databaseName = "cosmic-push";
     String bitlyAccessToken = "9f5ed9c08c695b4a017bfb432eea58876a5d40cb";
 
     CpObjectMapper objectMapper = new CpObjectMapper();
@@ -67,7 +66,7 @@ public class CpApplication extends Application {
     AppContext appContext = new AppContext(
       new SessionStore(TimeUnit.MINUTES.toMillis(60)),
       objectMapper,
-      new CpCouchServer(databaseName),
+      new CpCouchServer(),
       new BitlyApis(translator, bitlyAccessToken));
     properties.put(AppContext.class.getName(), appContext);
 

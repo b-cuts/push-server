@@ -15,7 +15,12 @@ public class TwilioConfigStore extends DefaultCouchStore<TwilioConfig> {
   public static final String TWILIO_CONFIG_DESIGN_NAME = "twilio-config";
 
   public TwilioConfigStore(CpCouchServer couchServer) {
-    super(couchServer, couchServer.getDatabaseName(), TwilioConfig.class);
+    super(couchServer, TwilioConfig.class);
+  }
+
+  @Override
+  public String getDatabaseName() {
+    return CpCouchServer.DATABASE_NAME;
   }
 
   @Override

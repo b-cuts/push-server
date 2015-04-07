@@ -3,22 +3,26 @@
  *
  * This software may not be used without permission.
  */
-
 project(":push-server-gateway") {
   description = "Push Server Gateway"
 
-  version = pushServerGateway
+  version = "2.0.2"
 
   apply from: "../build-config-deployer.gradle"
 
   dependencies {
-    compile project(":push-server-pub")
-    compile project(":push-server-jackson")
+    /*compile*/ project(":push-server-pub")
+    compile("com.cosmicpush:push-server-pub:2.0.2")
 
-    compile ("org.crazyyak.lib:yak-lib-jaxrs-jackson:${yakLibJaxrsJackson}")
+    /*compile*/ project(":push-server-jackson")
+    compile("com.cosmicpush:push-server-jackson:4.0.2")
 
-    testCompile project(":push-server-test")
-    testCompile ("org.testng:testng:$testNgVersion")
+    compile("org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5")
+
+    /*testCompile*/ project(":push-server-test")
+    testCompile("com.cosmicpush:push-server-test:1.0.2")
+
+    testCompile("org.testng:testng:6.8.21")
   }
 }
 

@@ -3,20 +3,23 @@
  *
  * This software may not be used without permission.
  */
-
 project(":push-server-v2-integration-tests") {
   description = "Push Server Version #2 Integration Tests"
 
-  version = pushServerIntegrationTestsV2
+  version = "1.0.2"
 
   apply from: "../build-config-deployer.gradle"
 
   dependencies {
-  	compile project((":push-server-gateway"))
 
-    testCompile project(":push-server-test")
+    /*compile*/ project(":push-server-gateway")
+    compile("com.cosmicpush:push-server-gateway:2.0.2")
+
+    /*testCompile*/ project(":push-server-test")
+    testCompile("com.cosmicpush:push-server-test:1.0.2")
+
     testCompile("org.glassfish.jersey.core:jersey-client:2.16")
-    testCompile ("org.testng:testng:$testNgVersion")
+    testCompile("org.testng:testng:6.8.21")
   }
 }
 
