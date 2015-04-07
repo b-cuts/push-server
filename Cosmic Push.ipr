@@ -64,7 +64,6 @@
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b09" />
             <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-jackson:4.0.2" />
             <element id="library" level="project" name="Gradle: javax.mail:mail:1.5.0-b01" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-common:4.0.2" />
             <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.5" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.5" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.3" />
@@ -81,7 +80,6 @@
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.3.4" />
             <element id="library" level="project" name="Gradle: joda-time:joda-time:2.7" />
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.3.2" />
-            <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-xmpp-4.0.2.jar">
               <element id="module-output" name="push-server-plugin-xmpp" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-xmpp/build/resources/main" />
@@ -106,65 +104,67 @@
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-notifier/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.3" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-ses:4.0.2" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-smtp:4.0.2" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-xmpp:4.0.2" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-notifier:4.0.2" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-twilio:1.0.2" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.9.23" />
             <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.7.2" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-support:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpledb:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpleworkflow:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-storagegateway:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-route53:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-s3:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-importexport:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sts:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-rds:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-redshift:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticbeanstalk:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-glacier:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-iam:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-datapipeline:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticloadbalancing:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-emr:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticache:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elastictranscoder:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ec2:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-dynamodb:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sns:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudtrail:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatch:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-logs:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cognitoidentity:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cognitosync:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-directconnect:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudformation:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudfront:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kinesis:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-opsworks:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ses:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-autoscaling:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudsearch:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatchmetrics:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-swf-libraries:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-codedeploy:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-config:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-lambda:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ecs:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudhsm:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ssm:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.9.23" />
             <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.16" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.16" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-engine:4.0.2" />
             <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.3" />
-            <element id="library" level="project" name="Gradle: org.slf4j:slf4j-simple:1.7.10" />
             <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.4" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-engine/4.0.2/cac3883fc9b6c123375668d14ff2f61a01f1fcf6/push-server-engine-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-ses/4.0.2/b3c996f96e361a7dc0361207fdd574e17fcf61f6/push-server-plugin-ses-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-common/4.0.2/4ddabed5f3830dc555751f35de66810c80e9ecbf/push-server-common-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-smtp/4.0.2/ef482385afe6ed57677dc3d1c6a9af674f95ac88/push-server-plugin-smtp-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.10/5b0027a74461a877acb12602ac141da9161304dd/slf4j-simple-1.7.10.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-notifier/4.0.2/cd41dd3465a2779548617d5c5cfdb9cad4c8d3b5/push-server-plugin-notifier-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-xmpp/4.0.2/2be96e3822261858566b324a9cacb9ef0e2eab8e/push-server-plugin-xmpp-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-twilio/1.0.2/1c1bf5d2129d0a04b280ff50e22e7e81766038f6/push-server-plugin-twilio-1.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.9.23/5cc19b5b4dfac477c50efb34ce128c31be392df6/aws-java-sdk-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.23/86eee48d223f981002d9a4be1308c796ecc3f998/aws-java-sdk-support-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.23/daf6ba9a70081f11b4b1ea05264bda067fbb9531/aws-java-sdk-simpledb-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.23/f1619f9e8f39a22e13c034c053cc4933b6997e5c/aws-java-sdk-simpleworkflow-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.23/ba97da0fe2e314fce3511d19e4df3043313ca5ae/aws-java-sdk-storagegateway-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.23/fe98eb52d7cbf151fd8c0f4073761cece4320113/aws-java-sdk-route53-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.23/7b101a05ccc93d46d6cfaf7fc560f38f8d27f5fc/aws-java-sdk-s3-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.23/8be9b4817674ee927769c4db9857f1fa5ec67ee3/aws-java-sdk-importexport-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.23/51b33ba1916307e30b32f91c2f9bf66d7ce7ba68/aws-java-sdk-sts-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.23/41c8311ddb655893f6d6c235f2aafd0073225d1c/aws-java-sdk-sqs-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.23/a45fc26331d9caf6fdbadb793df3a8e8ef6f1714/aws-java-sdk-rds-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.23/3eef643a4a92e16b1d15a2e3510f450563a18566/aws-java-sdk-redshift-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.23/d5178127f5fe7196e7893104f27758e40eba788f/aws-java-sdk-elasticbeanstalk-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.23/3633b12effe05738dfa0f287ddee97044dca3b0d/aws-java-sdk-glacier-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.23/5fb3e9d14542295c5fb42802420259a4471c3071/aws-java-sdk-iam-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.23/eaee14090fcae5a81de0a2ff81e233f5ded5c22f/aws-java-sdk-datapipeline-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.23/7105a56f95764990c5d72d7ef348d0550ef4eac3/aws-java-sdk-elasticloadbalancing-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.23/db6e1ef3a0c6712c84956f8c9991771f07f6ec06/aws-java-sdk-emr-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.23/d28fb772960ecf371e89e011e3de96ac7c3255c3/aws-java-sdk-elasticache-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.23/87316a2a3b106ee5f2a021d69cdb06c4154f8f4a/aws-java-sdk-elastictranscoder-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.23/488835b3607d8c6ae8133f9404e9d63aceebad63/aws-java-sdk-ec2-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.23/dc3ff86b14769cc3b6db79200740f0f945fb3e93/aws-java-sdk-dynamodb-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.23/28d55905858d688f774786558f302eaa4a500554/aws-java-sdk-sns-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.23/331d5ef46da5df56963f3bcb5f74d382fdf06e42/aws-java-sdk-cloudtrail-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.23/7a627ee0c7aaa85f7e31f964784b9027c8b29df8/aws-java-sdk-cloudwatch-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.23/d2490e426fb7326c6b2322c84178bc6fc97cc363/aws-java-sdk-logs-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.23/e26db46162684a5784b552b47c4ca774510fb424/aws-java-sdk-cognitoidentity-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.23/7197d473ce6bca714b0a4a435d891492abdc40a5/aws-java-sdk-cognitosync-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.23/a35d7a3df7684bbe021834d488990c721f75f0db/aws-java-sdk-directconnect-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.23/25e23fafd5ea9d896ada93732696f1929623282b/aws-java-sdk-cloudformation-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.23/d9ffa8fdb739ae296bd550277b0f756f643e6ce1/aws-java-sdk-cloudfront-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.23/bfc478baa575468b1d137b24573e07e1e98270d6/aws-java-sdk-kinesis-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.23/dd16a73f06d86de381ef6ca26e17bd0cfcbc1bdd/aws-java-sdk-opsworks-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.23/3e0d0c29eef1dac86abb03d05f0bba15f85bd1e2/aws-java-sdk-ses-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.23/be757102bf4cd1b7c59c7191b8ec42c9653e9c02/aws-java-sdk-autoscaling-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.23/d9043406bb6be7f4532158a60f0b783adff7e547/aws-java-sdk-cloudsearch-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.23/2c0adc3116e4709d27e2f5530a4925b98e7499e/aws-java-sdk-cloudwatchmetrics-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.23/8c0f55836551e565920b580c24bd88796638d22c/aws-java-sdk-swf-libraries-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.23/e46589d9b0756b9177588a0f44fe89b12f357ce3/aws-java-sdk-codedeploy-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.23/ea6bbc13a7947267ef2add01861a1f3e5dc07818/aws-java-sdk-kms-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.23/401a7adf09166c278afa555c456ffbd0694cbf5b/aws-java-sdk-config-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.23/42baf10771af1afecaf4a205b5868f2cd850084a/aws-java-sdk-lambda-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecs/1.9.23/94cf62c9d5ac3602d0e2b52b6049b47091e89644/aws-java-sdk-ecs-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudhsm/1.9.23/15547acd8b9f97f434a155ea7745d8786c8a198c/aws-java-sdk-cloudhsm-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.9.23/4f55e8dd5d9cacb37e91899458379c75462d02f7/aws-java-sdk-ssm-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.23/6247112519c0acbe13d01b3ce90fa82813bc899f/aws-java-sdk-core-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -235,7 +235,6 @@
             <element id="library" level="project" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b09" />
             <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-jackson:4.0.2" />
             <element id="library" level="project" name="Gradle: javax.mail:mail:1.5.0-b01" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-common:4.0.2" />
             <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-bitly:1.1.5" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-couchace:4.1.5" />
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.3" />
@@ -252,7 +251,6 @@
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.3.4" />
             <element id="library" level="project" name="Gradle: joda-time:joda-time:2.7" />
             <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.3.2" />
-            <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
             <element id="archive" name="com.cosmicpush-push-server-plugin-xmpp-4.0.2.jar">
               <element id="module-output" name="push-server-plugin-xmpp" />
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-xmpp/build/resources/main" />
@@ -277,65 +275,67 @@
               <element id="dir-copy" path="$PROJECT_DIR$/push-server-plugin-notifier/build/resources/main" />
             </element>
             <element id="library" level="project" name="Gradle: org.crazyyak.lib:yak-lib-servlet:4.1.3" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-ses:4.0.2" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-smtp:4.0.2" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-xmpp:4.0.2" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-notifier:4.0.2" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-plugin-twilio:1.0.2" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.9.23" />
             <element id="library" level="project" name="Gradle: com.twilio.sdk:twilio-java-sdk:3.7.2" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-support:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpledb:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpleworkflow:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-storagegateway:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-route53:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-s3:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-importexport:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sts:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-rds:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-redshift:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticbeanstalk:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-glacier:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-iam:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-datapipeline:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticloadbalancing:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-emr:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elasticache:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-elastictranscoder:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ec2:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-dynamodb:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sns:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudtrail:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatch:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-logs:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cognitoidentity:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cognitosync:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-directconnect:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudformation:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudfront:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kinesis:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-opsworks:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ses:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-autoscaling:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudsearch:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatchmetrics:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-swf-libraries:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-codedeploy:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-config:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-lambda:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ecs:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudhsm:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ssm:1.9.23" />
-            <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.9.23" />
             <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet:2.16" />
             <element id="library" level="project" name="Gradle: org.glassfish.jersey.containers:jersey-container-servlet-core:2.16" />
-            <element id="library" level="project" name="Gradle: com.cosmicpush:push-server-engine:4.0.2" />
             <element id="library" level="project" name="Gradle: org.crazyyak.app:yak-app-common:1.0.3" />
-            <element id="library" level="project" name="Gradle: org.slf4j:slf4j-simple:1.7.10" />
             <element id="library" level="project" name="Gradle: org.crazyyak.apis:yak-apis-google:2.2.4" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-engine/4.0.2/cac3883fc9b6c123375668d14ff2f61a01f1fcf6/push-server-engine-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-ses/4.0.2/b3c996f96e361a7dc0361207fdd574e17fcf61f6/push-server-plugin-ses-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-common/4.0.2/4ddabed5f3830dc555751f35de66810c80e9ecbf/push-server-common-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-smtp/4.0.2/ef482385afe6ed57677dc3d1c6a9af674f95ac88/push-server-plugin-smtp-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.10/5b0027a74461a877acb12602ac141da9161304dd/slf4j-simple-1.7.10.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-notifier/4.0.2/cd41dd3465a2779548617d5c5cfdb9cad4c8d3b5/push-server-plugin-notifier-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-xmpp/4.0.2/2be96e3822261858566b324a9cacb9ef0e2eab8e/push-server-plugin-xmpp-4.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cosmicpush/push-server-plugin-twilio/1.0.2/1c1bf5d2129d0a04b280ff50e22e7e81766038f6/push-server-plugin-twilio-1.0.2.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk/1.9.23/5cc19b5b4dfac477c50efb34ce128c31be392df6/aws-java-sdk-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-support/1.9.23/86eee48d223f981002d9a4be1308c796ecc3f998/aws-java-sdk-support-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpledb/1.9.23/daf6ba9a70081f11b4b1ea05264bda067fbb9531/aws-java-sdk-simpledb-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-simpleworkflow/1.9.23/f1619f9e8f39a22e13c034c053cc4933b6997e5c/aws-java-sdk-simpleworkflow-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-storagegateway/1.9.23/ba97da0fe2e314fce3511d19e4df3043313ca5ae/aws-java-sdk-storagegateway-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-route53/1.9.23/fe98eb52d7cbf151fd8c0f4073761cece4320113/aws-java-sdk-route53-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.9.23/7b101a05ccc93d46d6cfaf7fc560f38f8d27f5fc/aws-java-sdk-s3-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-importexport/1.9.23/8be9b4817674ee927769c4db9857f1fa5ec67ee3/aws-java-sdk-importexport-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sts/1.9.23/51b33ba1916307e30b32f91c2f9bf66d7ce7ba68/aws-java-sdk-sts-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sqs/1.9.23/41c8311ddb655893f6d6c235f2aafd0073225d1c/aws-java-sdk-sqs-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-rds/1.9.23/a45fc26331d9caf6fdbadb793df3a8e8ef6f1714/aws-java-sdk-rds-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-redshift/1.9.23/3eef643a4a92e16b1d15a2e3510f450563a18566/aws-java-sdk-redshift-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticbeanstalk/1.9.23/d5178127f5fe7196e7893104f27758e40eba788f/aws-java-sdk-elasticbeanstalk-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-glacier/1.9.23/3633b12effe05738dfa0f287ddee97044dca3b0d/aws-java-sdk-glacier-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-iam/1.9.23/5fb3e9d14542295c5fb42802420259a4471c3071/aws-java-sdk-iam-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-datapipeline/1.9.23/eaee14090fcae5a81de0a2ff81e233f5ded5c22f/aws-java-sdk-datapipeline-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticloadbalancing/1.9.23/7105a56f95764990c5d72d7ef348d0550ef4eac3/aws-java-sdk-elasticloadbalancing-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-emr/1.9.23/db6e1ef3a0c6712c84956f8c9991771f07f6ec06/aws-java-sdk-emr-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elasticache/1.9.23/d28fb772960ecf371e89e011e3de96ac7c3255c3/aws-java-sdk-elasticache-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-elastictranscoder/1.9.23/87316a2a3b106ee5f2a021d69cdb06c4154f8f4a/aws-java-sdk-elastictranscoder-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ec2/1.9.23/488835b3607d8c6ae8133f9404e9d63aceebad63/aws-java-sdk-ec2-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-dynamodb/1.9.23/dc3ff86b14769cc3b6db79200740f0f945fb3e93/aws-java-sdk-dynamodb-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-sns/1.9.23/28d55905858d688f774786558f302eaa4a500554/aws-java-sdk-sns-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudtrail/1.9.23/331d5ef46da5df56963f3bcb5f74d382fdf06e42/aws-java-sdk-cloudtrail-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatch/1.9.23/7a627ee0c7aaa85f7e31f964784b9027c8b29df8/aws-java-sdk-cloudwatch-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-logs/1.9.23/d2490e426fb7326c6b2322c84178bc6fc97cc363/aws-java-sdk-logs-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitoidentity/1.9.23/e26db46162684a5784b552b47c4ca774510fb424/aws-java-sdk-cognitoidentity-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cognitosync/1.9.23/7197d473ce6bca714b0a4a435d891492abdc40a5/aws-java-sdk-cognitosync-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-directconnect/1.9.23/a35d7a3df7684bbe021834d488990c721f75f0db/aws-java-sdk-directconnect-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudformation/1.9.23/25e23fafd5ea9d896ada93732696f1929623282b/aws-java-sdk-cloudformation-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudfront/1.9.23/d9ffa8fdb739ae296bd550277b0f756f643e6ce1/aws-java-sdk-cloudfront-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kinesis/1.9.23/bfc478baa575468b1d137b24573e07e1e98270d6/aws-java-sdk-kinesis-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-opsworks/1.9.23/dd16a73f06d86de381ef6ca26e17bd0cfcbc1bdd/aws-java-sdk-opsworks-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ses/1.9.23/3e0d0c29eef1dac86abb03d05f0bba15f85bd1e2/aws-java-sdk-ses-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-autoscaling/1.9.23/be757102bf4cd1b7c59c7191b8ec42c9653e9c02/aws-java-sdk-autoscaling-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudsearch/1.9.23/d9043406bb6be7f4532158a60f0b783adff7e547/aws-java-sdk-cloudsearch-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.23/2c0adc3116e4709d27e2f5530a4925b98e7499e/aws-java-sdk-cloudwatchmetrics-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-swf-libraries/1.9.23/8c0f55836551e565920b580c24bd88796638d22c/aws-java-sdk-swf-libraries-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-codedeploy/1.9.23/e46589d9b0756b9177588a0f44fe89b12f357ce3/aws-java-sdk-codedeploy-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.9.23/ea6bbc13a7947267ef2add01861a1f3e5dc07818/aws-java-sdk-kms-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-config/1.9.23/401a7adf09166c278afa555c456ffbd0694cbf5b/aws-java-sdk-config-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-lambda/1.9.23/42baf10771af1afecaf4a205b5868f2cd850084a/aws-java-sdk-lambda-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ecs/1.9.23/94cf62c9d5ac3602d0e2b52b6049b47091e89644/aws-java-sdk-ecs-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-cloudhsm/1.9.23/15547acd8b9f97f434a155ea7745d8786c8a198c/aws-java-sdk-cloudhsm-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-ssm/1.9.23/4f55e8dd5d9cacb37e91899458379c75462d02f7/aws-java-sdk-ssm-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.9.23/6247112519c0acbe13d01b3ce90fa82813bc899f/aws-java-sdk-core-1.9.23.jar" />
+            <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar" />
           </element>
         </element>
         <element id="directory" name="META-INF">
@@ -2232,12 +2232,10 @@
     </library>
     <library name="Gradle: org.crazyyak.app:yak-app-common:1.0.3">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/1.0.3/yak-app-common-1.0.3.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.3/9e9cd36b749fb13319a9ab256d98266ff7a0993c/yak-app-common-1.0.3.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/app/yak-app-common/1.0.3/yak-app-common-1.0.3-sources.jar!/" />
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.app/yak-app-common/1.0.3/72c3d077fdb8fcd1066f6c346e04c40bab68de33/yak-app-common-1.0.3-sources.jar!/" />
       </SOURCES>
     </library>
@@ -2356,19 +2354,23 @@
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.4">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.4/adcbee9af95eb4edb83f808b6701189a3483d099/yak-lib-jaxrs-jackson-5.0.4.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/5.0.4/yak-lib-jaxrs-jackson-5.0.4.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.4/370afe4c327e91606a8e60b7f927776ae7aadd29/yak-lib-jaxrs-jackson-5.0.4-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/5.0.4/yak-lib-jaxrs-jackson-5.0.4-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.5/ab794998a9376a821de114e0ccc19b8c104ab4ab/yak-lib-jaxrs-jackson-5.0.5.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/5.0.5/yak-lib-jaxrs-jackson-5.0.5.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.crazyyak.lib/yak-lib-jaxrs-jackson/5.0.5/ac695b12a5db933f9cfb186877e57c9a1056469e/yak-lib-jaxrs-jackson-5.0.5-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/crazyyak/lib/yak-lib-jaxrs-jackson/5.0.5/yak-lib-jaxrs-jackson-5.0.5-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: org.crazyyak.lib:yak-lib-jaxrs:4.1.3">

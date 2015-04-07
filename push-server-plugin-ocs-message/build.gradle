@@ -8,11 +8,11 @@ project(":push-server-plugin-ocs-message") {
 
     version = "1.0.2"
 
-    apply from: "../build-config-deployer.gradle"
+    apply from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis()
 
     dependencies {
-        /*compile*/ project(":push-server-common")
-        compile("com.cosmicpush:push-server-common:4.0.2")
+
+        compile project(":push-server-common")
 
         compile("javax.sip:jain-sip-api:1.2")
         compile("javax.sip:jain-sip-ri:1.2.149")

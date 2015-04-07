@@ -8,20 +8,17 @@ project(":push-server-gateway") {
 
   version = "2.0.2"
 
-  apply from: "../build-config-deployer.gradle"
+  apply from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis()
 
   dependencies {
-    /*compile*/ project(":push-server-pub")
-    compile("com.cosmicpush:push-server-pub:2.0.2")
 
-    /*compile*/ project(":push-server-jackson")
-    compile("com.cosmicpush:push-server-jackson:4.0.2")
+    compile project(":push-server-pub")
+
+    compile project(":push-server-jackson")
 
     compile("org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5")
 
-    /*testCompile*/ project(":push-server-test")
-    testCompile("com.cosmicpush:push-server-test:1.0.2")
-
+    testCompile project(":push-server-test")
     testCompile("org.testng:testng:6.8.21")
   }
 }

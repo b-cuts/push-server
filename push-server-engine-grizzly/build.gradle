@@ -8,11 +8,11 @@ project(":push-server-engine-grizzly") {
 
   version = "1.0.7"
 
-  apply (from: "../build-config-deployer.gradle")
+  apply (from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   dependencies {
-    /*compile*/ project(":push-server-engine")
-    compile("com.cosmicpush:push-server-engine:4.0.2")
+
+    compile project(":push-server-engine")
 
     compile("org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.16")
   }

@@ -32,11 +32,11 @@ public class IntegrationTestVersion1 {
 //    String url = "http://www.localhost:9010/push-server/api";
     String url = "http://www.cosmicpush.com/api";
 
-    String username = EnvUtils.findProperty("PUSH_TEST_USERNAME");
-    ExceptionUtils.assertNotNull(username, "PUSH_TEST_USERNAME");
+    String username = EnvUtils.findProperty("TIOGA_TEST_DOMAIN_NAME");
+    ExceptionUtils.assertNotNull(username, "TIOGA_TEST_DOMAIN_NAME");
 
-    String password = EnvUtils.findProperty("PUSH_TEST_PASSWORD");
-    ExceptionUtils.assertNotNull(password, "PUSH_TEST_PASSWORD");
+    String password = EnvUtils.findProperty("TIOGA_TEST_DOMAIN_PASS");
+    ExceptionUtils.assertNotNull(password, "TIOGA_TEST_DOMAIN_PASS");
 
     gateway = new LiveCosmicPushGateway(url, username, password);
   }

@@ -8,11 +8,11 @@ project(":push-server-common") {
 
   version = "4.0.2"
 
-  apply from: "../build-config-deployer.gradle"
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   dependencies {
-    /*compile*/ project(":push-server-jackson")
-    compile("com.cosmicpush:push-server-jackson:4.0.2")
+
+    compile project(":push-server-jackson")
 
     compile("org.crazyyak.apis:yak-apis-bitly:1.1.6")
     compile("org.crazyyak.lib:yak-lib-couchace:5.0.7")

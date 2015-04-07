@@ -9,7 +9,7 @@ project(":push-server-engine-servlet") {
   version = "1.0.2"
 
   apply (plugin: "war")
-  apply (from: "../build-config-deployer.gradle")
+  apply (from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   configurations {
     provided
@@ -22,8 +22,8 @@ project(":push-server-engine-servlet") {
   }
 
   dependencies {
-    /*compile*/ project(":push-server-engine")
-    compile("com.cosmicpush:push-server-engine:4.0.2")
+
+    compile project(":push-server-engine")
 
     compile("org.glassfish.jersey.containers:jersey-container-servlet:2.16")
 
