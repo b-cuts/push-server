@@ -14,7 +14,7 @@ project(":push-server-gateway") {
 
     compile project(":push-server-jackson")
 
-    compile("org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5")
+    compile("org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.6")
 
     testCompile project(":push-server-test")
     testCompile("org.testng:testng:6.8.21")

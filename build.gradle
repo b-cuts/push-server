@@ -44,7 +44,7 @@ subprojects {
         "com.fasterxml.jackson.core:jackson-databind:2.5.1",
         "com.fasterxml.jackson.core:jackson-annotations:2.5.1",
 
-        "org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5",
+        "org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.6",
 
         "org.slf4j:slf4j-api:1.7.10",
 

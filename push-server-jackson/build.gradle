@@ -12,7 +12,7 @@ project(":push-server-jackson") {
 
     compile project(":push-server-pub")
 
-  	compile("org.crazyyak.dev:yak-dev-jackson:4.1.5")
+  	compile("org.crazyyak.dev:yak-dev-jackson:4.1.7")
 
     testCompile("org.testng:testng:6.8.21")
   }

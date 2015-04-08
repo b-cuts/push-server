@@ -20,16 +20,16 @@ project(":push-server-engine") {
     compile project(":push-server-plugin-twilio")
     // compile project(":push-server-plugin-ocs-message")
 
-    compile("org.crazyyak.dev:yak-dev-common:4.1.3")
-    compile("org.crazyyak.dev:yak-dev-domain:4.1.1")
+    compile("org.crazyyak.dev:yak-dev-common:4.1.4")
+    compile("org.crazyyak.dev:yak-dev-domain:4.1.2")
 
-    compile("org.crazyyak.apis:yak-apis-google:2.2.5")
+    compile("org.crazyyak.apis:yak-apis-google:2.2.7")
 
-    compile("org.crazyyak.lib:yak-lib-jaxrs:4.1.3")
-    compile("org.crazyyak.lib:yak-lib-servlet:4.1.3")
-    compile("org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.5")
+    compile("org.crazyyak.lib:yak-lib-jaxrs:4.1.4")
+    compile("org.crazyyak.lib:yak-lib-servlet:4.1.4")
+    compile("org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.6")
 
-    compile("org.crazyyak.app:yak-app-common:1.0.4")
+    compile("org.crazyyak.app:yak-app-common:1.0.5")
 
     compile("org.slf4j:slf4j-simple:1.7.12")
     compile("org.thymeleaf:thymeleaf:2.1.4.RELEASE")

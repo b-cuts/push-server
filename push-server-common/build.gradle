@@ -12,8 +12,8 @@ project(":push-server-common") {
 
     compile project(":push-server-jackson")
 
-    compile("org.crazyyak.apis:yak-apis-bitly:1.1.6")
-    compile("org.crazyyak.lib:yak-lib-couchace:5.0.7")
+    compile("org.crazyyak.apis:yak-apis-bitly:1.1.8")
+    compile("org.crazyyak.lib:yak-lib-couchace:5.0.8")
 
     testCompile ("org.testng:testng:6.8.21")
   }

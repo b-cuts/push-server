@@ -6,7 +6,7 @@
 project(":push-server-engine-grizzly") {
   version = "1.0.8"
 
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis()))
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
 
   dependencies {
 
