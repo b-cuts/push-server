@@ -4,16 +4,15 @@
  * This software may not be used without permission.
  */
 project(":push-server-plugin-twilio") {
-  version = "1.0.3"
+  version = "1.0.4"
 
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   dependencies {
 
     compile project(":push-server-common")
 
     compile("com.twilio.sdk:twilio-java-sdk:3.8.0")
-
     compile("log4j:log4j:1.2.17")
 
     testCompile("org.testng:testng:6.8.21")

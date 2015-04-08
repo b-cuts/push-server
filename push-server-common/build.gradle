@@ -4,9 +4,9 @@
  * This software may not be used without permission.
  */
 project(":push-server-common") {
-  version = "4.0.3"
+  version = "4.0.4"
 
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   dependencies {
 
@@ -14,6 +14,7 @@ project(":push-server-common") {
 
     compile("org.crazyyak.apis:yak-apis-bitly:1.1.8")
     compile("org.crazyyak.lib:yak-lib-couchace:5.0.8")
+    compile("com.fasterxml.jackson.core:jackson-annotations:2.5.1") {force = test}
 
     testCompile ("org.testng:testng:6.8.21")
   }

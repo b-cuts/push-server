@@ -4,9 +4,9 @@
  * This software may not be used without permission.
  */
 project(":push-server-engine") {
-  version = "4.0.3"
+  version = "4.0.4"
 
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   dependencies {
 
@@ -32,7 +32,6 @@ project(":push-server-engine") {
     compile("org.crazyyak.app:yak-app-common:1.0.5")
 
     compile("org.slf4j:slf4j-simple:1.7.12")
-    compile("org.thymeleaf:thymeleaf:2.1.4.RELEASE")
     compile("org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE")
 
     testCompile("org.testng:testng:6.8.21")

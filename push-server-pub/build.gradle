@@ -6,7 +6,7 @@
 project(":push-server-pub") {
   version = "2.0.3"
 
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   dependencies {
   	compile ("org.crazyyak.dev:yak-dev-common:4.1.4")

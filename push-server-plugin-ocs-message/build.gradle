@@ -6,7 +6,7 @@
 project(":push-server-plugin-ocs-message") {
     version = "1.0.3"
 
-    apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
+    apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
     dependencies {
 

@@ -17,14 +17,14 @@ buildscript {
   }
 }
 
-apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-java.gradle?" + System.currentTimeMillis())
+apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-java.gradle")
 
 subprojects {
 
   group = "com.cosmicpush"
 
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-versions.gradle?" + System.currentTimeMillis())
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-reports.gradle?" + System.currentTimeMillis())
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-versions.gradle")
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-reports.gradle")
 
   targetCompatibility = "1.8"
   sourceCompatibility = "1.8"
@@ -41,19 +41,14 @@ subprojects {
       force(
         "commons-logging:commons-logging:1.2",
 
-        "com.fasterxml.jackson.core:jackson-databind:2.5.1",
         "com.fasterxml.jackson.core:jackson-annotations:2.5.1",
+        "com.fasterxml.jackson.core:jackson-databind:2.5.1",
 
-        "org.crazyyak.lib:yak-lib-jaxrs-jackson:5.0.6",
-
-        "org.slf4j:slf4j-api:1.7.10",
-
-        "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
-
-        "org.apache.httpcomponents:httpcore:4.3.2",
         "org.apache.httpcomponents:httpclient:4.3.4",
-
+        "org.apache.httpcomponents:httpcore:4.3.2",
         "org.javassist:javassist:3.18.1-GA",
+        "org.slf4j:slf4j-api:1.7.12",
+        "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
       )
     })
   })

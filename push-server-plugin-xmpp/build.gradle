@@ -4,9 +4,9 @@
  * This software may not be used without permission.
  */
 project(":push-server-plugin-xmpp") {
-  version = "4.0.3"
+  version = "4.0.4"
 
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   dependencies {
 

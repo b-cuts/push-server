@@ -4,10 +4,10 @@
  * This software may not be used without permission.
  */
 project(":push-server-engine-servlet") {
-  version = "1.0.3"
+  version = "1.0.4"
 
   apply(plugin: "war")
-  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle?" + System.currentTimeMillis())
+  apply(from: "https://raw.githubusercontent.com/tioga/build-scripts/master/build-config-deployer.gradle")
 
   configurations {
     provided
